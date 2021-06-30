@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:ORCLCDB
+    username: sys as sysdba
+    password: Oradoc_db1
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: false
+#    change-log: classpath:db/changelog/db.changelog-master.yaml
+server:
+  port: 8082
