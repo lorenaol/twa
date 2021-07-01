@@ -12,5 +12,8 @@ import java.util.List;
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     @Query("select c from Category c where c.categoryName =:nume")
-    List<Category> findCategoriesByCategoryName(@Param("nume") String nume);
+    List<Category> findCategories2ByCategoryName(@Param("nume") String nume);
+
+
+    List<Category> findCategoriesByCategoryName(String categoryName);
 }
