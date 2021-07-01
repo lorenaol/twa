@@ -5,11 +5,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-
     <changeSet id="1" author="rachetii">
+        <createSequence sequenceName="categories_seq" startValue="50" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="rachetii">
         <createTable tableName="categories">
             <column name="categories_id" type="bigint">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="parent_id" type="bigint">
                 <constraints nullable="true"/>
@@ -35,7 +38,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="rachetii">
+    <changeSet id="3" author="rachetii">
         <loadData
                 file="classpath:db/changelog/data/categories.csv"
                 separator=";"
