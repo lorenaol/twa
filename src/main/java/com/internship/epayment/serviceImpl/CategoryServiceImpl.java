@@ -38,12 +38,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public Category updateCategory(Category category) {
         Category c = categoryRepository.save(category);
         return c;
     }
 
     @Override
+    @Transactional
     public void deletCategory(Category category) {
         categoryRepository.delete(category);
     }

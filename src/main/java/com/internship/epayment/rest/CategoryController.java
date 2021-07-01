@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+//@Controller
 @RequestMapping(path = "/api/categories")
 public class CategoryController {
 
@@ -29,7 +30,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    @ResponseBody
+//    @ResponseBody
     public Category addCategory(@RequestBody Category category){
         Category c = null;
         if(category != null){
