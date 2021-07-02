@@ -17,4 +17,15 @@ insert into categories values(categories_seq.nextVal, 'pere');
 insert into categories values(categories_seq.nextVal, 'banane');
 insert into categories values(categories_seq.nextVal, 'portocale');
 
+
+
+drop table categories;
+drop table products;
+drop table databasechangelog;
+drop table databasechangeloglock;
+drop sequence categories_seq;
+drop sequence products_seq;
+
+
+
 URL : http://localhost:8082/api/*

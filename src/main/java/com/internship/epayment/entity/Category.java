@@ -1,6 +1,7 @@
 package com.internship.epayment.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "categories")
@@ -13,6 +14,21 @@ public class Category {
 
     @Column(name = "category_name",length = 100)
     private String categoryName;
+
+    @Column(name = "category_code",length = 100)
+    private String categoryCode;
+
+    @Column(name = "category_description",length = 100)
+    private String categoryDescription;
+
+    @Column(name = "store_id", length = 100)
+    private String storeId;
+
+    @Column(name = "date_added", length = 100)
+    private Date dateAdded;
+
+    @Column(name = "last_updated", length = 100)
+    private Date lastUpdated;
 
     public Long getId() {
         return id;
@@ -28,5 +44,45 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
