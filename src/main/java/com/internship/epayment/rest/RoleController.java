@@ -23,7 +23,7 @@ public class RoleController {
         return list;
     }
     @GetMapping(path = "/{id}")
-    public Role getRoletById(@PathVariable Long id) throws NotFoundException {
+    public Role getRoleById(@PathVariable Long id) throws NotFoundException {
         Role role = roleService.findById(id);
         return  role;
     }

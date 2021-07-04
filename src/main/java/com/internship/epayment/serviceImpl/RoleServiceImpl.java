@@ -8,6 +8,7 @@ import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +39,14 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findRoleByCode(code);
     }
     @Override
+    @Transactional
     public Role addRole(Role role) {
         Role r = roleRepository.save(role);
         return r;
     }
 
     @Override
+    @Transactional
     public Role updateRole(Role role) {
         Role r = roleRepository.save(role);
         return r;
@@ -51,6 +54,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
+    @Transactional
     public void deleteRole(Role role) {
         roleRepository.delete(role);
     }

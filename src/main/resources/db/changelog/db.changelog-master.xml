@@ -7,4 +7,5 @@
     <include file="classpath:db/changelog/entities/categories.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/products.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/roles.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/entities/authorities.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
