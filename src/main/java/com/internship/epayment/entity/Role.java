@@ -8,6 +8,20 @@ import java.util.List;
 @Entity
 @Table(name = "roles")
 public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_seq")
+    @SequenceGenerator(name = "roles_seq", allocationSize = 1)
+    private Long id;
+    private String name;
+    @Column(name = "start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    private Date endDate;
+    private String code;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private List<RoleAuthority> roleAuthorities= new ArrayList<>();
+
     public Role() {
     }
 
@@ -31,32 +45,24 @@ public class Role {
         this.name = name;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public void setCode(String code) {
         this.code = code;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_seq")
-    @SequenceGenerator(name = "roles_seq", allocationSize = 1)
-
-    private Long id;
-    private String name;
-    private Date start_date;
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
     }
 
     public List<RoleAuthority> getRoleAuthorities() {
@@ -66,10 +72,5 @@ public class Role {
     public void setRoleAuthorities(List<RoleAuthority> roleAuthorities) {
         this.roleAuthorities = roleAuthorities;
     }
-
-    private Date end_date;
-    private String code;
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private List<RoleAuthority> roleAuthorities= new ArrayList<>();
 
 }

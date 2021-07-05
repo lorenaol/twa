@@ -8,38 +8,28 @@ import java.util.List;
 @Entity
 @Table(name = "roleauthorities")
 public class RoleAuthority {
-    public Long getId() {
-        return id;
-    }
-
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleauthorities_seq")
     @SequenceGenerator(name = "roleauthorities_seq", allocationSize = 1)
-
     private Long id;
+    @Column(name = "start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    private Date endDate;
+    @ManyToOne
+    @JoinColumn(name="role_id", referencedColumnName = "id", nullable = false)
+    private Role role;
+    @ManyToOne
+    @JoinColumn(name="authority_id", referencedColumnName = "id", nullable = false)
+    private Authority authority;
 
-    public Date getStart_date() {
-        return start_date;
+    public Long getId() {
+        return id;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Role getRole() {
@@ -50,6 +40,22 @@ public class RoleAuthority {
         this.role = role;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public Authority getAuthority() {
         return authority;
     }
@@ -57,14 +63,5 @@ public class RoleAuthority {
     public void setAuthority(Authority authority) {
         this.authority = authority;
     }
-
-    private Date start_date;
-    private Date end_date;
-    @ManyToOne
-    @JoinColumn(name="role_id", referencedColumnName = "id", nullable = false)
-    private Role role;
-    @ManyToOne
-    @JoinColumn(name="authority_id", referencedColumnName = "id", nullable = false)
-    private Authority authority;
 
 }

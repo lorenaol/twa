@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-
 public class AuthorityServiceImpl implements AuthorityService {
     @Autowired
     private AuthorityRepository authorityRepository;
