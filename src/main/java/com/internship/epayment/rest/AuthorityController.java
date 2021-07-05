@@ -1,15 +1,9 @@
 package com.internship.epayment.rest;
 
-import com.internship.epayment.entity.Category;
-import com.internship.epayment.entity.Product;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.Authority;
-import com.internship.epayment.service.ProductService;
-import com.internship.epayment.service.RoleService;
 import com.internship.epayment.service.AuthorityService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +17,12 @@ public class AuthorityController {
 
     @GetMapping
     public List<Authority> getRoles(){
-        List<Authority> list= authorityService.getAll();
-        return list;
+        return authorityService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public Authority getAuthoritiesById(@PathVariable Long id) throws NotFoundException {
-        Authority authority = authorityService.findById(id);
-        return authority;
+        return authorityService.findById(id);
     }
 
     @PostMapping
@@ -45,8 +37,7 @@ public class AuthorityController {
     @PutMapping
     @ResponseBody
     public Authority updateAuthority(@RequestBody Authority authority){
-        Authority p = authorityService.updateAuthority(authority);
-        return p;
+        return authorityService.updateAuthority(authority);
     }
 
     @DeleteMapping
@@ -56,14 +47,12 @@ public class AuthorityController {
 
     @GetMapping(path = "/findByName")
     public List<Authority> findAuthoritiesByName(@RequestParam(value = "name") String name){
-        List<Authority> list = authorityService.findByName(name);
-        return list;
+        return authorityService.findByName(name);
     }
 
     @GetMapping(path = "/findByCode")
     public List<Authority> findAuthoritiesByCode(@RequestParam(value = "code") String code){
-        List<Authority> list = authorityService.findByCode(code);
-        return list;
+        return authorityService.findByCode(code);
     }
 
 

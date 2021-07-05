@@ -1,9 +1,7 @@
 package com.internship.epayment.entity;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name = "roleauthorities")
@@ -12,14 +10,19 @@ public class RoleAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleauthorities_seq")
     @SequenceGenerator(name = "roleauthorities_seq", allocationSize = 1)
+
     private Long id;
+
     @Column(name = "start_date")
     private Date startDate;
+
     @Column(name = "end_date")
     private Date endDate;
+
     @ManyToOne
     @JoinColumn(name="role_id", referencedColumnName = "id", nullable = false)
     private Role role;
+
     @ManyToOne
     @JoinColumn(name="authority_id", referencedColumnName = "id", nullable = false)
     private Authority authority;

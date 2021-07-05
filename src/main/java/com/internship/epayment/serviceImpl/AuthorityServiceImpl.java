@@ -1,18 +1,11 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Category;
-import com.internship.epayment.entity.Product;
 import com.internship.epayment.entity.Authority;
-import com.internship.epayment.repository.CategoryRepository;
 import com.internship.epayment.repository.AuthorityRepository;
-import com.internship.epayment.repository.ProductRepository;
-import com.internship.epayment.service.CategoryService;
 import com.internship.epayment.service.AuthorityService;
-import com.internship.epayment.service.ProductService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +14,6 @@ import java.util.List;
 public class AuthorityServiceImpl implements AuthorityService {
     @Autowired
     private AuthorityRepository authorityRepository;
-
 
     @Override
     public List<Authority> getAll() {
@@ -32,8 +24,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public Authority findById(Long id) throws NotFoundException {
-        Authority category = authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return  category;
+        return authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
@@ -43,14 +34,12 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public Authority addAuthority(Authority authority) {
-        Authority p = authorityRepository.save(authority);
-        return p;
+        return authorityRepository.save(authority);
     }
 
     @Override
     public Authority updateAuthority(Authority authority) {
-        Authority p = authorityRepository.save(authority);
-        return p;
+        return authorityRepository.save(authority);
     }
 
     @Override

@@ -8,6 +8,24 @@ import java.util.List;
 @Entity
 @Table(name = "authorities")
 public class Authority {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorities_seq")
+    @SequenceGenerator(name = "authorities_seq", allocationSize = 1)
+
+    private Long id;
+
+    private String name;
+
+    private Date start_date;
+
+    private Date end_date;
+
+    private String code;
+
+    @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
+    private List<RoleAuthority> roleAuthorities = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -28,17 +46,9 @@ public class Authority {
         this.name = name;
     }
 
-
     public void setCode(String code) {
         this.code = code;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorities_seq")
-    @SequenceGenerator(name = "authorities_seq", allocationSize = 1)
-
-    private Long id;
-    private String name;
 
     public Date getStart_date() {
         return start_date;
@@ -64,9 +74,4 @@ public class Authority {
         this.roleAuthorities = roleAuthorities;
     }
 
-    private Date start_date;
-    private Date end_date;
-    private String code;
-    @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
-    private List<RoleAuthority> roleAuthorities = new ArrayList<>();
 }

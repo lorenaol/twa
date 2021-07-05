@@ -1,15 +1,9 @@
 package com.internship.epayment.rest;
 
-import com.internship.epayment.entity.Category;
-import com.internship.epayment.entity.Product;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.RoleAuthority;
-import com.internship.epayment.repository.RoleAuthorityRepository;
 import com.internship.epayment.service.RoleAuthorityService;
-import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -23,14 +17,12 @@ public class RoleAuthorityController {
 
     @GetMapping
     public List<RoleAuthority> getRoleAuthorities(){
-        List<RoleAuthority> list= roleAuthorityService.getAll();
-        return list;
+        return roleAuthorityService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public RoleAuthority getRoleAuthorityById(@PathVariable Long id) throws NotFoundException {
-        RoleAuthority roleAuthority = roleAuthorityService.findById(id);
-        return roleAuthority;
+        return roleAuthorityService.findById(id);
     }
 
     @PostMapping
@@ -45,23 +37,20 @@ public class RoleAuthorityController {
     @PutMapping
     @ResponseBody
     public RoleAuthority updateRoleAuthority(@RequestBody RoleAuthority roleAuthority){
-        RoleAuthority p = roleAuthorityService.updateRoleAuthority(roleAuthority);
-        return p;
+        return roleAuthorityService.updateRoleAuthority(roleAuthority);
     }
 
-    @DeleteMapping
-    public void deleteRoleAuthority(@RequestBody RoleAuthority roleAuthority){
-        roleAuthorityService.deleteRoleAuthority(roleAuthority);
+    @DeleteMapping(path = "/{id}")
+    public void deleteRoleAuthority(@PathVariable Long id) throws NotFoundException {
+        roleAuthorityService.deleteRoleAuthority(roleAuthorityService.findById(id));
     }
 
     @GetMapping(path = "/findByEndDate")
-    public List<RoleAuthority> findRoleAuthoritiesByEndDate(@RequestParam(value = "endDate") Date date) {
-        List<RoleAuthority> list = roleAuthorityService.findByEndDate(date);
-        return list;
+    public List<RoleAuthority> findRoleAuthoritiesByEndDate(@RequestParam(value = "end_date") Date date) {
+        return roleAuthorityService.findByEndDate(date);
     }
     @GetMapping(path = "/findByStartDate")
-    public List<RoleAuthority> findRoleAuthoritiesByStartDate(@RequestParam(value = "startDate") Date date) {
-        List<RoleAuthority> list = roleAuthorityService.findByStartDate(date);
-        return list;
+    public List<RoleAuthority> findRoleAuthoritiesByStartDate(@RequestParam(value = "start_date") Date date) {
+        return roleAuthorityService.findByStartDate(date);
     }
 }

@@ -19,14 +19,12 @@ public class CategoryController {
 
     @GetMapping
     public List<Category> getCategories(){
-        List<Category> list= categoryService.findAll();
-        return list;
+        return categoryService.findAll();
     }
 
     @GetMapping(path = "/{id}")
     public Category getCategoriesById(@PathVariable Long id) throws NotFoundException {
-        Category category = categoryService.findById(id);
-        return  category;
+        return categoryService.findById(id);
     }
 
     @PostMapping
@@ -42,8 +40,7 @@ public class CategoryController {
     @PutMapping
     @ResponseBody
     public Category updateCategory(@RequestBody Category category){
-        Category c = categoryService.updateCategory(category);
-        return c;
+        return categoryService.updateCategory(category);
     }
 
     @DeleteMapping
@@ -53,8 +50,7 @@ public class CategoryController {
 
     @GetMapping(path = "/findByName")
     public List<Category> getCategoriesByName(@RequestParam(value = "name") String name){
-        List<Category> list = categoryService.findCategoriesByName(name);
-        return list;
+        return categoryService.findCategoriesByName(name);
     }
 
 

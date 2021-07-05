@@ -1,11 +1,9 @@
 package com.internship.epayment.rest;
 
-import com.internship.epayment.entity.Category;
 import com.internship.epayment.entity.Product;
 import com.internship.epayment.service.ProductService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,14 +17,12 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getProducts(){
-        List<Product> list= productService.getAll();
-        return list;
+        return productService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public Product getProductsById(@PathVariable Long id) throws NotFoundException {
-        Product product = productService.findById(id);
-        return  product;
+        return productService.findById(id);
     }
 
     @PostMapping
@@ -41,8 +37,7 @@ public class ProductController {
     @PutMapping
     @ResponseBody
     public Product updateProduct(@RequestBody Product product){
-        Product p = productService.updateProduct(product);
-        return p;
+        return productService.updateProduct(product);
     }
 
     @DeleteMapping
@@ -52,20 +47,17 @@ public class ProductController {
 
     @GetMapping(path = "/findByName")
     public List<Product> findProductsByName(@RequestParam(value = "name") String name){
-        List<Product> list = productService.findByName(name);
-        return list;
+        return productService.findByName(name);
     }
 
     @GetMapping(path = "/findByCode")
     public List<Product> findProductsByCode(@RequestParam(value = "code") String code){
-        List<Product> list = productService.findByCode(code);
-        return list;
+        return productService.findByCode(code);
     }
 
     @GetMapping(path = "/findBySku")
     public List<Product> findProductsBySku(@RequestParam(value = "sku") String sku){
-        List<Product> list = productService.findBySku(sku);
-        return list;
+        return productService.findBySku(sku);
     }
 
 }

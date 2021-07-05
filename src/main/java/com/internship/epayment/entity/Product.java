@@ -12,11 +12,17 @@ public class Product {
     @SequenceGenerator(name = "categories_seq", allocationSize = 1)
 
     private Long id;
+
     private double price;
+
     private String name;
+
     private long quantity;
+
     private Date expire_date;
+
     private String sku;
+
     private String code;
 
 

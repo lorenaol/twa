@@ -18,4 +18,5 @@ public interface CategoryService {
     void deletCategory(Category category);
 
     List<Category> findCategoriesByName(String name);
+
 }

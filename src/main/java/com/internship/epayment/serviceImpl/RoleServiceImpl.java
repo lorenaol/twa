@@ -1,10 +1,7 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Product;
 import com.internship.epayment.entity.Role;
-import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.repository.RoleRepository;
-import com.internship.epayment.service.ProductService;
 import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +27,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findById(Long id) throws NotFoundException {
-        Role role = roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return  role;
+        return roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
@@ -41,14 +37,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role addRole(Role role) {
-        Role p = roleRepository.save(role);
-        return p;
+        return roleRepository.save(role);
     }
 
     @Override
     public Role updateRole(Role role) {
-        Role p = roleRepository.save(role);
-        return p;
+        return roleRepository.save(role);
     }
 
     @Override

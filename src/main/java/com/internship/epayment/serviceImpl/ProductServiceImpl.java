@@ -1,15 +1,11 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Category;
 import com.internship.epayment.entity.Product;
-import com.internship.epayment.repository.CategoryRepository;
 import com.internship.epayment.repository.ProductRepository;
-import com.internship.epayment.service.CategoryService;
 import com.internship.epayment.service.ProductService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) throws NotFoundException {
-        Product category = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return  category;
+        return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
@@ -46,14 +41,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
-        Product p = productRepository.save(product);
-        return p;
+        return productRepository.save(product);
     }
 
     @Override
     public Product updateProduct(Product product) {
-        Product p = productRepository.save(product);
-        return p;
+        return productRepository.save(product);
     }
 
     @Override

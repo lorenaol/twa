@@ -1,14 +1,8 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Product;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.RoleAuthority;
-import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.repository.RoleAuthorityRepository;
-import com.internship.epayment.repository.RoleRepository;
-import com.internship.epayment.service.ProductService;
 import com.internship.epayment.service.RoleAuthorityService;
-import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +27,13 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService{
 
     @Override
     public RoleAuthority findById(Long id) throws NotFoundException {
-        RoleAuthority roleAuthority = roleAuthorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return  roleAuthority;
+        return roleAuthorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
 
     @Override
     public RoleAuthority updateRoleAuthority(RoleAuthority roleAuthority) {
-        RoleAuthority p = roleAuthorityRepository.save(roleAuthority);
-        return p;
+        return roleAuthorityRepository.save(roleAuthority);
     }
 
     @Override

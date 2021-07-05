@@ -12,18 +12,22 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_seq")
     @SequenceGenerator(name = "roles_seq", allocationSize = 1)
+
     private Long id;
+
     private String name;
+
     @Column(name = "start_date")
     private Date startDate;
+
     @Column(name = "end_date")
     private Date endDate;
+
     private String code;
+
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<RoleAuthority> roleAuthorities= new ArrayList<>();
-
-    public Role() {
-    }
+    public Role() {}
 
     public Long getId() {
         return id;

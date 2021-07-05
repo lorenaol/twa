@@ -1,6 +1,5 @@
 package com.internship.epayment.rest;
 
-
 import com.internship.epayment.entity.Role;
 import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
@@ -19,14 +18,12 @@ public class RoleController {
 
     @GetMapping
     public List<Role> getRoles(){
-        List<Role> list= roleService.getAll();
-        return list;
+        return roleService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public Role getRolesById(@PathVariable Long id) throws NotFoundException {
-        Role role = roleService.findById(id);
-        return role;
+        return roleService.findById(id);
     }
 
     @PostMapping
@@ -41,8 +38,7 @@ public class RoleController {
     @PutMapping
     @ResponseBody
     public Role updateRole(@RequestBody Role role){
-        Role p = roleService.updateRole(role);
-        return p;
+        return roleService.updateRole(role);
     }
 
     @DeleteMapping
@@ -52,14 +48,12 @@ public class RoleController {
 
     @GetMapping(path = "/findByName")
     public List<Role> findRolesByName(@RequestParam(value = "name") String name){
-        List<Role> list = roleService.findByName(name);
-        return list;
+        return roleService.findByName(name);
     }
 
     @GetMapping(path = "/findByCode")
     public List<Role> findRolesByCode(@RequestParam(value = "code") String code){
-        List<Role> list = roleService.findByCode(code);
-        return list;
+        return roleService.findByCode(code);
     }
 
 
