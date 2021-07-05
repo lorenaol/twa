@@ -14,6 +14,5 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
     @Query("select c from Category c where c.categoryName =:nume")
     List<Category> findCategories2ByCategoryName(@Param("nume") String nume);
 
-
     List<Category> findCategoriesByCategoryName(String categoryName);
 }
