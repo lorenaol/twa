@@ -16,11 +16,11 @@
             </column>
 
             <column name="role_id" type="bigint">
-                <constraints foreignKeyName="role_fk" references="roles(id)"
+                <constraints foreignKeyName="role_authorities_role_fk" references="roles(id)"
                              nullable="false" />
             </column>
             <column name="authority_id" type="bigint">
-                <constraints foreignKeyName="authority_fk" references="authorities(id)"
+                <constraints foreignKeyName="role_authorities_authority_fk" references="authorities(id)"
                              nullable="false" />
             </column>
 
