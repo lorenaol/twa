@@ -1,6 +1,6 @@
-id;price;name;quantity;expire_date;sku;code
-1;13.15;ElDesperado;100;2022-06-03;123ab;123456
-2;23.25;cartofi;230;2023-06-04;321dc;10293
-3;91.47;guacamole;456;2022-05-04;234fv;12351
-4;23.65;milk;299;2021-02-04;432rg;34253
-5;39.35;cioco;233;2021-03-05;234dc;23235
+id;price;name;quantity;expire_date;sku;code;category_id
+1;13.15;ElDesperado;100;2022-06-03;123ab;123456;2
+2;23.25;cartofi;230;2023-06-04;321dc;10293;3
+3;91.47;guacamole;456;2022-05-04;234fv;12351;1
+4;23.65;milk;299;2021-02-04;432rg;34253;1
+5;39.35;cioco;233;2021-03-05;234dc;23235;2

@@ -1,7 +1,9 @@
 package com.internship.epayment.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -29,6 +31,9 @@ public class Category {
 
     @Column(name = "last_updated", length = 100)
     private Date lastUpdated;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
 
     public Long getId() {
         return id;

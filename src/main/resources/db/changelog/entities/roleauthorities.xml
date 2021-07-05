@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="rachetii">
+        <createSequence sequenceName="roleauthorities_seq" startValue="100" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="rachetii">
+        <createTable tableName="roleauthorities">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="startDate"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="endDate"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="roleId" type="bigint">
+                <constraints foreignKeyName="role_fk"
+                             references="roles(id)" nullable="false" />
+            </column>
+            <column name="authorityId" type="bigint">
+                <constraints foreignKeyName="authority_fk"
+                             references="authorities(id)" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="rachetii">
+        <loadData
+                file="classpath:db/changelog/data/roleauthorities.csv"
+                separator=";"
+                tableName="roleauthorities">
+            <column name="id" type="numeric"/>
+            <column name="startDate" type="datetime"/>
+            <column name="endDate" type="datetime"/>
+            <column name="roleId" type="numeric"/>
+            <column name="authorityId" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

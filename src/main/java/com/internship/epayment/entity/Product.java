@@ -19,6 +19,11 @@ public class Product {
     private String sku;
     private String code;
 
+
+    @ManyToOne
+    @JoinColumn(name="category_id", referencedColumnName = "id", nullable = false)
+    private Category category;
+
     public Long getId() {
         return id;
     }

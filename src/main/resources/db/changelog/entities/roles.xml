@@ -6,52 +6,39 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <changeSet id="1" author="rachetii">
-        <createSequence sequenceName="products_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="roles_seq" startValue="100" incrementBy="1"/>
     </changeSet>
 
     <changeSet id="2" author="rachetii">
-        <createTable tableName="products">
+        <createTable tableName="roles">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false" />
-            </column>
-            <column name="price" type="DECIMAL(4,2)">
-                <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
-            <column name="quantity" type="bigint">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="startDate"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="expire_date"  type="TIMESTAMP">
-                <constraints nullable="false" />
-            </column>
-            <column name="sku" type="varchar(128)">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="endDate"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
             <column name="code" type="varchar(128)">
                 <constraints nullable="false" />
-            </column>
-            <column name="category_id" type="bigint">
-                <constraints foreignKeyName="category_fk"
-                             references="categories(id)" nullable="false" />
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="3" author="rachetii">
         <loadData
-                file="classpath:db/changelog/data/products.csv"
+                file="classpath:db/changelog/data/roles.csv"
                 separator=";"
-                tableName="products">
+                tableName="roles">
             <column name="id" type="numeric"/>
-            <column name="price" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="quantity" type="numeric"/>
-            <column name="expire_date" type="datetime"/>
-            <column name="sku" type="string"/>
             <column name="code" type="string"/>
-            <column name="category_id" type="numeric"/>
+            <column name="startDate" type="datetime"/>
+            <column name="endDate" type="datetime"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>
