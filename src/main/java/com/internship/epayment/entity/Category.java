@@ -56,12 +56,9 @@ public class Category {
         return category_description;
     }
 
-
     public void setCategory_description(String category_description) {
         this.category_description = category_description;
     }
-
-
 
     public Date getDateAdded() {
         return dateAdded;

@@ -13,8 +13,11 @@ public class Role {
     private Long id;
 
     private String name;
+
     private String code;
+
     private Date start_date;
+
     private Date end_date;
 
     public Long getId() {

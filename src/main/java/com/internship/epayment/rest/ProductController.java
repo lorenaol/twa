@@ -1,7 +1,6 @@
 package com.internship.epayment.rest;
 
 
-import com.internship.epayment.entity.Category;
 import com.internship.epayment.entity.Product;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@Controller
 @RequestMapping(path = "/api/products")
 public class ProductController {
 
@@ -20,26 +18,22 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getProducts(){
-        List<Product> list= productService.getAll();
-        return list;
+        return productService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public Product getProductById(@PathVariable Long id) throws NotFoundException {
-        Product product = productService.findById(id);
-        return  product;
+        return productService.findById(id);
     }
 
     @GetMapping(path = "/findByCode")
     public Product getProductsByCode(@RequestParam(value = "code") String code) throws NotFoundException {
-        Product product = productService.findByCode(code);
-        return product;
+        return productService.findByCode(code);
     }
 
     @GetMapping(path = "/findBySku")
     public Product getProductsBySku(@RequestParam(value = "sku") String sku) throws NotFoundException {
-        Product product = productService.findBySku(sku);
-        return product;
+        return productService.findBySku(sku);
     }
 
     @PostMapping
@@ -54,8 +48,7 @@ public class ProductController {
     @PutMapping
     @ResponseBody
     public Product updateProduct(@RequestBody Product product){
-        Product p = productService.updateProduct(product);
-        return p;
+        return productService.updateProduct(product);
     }
 
     @DeleteMapping

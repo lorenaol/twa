@@ -6,6 +6,7 @@ import javassist.NotFoundException;
 import java.util.List;
 
 public interface ProductsService {
+
     List<Product> getAll();
 
     Product findById(Long id) throws NotFoundException;

@@ -13,10 +13,15 @@ public class Product {
 
     private Long id;
     private double price;
+
     private String name;
+
     private long quantity;
+
     private Date expire_date;
+
     private String sku;
+
     private String code;
 
     public Long getId() {

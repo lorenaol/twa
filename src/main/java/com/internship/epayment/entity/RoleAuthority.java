@@ -22,6 +22,7 @@ public class RoleAuthority {
 
     @Column(name = "start_date", length = 100)
     private Date start_date;
+    
     @Column(name = "end_date", length = 100)
     private Date end_date;
 

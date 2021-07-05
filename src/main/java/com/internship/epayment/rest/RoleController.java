@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@Controller
 @RequestMapping(path = "/api/roles")
 public class RoleController {
 
@@ -19,25 +18,22 @@ public class RoleController {
 
     @GetMapping
     public List<Role> getRoles(){
-        List<Role> list= roleService.getAll();
-        return list;
+        return roleService.getAll();
     }
+
     @GetMapping(path = "/{id}")
     public Role getRoleById(@PathVariable Long id) throws NotFoundException {
-        Role role = roleService.findById(id);
-        return  role;
+        return roleService.findById(id);
     }
 
     @GetMapping(path = "/findByName")
     public List<Role> getRolesByName(@RequestParam(value = "name") String name) throws NotFoundException {
-        List<Role> roles = roleService.findByName(name);
-        return roles;
+        return roleService.findByName(name);
     }
 
     @GetMapping(path = "/findByCode")
     public Role getRolesByCode(@RequestParam(value = "code") String code) throws NotFoundException {
-        Role role = roleService.findByCode(code);
-        return role;
+        return roleService.findByCode(code);
     }
 
     @PostMapping
@@ -52,8 +48,7 @@ public class RoleController {
     @PutMapping
     @ResponseBody
     public Role updateRole(@RequestBody Role role){
-        Role r = roleService.updateRole(role);
-        return r;
+        return roleService.updateRole(role);
     }
     @DeleteMapping
     public void deleteRole(@RequestBody Role role){

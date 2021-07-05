@@ -1,10 +1,7 @@
 package com.internship.epayment.serviceImpl;
 
 import com.internship.epayment.entity.Authority;
-import com.internship.epayment.entity.Category;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.repository.AuthorityRepository;
-import com.internship.epayment.repository.RoleRepository;
 import com.internship.epayment.service.AuthorityService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +26,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public Authority findById(Long id) throws NotFoundException {
-        Authority authority = authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return authority;
+       return authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
@@ -46,15 +42,13 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     @Transactional
     public Authority addAuthority(Authority authority) {
-        Authority a = authorityRepository.save(authority);
-        return a;
+        return authorityRepository.save(authority);
     }
 
     @Override
     @Transactional
     public Authority updateAuthority(Authority authority) {
-        Authority a = authorityRepository.save(authority);
-        return a;
+        return authorityRepository.save(authority);
     }
 
     @Override

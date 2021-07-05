@@ -15,6 +15,7 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -28,30 +29,28 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findById(Long id) throws NotFoundException {
-        Role role = roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return role;
+        return roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     public List <Role> findByName(String name){
         return roleRepository.findRolesByName(name);
     }
+
     public Role findByCode(String code){
         return roleRepository.findRoleByCode(code);
     }
+
     @Override
     @Transactional
     public Role addRole(Role role) {
-        Role r = roleRepository.save(role);
-        return r;
+        return roleRepository.save(role);
     }
 
     @Override
     @Transactional
     public Role updateRole(Role role) {
-        Role r = roleRepository.save(role);
-        return r;
+        return roleRepository.save(role);
     }
-
 
     @Override
     @Transactional
