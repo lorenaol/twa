@@ -17,7 +17,6 @@ public class CategoryController {
 
     @GetMapping
     public List<Category> getCategories(){
-        //branza
         return  categoryService.findAll();
     }
 
