@@ -1,4 +1,4 @@
-id;name;startDate;endDate;code
+id;name;start_date;end_date;code
 1;sefu;2019-06-03;2022-06-03;123456
 2;semisefu;2019-06-03;2022-06-03;163545
 3;asistent;2019-06-03;2022-06-03;738294

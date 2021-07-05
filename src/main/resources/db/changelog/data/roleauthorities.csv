@@ -1,2 +1,2 @@
-id;startDate;endDate;roleId;authorityId
+id;start_date;end_date;role_id;authority_id
 1;2021-05-02;2021-06-04;1;1

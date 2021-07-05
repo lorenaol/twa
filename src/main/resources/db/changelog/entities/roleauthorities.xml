@@ -14,17 +14,17 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="startDate"  type="TIMESTAMP">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="start_date"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="endDate"  type="TIMESTAMP">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="end_date"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="roleId" type="bigint">
+            <column name="role_id" type="bigint">
                 <constraints foreignKeyName="role_fk"
                              references="roles(id)" nullable="false" />
             </column>
-            <column name="authorityId" type="bigint">
+            <column name="authority_id" type="bigint">
                 <constraints foreignKeyName="authority_fk"
                              references="authorities(id)" nullable="false" />
             </column>
@@ -37,10 +37,10 @@
                 separator=";"
                 tableName="roleauthorities">
             <column name="id" type="numeric"/>
-            <column name="startDate" type="datetime"/>
-            <column name="endDate" type="datetime"/>
-            <column name="roleId" type="numeric"/>
-            <column name="authorityId" type="numeric"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="role_id" type="numeric"/>
+            <column name="authority_id" type="numeric"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

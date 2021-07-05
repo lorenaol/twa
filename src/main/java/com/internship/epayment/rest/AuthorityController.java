@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/authorities")
-public class AuthoriryController {
+public class AuthorityController {
 
     @Autowired
     private AuthorityService authorityService;

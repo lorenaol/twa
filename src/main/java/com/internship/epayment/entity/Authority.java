@@ -16,14 +16,6 @@ public class Authority {
         return name;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
     public String getCode() {
         return code;
     }
@@ -36,13 +28,6 @@ public class Authority {
         this.name = name;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
 
     public void setCode(String code) {
         this.code = code;
@@ -54,8 +39,33 @@ public class Authority {
 
     private Long id;
     private String name;
-    private Date startDate;
-    private Date endDate;
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
+    }
+
+    public List<RoleAuthority> getRoleAuthorities() {
+        return roleAuthorities;
+    }
+
+    public void setRoleAuthorities(List<RoleAuthority> roleAuthorities) {
+        this.roleAuthorities = roleAuthorities;
+    }
+
+    private Date start_date;
+    private Date end_date;
     private String code;
     @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
     private List<RoleAuthority> roleAuthorities = new ArrayList<>();
