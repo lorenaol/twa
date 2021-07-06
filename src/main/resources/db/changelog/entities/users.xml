@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
@@ -6,28 +6,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <changeSet id="1" author="rachetii">
-        <createSequence sequenceName="user_roles_seq" startValue="50" incrementBy="1"/>
+        <createSequence sequenceName="users_seq" startValue="50" incrementBy="1"/>
     </changeSet>
 
     <changeSet id="2" author="rachetii">
-        <createTable tableName="user_roles">
+        <createTable tableName="users">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false" />
             </column>
 
-            <column name="user_id" type="bigint">
-                <constraints foreignKeyName="user_roles_user_fk" references="users(id)"
-                             nullable="false" />
-            </column>
-            <column name="role_id" type="bigint">
-                <constraints foreignKeyName="user_roles_role_fk" references="roles(id)"
-                             nullable="false" />
-            </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="start_date"  type="TIMESTAMP">
+            <column name="name" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
 
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="end_date"  type="TIMESTAMP">
+            <column name="email" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="pass" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
 
@@ -36,15 +32,13 @@
 
     <changeSet id="3" author="rachetii">
         <loadData
-                file="classpath:db/changelog/data/user_roles.csv"
+                file="classpath:db/changelog/data/users.csv"
                 separator=";"
-                tableName="user_roles">
+                tableName="users">
             <column name="id" type="numeric"/>
-            <column name="user_id" type="string"/>
-            <column name="role_id" type="string"/>
-            <column name="start_date" type="datetime"/>
-            <column name="end_date" type="datetime"/>
+            <column name="name" type="string"/>
+            <column name="email" type="string"/>
+            <column name="pass" type="string"/>
         </loadData>
     </changeSet>
-
 </databaseChangeLog>
