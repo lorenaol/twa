@@ -9,4 +9,6 @@
     <include file="classpath:db/changelog/entities/roles.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/authorities.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/roleauthorities.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/entities/users.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/entities/user_roles.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
