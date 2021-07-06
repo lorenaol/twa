@@ -1,5 +1,4 @@
 package com.internship.epayment.entity;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,13 +15,20 @@ public class UserRole {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
+    public User getUser() {
+        return user;
+    }
 
     @Column(name = "start_date", length = 100)
     private Date start_date;
+
+    @Column(name = "end_date", length = 100)
+    private Date end_date;
 
     public Long getId() {
         return id;
@@ -55,8 +61,4 @@ public class UserRole {
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
-
-    @Column(name = "end_date", length = 100)
-    private Date end_date;
-
 }

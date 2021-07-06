@@ -1,9 +1,7 @@
 package com.internship.epayment.rest;
 
-import com.internship.epayment.entity.RoleAuthority;
-import com.internship.epayment.entity.User;
+
 import com.internship.epayment.entity.UserRole;
-import com.internship.epayment.service.RoleAuthorityService;
 import com.internship.epayment.service.UserRoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,7 @@ public class UserRoleController {
     public List<UserRole> getUserRoles(){
         return userRoleService.getAll();
     }
+
     @GetMapping(path = "/{id}")
     public UserRole getUserRoleById(@PathVariable Long id) throws NotFoundException {
         return userRoleService.findById(id);
