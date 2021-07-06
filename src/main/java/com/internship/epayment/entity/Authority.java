@@ -1,53 +1,38 @@
 package com.internship.epayment.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "authorities")
 public class Authority {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorities_seq")
     @SequenceGenerator(name = "authorities_seq", allocationSize = 1)
-
     private Long id;
 
     private String name;
+
+    private String code;
 
     private Date start_date;
 
     private Date end_date;
 
-    private String code;
-
-    @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
-    private List<RoleAuthority> roleAuthorities = new ArrayList<>();
-
     public Long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getStart_date() {
@@ -66,12 +51,11 @@ public class Authority {
         this.end_date = end_date;
     }
 
-    public List<RoleAuthority> getRoleAuthorities() {
-        return roleAuthorities;
+    public String getCode() {
+        return code;
     }
 
-    public void setRoleAuthorities(List<RoleAuthority> roleAuthorities) {
-        this.roleAuthorities = roleAuthorities;
+    public void setCode(String code) {
+        this.code = code;
     }
-
 }

@@ -1,19 +1,21 @@
 package com.internship.epayment.serviceImpl;
 
+import com.internship.epayment.entity.Product;
 import com.internship.epayment.entity.Role;
+import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.repository.RoleRepository;
 import com.internship.epayment.service.RoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Service
 public class RoleServiceImpl implements RoleService {
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -30,27 +32,28 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
-    @Override
-    public List<Role> findByCode(String code) {
-        return roleRepository.findRolesByCode(code);
+    public List <Role> findByName(String name){
+        return roleRepository.findRolesByName(name);
+    }
+
+    public Role findByCode(String code){
+        return roleRepository.findRoleByCode(code);
     }
 
     @Override
+    @Transactional
     public Role addRole(Role role) {
         return roleRepository.save(role);
     }
 
     @Override
+    @Transactional
     public Role updateRole(Role role) {
         return roleRepository.save(role);
     }
 
     @Override
-    public List<Role> findByName(String name) {
-        return roleRepository.findRolesByName(name);
-    }
-
-    @Override
+    @Transactional
     public void deleteRole(Role role) {
         roleRepository.delete(role);
     }

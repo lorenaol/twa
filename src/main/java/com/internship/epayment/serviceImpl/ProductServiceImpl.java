@@ -2,20 +2,20 @@ package com.internship.epayment.serviceImpl;
 
 import com.internship.epayment.entity.Product;
 import com.internship.epayment.repository.ProductRepository;
-import com.internship.epayment.service.ProductService;
+import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductsService {
 
     @Autowired
     private ProductRepository productRepository;
-
 
     @Override
     public List<Product> getAll() {
@@ -30,31 +30,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByCode(String code) {
+    public Product findByCode(String code) {
         return productRepository.findProductsByCode(code);
     }
 
     @Override
-    public List<Product> findBySku(String sku) {
+    public Product findBySku(String sku) {
         return productRepository.findProductsBySku(sku);
     }
 
     @Override
+    @Transactional
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
 
     @Override
+    @Transactional
     public Product updateProduct(Product product) {
         return productRepository.save(product);
     }
 
     @Override
-    public List<Product> findByName(String name) {
-        return productRepository.findProductsByName(name);
-    }
-
-    @Override
+    @Transactional
     public void deleteProduct(Product product) {
         productRepository.delete(product);
     }

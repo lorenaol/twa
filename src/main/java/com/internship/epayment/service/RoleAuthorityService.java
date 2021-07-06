@@ -1,20 +1,15 @@
 package com.internship.epayment.service;
 
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.RoleAuthority;
 import javassist.NotFoundException;
 
-import java.util.Date;
 import java.util.List;
+
 public interface RoleAuthorityService {
 
     List<RoleAuthority> getAll();
 
     RoleAuthority findById(Long id) throws NotFoundException;
-
-    List<RoleAuthority>findByEndDate(Date date);
-
-    List<RoleAuthority>findByStartDate(Date date);
 
     RoleAuthority addRoleAuthority(RoleAuthority roleAuthority);
 

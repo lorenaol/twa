@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface AuthorityService {
 
-    Authority updateAuthority(Authority authority);
-
     List<Authority> getAll();
 
     Authority findById(Long id) throws NotFoundException;
 
+    List<Authority> findByName(String name)throws NotFoundException;
+
+    Authority findByCode(String code) throws NotFoundException;
+
     Authority addAuthority(Authority authority);
 
+    Authority updateAuthority(Authority authority);
+
     void deleteAuthority(Authority authority);
-
-    List<Authority> findByName(String name);
-
-    List<Authority> findByCode(String code);
 }

@@ -1,7 +1,8 @@
 package com.internship.epayment.rest;
 
+
 import com.internship.epayment.entity.Product;
-import com.internship.epayment.service.ProductService;
+import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private ProductsService productService;
 
     @GetMapping
     public List<Product> getProducts(){
@@ -21,8 +22,18 @@ public class ProductController {
     }
 
     @GetMapping(path = "/{id}")
-    public Product getProductsById(@PathVariable Long id) throws NotFoundException {
+    public Product getProductById(@PathVariable Long id) throws NotFoundException {
         return productService.findById(id);
+    }
+
+    @GetMapping(path = "/findByCode")
+    public Product getProductsByCode(@RequestParam(value = "code") String code) throws NotFoundException {
+        return productService.findByCode(code);
+    }
+
+    @GetMapping(path = "/findBySku")
+    public Product getProductsBySku(@RequestParam(value = "sku") String sku) throws NotFoundException {
+        return productService.findBySku(sku);
     }
 
     @PostMapping
@@ -44,20 +55,4 @@ public class ProductController {
     public void deleteProduct(@RequestBody Product product){
         productService.deleteProduct(product);
     }
-
-    @GetMapping(path = "/findByName")
-    public List<Product> findProductsByName(@RequestParam(value = "name") String name){
-        return productService.findByName(name);
-    }
-
-    @GetMapping(path = "/findByCode")
-    public List<Product> findProductsByCode(@RequestParam(value = "code") String code){
-        return productService.findByCode(code);
-    }
-
-    @GetMapping(path = "/findBySku")
-    public List<Product> findProductsBySku(@RequestParam(value = "sku") String sku){
-        return productService.findBySku(sku);
-    }
-
 }

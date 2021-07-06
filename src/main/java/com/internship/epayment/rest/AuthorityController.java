@@ -16,22 +16,32 @@ public class AuthorityController {
     private AuthorityService authorityService;
 
     @GetMapping
-    public List<Authority> getRoles(){
-        return authorityService.getAll();
+    public List<Authority> getAuthorities(){
+        return  authorityService.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Authority getAuthoritiesById(@PathVariable Long id) throws NotFoundException {
+    public Authority getAuthorityById(@PathVariable Long id) throws NotFoundException {
         return authorityService.findById(id);
+    }
+
+    @GetMapping(path = "/findByName")
+    public List<Authority> getAuthoritiesByName(@RequestParam(value = "name") String name) throws NotFoundException {
+        return  authorityService.findByName(name);
+    }
+
+    @GetMapping(path = "/findByCode")
+    public Authority getAuthorityByCode(@RequestParam(value = "code") String code) throws NotFoundException {
+        return authorityService.findByCode(code);
     }
 
     @PostMapping
     public Authority addAuthority(@RequestBody Authority authority){
-        Authority p = null;
+        Authority a = null;
         if(authority != null){
-            p = authorityService.addAuthority(authority);
+            a = authorityService.addAuthority(authority);
         }
-        return p;
+        return a;
     }
 
     @PutMapping
@@ -39,21 +49,8 @@ public class AuthorityController {
     public Authority updateAuthority(@RequestBody Authority authority){
         return authorityService.updateAuthority(authority);
     }
-
     @DeleteMapping
     public void deleteAuthority(@RequestBody Authority authority){
         authorityService.deleteAuthority(authority);
     }
-
-    @GetMapping(path = "/findByName")
-    public List<Authority> findAuthoritiesByName(@RequestParam(value = "name") String name){
-        return authorityService.findByName(name);
-    }
-
-    @GetMapping(path = "/findByCode")
-    public List<Authority> findAuthoritiesByCode(@RequestParam(value = "code") String code){
-        return authorityService.findByCode(code);
-    }
-
-
 }

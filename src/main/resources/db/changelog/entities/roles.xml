@@ -6,7 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <changeSet id="1" author="rachetii">
-        <createSequence sequenceName="roles_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="roles_seq" startValue="50" incrementBy="1"/>
     </changeSet>
 
     <changeSet id="2" author="rachetii">
@@ -14,16 +14,20 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false" />
             </column>
+
             <column name="name" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
+
+            <column name="code" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+
             <column defaultValueComputed="CURRENT_TIMESTAMP"  name="start_date"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
+
             <column defaultValueComputed="CURRENT_TIMESTAMP"  name="end_date"  type="TIMESTAMP">
-                <constraints nullable="false" />
-            </column>
-            <column name="code" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -35,10 +39,11 @@
                 separator=";"
                 tableName="roles">
             <column name="id" type="numeric"/>
+
             <column name="name" type="string"/>
-            <column name="start_date" type="date"/>
-            <column name="end_date" type="date"/>
             <column name="code" type="string"/>
+            <column name="start_date" type="datetime"/>
+            <column name="end_date" type="datetime"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

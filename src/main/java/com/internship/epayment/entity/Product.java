@@ -8,11 +8,10 @@ import java.util.Date;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categories_seq")
-    @SequenceGenerator(name = "categories_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "products_seq")
+    @SequenceGenerator(name = "products_seq", allocationSize = 1)
 
     private Long id;
-
     private double price;
 
     private String name;
@@ -24,11 +23,6 @@ public class Product {
     private String sku;
 
     private String code;
-
-
-    @ManyToOne
-    @JoinColumn(name="category_id", referencedColumnName = "id", nullable = false)
-    private Category category;
 
     public Long getId() {
         return id;

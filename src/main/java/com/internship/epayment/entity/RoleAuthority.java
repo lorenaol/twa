@@ -1,31 +1,30 @@
 package com.internship.epayment.entity;
+
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
-@Table(name = "roleauthorities")
+@Table(name = "rolesauthorities")
 public class RoleAuthority {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleauthorities_seq")
-    @SequenceGenerator(name = "roleauthorities_seq", allocationSize = 1)
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rolesauthorities_seq")
+    @SequenceGenerator(name = "rolesauthorities_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "start_date")
-    private Date startDate;
-
-    @Column(name = "end_date")
-    private Date endDate;
-
     @ManyToOne
-    @JoinColumn(name="role_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name="authority_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "authority_id", referencedColumnName = "id", nullable = false)
     private Authority authority;
+
+
+    @Column(name = "start_date", length = 100)
+    private Date start_date;
+    
+    @Column(name = "end_date", length = 100)
+    private Date end_date;
 
     public Long getId() {
         return id;
@@ -43,22 +42,6 @@ public class RoleAuthority {
         this.role = role;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public Authority getAuthority() {
         return authority;
     }
@@ -67,4 +50,19 @@ public class RoleAuthority {
         this.authority = authority;
     }
 
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
+    }
 }

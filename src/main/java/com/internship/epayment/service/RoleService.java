@@ -1,5 +1,6 @@
 package com.internship.epayment.service;
 
+
 import com.internship.epayment.entity.Role;
 import javassist.NotFoundException;
 
@@ -11,15 +12,13 @@ public interface RoleService {
 
     Role findById(Long id) throws NotFoundException;
 
-    List<Role>findByCode(String code);
+    List<Role> findByName(String name)throws NotFoundException;
+
+    Role findByCode(String code) throws NotFoundException;
 
     Role addRole(Role role);
 
     Role updateRole(Role role);
 
-    List<Role> findByName(String name);
-
     void deleteRole(Role role);
-
-
 }

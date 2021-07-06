@@ -9,8 +9,6 @@ import java.util.List;
 @Repository
 public interface AuthorityRepository extends CrudRepository<Authority, Long> {
 
-    List<Authority> findAuthoritiesByCode(String code);
-
-    List<Authority> findAuthoritiesByName(String name);
-
+    List<Authority> findAuthoritysByName(String name);
+    Authority findAuthorityByCode(String code);
 }

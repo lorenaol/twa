@@ -4,13 +4,11 @@ import com.internship.epayment.entity.Category;
 import com.internship.epayment.service.CategoryService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-//@Controller
 @RequestMapping(path = "/api/categories")
 public class CategoryController {
 
@@ -19,16 +17,15 @@ public class CategoryController {
 
     @GetMapping
     public List<Category> getCategories(){
-        return categoryService.findAll();
+        return  categoryService.findAll();
     }
 
     @GetMapping(path = "/{id}")
     public Category getCategoriesById(@PathVariable Long id) throws NotFoundException {
-        return categoryService.findById(id);
+        return  categoryService.findById(id);
     }
 
     @PostMapping
-//    @ResponseBody
     public Category addCategory(@RequestBody Category category){
         Category c = null;
         if(category != null){
@@ -50,9 +47,7 @@ public class CategoryController {
 
     @GetMapping(path = "/findByName")
     public List<Category> getCategoriesByName(@RequestParam(value = "name") String name){
-        return categoryService.findCategoriesByName(name);
+        return  categoryService.findCategoriesByName(name);
     }
-
-
 
 }
