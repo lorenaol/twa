@@ -15,14 +15,9 @@ public class UserRole {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
-
-    public User getUser() {
-        return user;
-    }
 
     @Column(name = "start_date", length = 100)
     private Date start_date;
@@ -44,6 +39,14 @@ public class UserRole {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getStart_date() {

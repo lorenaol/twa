@@ -5,10 +5,12 @@ import com.internship.epayment.repository.UserRepository;
 import com.internship.epayment.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,12 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByName(String name) throws NotFoundException {
-        return userRepository.findUsersByName(name);
+    public User findByName(String name) throws NotFoundException {
+        Optional<User> user = userRepository.findUserByName(name);
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
+        return user.get();
     }
 
     @Override
-    public User findByEmail(String email) throws NotFoundException {
+    public User findByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
 

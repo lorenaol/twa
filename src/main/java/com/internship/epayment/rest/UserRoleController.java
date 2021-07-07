@@ -39,6 +39,7 @@ public class UserRoleController {
     public UserRole updateUserRole(@RequestBody UserRole role){
         return userRoleService.updateUserRole(role);
     }
+
     @DeleteMapping
     public void deleteUserRole(@RequestBody UserRole role){
         userRoleService.deleteUserRole(role);
