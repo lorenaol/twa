@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/api/products").hasAuthority(AuthorityEnum.EPAY_USER.getCode())
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }
