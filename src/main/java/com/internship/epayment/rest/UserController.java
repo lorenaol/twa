@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/findByName")
-    public List<User> getUsersByName(@RequestParam(value = "name") String name) throws NotFoundException {
+    public User getUsersByName(@RequestParam(value = "name") String name) throws NotFoundException {
         return userService.findByName(name);
     }
 
