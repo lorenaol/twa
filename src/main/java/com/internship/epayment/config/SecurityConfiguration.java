@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -33,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/api/categories").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }

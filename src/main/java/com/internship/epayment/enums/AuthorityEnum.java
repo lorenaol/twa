@@ -1,8 +1,10 @@
 package com.internship.epayment.enums;
 
-public enum AuthorityEnum {
-    EPAY_ADMIN("EPAY_ADMIN");
+import com.internship.epayment.entity.Authority;
 
+public enum AuthorityEnum {
+    EPAY_ADMIN("EPAY_ADMIN"),
+    EPAY_CATEG("EPAY_CATEG");
     private final String code;
 
     AuthorityEnum(String code) {
@@ -12,4 +14,5 @@ public enum AuthorityEnum {
     public String getCode() {
         return this.code;
     }
+
 }
