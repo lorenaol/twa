@@ -11,7 +11,7 @@ public interface UserService {
 
     User findById(Long id) throws NotFoundException;
 
-    List<User> findByName(String name)throws NotFoundException;
+    User findByName(String name)throws NotFoundException;
 
     User findByEmail(String code) throws NotFoundException;
 

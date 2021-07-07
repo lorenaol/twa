@@ -1,20 +1,22 @@
-Sql de rulat inainte pe local
+#URL
+curl -u user:password http://localhost:8082/api/categories
 
-create table categories(
-id int primary key,
-category_name NVARCHAR2(100)
-);
+#SQL
+drop table databasechangelog;
+drop table databasechangeloglock;
 
+drop table products;
+drop table categories;
+drop table user_roles;
+drop table rolesauthorities;
+drop table users;
+drop table roles;
+drop table authorities;
 
-CREATE SEQUENCE categories_seq
-START WITH     1
-INCREMENT BY   1
-NOCACHE
-NOCYCLE;
-
-insert into categories values(categories_seq.nextVal, 'mere');
-insert into categories values(categories_seq.nextVal, 'pere');
-insert into categories values(categories_seq.nextVal, 'banane');
-insert into categories values(categories_seq.nextVal, 'portocale');
-
-URL : http://localhost:8082/api/*
+drop sequence categories_seq;
+drop sequence products_seq;
+drop sequence roles_seq;
+drop sequence users_seq;
+drop sequence user_roles_seq;
+drop sequence authorities_seq;
+drop sequence rolesauthorities_seq;

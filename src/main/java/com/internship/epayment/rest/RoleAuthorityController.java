@@ -20,6 +20,7 @@ public class RoleAuthorityController {
     public List<RoleAuthority> getRoleAuthorities(){
         return roleAuthorityService.getAll();
     }
+
     @GetMapping(path = "/{id}")
     public RoleAuthority getRoleAuthorityById(@PathVariable Long id) throws NotFoundException {
         return roleAuthorityService.findById(id);
