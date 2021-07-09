@@ -26,22 +26,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category findById(Long id) throws NotFoundException {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return  category;
+        return categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
     @Transactional
     public Category addCategory(Category category) {
-        Category c = categoryRepository.save(category);
-        return c;
+        return categoryRepository.save(category);
     }
 
     @Override
     @Transactional
     public Category updateCategory(Category category) {
-        Category c = categoryRepository.save(category);
-        return c;
+        return categoryRepository.save(category);
     }
 
     @Override
