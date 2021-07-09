@@ -3,3 +3,4 @@ id;name;code;start_date;end_date
 2;Rol Users;USER_USERS;2021-07-01;2021-07-04
 3;Rol Categories;USER_CATEG;2021-07-01;2021-07-04
 4;Rol Authorities;USER_AUTH;2021-07-01;2021-07-04
+5;Rol Products;USER_PRODUCTS;2021-07-01;2021-07-04
