@@ -1,3 +1,7 @@
+#Start Frontend
+cd src/main/webapp/epayclient
+ng serve
+
 #URL
 curl -u user:password http://localhost:8082/api/categories
 
