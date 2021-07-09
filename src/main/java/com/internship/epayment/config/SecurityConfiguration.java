@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/users").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
                 .antMatchers("/api/categories").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
+                .antMatchers("/api/authorities").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }

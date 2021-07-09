@@ -65,12 +65,12 @@ class EpaymentApplicationTests {
 //        assertNotNull(categoryService.deleteCategory(category););
 //    }
 
-    @Test
-    @AfterAll
-    public void deleteAllDataTest(){
-        List<Category> list = categoryService.findAll();
-        for (Category category: list) {
-            categoryService.deleteCategory(category);
-        }
-    }
+//    @Test
+//    @AfterAll
+//    public void deleteAllDataTest(){
+//        List<Category> list = categoryService.findAll();
+//        for (Category category: list) {
+//            categoryService.deleteCategory(category);
+//        }
+//    }
 }
