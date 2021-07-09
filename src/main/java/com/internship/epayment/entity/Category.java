@@ -19,14 +19,14 @@ public class Category {
     private String categoryCode;
 
     @Column(name = "category_description", length = 100)
-    private String category_description;
+    private String categoryDescription;
 
     @Column(name = "store_id", length = 100)
-    private String store_id;
+    private String storeId;
 
     @Temporal(TemporalType.DATE)
-        @Column(name = "date_added", length = 100)
-        private Date dateAdded;
+    @Column(name = "date_added", length = 100)
+    private Date dateAdded;
 
     public Long getId() {
         return id;
@@ -52,14 +52,6 @@ public class Category {
         this.categoryCode = categoryCode;
     }
 
-    public String getCategory_description() {
-        return category_description;
-    }
-
-    public void setCategory_description(String category_description) {
-        this.category_description = category_description;
-    }
-
     public Date getDateAdded() {
         return dateAdded;
     }
@@ -68,11 +60,19 @@ public class Category {
         this.dateAdded = dateAdded;
     }
 
-    public String getStore_id() {
-        return store_id;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
-    public void setStore_id(String store_id) {
-        this.store_id = store_id;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 }

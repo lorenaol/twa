@@ -1,3 +1,4 @@
 id;name;code;start_date;end_date
 1;Rol Administrator Epay;USER_ADMIN;2021-07-01;2021-07-04
+2;Rol User Epay;USER;2021-07-01;2021-07-04
 3;Rol User Categories;USER_CATEG;2021-07-01;2021-07-04

@@ -1,3 +1,4 @@
 id;name;code;start_date;end_date
 1;Permisiune Administrator Epay;EPAY_ADMIN;2021-07-01;2021-07-04
-2;Permisiune Administrator Epay;EPAY_CATEG;2021-07-01;2021-07-04
+2;Permisiune User Epay;EPAY_User;2021-07-01;2021-07-04
+3;Permisiune Categ Epay;EPAY_CATEG;2021-07-01;2021-07-04
