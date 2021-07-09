@@ -2,7 +2,10 @@ package com.internship.epayment.enums;
 
 public enum AuthorityEnum {
     EPAY_ADMIN("EPAY_ADMIN"),
-    EPAY_USER("EPAY_USER");
+    EPAY_USERS("EPAY_USERS"),
+    EPAY_CATEG("EPAY_CATEG"),
+    EPAY_AUTH("EPAY_AUTH"),
+    EPAY_PRODUCT("EPAY_PRODUCT");
 
 
     private final String code;

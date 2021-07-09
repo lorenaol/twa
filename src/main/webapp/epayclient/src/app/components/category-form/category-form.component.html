@@ -1,0 +1,67 @@
+<form name="categoryForm" (ngSubmit)="save()" [formGroup]="categoryForm">
+  <div class="modal-header">
+    <div *ngIf="ModalTypesEnum.CREATE == modalType">
+      <h4 class="modal-title" id="modal-basic-title">Create Category</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.EDIT == modalType">
+      <h4 class="modal-title" id="modal-basic-title">Edit Category - ID: {{inputCategory?.id}}</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.VIEW == modalType">
+      <h4 class="modal-title" id="modal-basic-title">View Category - ID: {{inputCategory?.id}}</h4>
+    </div>
+
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group row">
+      <label for="categoryName" class="col-sm-4 col-form-label">Name</label>
+      <div class="col-sm-8">
+        <input id="categoryName" class="form-control" formControlName="categoryName"
+          [readOnly]="ModalTypesEnum.VIEW == modalType">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="categoryCode" class="col-sm-4 col-form-label">Code</label>
+      <div class="col-sm-8">
+        <input id="categoryCode" class="form-control" formControlName="categoryCode"
+          [readOnly]="ModalTypesEnum.VIEW == modalType">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="categoryDescription" class="col-sm-4 col-form-label">Description</label>
+      <div class="col-sm-8">
+        <input id="categoryDescription" class="form-control" formControlName="categoryDescription"
+          [readOnly]="ModalTypesEnum.VIEW == modalType">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="storeId" class="col-sm-4 col-form-label">Store Id</label>
+      <div class="col-sm-8">
+        <input id="storeId" class="form-control" formControlName="storeId"
+          [readOnly]="ModalTypesEnum.VIEW == modalType">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="dateAdded" class="col-sm-4 col-form-label">Date Added</label>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" id="dateAdded" name="dp" formControlName="dateAdded"
+                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
+              [disabled]="ModalTypesEnum.VIEW == modalType">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="ModalTypesEnum.VIEW != modalType">
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
