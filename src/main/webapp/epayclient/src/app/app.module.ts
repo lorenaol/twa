@@ -14,6 +14,9 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CategoryDeleteComponent } from './components/category-delete/category-delete.component';
 import {CommonModule} from "@angular/common";
+import { RoleDeleteComponent } from './components/role-delete/role-delete.component';
+import { RoleFormComponent } from './components/role-form/role-form.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {CommonModule} from "@angular/common";
     HomePageComponent,
     CategoryFormComponent,
     CategoryDeleteComponent,
+    RoleDeleteComponent,
+    RoleFormComponent,
+    RoleListComponent,
   ],
   imports: [
     CommonModule,
