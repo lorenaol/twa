@@ -1,0 +1,43 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">Categories
+      <button class="btn btn-sm btn-success">
+        <fa-icon [icon]="faPlus" (click)="openAuthorityModal(ModalTypesEnum.CREATE)"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Code</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let authorithy of authorities">
+        <td>{{ authorithy.id }}</td>
+        <td>{{ authorithy.name }}</td>
+        <td>{{ authorithy.code }}</td>
+        <td>{{ authorithy.start_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ authorithy.end_date | date:'yyyy-dd-MM' }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" style="margin: 2px">
+            <fa-icon [icon]="faEye" (click)="openAuthorityModal(ModalTypesEnum.VIEW, authorithy)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-primary" style="margin: 2px">
+            <fa-icon [icon]="faEdit" (click)="openAuthorityModal(ModalTypesEnum.EDIT, authorithy)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-danger" style="margin: 2px">
+            <fa-icon [icon]="faTrash" (click)="openDeleteModal(authorithy)"></fa-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
