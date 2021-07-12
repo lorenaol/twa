@@ -1,7 +1,7 @@
 export class Role {
   id?: number;
-  roleName?: string;
-  roleCode?: string;
+  name?: string;
+  code?: string;
   startDate?: Date;
   endDate?: Date;
 }

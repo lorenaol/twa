@@ -10,7 +10,7 @@ type EntityArrayResponseType = HttpResponse<Role[]>;
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class RoleService {
 
   private readonly ROLE_URL = 'http://localhost:8082/api/roles';
 
@@ -40,7 +40,7 @@ export class CategoryService {
 
   public getRolesByCode(roleCode: string): Observable<EntityArrayResponseType>  {
       const params = new HttpParams();
-      params.append('name', roleCode);
+      params.append('code', roleCode);
       return this.http.get<Role[]>(this.ROLE_URL, {params, observe: 'response'})
         .pipe(map((res: EntityArrayResponseType) => res));
     }
