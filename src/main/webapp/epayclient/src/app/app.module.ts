@@ -15,6 +15,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CategoryDeleteComponent } from './components/category-delete/category-delete.component';
 import {CommonModule} from "@angular/common";
 import { AuthorityListComponent } from './components/authority-list/authority-list.component';
+import { AuthorityFormComponent } from './components/authority-form/authority-form.component';
+import { AuthorityDeleteComponent } from './components/authority-delete/authority-delete.component';
+
 
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
@@ -31,6 +34,8 @@ import { RoleListComponent } from './components/role-list/role-list.component';
     CategoryFormComponent,
     CategoryDeleteComponent,
     AuthorityListComponent,
+    AuthorityFormComponent,
+    AuthorityDeleteComponent,
 
     ProductListComponent,
     ProductFormComponent,

@@ -1,6 +1,6 @@
 <div class="card" style="margin-top: 6vh">
   <div class="card-header">
-    <div class="h3">Categories
+    <div class="h3">Authorities
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openAuthorityModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
@@ -23,8 +23,9 @@
         <td>{{ authorithy.id }}</td>
         <td>{{ authorithy.name }}</td>
         <td>{{ authorithy.code }}</td>
-        <td>{{ authorithy.start_date | date:'yyyy-dd-MM' }}</td>
-        <td>{{ authorithy.end_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ authorithy.startDate | date:'yyyy-MM-dd' }}</td>
+        <td>{{ authorithy.endDate | date:'yyyy-MM-dd' }}</td>
+
         <td>
           <button class="btn btn-sm btn-info" style="margin: 2px">
             <fa-icon [icon]="faEye" (click)="openAuthorityModal(ModalTypesEnum.VIEW, authorithy)"></fa-icon>
@@ -33,7 +34,7 @@
             <fa-icon [icon]="faEdit" (click)="openAuthorityModal(ModalTypesEnum.EDIT, authorithy)"></fa-icon>
           </button>
           <button class="btn btn-sm btn-danger" style="margin: 2px">
-            <fa-icon [icon]="faTrash" (click)="openDeleteModal(authorithy)"></fa-icon>
+            <fa-icon [icon]="faTrash" (click)="openDeleteAuthorityModal(authorithy)"></fa-icon>
           </button>
         </td>
       </tr>

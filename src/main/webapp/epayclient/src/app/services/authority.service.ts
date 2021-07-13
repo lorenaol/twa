@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
-import {Category} from "../entities/category";
 import {Authority} from "../entities/authority";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
@@ -35,6 +34,12 @@ export class AuthorityService {
   public getAuthoritiesByName(name: string): Observable<EntityArrayResponseType>  {
     const params = new HttpParams();
     params.append('name', name);
+    return this.http.get<Authority[]>(this.AUTHORITY_URL, {params, observe: 'response'})
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+  public getAuthoritiesByCode(code: string): Observable<EntityArrayResponseType>  {
+    const params = new HttpParams();
+    params.append('code', code);
     return this.http.get<Authority[]>(this.AUTHORITY_URL, {params, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }

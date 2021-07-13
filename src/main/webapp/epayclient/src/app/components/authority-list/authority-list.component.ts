@@ -35,15 +35,15 @@ export class AuthorityListComponent implements OnInit {
   }
 
   openAuthorityModal(modalTypeEnum: ModalTypesEnum, inputAuthority?: Authority) {
-    this.modalService.openCategoryModal(modalTypeEnum, inputAuthority).then((result) => {
+    this.modalService.openAuthorityModal(modalTypeEnum, inputAuthority).then((result) => {
       if(result) {
         this.loadData();
       }
     });
   }
 
-  openDeleteModal(authority: Authority) {
-    this.modalService.openDeleteModal(authority).then((result) => {
+  openDeleteAuthorityModal(authority: Authority) {
+    this.modalService.openDeleteAuthorityModal(authority).then((result) => {
       if(result) {
         this.loadData();
       }

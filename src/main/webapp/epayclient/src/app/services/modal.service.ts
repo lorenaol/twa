@@ -6,6 +6,9 @@ import {RoleFormComponent} from "../components/role-form/role-form.component";
 import {Category} from "../entities/category";
 import {Role} from "../entities/role";
 import {CategoryDeleteComponent} from "../components/category-delete/category-delete.component";
+import {Authority} from "../entities/authority";
+import {AuthorityFormComponent} from "../components/authority-form/authority-form.component";
+import {AuthorityDeleteComponent} from "../components/authority-delete/authority-delete.component";
 import {Product} from "../entities/product";
 import {ProductDeleteComponent} from "../components/product-delete/product-delete.component";
 import {ProductFormComponent} from "../components/product-form/product-form.component";
@@ -35,17 +38,29 @@ export class ModalService {
     const modalRef: NgbModalRef = this.modalService.open(ProductFormComponent);
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputProduct = inputProduct;
-    
+
     return modalRef.result
       .then(result => {
         return result;
       });
   }
-    
+
   openRoleModal(modalType: ModalTypesEnum, inputRole?: Role) {
     const modalRef: NgbModalRef = this.modalService.open(RoleFormComponent);
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputRole = inputRole;
+
+    return modalRef.result
+      .then(result => {
+        return result;
+      });
+  }
+
+
+  openAuthorityModal(modalType: ModalTypesEnum, inputAuthority?: Authority) {
+    const modalRef: NgbModalRef = this.modalService.open(AuthorityFormComponent);
+    modalRef.componentInstance.modalType = modalType;
+    modalRef.componentInstance.inputAuthority= inputAuthority;
 
     return modalRef.result
       .then(result => {
@@ -62,11 +77,21 @@ export class ModalService {
         return result;
       });
   }
-  
+
+    openDeleteAuthorityModal(inputAuthority: Authority) {
+      const modalRef: NgbModalRef = this.modalService.open(AuthorityDeleteComponent);
+      modalRef.componentInstance.inputAuthority = inputAuthority;
+
+      return modalRef.result
+        .then(result => {
+          return result;
+        });
+    }
+
   openDeleteProductModal(inputProduct: Product) {
     const modalRef: NgbModalRef = this.modalService.open(ProductDeleteComponent);
     modalRef.componentInstance.inputProduct = inputProduct;
-    
+
     return modalRef.result
       .then(result => {
         return result;
