@@ -75,8 +75,8 @@ export class RoleFormComponent implements OnInit {
       id: role?.id,
       name: role?.name,
       code: role?.code,
-      startDate: new NgbDate(startDate?.getFullYear(), startDate?.getDate(), startDate?.getMonth() + 1),
-      endDate: new NgbDate(endDate?.getFullYear(), endDate?.getDate(), endDate?.getMonth() + 1)
+      startDate: new NgbDate(startDate?.getFullYear(), startDate?.getMonth() + 1, startDate?.getDate()),
+      endDate: new NgbDate(endDate?.getFullYear(), endDate?.getMonth() + 1, endDate?.getDate())
     });
   }
 

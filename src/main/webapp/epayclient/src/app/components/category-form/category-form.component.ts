@@ -78,7 +78,7 @@ export class CategoryFormComponent implements OnInit {
       categoryCode: category?.categoryCode,
       categoryDescription: category?.categoryDescription,
       storeId: category?.storeId,
-      dateAdded: new NgbDate(dateAdded?.getFullYear(), dateAdded?.getDate(), dateAdded?.getMonth() + 1)
+      dateAdded: new NgbDate(dateAdded?.getFullYear(), dateAdded?.getMonth() + 1, dateAdded?.getDate())
     });
   }
 

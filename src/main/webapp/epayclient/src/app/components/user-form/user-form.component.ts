@@ -83,8 +83,8 @@ export class UserFormComponent implements OnInit {
       email: user?.email,
       password: user?.password,
       is_active: user?.is_active,
-      start_date: new NgbDate(start_date?.getFullYear(), start_date?.getDate(), start_date?.getMonth() + 1),
-      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getDate(), end_date?.getMonth() + 1)
+      start_date: new NgbDate(start_date?.getFullYear(), start_date?.getMonth() + 1, start_date?.getDate()),
+      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getMonth() + 1, end_date?.getDate())
     });
   }
 

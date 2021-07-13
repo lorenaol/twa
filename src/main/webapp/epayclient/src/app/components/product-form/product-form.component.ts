@@ -78,7 +78,7 @@ export class ProductFormComponent implements OnInit {
       price: product?.price,
       name: product?.name,
       quantity: product?.quantity,
-      expire_date: new NgbDate(expireDate?.getFullYear(), expireDate?.getDate(), expireDate?.getMonth() + 1),
+      expire_date: new NgbDate(expireDate?.getFullYear(), expireDate?.getMonth() + 1, expireDate?.getDate()),
       sku: product?.sku,
       code: product?.code
     });
