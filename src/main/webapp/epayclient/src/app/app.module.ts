@@ -17,6 +17,9 @@ import {CommonModule} from "@angular/common";
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
+import { RoleDeleteComponent } from './components/role-delete/role-delete.component';
+import { RoleFormComponent } from './components/role-form/role-form.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { ProductDeleteComponent } from './components/product-delete/product-dele
     ProductListComponent,
     ProductFormComponent,
     ProductDeleteComponent,
+    RoleDeleteComponent,
+    RoleFormComponent,
+    RoleListComponent,
   ],
   imports: [
     CommonModule,
