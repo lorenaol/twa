@@ -26,6 +26,17 @@
             <column name="pass" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false" />
+            </column>
+
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="start_date"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="end_date"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
 
         </createTable>
     </changeSet>
@@ -39,6 +50,10 @@
             <column name="name" type="string"/>
             <column name="email" type="string"/>
             <column name="pass" type="string"/>
+            <column name="is_active" type="boolean"/>
+            <column name="start_date" type="datetime"/>
+            <column name="end_date" type="datetime"/>
+
         </loadData>
     </changeSet>
 </databaseChangeLog>

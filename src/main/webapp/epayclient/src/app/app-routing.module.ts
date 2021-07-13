@@ -5,13 +5,14 @@ import {ProductListComponent} from "./components/product-list/product-list.compo
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {AuthorityListComponent} from "./components/authority-list/authority-list.component";
 import {RoleListComponent} from "./components/role-list/role-list.component";
-
+import {UserListComponent} from "./components/user-list/user-list.component";
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent},
   { path: 'authorities', component: AuthorityListComponent},
   { path: 'products', component: ProductListComponent},
-  { path: 'roles', component: RoleListComponent}
+  { path: 'roles', component: RoleListComponent},
+  { path: 'users', component: UserListComponent}
 ];
 
 @NgModule({

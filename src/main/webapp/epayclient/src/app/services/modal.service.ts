@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ModalTypesEnum} from "../enums/modal-types.enum";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {CategoryFormComponent} from "../components/category-form/category-form.component";
@@ -13,6 +13,10 @@ import {Product} from "../entities/product";
 import {ProductDeleteComponent} from "../components/product-delete/product-delete.component";
 import {ProductFormComponent} from "../components/product-form/product-form.component";
 import {RoleDeleteComponent} from "../components/role-delete/role-delete.component";
+import {User} from "../entities/user";
+
+import {UserFormComponent} from "../components/user-form/user-form.component";
+import {UserDeleteComponent} from "../components/user-delete/user-delete.component";
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +25,27 @@ export class ModalService {
 
   modalType?: ModalTypesEnum;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {
+  }
 
   openCategoryModal(modalType: ModalTypesEnum, inputCategory?: Category) {
     const modalRef: NgbModalRef = this.modalService.open(CategoryFormComponent);
+
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputCategory = inputCategory;
+
+
+    return modalRef.result
+      .then(result => {
+        return result;
+      });
+  }
+
+  openUserModal(modalType: ModalTypesEnum, inputUser?: User) {
+    const modalRef: NgbModalRef = this.modalService.open(UserFormComponent);
+    modalRef.componentInstance.modalType = modalType;
+
+    modalRef.componentInstance.inputUser = inputUser;
 
     return modalRef.result
       .then(result => {
@@ -47,6 +66,7 @@ export class ModalService {
 
   openRoleModal(modalType: ModalTypesEnum, inputRole?: Role) {
     const modalRef: NgbModalRef = this.modalService.open(RoleFormComponent);
+
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputRole = inputRole;
 
@@ -56,6 +76,15 @@ export class ModalService {
       });
   }
 
+  openDeleteModalUser(inputUser: User) {
+    const modalRef: NgbModalRef = this.modalService.open(UserDeleteComponent);
+    modalRef.componentInstance.inputUser = inputUser;
+
+    return modalRef.result
+      .then(result => {
+        return result;
+      });
+  }
 
   openAuthorityModal(modalType: ModalTypesEnum, inputAuthority?: Authority) {
     const modalRef: NgbModalRef = this.modalService.open(AuthorityFormComponent);
@@ -98,7 +127,7 @@ export class ModalService {
       });
   }
 
-  openDeleteModalRole(inputRole: Role) {
+  openDeleteModalRole(inputRole:Role) {
     const modalRef: NgbModalRef = this.modalService.open(RoleDeleteComponent);
     modalRef.componentInstance.inputRole = inputRole;
 
@@ -109,3 +138,4 @@ export class ModalService {
   }
 
 }
+

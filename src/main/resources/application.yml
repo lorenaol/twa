@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1531:ORCLCDB
+    url: jdbc:oracle:thin:@localhost:1521:ORCLCDB
     username: sys as sysdba
     password: Oradoc_db1
   jpa:
@@ -10,9 +10,6 @@ spring:
       ddl-auto: none
   liquibase:
     enabled: false
-    url: jdbc:oracle:thin:@localhost:1521:ORCLCDB
-    user: sys as sysdba
-    password: Oradoc_db1
     change-log: db/changelog/db.changelog-master.xml
 server:
   port: 8082
