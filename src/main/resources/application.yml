@@ -9,7 +9,7 @@ spring:
     hibernate:
       ddl-auto: none
   liquibase:
-    enabled: true
+    enabled: false
     url: jdbc:oracle:thin:@localhost:1521:ORCLCDB
     user: sys as sysdba
     password: Oradoc_db1
