@@ -14,6 +14,9 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CategoryDeleteComponent } from './components/category-delete/category-delete.component';
 import {CommonModule} from "@angular/common";
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
 import { RoleDeleteComponent } from './components/role-delete/role-delete.component';
 import { RoleFormComponent } from './components/role-form/role-form.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
@@ -25,6 +28,9 @@ import { RoleListComponent } from './components/role-list/role-list.component';
     HomePageComponent,
     CategoryFormComponent,
     CategoryDeleteComponent,
+    ProductListComponent,
+    ProductFormComponent,
+    ProductDeleteComponent,
     RoleDeleteComponent,
     RoleFormComponent,
     RoleListComponent,

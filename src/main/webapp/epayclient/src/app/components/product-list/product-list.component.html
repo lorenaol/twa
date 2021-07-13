@@ -1,0 +1,47 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">Products
+      <button class="btn btn-sm btn-success">
+        <fa-icon [icon]="faPlus" (click)="openProductModal(ModalTypesEnum.CREATE)"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Price</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Expire_Date</th>
+        <th scope="col">Sku</th>
+        <th scope="col">Code</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.expire_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ product.sku }}</td>
+        <td>{{ product.code }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" style="margin: 2px">
+            <fa-icon [icon]="faEye" (click)="openProductModal(ModalTypesEnum.VIEW, product)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-primary" style="margin: 2px">
+            <fa-icon [icon]="faEdit" (click)="openProductModal(ModalTypesEnum.EDIT, product)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-danger" style="margin: 2px">
+            <fa-icon [icon]="faTrash" (click)="openDeleteProductModal(product)"></fa-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:ORCLCDB
+    url: jdbc:oracle:thin:@localhost:1531:ORCLCDB
     username: sys as sysdba
     password: Oradoc_db1
   jpa:
