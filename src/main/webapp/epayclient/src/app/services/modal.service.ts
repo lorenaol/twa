@@ -31,7 +31,7 @@ export class ModalService {
   openProductModal(modalType: ModalTypesEnum, inputProduct?: Product) {
     const modalRef: NgbModalRef = this.modalService.open(ProductFormComponent);
     modalRef.componentInstance.modalType = modalType;
-    modalRef.componentInstance.inputCategory = inputProduct;
+    modalRef.componentInstance.inputProduct = inputProduct;
 
     return modalRef.result
       .then(result => {

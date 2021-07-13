@@ -27,8 +27,8 @@
         <td>{{ product.name }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.expire_date | date:'yyyy-dd-MM' }}</td>
-        <td>{{ product.code }}</td>
         <td>{{ product.sku }}</td>
+        <td>{{ product.code }}</td>
         <td>
           <button class="btn btn-sm btn-info" style="margin: 2px">
             <fa-icon [icon]="faEye" (click)="openProductModal(ModalTypesEnum.VIEW, product)"></fa-icon>
