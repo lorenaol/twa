@@ -16,8 +16,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public addUser(category: User): Observable<EntityResponseType>  {
-    return this.http.post<User>(this.USER_URL, category, { observe: 'response' })
+  public addUser(user: User): Observable<EntityResponseType>  {
+    return this.http.post<User>(this.USER_URL, user, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => res));
   }
 
@@ -31,19 +31,19 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getUserssByName(userName: string): Observable<EntityArrayResponseType>  {
+  public getUsersByName(userName: string): Observable<EntityArrayResponseType>  {
     const params = new HttpParams();
     params.append('name', userName);
     return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
-  public updateCategory(user: User): Observable<EntityResponseType>  {
+  public updateUser(user: User): Observable<EntityResponseType>  {
     return this.http.put<User>(this.USER_URL, user, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public deleteCategory(user: User): Observable<EntityResponseType>  {
+  public deleteUser(user: User): Observable<EntityResponseType>  {
     return this.http.delete<User>(this.USER_URL, {body: user, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
