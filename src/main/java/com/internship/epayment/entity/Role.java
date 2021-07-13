@@ -16,9 +16,13 @@ public class Role {
 
     private String code;
 
-    private Date start_date;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "start_date")
+    private Date startDate;
 
-    private Date end_date;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "end_date")
+    private Date endDate;
 
     public Long getId() {
         return id;
@@ -36,22 +40,6 @@ public class Role {
         this.name = name;
     }
 
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
-
     public String getCode() {
         return code;
     }
@@ -59,4 +47,21 @@ public class Role {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
 }
