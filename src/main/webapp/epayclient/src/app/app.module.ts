@@ -25,6 +25,9 @@ import { ProductDeleteComponent } from './components/product-delete/product-dele
 import { RoleDeleteComponent } from './components/role-delete/role-delete.component';
 import { RoleFormComponent } from './components/role-form/role-form.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { RoleListComponent } from './components/role-list/role-list.component';
     RoleDeleteComponent,
     RoleFormComponent,
     RoleListComponent,
+    UserDeleteComponent,
+    UserListComponent,
+    UserFormComponent,
   ],
   imports: [
     CommonModule,

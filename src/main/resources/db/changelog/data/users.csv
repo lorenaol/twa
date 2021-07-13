@@ -1,6 +1,5 @@
-id;name;email;pass
-1;Dani;dani@trencadis.ro;password1
-2;Andreea;andreea@trencadis.ro;password2
-3;Luiza;luiza@trencadis.ro;password3
-4;Lorena;lorena@trencadis.ro;password4
-5;Dan;dan@trencadis.ro;password5
+id;name;email;pass;is_active;start_date;end_date
+1;Dani;dani@trencadis.ro;password1;true;2021-07-01;2021-07-04
+2;Andreea;andreea@trencadis.ro;password2;true;2021-07-01;2021-07-04
+3;Luiza;luiza@trencadis.ro;password3;true;2021-07-01;2021-07-04
+4;Lorena;lorena@trencadis.ro;password4;true;2021-07-01;2021-07-04
