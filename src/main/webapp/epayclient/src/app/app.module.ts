@@ -14,6 +14,9 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CategoryDeleteComponent } from './components/category-delete/category-delete.component';
 import {CommonModule} from "@angular/common";
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {CommonModule} from "@angular/common";
     HomePageComponent,
     CategoryFormComponent,
     CategoryDeleteComponent,
+    UserDeleteComponent,
+    UserListComponent,
+    UserFormComponent,
   ],
   imports: [
     CommonModule,
