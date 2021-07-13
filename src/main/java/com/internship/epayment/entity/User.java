@@ -1,7 +1,6 @@
 package com.internship.epayment.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -18,12 +17,6 @@ public class User {
 
     @Column(name = "pass", length = 100)
     private String password;
-
-    private boolean is_active;
-
-    private Date start_date;
-
-    private Date end_date;
 
     public Long getId() {
         return id;
@@ -55,29 +48,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isIs_active() {
-        return is_active;
-    }
-
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
-    }
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
     }
 }
