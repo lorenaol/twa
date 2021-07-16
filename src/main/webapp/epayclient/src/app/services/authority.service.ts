@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Authority} from "../entities/authority";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {environment} from "@environments/environment";
 
 
 type EntityResponseType = HttpResponse<Authority>;
@@ -13,7 +14,7 @@ type EntityArrayResponseType = HttpResponse<Authority[]>;
 })
 export class AuthorityService {
 
-  private readonly AUTHORITY_URL = 'http://localhost:8082/api/authorities';
+  private readonly AUTHORITY_URL = environment.apiUrl + 'authorities';
 
   constructor(private http: HttpClient) { }
 

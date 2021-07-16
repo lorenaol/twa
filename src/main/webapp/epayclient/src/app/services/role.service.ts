@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Role} from "../entities/role";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {environment} from "@environments/environment";
 
 type EntityResponseType = HttpResponse<Role>;
 type EntityArrayResponseType = HttpResponse<Role[]>;
@@ -12,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<Role[]>;
 })
 export class RoleService {
 
-  private readonly ROLE_URL = 'http://localhost:8082/api/roles';
+  private readonly ROLE_URL = environment.apiUrl + 'roles';
 
   constructor(private http: HttpClient) { }
 

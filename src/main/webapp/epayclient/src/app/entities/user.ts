@@ -6,4 +6,5 @@ export class User{
   is_active?: boolean;
   start_date?: Date;
   end_date?: Date;
+  authdata?: string;
 }

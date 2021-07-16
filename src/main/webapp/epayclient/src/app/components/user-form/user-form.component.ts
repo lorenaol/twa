@@ -8,7 +8,7 @@ import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {UserService} from "../../services/userservice.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
