@@ -9,6 +9,8 @@ import {ToastrService} from "ngx-toastr";
 import {RoleauthorityService} from "../../services/roleauthority.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {Role} from "../../entities/role";
+import {AuthorityService} from "../../services/authority.service";
+import {Authority} from "../../entities/authority";
 
 
 @Component({
@@ -39,21 +41,26 @@ export class RoleauthorityFormComponent implements OnInit {
     {name: 'Istanbul', code: 'IST', id: 1},
     {name: 'Paris', code: 'PRS', id: 1}
   ];
+  authorities?: Authority[] | null | undefined = [];
   selectedRole?: any | undefined;
+  selectedAuthority?: any | undefined;
 
 
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
-    private roleauthorityService: RoleauthorityService
+    private roleauthorityService: RoleauthorityService,
+    private authorityService: AuthorityService
   ) { }
 
   ngOnInit(): void {
     if (this.inputRoleauthority !== undefined) {
       this.updateForm(this.inputRoleauthority);
     }
-
+    this.authorityService.getAuthorities().subscribe(data => {
+      this.authorities = data.body;
+    })
 
 
   }
