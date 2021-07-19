@@ -74,6 +74,7 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     BrowserAnimationsModule,
     ReactiveFormsModule,
     DropdownModule,
+    FormsModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

@@ -8,6 +8,7 @@ import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {RoleauthorityService} from "../../services/roleauthority.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {Role} from "../../entities/role";
 
 
 @Component({
@@ -31,6 +32,16 @@ export class RoleauthorityFormComponent implements OnInit {
     end_date: []
   });
 
+  roles = [
+    {name: 'New York', code: 'NY', id: 1},
+    {name: 'Rome', code: 'RM', id: 1},
+    {name: 'London', code: 'LDN', id: 1},
+    {name: 'Istanbul', code: 'IST', id: 1},
+    {name: 'Paris', code: 'PRS', id: 1}
+  ];
+  selectedRole?: any | undefined;
+
+
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
@@ -42,6 +53,9 @@ export class RoleauthorityFormComponent implements OnInit {
     if (this.inputRoleauthority !== undefined) {
       this.updateForm(this.inputRoleauthority);
     }
+
+
+
   }
 
   close(): void {
