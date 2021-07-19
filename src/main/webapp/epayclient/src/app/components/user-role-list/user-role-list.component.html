@@ -11,8 +11,8 @@
       <thead class="thead-light">
       <tr>
         <th scope="col">Id</th>
-        <th scope="col">User Id</th>
-        <th scope="col">Role Id</th>
+        <th scope="col">User</th>
+        <th scope="col">Role</th>
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
         <th scope="col">Actions</th>
@@ -21,8 +21,8 @@
       <tbody>
       <tr *ngFor="let user_role of user_roles">
         <td>{{ user_role.id }}</td>
-        <td>{{ user_role.user_id }}</td>
-        <td>{{ user_role.role_id }}</td>
+        <td>{{ user_role.user?.name }}</td>
+        <td>{{ user_role.role?.name }}</td>
         <td>{{ user_role.start_date | date:'yyyy-dd-MM' }}</td>
         <td>{{ user_role.end_date | date:'yyyy-dd-MM' }}</td>
         <td>

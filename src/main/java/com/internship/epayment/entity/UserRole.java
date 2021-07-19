@@ -26,11 +26,8 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
-    public Long getRole_id(){
-        return role.getId();
-    }
 
-    @JsonIgnore
+
     public Role getRole() {
         return role;
     }
@@ -43,15 +40,11 @@ public class UserRole {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    public Long getUser_id(){
-        return user.getId();
-    }
 
-    @JsonIgnore
     public User getUser() {
         return user;
     }
-    @JsonProperty
+
     public void setUser(User user) {
         this.user = user;
     }

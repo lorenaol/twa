@@ -11,6 +11,7 @@ import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {Role} from "../../entities/role";
 import {AuthorityService} from "../../services/authority.service";
 import {Authority} from "../../entities/authority";
+import {RoleService} from "../../services/role.service";
 
 
 @Component({
@@ -33,15 +34,8 @@ export class RoleauthorityFormComponent implements OnInit {
     start_date: [],
     end_date: []
   });
-
-  roles = [
-    {name: 'New York', code: 'NY', id: 1},
-    {name: 'Rome', code: 'RM', id: 1},
-    {name: 'London', code: 'LDN', id: 1},
-    {name: 'Istanbul', code: 'IST', id: 1},
-    {name: 'Paris', code: 'PRS', id: 1}
-  ];
   authorities?: Authority[] | null | undefined = [];
+  roles?: Role[] | null | undefined = [];
   selectedRole?: any | undefined;
   selectedAuthority?: any | undefined;
 
@@ -51,7 +45,8 @@ export class RoleauthorityFormComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private roleauthorityService: RoleauthorityService,
-    private authorityService: AuthorityService
+    private authorityService: AuthorityService,
+    private roleService : RoleService
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +55,10 @@ export class RoleauthorityFormComponent implements OnInit {
     }
     this.authorityService.getAuthorities().subscribe(data => {
       this.authorities = data.body;
+    })
+
+    this.roleService.getRoles().subscribe(data => {
+      this.roles = data.body;
     })
 
 

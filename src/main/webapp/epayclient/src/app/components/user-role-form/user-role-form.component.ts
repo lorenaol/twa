@@ -8,6 +8,12 @@ import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {User_roleService} from "../../services/user_role.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {Authority} from "../../entities/authority";
+import {Role} from "../../entities/role";
+import {User} from "../../entities/user";
+import {AuthorityService} from "../../services/authority.service";
+import {RoleService} from "../../services/role.service";
+import {UserService} from "../../services/userservice.service";
 
 @Component({
   selector: 'app-user-role-form',
@@ -24,23 +30,37 @@ export class UserRoleFormComponent implements OnInit {
 
   userRoleForm = this.fb.group({
     id: [],
-    user_id: [],
-    role_id: [],
+    user: [],
+    role: [],
     start_date: [],
     end_date: []
   });
+  users?: User[] | null | undefined = [];
+  roles?: Role[] | null | undefined = [];
 
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
-    private userRoleService: User_roleService
+    private userRoleService: User_roleService,
+    private userService: UserService,
+    private roleService : RoleService
   ) { }
 
   ngOnInit(): void {
     if (this.inputUserRole !== undefined) {
       this.updateForm(this.inputUserRole);
     }
+
+    this.userService.getUsers().subscribe(data => {
+      this.users = data.body;
+    })
+
+    this.roleService.getRoles().subscribe(data => {
+      this.roles = data.body;
+    })
+
+
   }
 
   close(): void {
@@ -61,8 +81,8 @@ export class UserRoleFormComponent implements OnInit {
     const end_date = this.userRoleForm.get('end_date')!.value;
     const userRole = new User_role();
     userRole.id = this.inputUserRole?.id;
-    userRole.user_id = this.userRoleForm.get('user_id')!.value;
-    userRole.role_id = this.userRoleForm.get('role_id')!.value;
+    userRole.user = this.userRoleForm.get('user')!.value;
+    userRole.role = this.userRoleForm.get('role')!.value;
     userRole.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
     userRole.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
 
@@ -74,8 +94,8 @@ export class UserRoleFormComponent implements OnInit {
     const end_date = new Date(userRole?.end_date!);
     this.userRoleForm.setValue({
       id: userRole?.id,
-      user_id: userRole?.user_id,
-      role_id: userRole?.role_id,
+      user: userRole?.user,
+      role: userRole?.role,
       start_date: new NgbDate(start_date?.getFullYear(), start_date?.getMonth() + 1, start_date?.getDate()),
       end_date: new NgbDate(end_date?.getFullYear(), end_date?.getMonth() + 1, end_date?.getDate())
     });
