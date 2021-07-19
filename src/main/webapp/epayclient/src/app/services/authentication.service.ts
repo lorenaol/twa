@@ -73,7 +73,8 @@ export class AuthenticationService {
   public showLogin() {
     console.log(this.loginDialog);
     if (!this.loginDialog || !this.modalService.hasOpenModals) {
-      this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static'});
+      this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static',beforeDismiss: () =>{return false;
+      }});
       // this.loginDialog = this.modalService.open(LoginComponent, {beforeDismiss: () =>{
       //   console.log('se apeleaza functia beforeDismiss');
       //     this.loginDialog = null;
