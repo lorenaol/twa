@@ -6,6 +6,7 @@ import {HomePageComponent} from "./components/home-page/home-page.component";
 import {AuthorityListComponent} from "./components/authority-list/authority-list.component";
 import {RoleListComponent} from "./components/role-list/role-list.component";
 import {UserListComponent} from "./components/user-list/user-list.component";
+
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent},

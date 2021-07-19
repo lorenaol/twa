@@ -9,6 +9,8 @@ import {ToastrService} from "ngx-toastr";
 
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {UserService} from "../../services/userservice.service";
+import {MouseEvent} from "@agm/core";
+import {MapsAPILoader} from "@agm/core";
 
 
 @Component({
@@ -31,14 +33,19 @@ export class UserFormComponent implements OnInit {
     password: [],
     is_active: [],
     start_date: [],
-    end_date: []
+    end_date: [],
+    latitude: [],
+    longitude:[],
+    address:[]
   });
+
 
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
-    private userService: UserService
+    private userService: UserService,
+    private apiloader: MapsAPILoader
   ) { }
 
   ngOnInit(): void {
@@ -71,6 +78,9 @@ export class UserFormComponent implements OnInit {
     user.is_active = this.userForm.get('is_active')!.value;
     user.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
     user.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
+    user.latitude = this.latitude;
+    user.longitude = this.longitude;
+    user.address = this.currentLocation;
     return user;
   }
 
@@ -84,7 +94,10 @@ export class UserFormComponent implements OnInit {
       password: user?.password,
       is_active: user?.is_active,
       start_date: new NgbDate(start_date?.getFullYear(), start_date?.getDate(), start_date?.getMonth() + 1),
-      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getDate(), end_date?.getMonth() + 1)
+      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getDate(), end_date?.getMonth() + 1),
+      latitude: user?.latitude,
+      longitude: user?.longitude,
+      address: user?.address
     });
   }
 
@@ -111,4 +124,68 @@ export class UserFormComponent implements OnInit {
       this.toastr.error('Error modifying user!', 'Error!');
     }
   }
+
+  latitude: number = 0;
+  longitude: number = 0;
+  zoom: number = 12;
+  currentLocation?: string;
+
+  mapClicked($event: MouseEvent) {
+    this.latitude = $event.coords.lat,
+      this.longitude = $event.coords.lng
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+
+    });
+    const that = this;
+    this.apiloader.load().then(() => {
+      let geocoder = new google.maps.Geocoder;
+      let latlng = {
+        lat: this.latitude,
+        lng: this.longitude
+      };
+      geocoder.geocode({
+        'location': latlng
+      }, function(results, status) {
+        if (results[0]) {
+          that.currentLocation = results[0].formatted_address;
+        } else {
+          console.log('Not found');
+        }
+      });
+    });
+  }
+
+  markerDragEnd($event: MouseEvent) {
+    this.latitude = $event.coords.lat,
+      this.longitude = $event.coords.lng;
+
+    const that = this;
+    this.apiloader.load().then(() => {
+      let geocoder = new google.maps.Geocoder;
+      let latlng = {
+        lat: this.latitude,
+        lng: this.longitude
+      };
+      geocoder.geocode({
+        'location': latlng
+      }, function(results, status) {
+        if (results[0]) {
+          that.currentLocation = results[0].formatted_address;
+        } else {
+        }
+      });
+    });
+  }
+
+
+  markers: marker[] = [
+
+  ]
+}
+interface marker {
+  lat?: number;
+  lng?: number;
+  label?: string;
 }

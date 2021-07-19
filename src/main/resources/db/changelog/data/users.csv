@@ -1,5 +1,5 @@
-id;name;email;pass;is_active;start_date;end_date
-1;Dani;dani@trencadis.ro;password1;true;2021-07-01;2021-07-04
-2;Andreea;andreea@trencadis.ro;password2;true;2021-07-01;2021-07-04
-3;Luiza;luiza@trencadis.ro;password3;true;2021-07-01;2021-07-04
-4;Lorena;lorena@trencadis.ro;password4;true;2021-07-01;2021-07-04
+id;name;email;pass;is_active;start_date;end_date;longitude;latitude;address
+1;Dani;dani@trencadis.ro;password1;true;2021-07-01;2021-07-04;45.144345;26.786187;Strada Thomas Masaryk 17, București 030167
+2;Andreea;andreea@trencadis.ro;password2;true;2021-07-01;2021-07-04;45.144345;26.786187;Strada Thomas Masaryk 17, București 030167
+3;Luiza;luiza@trencadis.ro;password3;true;2021-07-01;2021-07-04;45.144345;26.786187;Strada Thomas Masaryk 17, București 030167
+4;Lorena;lorena@trencadis.ro;password4;true;2021-07-01;2021-07-04;45.144345;26.786187;Strada Thomas Masaryk 17, București 030167

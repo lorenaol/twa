@@ -42,7 +42,7 @@ export class ModalService {
   }
 
   openUserModal(modalType: ModalTypesEnum, inputUser?: User) {
-    const modalRef: NgbModalRef = this.modalService.open(UserFormComponent);
+    const modalRef: NgbModalRef = this.modalService.open(UserFormComponent, {size: "xl"});
     modalRef.componentInstance.modalType = modalType;
 
     modalRef.componentInstance.inputUser = inputUser;

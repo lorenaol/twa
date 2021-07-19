@@ -25,9 +25,10 @@ import { ProductDeleteComponent } from './components/product-delete/product-dele
 import { RoleDeleteComponent } from './components/role-delete/role-delete.component';
 import { RoleFormComponent } from './components/role-form/role-form.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
-import { UserDeleteComponent } from './components/user-delete/user-delete.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserFormComponent} from "./components/user-form/user-form.component";
+import { UserListComponent } from "./components/user-list/user-list.component";
+import { UserDeleteComponent } from "./components/user-delete/user-delete.component";
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -46,9 +47,11 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     RoleDeleteComponent,
     RoleFormComponent,
     RoleListComponent,
-    UserDeleteComponent,
-    UserListComponent,
     UserFormComponent,
+    UserListComponent,
+    UserDeleteComponent,
+
+
   ],
   imports: [
     CommonModule,
@@ -61,9 +64,12 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AppModule  {
 }

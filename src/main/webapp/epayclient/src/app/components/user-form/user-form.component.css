@@ -1,0 +1,16 @@
+agm-map{
+  height: 500px;
+
+}
+
+.modal-body{
+  display: flex;
+}
+
+.modal-header{
+  display: flex;
+}
+#save{
+  margin-top: 10px;
+  margin-left: 20px;
+}
