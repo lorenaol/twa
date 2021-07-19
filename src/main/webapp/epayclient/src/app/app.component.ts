@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
@@ -20,6 +20,15 @@ export class AppComponent {
   logout() {
     this.authenticationService.logout();
   }
+
+  // ngOnInit(): void {
+  //   console.log(this.authenticationService.userValue);
+  //   if (!this.authenticationService.userValue) {
+  //     this.authenticationService.showLogin();
+  //   }
+  // }
+
+
 }
 
 
