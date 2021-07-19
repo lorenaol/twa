@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import {DropdownModule} from 'primeng/dropdown';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CategoryListComponent} from './components/category-list/category-list.component';
@@ -73,6 +73,7 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     FontAwesomeModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    DropdownModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

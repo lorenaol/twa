@@ -25,8 +25,8 @@ export class RoleauthorityFormComponent implements OnInit {
 
   roleauthorityForm = this.fb.group({
     id: [],
-    role_id: [],
-    authority_id: [],
+    role: [],
+    authority: [],
     start_date: [],
     end_date: []
   });
@@ -62,8 +62,8 @@ export class RoleauthorityFormComponent implements OnInit {
     const end_date = this.roleauthorityForm.get('end_date')!.value;
     const roleauthority = new Roleauthority();
     roleauthority.id = this.inputRoleauthority?.id;
-    roleauthority.role_id = this.roleauthorityForm.get('role_id')!.value;
-    roleauthority.authority_id = this.roleauthorityForm.get('authority_id')!.value;
+    roleauthority.role = this.roleauthorityForm.get('role')!.value;
+    roleauthority.authority = this.roleauthorityForm.get('authority')!.value;
     roleauthority.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
     roleauthority.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
 
@@ -75,8 +75,8 @@ export class RoleauthorityFormComponent implements OnInit {
     const end_date = new Date(roleauthority?.end_date!);
     this.roleauthorityForm.setValue({
       id: roleauthority?.id,
-      role_id: roleauthority?.role_id,
-      authority_id: roleauthority?.authority_id,
+      role: roleauthority?.role,
+      authority: roleauthority?.authority,
       start_date: new NgbDate(start_date?.getFullYear(), start_date?.getMonth() + 1, start_date?.getDate()),
       end_date: new NgbDate(end_date?.getFullYear(), end_date?.getMonth() + 1, end_date?.getDate())
     });

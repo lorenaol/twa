@@ -1,5 +1,7 @@
 package com.internship.epayment.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -32,7 +34,7 @@ public class UserRole {
     public Role getRole() {
         return role;
     }
-    @JsonIgnore
+    @JsonProperty
     public void setRole(Role role) {
         this.role = role;
     }
@@ -49,7 +51,7 @@ public class UserRole {
     public User getUser() {
         return user;
     }
-    @JsonIgnore
+    @JsonProperty
     public void setUser(User user) {
         this.user = user;
     }

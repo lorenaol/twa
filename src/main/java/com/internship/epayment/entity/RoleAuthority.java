@@ -1,6 +1,7 @@
 package com.internship.epayment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,35 +26,34 @@ public class RoleAuthority {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    @JsonIgnore
     public Role getRole() {
         return role;
     }
-    @JsonIgnore
+    @JsonProperty
     public void setRole(Role role) {
         this.role = role;
     }
 
-    public Long getRole_id(){
-        return role.getId();
-    }
+//    public Long getRole_id(){
+//        return role.getId();
+//    }
 
     @ManyToOne
     @JoinColumn(name = "authority_id", referencedColumnName = "id", nullable = false)
     private Authority authority;
 
-    @JsonIgnore
+
     public Authority getAuthority() {
         return authority;
     }
-    @JsonIgnore
+    @JsonProperty
     public void setAuthority(Authority authority) {
         this.authority = authority;
     }
 
-    public Long getAuthority_id(){
-        return authority.getId();
-    }
+//    public Long getAuthority_id(){
+//        return authority.getId();
+//    }
 
 
     @Column(name = "start_date", length = 100)
