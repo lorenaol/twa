@@ -2,6 +2,7 @@ package com.internship.epayment.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -23,6 +24,17 @@ public class Role {
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
     private Date endDate;
+
+    @ManyToMany
+    @JoinTable(
+            name = "rolesauthorities",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id"))
+    Set<Authority> roleAuthorities;
+
+    public Set<Authority> getRoleAuthorities() {
+        return roleAuthorities;
+    }
 
     public Long getId() {
         return id;

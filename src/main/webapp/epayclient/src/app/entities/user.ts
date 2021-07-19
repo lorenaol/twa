@@ -1,3 +1,5 @@
+import {Authorities} from "@app/enums/authorities";
+
 export class User{
   id?: number;
   name?: string;
@@ -7,4 +9,5 @@ export class User{
   start_date?: Date;
   end_date?: Date;
   authdata?: string;
+  authorities?:Authorities[];
 }

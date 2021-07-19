@@ -23,6 +23,7 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
+
   public getUsers(): Observable<EntityArrayResponseType> {
     return this.http.get<User[]>(this.USER_URL, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));

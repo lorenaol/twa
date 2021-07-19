@@ -17,7 +17,13 @@ export class AuthGuard implements CanActivate {
     const user = this.authenticationService.userValue;
     if (user) {
       // logged in so return true
-      return true;
+      // return true;
+      // check if route is restricted by authorities
+      if (route.data.authorities && route.data.authorities.indexOf(user.authorities) === -1) {
+        // role not authorised so redirect to home page
+        this.router.navigate(['/login']);
+        return false;
+      }
     }
 
     // not logged in so redirect to login page with the return url
