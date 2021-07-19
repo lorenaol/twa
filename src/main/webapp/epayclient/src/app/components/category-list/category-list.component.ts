@@ -20,6 +20,7 @@ export class CategoryListComponent implements OnInit {
   faTrash = faTrash;
 
   categories?: Category[] | null;
+  stat?: string[] = ['id', 'categoryName', 'categoryCode', 'dateAdded']
 
   constructor(
     private categoryService: CategoryService,
@@ -51,5 +52,21 @@ export class CategoryListComponent implements OnInit {
         this.loadData();
       }
     });
+  }
+
+  sort(col : string) {
+    if(this.stat !== undefined) {
+      if(this.stat.includes(col, 0)) {
+        this.stat.splice(this.stat.indexOf(col, 0));
+        this.categoryService.sortCategories(col, 'asc').subscribe(data => {
+          this.categories = data.body;
+        })
+      } else {
+        this.stat.push(col);
+        this.categoryService.sortCategories(col, 'desc').subscribe(data => {
+          this.categories = data.body;
+        })
+      }
+    }
   }
 }

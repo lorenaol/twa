@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {Role} from "../entities/role";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {Data} from "@angular/router";
 
 type EntityResponseType = HttpResponse<Role>;
 type EntityArrayResponseType = HttpResponse<Role[]>;
@@ -21,8 +22,9 @@ export class RoleService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getRoles(): Observable<EntityArrayResponseType> {
-    return this.http.get<Role[]>(this.ROLE_URL, { observe: 'response' })
+  public getRoles(pageble?: any): Observable<EntityArrayResponseType> {
+    console.log(pageble)
+    return this.http.get<Role[]>(this.ROLE_URL, {params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -53,5 +55,18 @@ export class RoleService {
   public deleteRole(role: Role): Observable<EntityResponseType>  {
     return this.http.delete<Role>(this.ROLE_URL, {body: role, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortRoles(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+   // params.set('id', id);
+    return this.http.get<Role[]>(this.ROLE_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+  public filterRoles(id:string, name:string, code:string, startDate?:Data, endDate?:Data, pageble?: any): Observable<EntityArrayResponseType> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code]);
+    //console.log(params.getAll("FILTER-PARAMS"))
+    return this.http.get<Role[]>(this.ROLE_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 }

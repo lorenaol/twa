@@ -1,5 +1,6 @@
 package com.internship.epayment.service;
 
+import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.User;
 import javassist.NotFoundException;
 
@@ -20,5 +21,9 @@ public interface UserService {
     User updateUser(User user);
 
     void deleteUser(User user);
+
+    /*List<User> order(String param, String direction);
+
+    List<User> filter(String column, String value);*/
 }
 

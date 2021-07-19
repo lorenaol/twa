@@ -5,6 +5,7 @@ import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,5 +56,20 @@ public class ProductServiceImpl implements ProductsService {
     @Transactional
     public void deleteProduct(Product product) {
         productRepository.delete(product);
+    }
+
+    @Override
+    public List<Product> order(String param, String direction) {
+        if(direction.equals("asc")) {
+            return productRepository.findAll(Sort.by(Sort.Direction.ASC, param));
+            //return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, param));
+        } else {
+            return productRepository.findAll(Sort.by(Sort.Direction.DESC, param));
+        }
+    }
+
+    @Override
+    public List<Product> filter(String column, String value) {
+        return null;
     }
 }

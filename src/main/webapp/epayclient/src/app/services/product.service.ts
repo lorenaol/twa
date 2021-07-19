@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Product} from "../entities/product";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {Role} from "../entities/role";
 
 type EntityResponseType = HttpResponse<Product>;
 type EntityArrayResponseType = HttpResponse<Product[]>;
@@ -47,6 +48,13 @@ export class ProductService {
   public deleteProduct(product: Product): Observable<EntityResponseType>  {
     return this.http.delete<Product>(this.PRODUCT_URL, {body: product, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortProducts(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    // params.set('id', id);
+    return this.http.get<Product[]>(this.PRODUCT_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
 

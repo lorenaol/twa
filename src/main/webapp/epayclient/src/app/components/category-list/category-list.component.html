@@ -10,10 +10,10 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Code</th>
-        <th scope="col">Date Added</th>
+        <th scope="col" (click)="sort('id')">Id</th>
+        <th scope="col" (click)="sort('categoryName')">Name</th>
+        <th scope="col" (click)="sort('categoryCode')">Code</th>
+        <th scope="col" (click)="sort('dateAdded')">Date Added</th>
         <th scope="col">Actions</th>
       </tr>
       </thead>

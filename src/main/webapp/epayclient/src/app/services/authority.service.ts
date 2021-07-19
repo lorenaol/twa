@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Authority} from "../entities/authority";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {Role} from "../entities/role";
 
 
 type EntityResponseType = HttpResponse<Authority>;
@@ -52,6 +53,13 @@ export class AuthorityService {
   public deleteAuthority(authority: Authority): Observable<EntityResponseType>  {
     return this.http.delete<Authority>(this.AUTHORITY_URL, {body: authority, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortAuthorities(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    // params.set('id', id);
+    return this.http.get<Role[]>(this.AUTHORITY_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
 }

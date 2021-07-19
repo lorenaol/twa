@@ -29,6 +29,10 @@ import { UserDeleteComponent } from './components/user-delete/user-delete.compon
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +52,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     RoleListComponent,
     UserDeleteComponent,
     UserListComponent,
-    UserFormComponent,
+    UserFormComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +64,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

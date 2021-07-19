@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Category} from "../entities/category";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {Role} from "../entities/role";
 
 type EntityResponseType = HttpResponse<Category>;
 type EntityArrayResponseType = HttpResponse<Category[]>;
@@ -46,5 +47,12 @@ export class CategoryService {
   public deleteCategory(category: Category): Observable<EntityResponseType>  {
     return this.http.delete<Category>(this.CATEGORY_URL, {body: category, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortCategories(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    // params.set('id', id);
+    return this.http.get<Category[]>(this.CATEGORY_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 }

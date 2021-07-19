@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
   faTrash = faTrash;
 
   products?: Product[] | null;
+  stat?: string[] = ['id', 'name', 'price', 'quantity', 'code', 'expire_date', 'sku']
 
   constructor(
     private productService: ProductService,
@@ -52,5 +53,21 @@ export class ProductListComponent implements OnInit {
         this.loadData();
       }
     });
+  }
+
+  sort(col : string) {
+    if(this.stat !== undefined) {
+      if(this.stat.includes(col, 0)) {
+        this.stat.splice(this.stat.indexOf(col, 0));
+        this.productService.sortProducts(col, 'asc').subscribe(data => {
+          this.products = data.body;
+        })
+      } else {
+        this.stat.push(col);
+        this.productService.sortProducts(col, 'desc').subscribe(data => {
+          this.products = data.body;
+        })
+      }
+    }
   }
 }

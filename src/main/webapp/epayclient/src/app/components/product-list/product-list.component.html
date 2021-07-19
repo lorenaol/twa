@@ -10,13 +10,13 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Price</th>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Expire_Date</th>
-        <th scope="col">Sku</th>
-        <th scope="col">Code</th>
+        <th scope="col" (click)="sort('id')">Id</th>
+        <th scope="col" (click)="sort('price')">Price</th>
+        <th scope="col" (click)="sort('name')">Name</th>
+        <th scope="col" (click)="sort('quantity')">Quantity</th>
+        <th scope="col" (click)="sort('expire_date')">Expire_Date</th>
+        <th scope="col" (click)="sort('sku')">Sku</th>
+        <th scope="col" (click)="sort('code')">Code</th>
         <th scope="col">Actions</th>
       </tr>
       </thead>

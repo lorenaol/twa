@@ -1,6 +1,7 @@
 package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.Authority;
+import com.internship.epayment.entity.Role;
 import com.internship.epayment.service.AuthorityService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,17 @@ public class AuthorityController {
     @GetMapping
     public List<Authority> getAuthorities(){
         return  authorityService.getAll();
+    }
+
+    @GetMapping(path = "/sort{param}")
+    //@GetMapping
+    public List<Authority> sortAuthorities(@PathVariable String param, @RequestParam(value = "direction") String direction) throws NotFoundException {
+        return authorityService.order(param, direction);
+    }
+
+    @GetMapping(path = "/filterBy{param}/=/{param2}")
+    public List<Authority> filterAuthorities(@PathVariable String param, @PathVariable String param2) throws NotFoundException {
+        return authorityService.filter(param, param2);
     }
 
     @GetMapping(path = "/{id}")

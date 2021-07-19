@@ -1,5 +1,6 @@
 package com.internship.epayment.rest;
 
+import com.internship.epayment.entity.Authority;
 import com.internship.epayment.entity.Category;
 import com.internship.epayment.service.CategoryService;
 import javassist.NotFoundException;
@@ -24,6 +25,17 @@ public class CategoryController {
     public Category getCategoriesById(@PathVariable Long id) throws NotFoundException {
         return  categoryService.findById(id);
     }
+
+    @GetMapping(path = "/sort{param}")
+    public List<Category> sortCategories(@PathVariable String param, @RequestParam(value = "direction") String direction) throws NotFoundException {
+        return categoryService.order(param, direction);
+    }
+
+    @GetMapping(path = "/filterBy{param}/=/{param2}")
+    public List<Category> filterCategories(@PathVariable String param, @PathVariable String param2) throws NotFoundException {
+        return categoryService.filter(param, param2);
+    }
+
 
     @PostMapping
     public Category addCategory(@RequestBody Category category){

@@ -1,6 +1,7 @@
 package com.internship.epayment.service;
 
 import com.internship.epayment.entity.Product;
+import com.internship.epayment.entity.Role;
 import javassist.NotFoundException;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public interface ProductsService {
     Product updateProduct(Product product);
 
     void deleteProduct(Product product);
+
+    List<Product> order(String param, String direction);
+
+    List<Product> filter(String column, String value);
 
 }

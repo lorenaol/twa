@@ -1,10 +1,13 @@
 package com.internship.epayment.serviceImpl;
 
 import com.internship.epayment.entity.Authority;
+import com.internship.epayment.entity.Role;
 import com.internship.epayment.repository.AuthorityRepository;
 import com.internship.epayment.service.AuthorityService;
 import javassist.NotFoundException;
+import liquibase.pro.packaged.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,5 +58,45 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Transactional
     public void deleteAuthority(Authority authority) {
         authorityRepository.delete(authority);
+    }
+
+    @Override
+    public List<Authority> order(String param, String direction) {
+        if(direction.equals("asc")) {
+            return authorityRepository.findAll(Sort.by(Sort.Direction.ASC, param));
+        } else {
+            return authorityRepository.findAll(Sort.by(Sort.Direction.DESC, param));
+        }
+    }
+
+    @Override
+    public List<Authority> filter(String column, String value) {
+        List<Authority> authorities = authorityRepository.findAll();
+        List<Authority> result = new ArrayList<>();
+        for (Authority authority : authorities) {
+            if(column.equals("name")) {
+                if(authority.getName().equals(value)) {
+                    result.add(authority);
+                }
+            } else if(column.equals("code")) {
+                if(authority.getCode().equals(value)) {
+                    result.add(authority);
+                }
+            } else if(column.equals("id")) {
+                if(authority.getId().toString().equals(value)) {
+                    result.add(authority);
+                }
+            } else if(column.equals("startDate")) {
+                if(authority.getStartDate().toString().equals(value)) {
+                    result.add(authority);
+                }
+            } else if(column.equals("endDate")) {
+                if(authority.getEndDate().toString().equals(value)) {
+                    result.add(authority);
+                }
+            }
+
+        }
+        return result;
     }
 }

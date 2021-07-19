@@ -1,6 +1,7 @@
 package com.internship.epayment.service;
 
 import com.internship.epayment.entity.Authority;
+import com.internship.epayment.entity.Role;
 import javassist.NotFoundException;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface AuthorityService {
     Authority updateAuthority(Authority authority);
 
     void deleteAuthority(Authority authority);
+
+    List<Authority> order(String param, String direction);
+
+    List<Authority> filter(String column, String value);
 }

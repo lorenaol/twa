@@ -1,0 +1,19 @@
+.filter{
+  position: absolute;
+  top: 10px;
+  font-size: 20px;
+  margin-left: 150px;
+}
+.h3{font-size:30px;
+  height:100px;}
+
+label{
+  margin-left: 10px;
+
+}
+input{
+  width: 120px;
+}
+.filterButton{
+  margin-left: 20px;
+}
