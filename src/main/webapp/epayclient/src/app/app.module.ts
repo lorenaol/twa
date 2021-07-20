@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CategoryFormComponent} from './components/category-form/category-form.component';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SidebarModule} from 'primeng/sidebar';
 import { CategoryDeleteComponent } from './components/category-delete/category-delete.component';
 import {CommonModule} from "@angular/common";
 import { AuthorityListComponent } from './components/authority-list/authority-list.component';
@@ -75,6 +76,7 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     ReactiveFormsModule,
     DropdownModule,
     FormsModule,
+    SidebarModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

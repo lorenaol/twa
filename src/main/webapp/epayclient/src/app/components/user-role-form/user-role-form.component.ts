@@ -37,6 +37,8 @@ export class UserRoleFormComponent implements OnInit {
   });
   users?: User[] | null | undefined = [];
   roles?: Role[] | null | undefined = [];
+  visibleSidebar2: any;
+
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +61,6 @@ export class UserRoleFormComponent implements OnInit {
     this.roleService.getRoles().subscribe(data => {
       this.roles = data.body;
     })
-
 
   }
 

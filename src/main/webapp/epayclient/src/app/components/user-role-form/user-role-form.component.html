@@ -1,3 +1,4 @@
+<p-sidebar [(visible)]="visibleSidebar2" icon="pi pi-arrow-down">
 <form name="userRoleForm" (ngSubmit)="save()" [formGroup]="userRoleForm">
   <div class="modal-header">
     <div *ngIf="ModalTypesEnum.CREATE == modalType">
@@ -67,3 +68,10 @@
     </div>
   </div>
 </form>
+</p-sidebar>
+<div class="row" style="margin-top:10px;margin-bottom: 10px;">
+  <div class="col-sm-2">
+  <button pButton type="text" class="btn btn-success" (click)="visibleSidebar2 = true" icon="pi pi-arrow-right primary" label="Show"></button>
+
+  </div>
+</div>

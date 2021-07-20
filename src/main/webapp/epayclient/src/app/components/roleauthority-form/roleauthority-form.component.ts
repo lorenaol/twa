@@ -21,6 +21,7 @@ import {RoleService} from "../../services/role.service";
 })
 export class RoleauthorityFormComponent implements OnInit {
 
+  // display;
   ModalTypesEnum = ModalTypesEnum;
   faCalendar = faCalendar;
 
@@ -38,6 +39,10 @@ export class RoleauthorityFormComponent implements OnInit {
   roles?: Role[] | null | undefined = [];
   selectedRole?: any | undefined;
   selectedAuthority?: any | undefined;
+  display: boolean | null | undefined;
+  visibleSidebar1: any | null | undefined;
+  visibleSidebar2: any | null | undefined;
+  visibleSidebar3: any | null | undefined;
 
 
   constructor(
