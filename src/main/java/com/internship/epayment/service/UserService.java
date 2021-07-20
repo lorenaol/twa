@@ -22,6 +22,6 @@ public interface UserService {
 
     void deleteUser(User user);
 
-    UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName);
+    UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException;
 }
 
