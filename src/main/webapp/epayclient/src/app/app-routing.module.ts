@@ -7,6 +7,8 @@ import {AuthorityListComponent} from "./components/authority-list/authority-list
 import {RoleListComponent} from "./components/role-list/role-list.component";
 import {UserListComponent} from "./components/user-list/user-list.component";
 import {LoginComponent} from "@app/components/login/login.component";
+import {AuthGuard} from "@app/_helpers/auth.guard";
+import {Authorities} from "@app/enums/authorities";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -14,7 +16,7 @@ const routes: Routes = [
   {path: 'authorities', component: AuthorityListComponent},
   {path: 'products', component: ProductListComponent},
   {path: 'roles', component: RoleListComponent},
-  {path: 'users', component: UserListComponent},
+  {path: 'users', component: UserListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
   {path: 'login', component: LoginComponent}
 ];
 

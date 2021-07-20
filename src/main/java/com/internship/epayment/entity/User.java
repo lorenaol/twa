@@ -28,16 +28,17 @@ public class User {
 
     private Date end_date;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    Set<Role> userRoles;
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    Set<Role> userRoles;
 
-//    public Set<Role> getUserRoles() {
-//        return userRoles;
-//    }
+    @JsonIgnore
+    public Set<Role> getUserRoles() {
+        return userRoles;
+    }
 
 //    @org.springframework.data.annotation.Transient
 //    public Set<String> getAuthorities() {

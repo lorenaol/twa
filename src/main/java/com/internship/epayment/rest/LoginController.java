@@ -1,5 +1,6 @@
 package com.internship.epayment.rest;
 
+import com.internship.epayment.dto.UserWithAuthoritiesDto;
 import com.internship.epayment.entity.User;
 import com.internship.epayment.service.UserService;
 import javassist.NotFoundException;
@@ -19,7 +20,7 @@ public class LoginController {
     UserService userService;
 
     @GetMapping
-    public User login () throws NotFoundException {
+    public UserWithAuthoritiesDto login () throws NotFoundException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
             System.out.println(currentUserName);

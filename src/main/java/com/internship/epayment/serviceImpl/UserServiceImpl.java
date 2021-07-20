@@ -73,8 +73,8 @@ public class UserServiceImpl implements UserService {
     public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException {
         //pas 1.getUser de pe currentUserName
         User user = findByName(currentUserName);
-        //pas 2.luam rolurile userului
 
+        //pas 2.luam rolurile userului
         List<Role> roles = new ArrayList<>();
         userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
 
@@ -82,7 +82,6 @@ public class UserServiceImpl implements UserService {
 //                .stream().map(UserRole::getRole).collect(Collectors.toList());
 
         //pas 3.luam permisiunile rolurilor
-
         List<String> authorities = new ArrayList<>();
         roles.forEach(role -> {
             // Luam Role Authities din baza dupa id
