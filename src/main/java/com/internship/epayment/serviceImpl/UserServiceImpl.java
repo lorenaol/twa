@@ -1,7 +1,9 @@
 package com.internship.epayment.serviceImpl;
 
+import com.internship.epayment.dto.UserWithAuthoritiesDto;
 import com.internship.epayment.entity.User;
 import com.internship.epayment.repository.UserRepository;
+import com.internship.epayment.service.UserRoleService;
 import com.internship.epayment.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +59,15 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
+
+    @Override
+    public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) {
+        //pas 1.getUser de pe currentUserName
+        //pas 2.luam rolurile userului
+        //pas 3.luam permisiunile rolurilor
+        //pas 4.bagam ce ne intereseaza in dto si il returnam
+    }
+
+
 }
 

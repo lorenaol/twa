@@ -11,12 +11,26 @@
   <span><a routerLink="/roles"><button class="btn btn-link" style="color: white">Role</button></a></span>
   <span><a routerLink="/users"><button class="btn btn-link" style="color: white">User</button></a></span>
   <div class="spacer"></div>
-  <span><a (click)="logout()"><button class="btn btn-link " style="color: white" ><span class="em em-user2"></span>Logout</button></a></span>
+
+  <div ngbDropdown class="">
+    <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>Toggle dropdown</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <div *ngIf="isLoggedIn()">
+        <span><a (click)="logout()"><button class="btn btn-link " ><span class="em em-user2"></span>Logout</button></a></span>
+      </div>
+      <div *ngIf="!isLoggedIn()">
+        <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
+      </div>
+    </div>
+  </div>
+
 
   <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
-    <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
+    <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 24 24" fill="#fff">
       <path d="M0 0h24v24H0V0z" fill="none"/>
-      <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+      <path
+        d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
     </svg>
   </a>
 </div>
