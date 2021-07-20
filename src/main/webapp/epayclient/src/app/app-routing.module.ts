@@ -12,10 +12,10 @@ import {Authorities} from "@app/enums/authorities";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'categories', component: CategoryListComponent},
-  {path: 'authorities', component: AuthorityListComponent},
-  {path: 'products', component: ProductListComponent},
-  {path: 'roles', component: RoleListComponent},
+  {path: 'categories', component: CategoryListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
+  {path: 'authorities', component: AuthorityListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
+  {path: 'products', component: ProductListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
+  {path: 'roles', component: RoleListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   {path: 'users', component: UserListComponent,canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
   {path: 'login', component: LoginComponent}
 ];

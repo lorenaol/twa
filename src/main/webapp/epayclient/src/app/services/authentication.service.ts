@@ -26,7 +26,7 @@ export class AuthenticationService {
     private modalService: NgbModal
   ) {
     let user = localStorage.getItem('user');
-    this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(JSON.parse(user ? user : '{}'));
+    this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
     this.user = this.userSubject.asObservable();
     this.loginDialog = null;
   }
@@ -87,16 +87,16 @@ export class AuthenticationService {
   }
 
 
-  public hasPermissions(hasAuthority: string | string[] | undefined) {
-    if (this.userValue) {
-      for (let i = 0; i < hasAuthority!.length; i++) {
-        let code = hasAuthority![i];
-        if (this.userValue.authorityCode?.indexOf(code) === -1) {
-          return false;
-        }
+  public hasAuthority(authority: string): Observable<boolean> {
+    //daca avem user logat verificam daca nu return false
+
+    const userHasAuth = map((user: UserWithAuthoritiesDto | null): boolean => {
+      console.log(user,authority);
+      if (!user) {
+        return false;
       }
-      return true;
-    }
-    return false;
+      return user?.authorityCode?.indexOf(authority) !== -1;
+    })
+    return userHasAuth(this.user);
   }
 }
