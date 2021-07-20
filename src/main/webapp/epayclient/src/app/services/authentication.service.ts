@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
-import {User} from "../entities/user";
+import {User, UserWithAuthoritiesDto} from "../entities/user";
 import {environment} from "@environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
@@ -16,8 +16,8 @@ import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 })
 export class AuthenticationService {
 
-  private userSubject: BehaviorSubject<User | null>;
-  public user: Observable<User | null>;
+  private userSubject: BehaviorSubject<UserWithAuthoritiesDto | null>;
+  public user: Observable<UserWithAuthoritiesDto | null>;
   private loginDialog: NgbModalRef | null;
 
   constructor(
@@ -26,13 +26,13 @@ export class AuthenticationService {
     private modalService: NgbModal
   ) {
     let user = localStorage.getItem('user');
-    this.userSubject = new BehaviorSubject<User | null>(JSON.parse(user ? user : '{}'));
+    this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(JSON.parse(user ? user : '{}'));
     this.user = this.userSubject.asObservable();
     this.loginDialog = null;
   }
 
 
-  public get userValue(): User | null {
+  public get userValue(): UserWithAuthoritiesDto | null {
     return this.userSubject.value;
   }
 
@@ -66,7 +66,7 @@ export class AuthenticationService {
     //  // window.location.reload();
     // }
     //this.showLogin();
-     this.router.navigate(['/']);
+    this.router.navigate(['/']);
     // const currentNvg = this.router.getCurrentNavigation();
     //   this.router.navigate([currentNvg]);
   }
@@ -76,13 +76,27 @@ export class AuthenticationService {
     if (!this.loginDialog || !this.modalService.hasOpenModals) {
       // this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static',beforeDismiss: () =>{return false;
       // }});
-      this.loginDialog = this.modalService.open(LoginComponent, {beforeDismiss: () =>{
-        console.log('se apeleaza functia beforeDismiss');
+      this.loginDialog = this.modalService.open(LoginComponent, {
+        beforeDismiss: () => {
+          console.log('se apeleaza functia beforeDismiss');
           this.loginDialog = null;
-        return true;
-        }});
+          return true;
+        }
+      });
     }
   }
 
 
+  public hasPermissions(hasAuthority: string | string[] | undefined) {
+    if (this.userValue) {
+      for (let i = 0; i < hasAuthority!.length; i++) {
+        let code = hasAuthority![i];
+        if (this.userValue.authorityCode?.indexOf(code) === -1) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
 }

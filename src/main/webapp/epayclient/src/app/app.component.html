@@ -9,7 +9,7 @@
   <span><a routerLink="/authorities"><button class="btn btn-link" style="color: white">Authority</button></a></span>
   <span><a routerLink="/products"><button class="btn btn-link" style="color: white">Product</button></a></span>
   <span><a routerLink="/roles"><button class="btn btn-link" style="color: white">Role</button></a></span>
-  <span><a routerLink="/users"><button class="btn btn-link" style="color: white">User</button></a></span>
+  <span><a routerLink="/users" *hasAuthority="['EPAY_USERS']"><button class="btn btn-link" style="color: white">User</button></a></span>
   <div class="spacer"></div>
 
   <div ngbDropdown class="">

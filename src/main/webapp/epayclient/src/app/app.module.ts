@@ -31,6 +31,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { LoginComponent } from './components/login/login.component';
 import {BasicAuthInterceptor} from "@app/_helpers/basic-auth.interceptor";
 import {ErrorInterceptor} from "@app/_helpers/error.interceptor";
+import { HasAuthorityDirective } from './directives/has-authority.directive';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {ErrorInterceptor} from "@app/_helpers/error.interceptor";
     UserDeleteComponent,
     UserListComponent,
     UserFormComponent,
-    LoginComponent
+    LoginComponent,
+    HasAuthorityDirective
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,11 @@ export class User{
   is_active?: boolean;
   start_date?: Date;
   end_date?: Date;
+
+  // authorityCode?:Authorities[];
+}
+export class UserWithAuthoritiesDto{
+  userName?: string;
+  authorityCode?:string[];
   authdata?: string;
-  authorities?:Authorities[];
 }
