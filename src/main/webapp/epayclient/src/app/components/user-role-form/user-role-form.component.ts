@@ -27,7 +27,7 @@ export class UserRoleFormComponent implements OnInit {
 
   modalType?: ModalTypesEnum;
   inputUserRole?: User_role;
-
+  isOpen?: boolean;
   userRoleForm = this.fb.group({
     id: [],
     user: [],

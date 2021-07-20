@@ -27,7 +27,7 @@ export class RoleauthorityFormComponent implements OnInit {
 
   modalType?: ModalTypesEnum;
   inputRoleauthority?: Roleauthority;
-
+  isOpen2?: boolean;
   roleauthorityForm = this.fb.group({
     id: [],
     role: [],
@@ -129,5 +129,9 @@ export class RoleauthorityFormComponent implements OnInit {
     } else {
       this.toastr.error('Error modifying role-authority!', 'Error!');
     }
+  }
+
+  closeDialog() {
+
   }
 }

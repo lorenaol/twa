@@ -52,4 +52,12 @@ export class UserRoleListComponent implements OnInit {
       }
     });
   }
+
+  openSideBar(user_role: User_role) {
+    this.modalService.openSideBar(user_role).then((result) => {
+      if(result) {
+        this.loadData();
+      }
+    });
+  }
 }

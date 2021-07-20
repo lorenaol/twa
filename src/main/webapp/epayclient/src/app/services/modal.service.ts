@@ -63,7 +63,7 @@ export class ModalService {
     modalRef.componentInstance.modalType = modalType;
 
     modalRef.componentInstance.inputUserRole = inputUserRole;
-
+    modalRef.componentInstance.isOpen = true;
     return modalRef.result
       .then(result => {
         return result;
@@ -168,6 +168,7 @@ export class ModalService {
     modalRef.componentInstance.modalType = modalType;
 
     modalRef.componentInstance.inputRoleauthority = inputRoleauthority;
+    modalRef.componentInstance.isOpen2 = true;
 
     return modalRef.result
       .then(result => {
@@ -182,6 +183,18 @@ export class ModalService {
       .then(result => {
         return result;
       });
+  }
+
+  openSideBar(user_role: User_role) {
+    const modalRef: NgbModalRef = this.modalService.open(UserRoleFormComponent);
+    modalRef.componentInstance.inputUserRole = user_role;
+    modalRef.componentInstance.isOpen = true;
+
+    return modalRef.result
+      .then(result => {
+        return result;
+      });
+
   }
 }
 

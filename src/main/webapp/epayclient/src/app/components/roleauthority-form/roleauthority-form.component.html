@@ -1,8 +1,8 @@
-<p-sidebar [(visible)]="visibleSidebar1" icon="pi pi-arrow-down">
+<p-sidebar  [(visible)]="isOpen2!" icon="pi pi-arrow-down" [showCloseIcon]="false">
   <form name="roleauthorityForm" (ngSubmit)="save()" [formGroup]="roleauthorityForm" icon="pi pi-arrow-down">
 <div class="modal-header">
     <div *ngIf="ModalTypesEnum.CREATE == modalType">
-      <h4 class="modal-title" id="modal-basic-title"  pButton type="text" (click)="visibleSidebar1 = true" icon="pi pi-plus" label="Show">Create RoleAuthority</h4>
+      <h4 class="modal-title" id="modal-basic-title" >Create RoleAuthority</h4>
     </div>
     <div *ngIf="ModalTypesEnum.EDIT == modalType">
       <h4 class="modal-title" id="modal-basic-title">Edit RoleAuthority - ID: {{inputRoleauthority?.id}}</h4>
@@ -69,5 +69,4 @@
   </div>
 </form>
 </p-sidebar>
-<button pButton type="text" (click)="visibleSidebar1 = true" icon="pi pi-plus" label="Show"></button>
 
