@@ -1,5 +1,7 @@
 package com.internship.epayment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.*;
@@ -49,6 +51,11 @@ public class User {
             }
         }
         return authorities;
+    }
+
+    @JsonIgnore
+    public void setAuthorities(Set<String>authorities){
+
     }
 
     public Long getId() {
