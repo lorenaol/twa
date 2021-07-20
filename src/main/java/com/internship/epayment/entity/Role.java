@@ -25,16 +25,16 @@ public class Role {
     @Column(name = "end_date")
     private Date endDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "rolesauthorities",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id"))
-    Set<Authority> roleAuthorities;
-
-    public Set<Authority> getRoleAuthorities() {
-        return roleAuthorities;
-    }
+//    @ManyToMany
+//    @JoinTable(
+//            name = "rolesauthorities",
+//            joinColumns = @JoinColumn(name = "role_id"),
+//            inverseJoinColumns = @JoinColumn(name = "authority_id"))
+//    Set<Authority> roleAuthorities;
+//
+//    public Set<Authority> getRoleAuthorities() {
+//        return roleAuthorities;
+//    }
 
     public Long getId() {
         return id;

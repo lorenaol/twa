@@ -29,6 +29,17 @@ export class AppComponent {
   // }
 
 
+  login() {
+    this.authenticationService.showLogin();
+  }
+
+  isLoggedIn(): boolean {
+    let user = localStorage.getItem('user');
+    if (user) {
+      return true;
+    }
+    return false;
+  }
 }
 
 

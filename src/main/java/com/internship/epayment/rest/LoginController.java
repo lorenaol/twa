@@ -23,8 +23,11 @@ public class LoginController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
             System.out.println(currentUserName);
-        return userService.findByName(currentUserName);
+        return userService.getUserWithAuthorities(currentUserName);
     }
+
+
+
 }
 
 

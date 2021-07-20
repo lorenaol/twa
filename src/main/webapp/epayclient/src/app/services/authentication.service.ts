@@ -65,7 +65,8 @@ export class AuthenticationService {
     // if (verifyUser !== null) {
     //  // window.location.reload();
     // }
-    this.showLogin();
+    //this.showLogin();
+     this.router.navigate(['/']);
     // const currentNvg = this.router.getCurrentNavigation();
     //   this.router.navigate([currentNvg]);
   }
@@ -73,13 +74,13 @@ export class AuthenticationService {
   public showLogin() {
     console.log(this.loginDialog);
     if (!this.loginDialog || !this.modalService.hasOpenModals) {
-      this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static',beforeDismiss: () =>{return false;
-      }});
-      // this.loginDialog = this.modalService.open(LoginComponent, {beforeDismiss: () =>{
-      //   console.log('se apeleaza functia beforeDismiss');
-      //     this.loginDialog = null;
-      //   return true;
-      //   }});
+      // this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static',beforeDismiss: () =>{return false;
+      // }});
+      this.loginDialog = this.modalService.open(LoginComponent, {beforeDismiss: () =>{
+        console.log('se apeleaza functia beforeDismiss');
+          this.loginDialog = null;
+        return true;
+        }});
     }
   }
 
