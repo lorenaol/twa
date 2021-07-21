@@ -4,7 +4,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {UserService} from "../../services/userservice.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({

@@ -5,7 +5,7 @@ import {User} from "../../entities/user";
 import {ModalService} from "../../services/modal.service";
 import {ModalTypesEnum} from "../../enums/modal-types.enum";
 import {faEdit} from '@fortawesome/free-regular-svg-icons';
-import {UserService} from "../../services/userservice.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-user-list',

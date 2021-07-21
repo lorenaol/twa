@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Product} from "../entities/product";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {environment} from "@environments/environment";
 
 type EntityResponseType = HttpResponse<Product>;
 type EntityArrayResponseType = HttpResponse<Product[]>;
@@ -12,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<Product[]>;
 })
 export class ProductService {
 
-  private readonly PRODUCT_URL = 'http://localhost:8082/api/products';
+  private readonly PRODUCT_URL = environment.apiUrl + 'products';
 
 
   constructor(private http: HttpClient) { }

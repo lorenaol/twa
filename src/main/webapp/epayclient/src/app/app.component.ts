@@ -1,3 +1,7 @@
+import {Component, OnInit} from '@angular/core';
+import {User, UserWithAuthoritiesDto} from "@app/entities/user";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "@app/services/authentication.service";
 import { Component } from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
 
@@ -8,10 +12,44 @@ import {PrimeNGConfig} from "primeng/api";
 })
 export class AppComponent {
   // display;
-  constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;
 
   }
 }
+  user!: UserWithAuthoritiesDto | null;
+
+  constructor(private router: Router,
+              private authenticationService: AuthenticationService,
+              private primengConfig: PrimeNGConfig
+  ) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+  }
+
+  logout() {
+    this.authenticationService.logout();
+  }
+
+  // ngOnInit(): void {
+  //   console.log(this.authenticationService.userValue);
+  //   if (!this.authenticationService.userValue) {
+  //     this.authenticationService.showLogin();
+  //   }
+  // }
+
+
+  login() {
+    this.authenticationService.showLogin();
+  }
+
+  isLoggedIn(): boolean {
+    let user = localStorage.getItem('user');
+    if (user) {
+      return true;
+    }
+    return false;
+  }
+}
+
+
