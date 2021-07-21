@@ -1,5 +1,6 @@
 package com.internship.epayment.service;
 
+import com.internship.epayment.dto.UserWithAuthoritiesDto;
 import com.internship.epayment.entity.User;
 import javassist.NotFoundException;
 
@@ -20,5 +21,7 @@ public interface UserService {
     User updateUser(User user);
 
     void deleteUser(User user);
+
+    UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException;
 }
 

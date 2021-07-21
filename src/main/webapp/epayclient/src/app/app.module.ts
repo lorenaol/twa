@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CategoryListComponent} from './components/category-list/category-list.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -28,6 +28,11 @@ import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { LoginComponent } from './components/login/login.component';
+import {BasicAuthInterceptor} from "@app/_helpers/basic-auth.interceptor";
+import {ErrorInterceptor} from "@app/_helpers/error.interceptor";
+import { HasAuthorityDirective } from './directives/has-authority.directive';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +54,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     UserDeleteComponent,
     UserListComponent,
     UserFormComponent,
+    LoginComponent,
+    HasAuthorityDirective
   ],
   imports: [
     CommonModule,
@@ -62,7 +69,10 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

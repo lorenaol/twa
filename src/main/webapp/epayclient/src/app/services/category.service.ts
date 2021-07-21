@@ -3,6 +3,7 @@ import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Category} from "../entities/category";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {environment} from "@environments/environment";
 
 type EntityResponseType = HttpResponse<Category>;
 type EntityArrayResponseType = HttpResponse<Category[]>;
@@ -12,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<Category[]>;
 })
 export class CategoryService {
 
-  private readonly CATEGORY_URL = 'http://localhost:8082/api/categories';
+  private readonly CATEGORY_URL = environment.apiUrl + 'categories';
 
   constructor(private http: HttpClient) { }
 
