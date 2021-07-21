@@ -1,16 +1,16 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Authority;
 import com.internship.epayment.entity.Category;
 import com.internship.epayment.repository.CategoryRepository;
 import com.internship.epayment.service.CategoryService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,10 +20,8 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> findAll() {
-        List<Category> list = new ArrayList<Category>();
-        categoryRepository.findAll().forEach(list::add);
-        return list;
+    public Page<Category> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
     }
 
     @Override
@@ -58,44 +56,37 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> order(String param, String direction) {
         if(direction.equals("asc")) {
             return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, param));
-            //return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, param));
         } else {
             return categoryRepository.findAll(Sort.by(Sort.Direction.DESC, param));
         }
     }
 
     @Override
-    public List<Category> filter(String column, String value) {
-        List<Category> categories = categoryRepository.findAll();
-        List<Category> result = new ArrayList<>();
-        for (Category category:categories) {
-            if(column.equals("name")) {
-                if(category.getCategoryName().equals(value)) {
-                    result.add(category);
-                }
-            } else if(column.equals("code")) {
-                if(category.getCategoryCode().equals(value)) {
-                    result.add(category);
-                }
-            } else if(column.equals("id")) {
-                if(category.getId().toString().equals(value)) {
-                    result.add(category);
-                }
-            } else if(column.equals("description")) {
-                if(category.getCategoryDescription().equals(value)) {
-                    result.add(category);
-                }
-            } else if(column.equals("dateAdded")) {
-                if(category.getDateAdded().toString().equals(value)) {
-                    result.add(category);
-                }
-            } else if(column.equals("storeId")) {
-                if(category.getStoreId().equals(value)) {
-                    result.add(category);
-                }
-            }
-
+    public Page<Category> filter(List<String> params, Pageable pageable) {
+        String id = params.get(0);
+        String name = params.get(1);
+        String code = params.get(2);
+        if(!id.equals("") && !name.equals("") && !code.equals("")) {
+            return categoryRepository.findByIdAndCategoryNameAndCategoryCode(Long.valueOf(id), name, code, pageable);
         }
-        return result;
+        if(!id.equals("") && !name.equals("")) {
+            return categoryRepository.findByIdAndCategoryName(Long.valueOf(id),  name, pageable);
+        }
+        if(!name.equals("") && !code.equals("")) {
+            return categoryRepository.findByCategoryNameAndCategoryCode(name, code, pageable);
+        }
+        if(!id.equals("") && !code.equals("")) {
+            return categoryRepository.findByIdAndCategoryCode(Long.valueOf(id), code, pageable);
+        }
+        if(!id.equals("")) {
+            return categoryRepository.findById(Long.valueOf(id), pageable);
+        }
+        if(!name.equals("")) {
+            return categoryRepository.findByCategoryName(name, pageable);
+        }
+        if(!code.equals("")) {
+            return categoryRepository.findByCategoryCode(code, pageable);
+        }
+        return categoryRepository.findAll(pageable);
     }
 }

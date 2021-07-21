@@ -1,10 +1,14 @@
 package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.Authority;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.service.AuthorityService;
+import com.internship.epayment.util.PaginationUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +21,25 @@ public class AuthorityController {
     private AuthorityService authorityService;
 
     @GetMapping
-    public List<Authority> getAuthorities(){
-        return  authorityService.getAll();
+    public ResponseEntity<List<Authority>> getAuthorities(Pageable pageable){
+        Page<Authority> page = authorityService.getAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping(path = "/sort{param}")
     //@GetMapping
-    public List<Authority> sortAuthorities(@PathVariable String param, @RequestParam(value = "direction") String direction) throws NotFoundException {
+    public List<Authority> sortAuthorities(@PathVariable String param,
+                                           @RequestParam(value = "direction") String direction) throws NotFoundException {
         return authorityService.order(param, direction);
     }
 
-    @GetMapping(path = "/filterBy{param}/=/{param2}")
-    public List<Authority> filterAuthorities(@PathVariable String param, @PathVariable String param2) throws NotFoundException {
-        return authorityService.filter(param, param2);
+    @GetMapping(path = "/filter")
+    public ResponseEntity<List<Authority>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
+                                                       Pageable pageable ) throws NotFoundException {
+        Page<Authority> page = authorityService.filter(params, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping(path = "/{id}")

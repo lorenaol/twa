@@ -4,19 +4,31 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openProductModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
+      <div class="filter">
+        <br><br>
+        <label for="id">Id: </label>
+        <input type="text" id="id" name="id" [(ngModel)]="id">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" [(ngModel)]="name">
+        <label for="code">Code: </label>
+        <input type="text" id="code" name="code" [(ngModel)]="code" >
+        <label for="sku">Sku: </label>
+        <input type="text" id="sku" name="sku" [(ngModel)]="sku" >
+        <button class="filterButton" (click)="filter()">Filtreaza</button>
+      </div>
     </div>
   </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col" (click)="sort('id')">Id</th>
-        <th scope="col" (click)="sort('price')">Price</th>
-        <th scope="col" (click)="sort('name')">Name</th>
-        <th scope="col" (click)="sort('quantity')">Quantity</th>
-        <th scope="col" (click)="sort('expire_date')">Expire_Date</th>
-        <th scope="col" (click)="sort('sku')">Sku</th>
-        <th scope="col" (click)="sort('code')">Code</th>
+        <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('price')">Price <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('name')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('quantity')">Quantity <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('expire_date')">Expire_Date <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('sku')">Sku <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('code')">Code <fa-icon [icon]="faArrow"></fa-icon></th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
@@ -43,5 +55,15 @@
       </tr>
       </tbody>
     </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="loadData()">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
   </div>
 </div>

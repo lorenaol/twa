@@ -1,12 +1,20 @@
 package com.internship.epayment.rest;
+
+
 import com.internship.epayment.entity.User;
 import com.internship.epayment.service.UserService;
+import com.internship.epayment.util.PaginationUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
@@ -15,8 +23,18 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getUsers(){
-        return userService.getAll();
+    public ResponseEntity<List<User>> getUsers(Pageable pageable){
+        Page<User> page = userService.getAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping(path = "/filter")
+    public ResponseEntity<List<User>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
+                                                  Pageable pageable ) throws NotFoundException {
+        Page<User> page = userService.filter(params, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping(path = "/{id}")
@@ -53,6 +71,5 @@ public class UserController {
     public void deleteUser(@RequestBody User user){
         userService.deleteUser(user);
     }
-
 
 }

@@ -1,17 +1,16 @@
 package com.internship.epayment.serviceImpl;
 
 import com.internship.epayment.entity.Authority;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.repository.AuthorityRepository;
 import com.internship.epayment.service.AuthorityService;
 import javassist.NotFoundException;
-import liquibase.pro.packaged.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,10 +20,8 @@ public class AuthorityServiceImpl implements AuthorityService {
     private AuthorityRepository authorityRepository;
 
     @Override
-    public List<Authority> getAll() {
-        List<Authority> list = new ArrayList<>();
-        authorityRepository.findAll().forEach(list::add);
-        return list;
+    public Page<Authority> getAll(Pageable pageable) {
+        return authorityRepository.findAll(pageable);
     }
 
     @Override
@@ -34,7 +31,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public List<Authority> findByName(String name) throws NotFoundException {
-        return authorityRepository.findAuthoritysByName(name);
+        return authorityRepository.findAuthoritisByName(name);
     }
 
     @Override
@@ -70,33 +67,31 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<Authority> filter(String column, String value) {
-        List<Authority> authorities = authorityRepository.findAll();
-        List<Authority> result = new ArrayList<>();
-        for (Authority authority : authorities) {
-            if(column.equals("name")) {
-                if(authority.getName().equals(value)) {
-                    result.add(authority);
-                }
-            } else if(column.equals("code")) {
-                if(authority.getCode().equals(value)) {
-                    result.add(authority);
-                }
-            } else if(column.equals("id")) {
-                if(authority.getId().toString().equals(value)) {
-                    result.add(authority);
-                }
-            } else if(column.equals("startDate")) {
-                if(authority.getStartDate().toString().equals(value)) {
-                    result.add(authority);
-                }
-            } else if(column.equals("endDate")) {
-                if(authority.getEndDate().toString().equals(value)) {
-                    result.add(authority);
-                }
-            }
-
+    public Page<Authority> filter(List<String> params, Pageable pageable) {
+        String id = params.get(0);
+        String name = params.get(1);
+        String code = params.get(2);
+        if(!id.equals("") && !name.equals("") && !code.equals("")) {
+            return authorityRepository.findByIdAndNameAndCode(Long.valueOf(id),name, code, pageable);
         }
-        return result;
+        if(!id.equals("") && !name.equals("")) {
+            return authorityRepository.findByIdAndName(Long.valueOf(id),name, pageable);
+        }
+        if(!name.equals("") && !code.equals("")) {
+            return authorityRepository.findByNameAndCode(name, code, pageable);
+        }
+        if(!id.equals("") && !code.equals("")) {
+            return authorityRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
+        }
+        if(!id.equals("")) {
+            return authorityRepository.findById(Long.valueOf(id), pageable);
+        }
+        if(!name.equals("")) {
+            return authorityRepository.findByName(name, pageable);
+        }
+        if(!code.equals("")) {
+            return authorityRepository.findByCode(code, pageable);
+        }
+        return authorityRepository.findAll(pageable);
     }
 }

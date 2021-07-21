@@ -34,10 +34,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 // uncomment after adding auth in frontend
-//                .antMatchers("/api/users").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
-//                .antMatchers("/api/categories").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
-//                .antMatchers("/api/authorities").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())
+//                .antMatchers("/api/login").permitAll()
+//
+//                .antMatchers("/api/users").hasAnyAuthority(AuthorityEnum.EPAY_USERS.getCode(),AuthorityEnum.EPAY_ADMIN.getCode()) // andreea 2
+//                .antMatchers("/api/categories").hasAnyAuthority(AuthorityEnum.EPAY_CATEG.getCode(),AuthorityEnum.EPAY_ADMIN.getCode()) //luiza 3
+//                .antMatchers("/api/authorities").hasAnyAuthority(AuthorityEnum.EPAY_AUTH.getCode(),AuthorityEnum.EPAY_ADMIN.getCode()) //lorena 4
 //                .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
+//                .anyRequest().permitAll();
+
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/users").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
+                .antMatchers("/api/categories").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
+                .antMatchers("/api/authorities").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())
+                .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }
 }

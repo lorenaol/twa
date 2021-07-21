@@ -1,14 +1,15 @@
 package com.internship.epayment.service;
 
 import com.internship.epayment.entity.Category;
-import com.internship.epayment.entity.Role;
 import javassist.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> findAll();
+    Page<Category> findAll(Pageable pageable);
 
     Category findById(Long id) throws NotFoundException;
 
@@ -22,6 +23,6 @@ public interface CategoryService {
 
     List<Category> order(String param, String direction);
 
-    List<Category> filter(String column, String value);
+    Page<Category> filter(List<String> params, Pageable pageable);
 
 }

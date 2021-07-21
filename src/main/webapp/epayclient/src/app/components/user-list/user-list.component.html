@@ -4,20 +4,30 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openUserModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
+      <div class="filter">
+        <br><br>
+        <label for="id">Id: </label>
+        <input type="text" id="id" name="id" [(ngModel)]="id">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" [(ngModel)]="name">
+        <label for="email">Email: </label>
+        <input type="text" id="email" name="email" [(ngModel)]="email" >
+        <button class="filterButton" (click)="filter()">Filtreaza</button>
+      </div>
     </div>
   </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
-        <th scope="col">Is active</th>
-        <th scope="col">Start Date</th>
-        <th scope="col">End Date</th>
-        <th scope="col">Actions</th>
+        <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('name')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('email')">Email <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('password')">Password <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('isActive')"> Is active <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('startDate')">Start Date <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col" (click)="sort('endDate')">End Date <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Actions <fa-icon [icon]="faArrow"></fa-icon></th>
       </tr>
       </thead>
       <tbody>
@@ -43,5 +53,15 @@
       </tr>
       </tbody>
     </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="loadData()">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
   </div>
 </div>

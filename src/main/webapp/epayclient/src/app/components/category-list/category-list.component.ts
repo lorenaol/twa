@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {Category} from "../../entities/category";
 import {CategoryService} from "../../services/category.service";
 import {ModalService} from "../../services/modal.service";
@@ -18,9 +18,19 @@ export class CategoryListComponent implements OnInit {
   faEdit = faEdit;
   faEye = faEye;
   faTrash = faTrash;
+  faArrow = faArrowsAltV;
+  page = 1;
+  pageSize = 4;
+  collectionSize = 0;
+  predicate: string = 'id';
+  ascending: boolean = true;
 
   categories?: Category[] | null;
   stat?: string[] = ['id', 'categoryName', 'categoryCode', 'dateAdded']
+  id: string = ""
+  categoryName: string = ""
+  categoryCode: string = ""
+
 
   constructor(
     private categoryService: CategoryService,
@@ -33,9 +43,19 @@ export class CategoryListComponent implements OnInit {
   }
 
   loadData(): void {
-    this.categoryService.getCategories().subscribe(data => {
-      this.categories = data.body;
-    })
+    if(this.id == "" && this.categoryName == "") {
+      this.categoryService.getCategories({
+          page: this.page - 1,
+          size: this.pageSize,
+          sort: this.sort2()
+        }
+      ).subscribe(data => {
+        this.categories = data.body;
+        this.collectionSize = Number(data.headers.get('X-Total-Count'));
+      })
+    } else {
+      this.filter();
+    }
   }
 
   openCategoryModal(modalTypeEnum: ModalTypesEnum, inputCategory?: Category) {
@@ -58,15 +78,35 @@ export class CategoryListComponent implements OnInit {
     if(this.stat !== undefined) {
       if(this.stat.includes(col, 0)) {
         this.stat.splice(this.stat.indexOf(col, 0));
-        this.categoryService.sortCategories(col, 'asc').subscribe(data => {
-          this.categories = data.body;
-        })
+        this.predicate = col;
+        this.ascending = true;
+        this.loadData();
       } else {
         this.stat.push(col);
-        this.categoryService.sortCategories(col, 'desc').subscribe(data => {
-          this.categories = data.body;
-        })
+        this.predicate = col;
+        this.ascending = false;
+        this.loadData();
       }
     }
+  }
+
+  sort2(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  filter() {
+    this.categoryService.filterCategories(this.id, this.categoryName, this.categoryCode, {
+      page: this.page - 1,
+      size: this.pageSize,
+      sort: this.sort2()
+    }).subscribe(data => {
+      this.categories = data.body;
+      this.collectionSize = Number(data.headers.get('X-Total-Count'));
+    })
+
   }
 }

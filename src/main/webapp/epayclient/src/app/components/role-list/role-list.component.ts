@@ -1,5 +1,5 @@
 import { Component, OnInit, Directive, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
-import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faEye, faFilter, faPlus, faTrash, faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import {Role} from "../../entities/role";
 import {RoleService} from "../../services/role.service";
 import {ModalService} from "../../services/modal.service";
@@ -20,7 +20,9 @@ export class RoleListComponent implements OnInit {
   collectionSize = 0;
   ModalTypesEnum = ModalTypesEnum;
   faPlus = faPlus;
-  faArrow = faArrowsAltV;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faFilter = faFilter;
   faEdit = faEdit;
   faEye = faEye;
   faTrash = faTrash;
@@ -62,9 +64,7 @@ export class RoleListComponent implements OnInit {
     } else {
       this.filter();
     }
-
   }
-
 
   openRoleModal(modalTypeEnum: ModalTypesEnum, inputRole?: Role) {
     this.modalService.openRoleModal(modalTypeEnum, inputRole).then((result) => {
@@ -82,22 +82,6 @@ export class RoleListComponent implements OnInit {
     });
   }
 
-  sort(col : string) {
-    if(this.stat !== undefined) {
-      if(this.stat.includes(col, 0)) {
-        this.stat.splice(this.stat.indexOf(col, 0));
-        this.predicate = col;
-        this.ascending = true;
-        this.loadData();
-      } else {
-        this.stat.push(col);
-        this.ascending = false;
-        this.predicate = col;
-        this.loadData();
-      }
-    }
-  }
-
   sort2(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
@@ -106,10 +90,15 @@ export class RoleListComponent implements OnInit {
     return result;
   }
 
+  sort(col : string, ascending: boolean) {
+        this.predicate = col;
+        this.ascending = ascending;
+        this.loadData();
+  }
 
   filter() {
     console.log(this.code)
-    this.roleService.filterRoles(this.id, this.name, this.code, this.startDate, this.endDate, {
+    this.roleService.filterRoles(this.id, this.name, this.code,{
       page: this.page - 1,
       size: this.pageSize,
       sort: this.sort2()
