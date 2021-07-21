@@ -101,7 +101,6 @@ export class UserListComponent implements OnInit {
       }
     }
   }
-
   filter() {
     this.userService.filterUsers(this.id, this.name, this.email, {
       page: this.page - 1,
