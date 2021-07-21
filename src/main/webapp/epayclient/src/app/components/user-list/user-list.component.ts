@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {Component, Input, OnInit} from '@angular/core';
+import {faEye, faPlus, faTrash, faMap} from '@fortawesome/free-solid-svg-icons';
 import {User} from "../../entities/user";
 
 import {ModalService} from "../../services/modal.service";
@@ -20,14 +20,13 @@ export class UserListComponent implements OnInit {
   faEdit = faEdit;
   faEye = faEye;
   faTrash = faTrash;
-
+  faMap = faMap;
   users?: User[] | null;
 
   constructor(
     private userService: UserService,
     private modalService: ModalService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -54,6 +53,16 @@ export class UserListComponent implements OnInit {
       }
     });
   }
+
+  openUsersRomaniaModal(users?: User[]){
+    if(this.users !== null)
+    this.modalService.openUsersRomaniaModal(users).then((result)=>{
+      if(result) {
+        this.loadData();
+      }
+    });
+  }
+
 
 
 }

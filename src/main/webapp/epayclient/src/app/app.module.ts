@@ -29,6 +29,7 @@ import { UserFormComponent} from "./components/user-form/user-form.component";
 import { UserListComponent } from "./components/user-list/user-list.component";
 import { UserDeleteComponent } from "./components/user-delete/user-delete.component";
 import { AgmCoreModule } from '@agm/core';
+import { UsersRomaniaComponent } from './components/users-romania/users-romania.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AgmCoreModule } from '@agm/core';
     UserFormComponent,
     UserListComponent,
     UserDeleteComponent,
+    UsersRomaniaComponent,
 
 
   ],

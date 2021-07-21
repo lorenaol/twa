@@ -32,8 +32,6 @@ public class User {
 
     private String address;
 
-
-
     public Long getId() {
         return id;
     }

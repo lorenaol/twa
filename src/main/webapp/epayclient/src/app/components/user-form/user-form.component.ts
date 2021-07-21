@@ -6,12 +6,10 @@ import {User} from "../../entities/user";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {UserService} from "../../services/userservice.service";
 import {MouseEvent} from "@agm/core";
 import {MapsAPILoader} from "@agm/core";
-
 
 @Component({
   selector: 'app-user-form',
@@ -62,6 +60,7 @@ export class UserFormComponent implements OnInit {
     const user = this.createFromForm();
     if (user.id !== undefined) {
       this.subscribeToSaveResponse(this.userService.updateUser(user));
+      console.log(user);
     } else {
       this.subscribeToSaveResponse(this.userService.addUser(user));
     }
@@ -80,7 +79,7 @@ export class UserFormComponent implements OnInit {
     user.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
     user.latitude = this.latitude;
     user.longitude = this.longitude;
-    user.address = this.currentLocation;
+    user.address = this.address;
     return user;
   }
 
@@ -128,15 +127,14 @@ export class UserFormComponent implements OnInit {
   latitude: number = 0;
   longitude: number = 0;
   zoom: number = 12;
-  currentLocation?: string;
+  address?: string;
 
   mapClicked($event: MouseEvent) {
-    this.latitude = $event.coords.lat,
-      this.longitude = $event.coords.lng
+    this.latitude = $event.coords.lat;
+      this.longitude = $event.coords.lng;
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
-
     });
     const that = this;
     this.apiloader.load().then(() => {
@@ -149,7 +147,7 @@ export class UserFormComponent implements OnInit {
         'location': latlng
       }, function(results, status) {
         if (results[0]) {
-          that.currentLocation = results[0].formatted_address;
+          that.address = results[0].formatted_address;
         } else {
           console.log('Not found');
         }
@@ -158,9 +156,8 @@ export class UserFormComponent implements OnInit {
   }
 
   markerDragEnd($event: MouseEvent) {
-    this.latitude = $event.coords.lat,
-      this.longitude = $event.coords.lng;
-
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
     const that = this;
     this.apiloader.load().then(() => {
       let geocoder = new google.maps.Geocoder;
@@ -172,18 +169,16 @@ export class UserFormComponent implements OnInit {
         'location': latlng
       }, function(results, status) {
         if (results[0]) {
-          that.currentLocation = results[0].formatted_address;
+          that.address = results[0].formatted_address;
         } else {
         }
       });
     });
   }
 
-
-  markers: marker[] = [
-
-  ]
+  markers: marker[] = [];
 }
+
 interface marker {
   lat?: number;
   lng?: number;

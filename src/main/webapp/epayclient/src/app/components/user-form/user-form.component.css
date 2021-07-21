@@ -1,6 +1,5 @@
 agm-map{
   height: 500px;
-
 }
 
 .modal-body{
@@ -10,7 +9,8 @@ agm-map{
 .modal-header{
   display: flex;
 }
+
 #save{
-  margin-top: 10px;
-  margin-left: 20px;
+  font-size: large;
+  font-weight: bold;
 }
