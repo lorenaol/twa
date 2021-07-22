@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Component, Input, OnInit} from '@angular/core';
-import {faEye, faPlus, faTrash, faMap} from '@fortawesome/free-solid-svg-icons';
-import {User} from "../../entities/user";
+import {faArrowsAltV, faEdit, faEye, faMap, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {User} from "@app/entities/user";
 
-import {ModalService} from "../../services/modal.service";
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
-import {faEdit} from '@fortawesome/free-regular-svg-icons';
-import {UserService} from "../../services/user.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
+import {UserService} from "@app/services/user.service";
 
 import {HttpResponse} from "@angular/common/http";
 
@@ -40,22 +37,23 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private modalService: ModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
-    if(this.name =="" &&
-      this.email =="" &&
-      this.id ==""
+    if (this.name == "" &&
+      this.email == "" &&
+      this.id == ""
     ) {
-      this.userService.getUsers( {
+      this.userService.getUsers({
         page: this.page - 1,
         size: this.pageSize,
         sort: this.sort2()
-      }).subscribe((data : HttpResponse<User[]>) => {
+      }).subscribe((data: HttpResponse<User[]>) => {
         this.users = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
       })
@@ -66,7 +64,7 @@ export class UserListComponent implements OnInit {
 
   openUserModal(modalTypeEnum: ModalTypesEnum, inputUser?: User) {
     this.modalService.openUserModal(modalTypeEnum, inputUser).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -74,7 +72,7 @@ export class UserListComponent implements OnInit {
 
   openDeleteModalUser(user: User) {
     this.modalService.openDeleteModalUser(user).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -88,9 +86,9 @@ export class UserListComponent implements OnInit {
     return result;
   }
 
-  sort(col : string) {
-    if(this.stat !== undefined) {
-      if(this.stat.includes(col, 0)) {
+  sort(col: string) {
+    if (this.stat !== undefined) {
+      if (this.stat.includes(col, 0)) {
         this.stat.splice(this.stat.indexOf(col, 0));
         this.predicate = col;
         this.ascending = true;
@@ -103,6 +101,7 @@ export class UserListComponent implements OnInit {
       }
     }
   }
+
   filter() {
     this.userService.filterUsers(this.id, this.name, this.email, {
       page: this.page - 1,
@@ -114,15 +113,14 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  openUsersRomaniaModal(users?: User[]){
-    if(this.users !== null)
-    this.modalService.openUsersRomaniaModal(users).then((result)=>{
-      if(result) {
-        this.loadData();
-      }
-    });
+  openUsersRomaniaModal(users?: User[]) {
+    if (this.users !== null)
+      this.modalService.openUsersRomaniaModal(users).then((result) => {
+        if (result) {
+          this.loadData();
+        }
+      });
   }
-
 
 
 }

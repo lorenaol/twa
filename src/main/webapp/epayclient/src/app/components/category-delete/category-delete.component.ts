@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from "../../entities/category";
+import {Category} from "@app/entities/category";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {CategoryService} from "../../services/category.service";
+import {CategoryService} from "@app/services/category.service";
 
 @Component({
   selector: 'app-category-delete',

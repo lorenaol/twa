@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Product} from "../../entities/product";
-import {ProductService} from "../../services/product.service";
-import {ModalService} from "../../services/modal.service";
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Product} from "@app/entities/product";
+import {ProductService} from "@app/services/product.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {faEdit} from '@fortawesome/free-regular-svg-icons';
 import {HttpResponse} from "@angular/common/http";
 
@@ -45,15 +45,15 @@ export class ProductListComponent implements OnInit {
   }
 
   loadData(): void {
-    if(this.name =="" &&
-      this.code =="" &&
-      this.id =="" && this.sku == ""
+    if (this.name == "" &&
+      this.code == "" &&
+      this.id == "" && this.sku == ""
     ) {
-      this.productService.getProducts( {
+      this.productService.getProducts({
         page: this.page - 1,
         size: this.pageSize,
         sort: this.sort2()
-      }).subscribe((data : HttpResponse<Product[]>) => {
+      }).subscribe((data: HttpResponse<Product[]>) => {
         this.products = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
       })
@@ -64,7 +64,7 @@ export class ProductListComponent implements OnInit {
 
   openProductModal(modalTypeEnum: ModalTypesEnum, inputProduct?: Product) {
     this.modalService.openProductModal(modalTypeEnum, inputProduct).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -72,11 +72,12 @@ export class ProductListComponent implements OnInit {
 
   openDeleteProductModal(product: Product) {
     this.modalService.openDeleteProductModal(product).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
   }
+
   sort2(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
@@ -85,9 +86,9 @@ export class ProductListComponent implements OnInit {
     return result;
   }
 
-  sort(col : string) {
-    if(this.stat !== undefined) {
-      if(this.stat.includes(col, 0)) {
+  sort(col: string) {
+    if (this.stat !== undefined) {
+      if (this.stat.includes(col, 0)) {
         this.stat.splice(this.stat.indexOf(col, 0));
         this.predicate = col;
         this.ascending = true;

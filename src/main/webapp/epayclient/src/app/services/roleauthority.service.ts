@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Roleauthority} from "../entities/roleauthority";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-
+import {environment} from "@environments/environment";
 
 type EntityResponseType = HttpResponse<Roleauthority>;
 type EntityArrayResponseType = HttpResponse<Roleauthority[]>;
@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<Roleauthority[]>;
 })
 export class RoleauthorityService {
 
-  private readonly ROLEAUTHORITY_URL = 'http://localhost:8082/api/rolesauthorities';
+  private readonly ROLEAUTHORITY_URL = environment.apiUrl + 'rolesauthorities';
 
   constructor(private http: HttpClient) { }
 

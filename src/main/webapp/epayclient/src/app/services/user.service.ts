@@ -4,7 +4,6 @@ import {User} from "../entities/user";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
-import {Role} from "@app/entities/role";
 
 type EntityResponseType = HttpResponse<User>;
 type EntityArrayResponseType = HttpResponse<User[]>;
@@ -24,9 +23,8 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-
   public getUsers(pageable?: any): Observable<EntityArrayResponseType> {
-    return this.http.get<User[]>(this.USER_URL, {params:pageable, observe: 'response'})
+    return this.http.get<User[]>(this.USER_URL, {params: pageable, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -52,9 +50,9 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public filterUsers(id:string, name:string, email:string, pageble?: any): Observable<EntityArrayResponseType> {
+  public filterUsers(id: string, name: string, email: string, pageble?: any): Observable<EntityArrayResponseType> {
     const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, email]);
-    return this.http.get<User[]>(this.USER_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+    return this.http.get<User[]>(this.USER_URL + '/filter', {headers: params, params: pageble, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 }

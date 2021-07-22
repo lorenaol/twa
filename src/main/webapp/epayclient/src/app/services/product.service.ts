@@ -16,7 +16,6 @@ export class ProductService {
 
   private readonly PRODUCT_URL = environment.apiUrl + 'products';
 
-
   constructor(private http: HttpClient) { }
 
   public addProduct(product: Product): Observable<EntityResponseType>  {

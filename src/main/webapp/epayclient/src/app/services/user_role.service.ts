@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {User_role} from "../entities/user_role";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-
+import {environment} from "@environments/environment";
 
 type EntityResponseType = HttpResponse<User_role>;
 type EntityArrayResponseType = HttpResponse<User_role[]>;
@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<User_role[]>;
 })
 export class User_roleService {
 
-  private readonly USERROLE_URL = 'http://localhost:8082/api/userroles';
+  private readonly USERROLE_URL = environment.apiUrl + 'userroles';
 
   constructor(private http: HttpClient) { }
 

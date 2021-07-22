@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Roleauthority} from "../../entities/roleauthority";
+import {Component, OnInit} from '@angular/core';
+import {Roleauthority} from "@app/entities/roleauthority";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {RoleauthorityService} from "../../services/roleauthority.service";
+import {RoleauthorityService} from "@app/services/roleauthority.service";
 
 @Component({
   selector: 'app-roleauthority-delete',
@@ -19,7 +19,8 @@ export class RoleauthorityDeleteComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private roleauthorityService: RoleauthorityService,
     private toastr: ToastrService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

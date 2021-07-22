@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Roleauthority} from "../../entities/roleauthority";
-import {RoleauthorityService} from "../../services/roleauthority.service";
-import {ModalService} from "../../services/modal.service";
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
-import {faEdit} from '@fortawesome/free-regular-svg-icons';
+import {faEdit, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {Roleauthority} from "@app/entities/roleauthority";
+import {RoleauthorityService} from "@app/services/roleauthority.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 
 @Component({
   selector: 'app-roleauthorities-list',
@@ -39,7 +38,7 @@ export class RoleauthorityListComponent implements OnInit {
 
   openRoleauthorityModal(modalTypeEnum: ModalTypesEnum, inputRoleauthority?: Roleauthority) {
     this.modalService.openRoleauthorityModal(modalTypeEnum, inputRoleauthority).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -47,7 +46,7 @@ export class RoleauthorityListComponent implements OnInit {
 
   openDeleteRoleauthorityModal(roleauthority: Roleauthority) {
     this.modalService.openDeleteRoleauthorityModal(roleauthority).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });

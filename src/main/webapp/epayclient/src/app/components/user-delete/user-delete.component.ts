@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../entities/user";
+import {Component, OnInit} from '@angular/core';
+import {User} from "@app/entities/user";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@app/services/user.service";
 
 
 @Component({
@@ -20,7 +20,8 @@ export class UserDeleteComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private userService: UserService,
     private toastr: ToastrService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

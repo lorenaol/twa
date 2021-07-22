@@ -9,8 +9,6 @@ import {UserListComponent} from "./components/user-list/user-list.component";
 import {UserRoleListComponent} from "./components/user-role-list/user-role-list.component";
 import {RoleauthorityListComponent} from "./components/roleauthority-list/roleauthority-list.component";
 import {LoginComponent} from "@app/components/login/login.component";
-import {AuthGuard} from "@app/_helpers/auth.guard";
-import {Authorities} from "@app/enums/authorities";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},

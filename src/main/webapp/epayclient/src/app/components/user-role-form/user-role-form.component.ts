@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Component, OnInit} from '@angular/core';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {User_role} from "../../entities/user_role";
+import {User_role} from "@app/entities/user_role";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {User_roleService} from "../../services/user_role.service";
+import {User_roleService} from "@app/services/user_role.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {Authority} from "../../entities/authority";
-import {Role} from "../../entities/role";
-import {User} from "../../entities/user";
-import {AuthorityService} from "../../services/authority.service";
-import {RoleService} from "../../services/role.service";
-import {UserService} from "../../services/user.service";
+import {Role} from "@app/entities/role";
+import {User} from "@app/entities/user";
+import {RoleService} from "@app/services/role.service";
+import {UserService} from "@app/services/user.service";
 
 @Component({
   selector: 'app-user-role-form',
@@ -37,8 +35,6 @@ export class UserRoleFormComponent implements OnInit {
   });
   users?: User[] | null | undefined = [];
   roles?: Role[] | null | undefined = [];
-  visibleSidebar2: any;
-
 
   constructor(
     private fb: FormBuilder,
@@ -46,8 +42,9 @@ export class UserRoleFormComponent implements OnInit {
     private toastr: ToastrService,
     private userRoleService: User_roleService,
     private userService: UserService,
-    private roleService : RoleService
-  ) { }
+    private roleService: RoleService
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.inputUserRole !== undefined) {
@@ -84,8 +81,8 @@ export class UserRoleFormComponent implements OnInit {
     userRole.id = this.inputUserRole?.id;
     userRole.user = this.userRoleForm.get('user')!.value;
     userRole.role = this.userRoleForm.get('role')!.value;
-    userRole.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
-    userRole.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
+    userRole.start_date = new Date(start_date.year, start_date.month - 1, start_date.day);
+    userRole.end_date = new Date(end_date.year, end_date.month - 1, end_date.day);
 
     return userRole;
   }

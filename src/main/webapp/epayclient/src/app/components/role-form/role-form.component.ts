@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Component, OnInit} from '@angular/core';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {Role} from "../../entities/role";
+import {Role} from "@app/entities/role";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {RoleService} from "../../services/role.service";
+import {RoleService} from "@app/services/role.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -35,13 +35,15 @@ export class RoleFormComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private categoryService: RoleService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.inputRole !== undefined) {
       this.updateForm(this.inputRole);
     }
   }
+
   close(): void {
     this.activeModal.close(false);
   }
@@ -62,8 +64,8 @@ export class RoleFormComponent implements OnInit {
     role.id = this.inputRole?.id;
     role.name = this.roleForm.get('name')!.value;
     role.code = this.roleForm.get('code')!.value;
-    role.startDate = new Date(startDate.year, startDate.month-1, startDate.day);
-    role.endDate = new Date(endDate.year, endDate.month-1, endDate.day);
+    role.startDate = new Date(startDate.year, startDate.month - 1, startDate.day);
+    role.endDate = new Date(endDate.year, endDate.month - 1, endDate.day);
 
     return role;
   }
@@ -103,7 +105,6 @@ export class RoleFormComponent implements OnInit {
       this.toastr.error('Error modifying role!', 'Error!');
     }
   }
-
 
 
 }

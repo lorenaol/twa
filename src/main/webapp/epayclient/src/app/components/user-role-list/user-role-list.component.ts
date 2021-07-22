@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {User_role} from "../../entities/user_role";
-import {User_roleService} from "../../services/user_role.service";
-import {ModalService} from "../../services/modal.service";
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
-import {faEdit} from '@fortawesome/free-regular-svg-icons';
+import {faEye, faPlus, faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {User_role} from "@app/entities/user_role";
+import {User_roleService} from "@app/services/user_role.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 
 @Component({
   selector: 'app-user-role-list',
@@ -39,7 +38,7 @@ export class UserRoleListComponent implements OnInit {
 
   openUserRoleModal(modalTypeEnum: ModalTypesEnum, inputUserrole?: User_role) {
     this.modalService.openUserRoleModal(modalTypeEnum, inputUserrole).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -47,7 +46,7 @@ export class UserRoleListComponent implements OnInit {
 
   openDeleteUserRoleModal(userRole: User_role) {
     this.modalService.openDeleteUserRoleModal(userRole).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -55,7 +54,7 @@ export class UserRoleListComponent implements OnInit {
 
   openSideBar(user_role: User_role) {
     this.modalService.openSideBar(user_role).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });

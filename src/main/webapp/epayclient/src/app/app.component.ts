@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {User, UserWithAuthoritiesDto} from "@app/entities/user";
+import {Component} from '@angular/core';
+import {UserWithAuthoritiesDto} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
-import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -10,14 +9,10 @@ import {PrimeNGConfig} from "primeng/api";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // display;
-
-
   user!: UserWithAuthoritiesDto | null;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private primengConfig: PrimeNGConfig
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }

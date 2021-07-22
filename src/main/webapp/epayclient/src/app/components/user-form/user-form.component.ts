@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Component, OnInit} from '@angular/core';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {User} from "../../entities/user";
+import {User} from "@app/entities/user";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {MouseEvent} from "@agm/core";
-import {MapsAPILoader} from "@agm/core";
-import {UserService} from "../../services/user.service";
+import {MapsAPILoader, MouseEvent} from "@agm/core";
+import {UserService} from "@app/services/user.service";
 
 
 @Component({
@@ -34,8 +33,8 @@ export class UserFormComponent implements OnInit {
     start_date: [],
     end_date: [],
     latitude: [],
-    longitude:[],
-    address:[]
+    longitude: [],
+    address: []
   });
 
   constructor(
@@ -44,7 +43,8 @@ export class UserFormComponent implements OnInit {
     private toastr: ToastrService,
     private userService: UserService,
     private apiloader: MapsAPILoader
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.inputUser !== undefined) {
@@ -74,8 +74,8 @@ export class UserFormComponent implements OnInit {
     user.email = this.userForm.get('email')!.value;
     user.password = this.userForm.get('password')!.value;
     user.is_active = this.userForm.get('is_active')!.value;
-    user.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
-    user.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
+    user.start_date = new Date(start_date.year, start_date.month - 1, start_date.day);
+    user.end_date = new Date(end_date.year, end_date.month - 1, end_date.day);
     user.latitude = this.latitude;
     user.longitude = this.longitude;
     user.address = this.address;
@@ -130,7 +130,7 @@ export class UserFormComponent implements OnInit {
 
   mapClicked($event: MouseEvent) {
     this.latitude = $event.coords.lat;
-      this.longitude = $event.coords.lng;
+    this.longitude = $event.coords.lng;
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -144,7 +144,7 @@ export class UserFormComponent implements OnInit {
       };
       geocoder.geocode({
         'location': latlng
-      }, function(results, status) {
+      }, function (results, status) {
         if (results[0]) {
           that.address = results[0].formatted_address;
         } else {
@@ -166,7 +166,7 @@ export class UserFormComponent implements OnInit {
       };
       geocoder.geocode({
         'location': latlng
-      }, function(results, status) {
+      }, function (results, status) {
         if (results[0]) {
           that.address = results[0].formatted_address;
         } else {

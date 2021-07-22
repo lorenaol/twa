@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {User_role} from "../../entities/user_role";
+import {Component, OnInit} from '@angular/core';
+import {User_role} from "@app/entities/user_role";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {User_roleService} from "../../services/user_role.service";
+import {User_roleService} from "@app/services/user_role.service";
 
 @Component({
   selector: 'app-user-role-delete',

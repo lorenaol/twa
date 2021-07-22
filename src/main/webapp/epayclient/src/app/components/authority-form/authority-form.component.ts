@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {Authority} from "../../entities/authority";
-import {AuthorityService} from "../../services/authority.service";
+import {Authority} from "@app/entities/authority";
+import {AuthorityService} from "@app/services/authority.service";
 
 @Component({
   selector: 'app-authority-form',

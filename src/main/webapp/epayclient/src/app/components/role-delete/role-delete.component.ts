@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Role} from "../../entities/role";
+import {Component, OnInit} from '@angular/core';
+import {Role} from "@app/entities/role";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {RoleService} from "../../services/role.service";
+import {RoleService} from "@app/services/role.service";
 
 @Component({
   selector: 'app-role-delete',
@@ -19,7 +19,8 @@ export class RoleDeleteComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private roleService: RoleService,
     private toastr: ToastrService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

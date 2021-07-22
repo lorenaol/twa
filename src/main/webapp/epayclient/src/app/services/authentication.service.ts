@@ -1,10 +1,10 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
-import {User, UserWithAuthoritiesDto} from "../entities/user";
+import {UserWithAuthoritiesDto} from "../entities/user";
 import {environment} from "@environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
@@ -91,7 +91,7 @@ export class AuthenticationService {
     //daca avem user logat verificam daca nu return false
 
     const userHasAuth = map((user: UserWithAuthoritiesDto | null): boolean => {
-      console.log(user,authority);
+      console.log(user, authority);
       if (!user) {
         return false;
       }

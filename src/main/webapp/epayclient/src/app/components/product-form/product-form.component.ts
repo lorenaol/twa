@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Component, OnInit} from '@angular/core';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {Product} from "../../entities/product";
+import {Product} from "@app/entities/product";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {ProductService} from "../../services/product.service";
+import {ProductService} from "@app/services/product.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -36,7 +36,8 @@ export class ProductFormComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private productService: ProductService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.inputProduct !== undefined) {
@@ -64,7 +65,7 @@ export class ProductFormComponent implements OnInit {
     product.price = this.productForm.get('price')!.value;
     product.name = this.productForm.get('name')!.value;
     product.quantity = this.productForm.get('quantity')!.value;
-    product.expire_date = new Date(expireDate.year, expireDate.month-1, expireDate.day);
+    product.expire_date = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
     product.sku = this.productForm.get('sku')!.value;
     product.code = this.productForm.get('code')!.value;
 

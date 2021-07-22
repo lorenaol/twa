@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {Category} from "../../entities/category";
+import {Category} from "@app/entities/category";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {CategoryService} from "../../services/category.service";
+import {CategoryService} from "@app/services/category.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({

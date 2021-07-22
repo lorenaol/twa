@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
-import {faEdit} from '@fortawesome/free-regular-svg-icons';
-import {Authority} from "../../entities/authority";
-import {ModalService} from "../../services/modal.service";
-import {AuthorityService} from "../../services/authority.service";
+import {faArrowsAltV, faEdit, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
+import {Authority} from "@app/entities/authority";
+import {ModalService} from "@app/services/modal.service";
+import {AuthorityService} from "@app/services/authority.service";
 import {HttpResponse} from "@angular/common/http";
 
 @Component({
@@ -19,9 +18,9 @@ export class AuthorityListComponent implements OnInit {
   faEye = faEye;
   faArrow = faArrowsAltV;
   faTrash = faTrash;
-  name : string = ""
-  code : string = ""
-  id : string = ""
+  name: string = ""
+  code: string = ""
+  id: string = ""
   page = 1;
   pageSize = 4;
   collectionSize = 0;
@@ -31,8 +30,8 @@ export class AuthorityListComponent implements OnInit {
   authorities?: Authority[] | null;
   stat?: string[] = ['id', 'name', 'code', 'startDate', 'endDate']
 
-  constructor( private authorityService: AuthorityService,
-               private modalService: ModalService) {
+  constructor(private authorityService: AuthorityService,
+              private modalService: ModalService) {
   }
 
   ngOnInit(): void {
@@ -40,16 +39,16 @@ export class AuthorityListComponent implements OnInit {
   }
 
   loadData(): void {
-    if(this.name =="" &&
-      this.code =="" &&
-      this.id ==""
+    if (this.name == "" &&
+      this.code == "" &&
+      this.id == ""
     ) {
 
       this.authorityService.getAuthorities({
         page: this.page - 1,
         size: this.pageSize,
         sort: this.sort2()
-      }).subscribe((data : HttpResponse<Authority[]>) => {
+      }).subscribe((data: HttpResponse<Authority[]>) => {
         this.authorities = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
         console.log(this.collectionSize)
@@ -62,7 +61,7 @@ export class AuthorityListComponent implements OnInit {
 
   openAuthorityModal(modalTypeEnum: ModalTypesEnum, inputAuthority?: Authority) {
     this.modalService.openAuthorityModal(modalTypeEnum, inputAuthority).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -70,15 +69,15 @@ export class AuthorityListComponent implements OnInit {
 
   openDeleteAuthorityModal(authority: Authority) {
     this.modalService.openDeleteAuthorityModal(authority).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
   }
 
-  sort(col : string) {
-    if(this.stat !== undefined) {
-      if(this.stat.includes(col, 0)) {
+  sort(col: string) {
+    if (this.stat !== undefined) {
+      if (this.stat.includes(col, 0)) {
         this.stat.splice(this.stat.indexOf(col, 0));
         this.predicate = col;
         this.ascending = true;

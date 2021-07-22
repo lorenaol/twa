@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {Component, OnInit} from '@angular/core';
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
-import {Roleauthority} from "../../entities/roleauthority";
+import {Roleauthority} from "@app/entities/roleauthority";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {RoleauthorityService} from "../../services/roleauthority.service";
+import {RoleauthorityService} from "@app/services/roleauthority.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
-import {Role} from "../../entities/role";
-import {AuthorityService} from "../../services/authority.service";
-import {Authority} from "../../entities/authority";
-import {RoleService} from "../../services/role.service";
+import {Role} from "@app/entities/role";
+import {AuthorityService} from "@app/services/authority.service";
+import {Authority} from "@app/entities/authority";
+import {RoleService} from "@app/services/role.service";
 
 
 @Component({
@@ -21,7 +21,6 @@ import {RoleService} from "../../services/role.service";
 })
 export class RoleauthorityFormComponent implements OnInit {
 
-  // display;
   ModalTypesEnum = ModalTypesEnum;
   faCalendar = faCalendar;
 
@@ -37,12 +36,6 @@ export class RoleauthorityFormComponent implements OnInit {
   });
   authorities?: Authority[] | null | undefined = [];
   roles?: Role[] | null | undefined = [];
-  selectedRole?: any | undefined;
-  selectedAuthority?: any | undefined;
-  display: boolean | null | undefined;
-  visibleSidebar1: any | null | undefined;
-  visibleSidebar2: any | null | undefined;
-  visibleSidebar3: any | null | undefined;
 
 
   constructor(
@@ -51,8 +44,9 @@ export class RoleauthorityFormComponent implements OnInit {
     private toastr: ToastrService,
     private roleauthorityService: RoleauthorityService,
     private authorityService: AuthorityService,
-    private roleService : RoleService
-  ) { }
+    private roleService: RoleService
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.inputRoleauthority !== undefined) {
@@ -65,8 +59,6 @@ export class RoleauthorityFormComponent implements OnInit {
     this.roleService.getRoles().subscribe(data => {
       this.roles = data.body;
     })
-
-
   }
 
   close(): void {
@@ -89,8 +81,8 @@ export class RoleauthorityFormComponent implements OnInit {
     roleauthority.id = this.inputRoleauthority?.id;
     roleauthority.role = this.roleauthorityForm.get('role')!.value;
     roleauthority.authority = this.roleauthorityForm.get('authority')!.value;
-    roleauthority.start_date = new Date(start_date.year, start_date.month-1, start_date.day);
-    roleauthority.end_date = new Date(end_date.year, end_date.month-1, end_date.day);
+    roleauthority.start_date = new Date(start_date.year, start_date.month - 1, start_date.day);
+    roleauthority.end_date = new Date(end_date.year, end_date.month - 1, end_date.day);
 
     return roleauthority;
   }
