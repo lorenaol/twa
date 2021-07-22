@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowsAltV, faEdit, faEye, faMap, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp, faArrowDown, faFilter, faEdit, faEye, faMap, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {User} from "@app/entities/user";
 
 import {ModalService} from "@app/services/modal.service";
@@ -19,8 +19,10 @@ export class UserListComponent implements OnInit {
   ModalTypesEnum = ModalTypesEnum;
   faPlus = faPlus;
   faEdit = faEdit;
-  faArrow = faArrowsAltV;
   faEye = faEye;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faFilter = faFilter;
   faTrash = faTrash;
   faMap = faMap;
   page = 1;
@@ -28,7 +30,6 @@ export class UserListComponent implements OnInit {
   predicate: string = 'id';
   ascending: boolean = true;
   collectionSize = 0;
-  stat?: string[] = ['id', 'name', 'email', 'password', 'isActive', 'startDate', 'endDate']
   id: string = ""
   name: string = ""
   email: string = ""
@@ -86,20 +87,10 @@ export class UserListComponent implements OnInit {
     return result;
   }
 
-  sort(col: string) {
-    if (this.stat !== undefined) {
-      if (this.stat.includes(col, 0)) {
-        this.stat.splice(this.stat.indexOf(col, 0));
-        this.predicate = col;
-        this.ascending = true;
-        this.loadData();
-      } else {
-        this.stat.push(col);
-        this.ascending = false;
-        this.predicate = col;
-        this.loadData();
-      }
-    }
+  sort(col : string, ascending: boolean) {
+    this.predicate = col;
+    this.ascending = ascending;
+    this.loadData();
   }
 
   filter() {
@@ -121,6 +112,5 @@ export class UserListComponent implements OnInit {
         }
       });
   }
-
 
 }

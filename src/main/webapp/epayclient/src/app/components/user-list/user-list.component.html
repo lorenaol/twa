@@ -7,27 +7,34 @@
       <button id="user-romania" class="btn btn-sm btn-info" (click)="openUsersRomaniaModal()">
         <fa-icon [icon]="faMap" (click)="openUsersRomaniaModal()"></fa-icon>
       </button>
-      <div class="filter">
-        <br><br>
-        <label for="id">Id: </label>
-        <input type="text" id="id" name="id" [(ngModel)]="id">
-        <label for="name">Name: </label>
-        <input type="text" id="name" name="name" [(ngModel)]="name">
-        <label for="email">Email: </label>
-        <input type="text" id="email" name="email" [(ngModel)]="email" >
-        <button class="filterButton" (click)="filter()">Filtreaza</button>
-      </div>
     </div>
   </div>
   <div class="card-body">
+    <div class="filter">
+      <label for="id">Id: </label>
+      <input type="text" id="id" name="id" [(ngModel)]="id">
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" [(ngModel)]="name">
+      <label for="email">Email: </label>
+      <input type="text" id="email" name="email" [(ngModel)]="email" >
+      <button class="btn btn-dark">
+        <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
+      </button>
+    </div>
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('name')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('email')">Email <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Id
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('id', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('id', false)"></fa-icon></th>
+        <th scope="col">Name
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('name', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('name', false)"></fa-icon></th>
+        <th scope="col">Email
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('email', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('email', false)"></fa-icon></th>
         <th scope="col">Address</th>
-        <th scope="col">Actions <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
