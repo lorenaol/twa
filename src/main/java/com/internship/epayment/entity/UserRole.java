@@ -1,4 +1,7 @@
 package com.internship.epayment.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,19 +14,6 @@ public class UserRole {
     @SequenceGenerator(name = "user_roles_seq", allocationSize = 1)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
-    private Role role;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
-    @Column(name = "start_date", length = 100)
-    private Date start_date;
-
-    @Column(name = "end_date", length = 100)
-    private Date end_date;
 
     public Long getId() {
         return id;
@@ -33,13 +23,23 @@ public class UserRole {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    private Role role;
+
+
     public Role getRole() {
         return role;
     }
-
+    @JsonProperty
     public void setRole(Role role) {
         this.role = role;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
+
 
     public User getUser() {
         return user;
@@ -49,6 +49,10 @@ public class UserRole {
         this.user = user;
     }
 
+
+    @Column(name = "start_date", length = 100)
+    private Date start_date;
+
     public Date getStart_date() {
         return start_date;
     }
@@ -56,6 +60,9 @@ public class UserRole {
     public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
+
+    @Column(name = "end_date", length = 100)
+    private Date end_date;
 
     public Date getEnd_date() {
         return end_date;

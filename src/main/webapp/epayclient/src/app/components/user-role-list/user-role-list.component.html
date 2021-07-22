@@ -1,0 +1,43 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">UserRoles
+      <button class="btn btn-sm btn-success">
+        <fa-icon [icon]="faPlus" (click)="openUserRoleModal(ModalTypesEnum.CREATE)"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">User</th>
+        <th scope="col">Role</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user_role of user_roles">
+        <td>{{ user_role.id }}</td>
+        <td>{{ user_role.user?.name }}</td>
+        <td>{{ user_role.role?.name }}</td>
+        <td>{{ user_role.start_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ user_role.end_date | date:'yyyy-dd-MM' }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" style="margin: 2px">
+            <fa-icon [icon]="faEye" (click)="openUserRoleModal(ModalTypesEnum.VIEW, user_role)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-primary" style="margin: 2px">
+            <fa-icon [icon]="faEdit" (click)="openUserRoleModal(ModalTypesEnum.EDIT, user_role)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-danger" style="margin: 2px">
+            <fa-icon [icon]="faTrash" (click)="openDeleteUserRoleModal(user_role)"></fa-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

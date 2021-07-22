@@ -1,0 +1,43 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">Role Authority
+      <button class="btn btn-sm btn-success">
+        <fa-icon [icon]="faPlus" (click)="openRoleauthorityModal(ModalTypesEnum.CREATE)"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Role Name</th>
+        <th scope="col">Authority Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let roleauthority of roleauthorities">
+        <td>{{ roleauthority.id }}</td>
+        <td>{{ roleauthority.role?.name }}</td>
+        <td>{{ roleauthority.authority?.name }}</td>
+        <td>{{ roleauthority.start_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ roleauthority.end_date | date:'yyyy-dd-MM' }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" style="margin: 2px">
+            <fa-icon [icon]="faEye" (click)="openRoleauthorityModal(ModalTypesEnum.VIEW, roleauthority)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-primary" style="margin: 2px">
+            <fa-icon [icon]="faEdit" (click)="openRoleauthorityModal(ModalTypesEnum.EDIT, roleauthority)"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-danger" style="margin: 2px">
+            <fa-icon [icon]="faTrash" (click)="openDeleteRoleauthorityModal(roleauthority)"></fa-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

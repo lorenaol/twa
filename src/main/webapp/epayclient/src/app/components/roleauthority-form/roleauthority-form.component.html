@@ -1,0 +1,72 @@
+<p-sidebar  [(visible)]="isOpen2!" icon="pi pi-arrow-down" [showCloseIcon]="false">
+  <form name="roleauthorityForm" (ngSubmit)="save()" [formGroup]="roleauthorityForm" icon="pi pi-arrow-down">
+<div class="modal-header">
+    <div *ngIf="ModalTypesEnum.CREATE == modalType">
+      <h4 class="modal-title" id="modal-basic-title" >Create RoleAuthority</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.EDIT == modalType">
+      <h4 class="modal-title" id="modal-basic-title">Edit RoleAuthority - ID: {{inputRoleauthority?.id}}</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.VIEW == modalType">
+      <h4 class="modal-title" id="modal-basic-title">View RoleAuthority - ID: {{inputRoleauthority?.id}}</h4>
+    </div>
+
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <div *ngIf="roles!==undefined && roles!==null">
+          <p-dropdown [options]="roles" optionLabel="name" formControlName="role" [style]="{'width':'100%'}"></p-dropdown>
+
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+          <div *ngIf="authorities!==undefined && authorities!==null">
+            <p-dropdown [options]="authorities" optionLabel="name" formControlName="authority" [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="start_date" class="col-sm-4 col-form-label">Start Date</label>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" id="start_date" name="dp" formControlName="start_date"
+                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
+                    [disabled]="ModalTypesEnum.VIEW == modalType">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="end_date" class="col-sm-4 col-form-label">End Date</label>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" id="end_date" name="dp" formControlName="end_date"
+                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
+                    [disabled]="ModalTypesEnum.VIEW == modalType">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="ModalTypesEnum.VIEW != modalType">
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
+</p-sidebar>
+
