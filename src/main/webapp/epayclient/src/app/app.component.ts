@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {User, UserWithAuthoritiesDto} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
-import { Component } from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
 
 @Component({
@@ -13,11 +12,7 @@ import {PrimeNGConfig} from "primeng/api";
 export class AppComponent {
   // display;
 
-  ngOnInit() {
-    this.primengConfig.ripple = true;
 
-  }
-}
   user!: UserWithAuthoritiesDto | null;
 
   constructor(private router: Router,
@@ -39,7 +34,9 @@ export class AppComponent {
   // }
 
 
-  login() {
+
+
+login(){
     this.authenticationService.showLogin();
   }
 

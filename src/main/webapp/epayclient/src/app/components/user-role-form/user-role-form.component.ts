@@ -13,7 +13,7 @@ import {Role} from "../../entities/role";
 import {User} from "../../entities/user";
 import {AuthorityService} from "../../services/authority.service";
 import {RoleService} from "../../services/role.service";
-import {UserService} from "../../services/userservice.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-user-role-form',

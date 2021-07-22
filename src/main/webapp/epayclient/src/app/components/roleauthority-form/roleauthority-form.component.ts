@@ -130,8 +130,4 @@ export class RoleauthorityFormComponent implements OnInit {
       this.toastr.error('Error modifying role-authority!', 'Error!');
     }
   }
-
-  closeDialog() {
-
-  }
 }
