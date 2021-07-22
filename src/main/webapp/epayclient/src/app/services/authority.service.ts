@@ -63,7 +63,7 @@ export class AuthorityService {
 
   public filterAuthorities(id:string, name:string, code:string, pageble?: any): Observable<EntityArrayResponseType> {
     const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code]);
-    return this.http.get<Role[]>(this.AUTHORITY_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+    return this.http.get<Authority[]>(this.AUTHORITY_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 

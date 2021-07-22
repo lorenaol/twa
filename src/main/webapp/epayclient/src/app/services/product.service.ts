@@ -4,7 +4,7 @@ import {Product} from "../entities/product";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
-import {Role} from "../entities/role";
+
 
 type EntityResponseType = HttpResponse<Product>;
 type EntityArrayResponseType = HttpResponse<Product[]>;
@@ -58,7 +58,7 @@ export class ProductService {
 
   public filterProducts(id:string, name:string, code:string, sku:string, pageble?: any): Observable<EntityArrayResponseType> {
     const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code, sku]);
-    return this.http.get<Role[]>(this.PRODUCT_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+    return this.http.get<Product[]>(this.PRODUCT_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
