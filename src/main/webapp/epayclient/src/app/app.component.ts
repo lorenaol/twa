@@ -3,6 +3,7 @@ import {UserWithAuthoritiesDto} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
 import {Authorities} from "@app/enums/authorities";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import {Authorities} from "@app/enums/authorities";
 })
 export class AppComponent {
   Authorities = Authorities;
+  faUser = faUser;
   user!: UserWithAuthoritiesDto | null;
 
   constructor(private router: Router,
