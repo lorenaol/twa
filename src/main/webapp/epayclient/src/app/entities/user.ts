@@ -1,6 +1,4 @@
-import {Authorities} from "@app/enums/authorities";
-
-export class User{
+export class User {
   id?: number;
   name?: string;
   email?: string;
@@ -13,8 +11,8 @@ export class User{
   address?: string;
 }
 
-export class UserWithAuthoritiesDto{
+export class UserWithAuthoritiesDto {
   userName?: string;
-  authorityCode?:string[];
+  authorityCode?: string[];
   authdata?: string;
 }

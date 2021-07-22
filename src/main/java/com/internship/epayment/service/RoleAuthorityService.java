@@ -6,7 +6,6 @@ import javassist.NotFoundException;
 import java.util.List;
 
 public interface RoleAuthorityService {
-
     List<RoleAuthority> getAll();
 
     RoleAuthority findById(Long id) throws NotFoundException;

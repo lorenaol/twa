@@ -31,7 +31,6 @@ export class AuthenticationService {
     this.loginDialog = null;
   }
 
-
   public get userValue(): UserWithAuthoritiesDto | null {
     return this.userSubject.value;
   }
@@ -56,29 +55,15 @@ export class AuthenticationService {
 
 
   logout() {
-    const verifyUser = this.userValue;
-
-    // remove user from local storage to log user out
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    // this.router.navigate(['/login']);
-    // if (verifyUser !== null) {
-    //  // window.location.reload();
-    // }
-    //this.showLogin();
     this.router.navigate(['/']);
-    // const currentNvg = this.router.getCurrentNavigation();
-    //   this.router.navigate([currentNvg]);
   }
 
   public showLogin() {
-    console.log(this.loginDialog);
     if (!this.loginDialog || !this.modalService.hasOpenModals) {
-      // this.loginDialog = this.modalService.open(LoginComponent, {backdrop: 'static',beforeDismiss: () =>{return false;
-      // }});
       this.loginDialog = this.modalService.open(LoginComponent, {
         beforeDismiss: () => {
-          console.log('se apeleaza functia beforeDismiss');
           this.loginDialog = null;
           return true;
         }
@@ -86,12 +71,8 @@ export class AuthenticationService {
     }
   }
 
-
   public hasAuthority(authority: string): Observable<boolean> {
-    //daca avem user logat verificam daca nu return false
-
     const userHasAuth = map((user: UserWithAuthoritiesDto | null): boolean => {
-      console.log(user, authority);
       if (!user) {
         return false;
       }

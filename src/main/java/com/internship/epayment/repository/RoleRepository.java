@@ -12,10 +12,6 @@ import java.util.List;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-
-    @Query("select r from Role r where r.name = :name")
-    List<Role> query(String name);
-
     Page<Role> findByName(String name, Pageable pageable);
 
     Page<Role> findById(Long id, Pageable pageable);

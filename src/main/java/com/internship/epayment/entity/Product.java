@@ -10,7 +10,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "products_seq")
     @SequenceGenerator(name = "products_seq", allocationSize = 1)
-
     private Long id;
     private double price;
 

@@ -17,7 +17,7 @@ public class RoleAuthorityController {
     private RoleAuthorityService roleAuthorityService;
 
     @GetMapping
-    public List<RoleAuthority> getRoleAuthorities(){
+    public List<RoleAuthority> getRoleAuthorities() {
         return roleAuthorityService.getAll();
     }
 
@@ -27,9 +27,9 @@ public class RoleAuthorityController {
     }
 
     @PostMapping
-    public RoleAuthority addRoleAuthority(@RequestBody RoleAuthority role){
+    public RoleAuthority addRoleAuthority(@RequestBody RoleAuthority role) {
         RoleAuthority r = null;
-        if(role != null){
+        if (role != null) {
             r = roleAuthorityService.addRoleAuthority(role);
         }
         return r;
@@ -37,11 +37,12 @@ public class RoleAuthorityController {
 
     @PutMapping
     @ResponseBody
-    public RoleAuthority updateRoleAuthority(@RequestBody RoleAuthority role){
+    public RoleAuthority updateRoleAuthority(@RequestBody RoleAuthority role) {
         return roleAuthorityService.updateRoleAuthority(role);
     }
+
     @DeleteMapping
-    public void deleteRole(@RequestBody RoleAuthority role){
+    public void deleteRole(@RequestBody RoleAuthority role) {
         roleAuthorityService.deleteRoleAuthority(role);
     }
 }

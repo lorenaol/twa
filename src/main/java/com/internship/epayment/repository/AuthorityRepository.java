@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
-
     List<Authority> findAuthoritisByName(String name);
 
     Authority findAuthorityByCode(String code);

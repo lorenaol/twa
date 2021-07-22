@@ -23,7 +23,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<List<Role>> getRoles(Pageable pageable){
+    public ResponseEntity<List<Role>> getRoles(Pageable pageable) {
         Page<Role> page = roleService.getAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -31,14 +31,14 @@ public class RoleController {
 
     @GetMapping(path = "/filter")
     public ResponseEntity<List<Role>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
-                                                  Pageable pageable ) throws NotFoundException {
+                                                  Pageable pageable) {
         Page<Role> page = roleService.filter(params, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping(path = "/sort{param}")
-    public List<Role> sortRoles(@PathVariable String param, @RequestParam(value = "direction") String direction) throws NotFoundException {
+    public List<Role> sortRoles(@PathVariable String param, @RequestParam(value = "direction") String direction) {
         return roleService.order(param, direction);
     }
 
@@ -58,9 +58,9 @@ public class RoleController {
     }
 
     @PostMapping
-    public Role addRole(@RequestBody Role role){
+    public Role addRole(@RequestBody Role role) {
         Role r = null;
-        if(role != null){
+        if (role != null) {
             r = roleService.addRole(role);
         }
         return r;
@@ -68,11 +68,12 @@ public class RoleController {
 
     @PutMapping
     @ResponseBody
-    public Role updateRole(@RequestBody Role role){
+    public Role updateRole(@RequestBody Role role) {
         return roleService.updateRole(role);
     }
+
     @DeleteMapping
-    public void deleteRole(@RequestBody Role role){
+    public void deleteRole(@RequestBody Role role) {
         roleService.deleteRole(role);
     }
 }

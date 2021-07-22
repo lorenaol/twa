@@ -103,7 +103,6 @@ export class ProductListComponent implements OnInit {
   }
 
   filter() {
-    console.log(this.code)
     this.productService.filterProducts(this.id, this.name, this.code, this.sku, {
       page: this.page - 1,
       size: this.pageSize,

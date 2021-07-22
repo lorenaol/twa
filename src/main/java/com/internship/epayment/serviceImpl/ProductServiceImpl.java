@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class ProductServiceImpl implements ProductsService {
 
     @Override
     public Page<Product> getAll(Pageable pageable) {
-       return productRepository.findAll(pageable);
+        return productRepository.findAll(pageable);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class ProductServiceImpl implements ProductsService {
 
     @Override
     public List<Product> order(String param, String direction) {
-        if(direction.equals("asc")) {
+        if (direction.equals("asc")) {
             return productRepository.findAll(Sort.by(Sort.Direction.ASC, param));
         } else {
             return productRepository.findAll(Sort.by(Sort.Direction.DESC, param));
@@ -73,31 +72,31 @@ public class ProductServiceImpl implements ProductsService {
         String name = params.get(1);
         String code = params.get(2);
         String sku = params.get(3);
-        if(!sku.equals("")) {
-            return  productRepository.findBySku(sku, pageable);
+        if (!sku.equals("")) {
+            return productRepository.findBySku(sku, pageable);
         }
-        if(!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
+        if (!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
             return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
         }
-        if(!id.equals("") && !name.equals("") && !code.equals("")) {
-            return productRepository.findByIdAndNameAndCode(Long.valueOf(id),name, code, pageable);
+        if (!id.equals("") && !name.equals("") && !code.equals("")) {
+            return productRepository.findByIdAndNameAndCode(Long.valueOf(id), name, code, pageable);
         }
-        if(!id.equals("") && !name.equals("")) {
-            return  productRepository.findByIdAndName(Long.valueOf(id), name, pageable);
+        if (!id.equals("") && !name.equals("")) {
+            return productRepository.findByIdAndName(Long.valueOf(id), name, pageable);
         }
-        if(!name.equals("") && !code.equals("")) {
+        if (!name.equals("") && !code.equals("")) {
             return productRepository.findByNameAndCode(name, code, pageable);
         }
-        if(!id.equals("") && !code.equals("")) {
-            return  productRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
+        if (!id.equals("") && !code.equals("")) {
+            return productRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
         }
-        if(!id.equals("")) {
+        if (!id.equals("")) {
             return productRepository.findById(Long.valueOf(id), pageable);
         }
-        if(!name.equals("")) {
+        if (!name.equals("")) {
             return productRepository.findByName(name, pageable);
         }
-        if(!code.equals("")) {
+        if (!code.equals("")) {
             return productRepository.findByCode(code, pageable);
         }
         return productRepository.findAll(pageable);

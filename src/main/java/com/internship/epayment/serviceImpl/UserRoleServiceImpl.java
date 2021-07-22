@@ -1,11 +1,7 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.RoleAuthority;
-import com.internship.epayment.entity.User;
 import com.internship.epayment.entity.UserRole;
-import com.internship.epayment.repository.RoleAuthorityRepository;
 import com.internship.epayment.repository.UserRoleRepository;
-import com.internship.epayment.service.RoleAuthorityService;
 import com.internship.epayment.service.UserRoleService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,12 @@
 package com.internship.epayment.serviceImpl;
 
 import com.internship.epayment.dto.UserWithAuthoritiesDto;
-import com.internship.epayment.entity.*;
+import com.internship.epayment.entity.Role;
+import com.internship.epayment.entity.RoleAuthority;
+import com.internship.epayment.entity.User;
 import com.internship.epayment.repository.RoleAuthorityRepository;
 import com.internship.epayment.repository.UserRepository;
 import com.internship.epayment.repository.UserRoleRepository;
-import com.internship.epayment.service.UserRoleService;
 import com.internship.epayment.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -74,25 +74,25 @@ public class UserServiceImpl implements UserService {
         String id = params.get(0);
         String name = params.get(1);
         String email = params.get(2);
-        if(!id.equals("") && !name.equals("") && !email.equals("")) {
+        if (!id.equals("") && !name.equals("") && !email.equals("")) {
             return userRepository.findByNameAndEmailAndId(name, email, Long.valueOf(id), pageable);
         }
-        if(!id.equals("") && !name.equals("")) {
+        if (!id.equals("") && !name.equals("")) {
             return userRepository.findByIdAndName(Long.valueOf(id), name, pageable);
         }
-        if(!name.equals("") && !email.equals("")) {
+        if (!name.equals("") && !email.equals("")) {
             return userRepository.findByNameAndEmail(name, email, pageable);
         }
-        if(!id.equals("") && !email.equals("")) {
+        if (!id.equals("") && !email.equals("")) {
             return userRepository.findByIdAndEmail(Long.valueOf(id), email, pageable);
         }
-        if(!id.equals("")) {
+        if (!id.equals("")) {
             return userRepository.findById(Long.valueOf(id), pageable);
         }
-        if(!name.equals("")) {
+        if (!name.equals("")) {
             return userRepository.findByName(name, pageable);
         }
-        if(!email.equals("")) {
+        if (!email.equals("")) {
             return userRepository.findByEmail(email, pageable);
         }
         return userRepository.findAll(pageable);

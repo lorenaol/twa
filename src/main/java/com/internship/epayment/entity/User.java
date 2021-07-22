@@ -1,7 +1,5 @@
 package com.internship.epayment.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 import java.util.*;
@@ -27,37 +25,6 @@ public class User {
     private Date start_date;
 
     private Date end_date;
-
-    @ManyToMany
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<Role> userRoles;
-
-    @JsonIgnore
-    public Set<Role> getUserRoles() {
-        return userRoles;
-    }
-
-//    @org.springframework.data.annotation.Transient
-//    public Set<String> getAuthorities() {
-//        Set<String> authorities = new HashSet<>();
-//        if (userRoles == null) {
-//            return null;
-//        }
-//        for (Role r : userRoles) {
-//            for (Authority a : r.getRoleAuthorities()) {
-//                authorities.add(a.getCode());
-//            }
-//        }
-//        return authorities;
-//    }
-
-//    @JsonIgnore
-//    public void setAuthorities(Set<String>authorities){
-//
-//    }
 
     private double latitude;
 

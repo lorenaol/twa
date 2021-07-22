@@ -22,7 +22,7 @@ public class ProductController {
     private ProductsService productService;
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts(Pageable pageable){
+    public ResponseEntity<List<Product>> getProducts(Pageable pageable) {
         Page<Product> page = productService.getAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -30,7 +30,7 @@ public class ProductController {
 
     @GetMapping(path = "/filter")
     public ResponseEntity<List<Product>> filterProducts(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
-                                                        Pageable pageable ) throws NotFoundException {
+                                                        Pageable pageable) {
         Page<Product> page = productService.filter(params, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/sort{param}")
-    public List<Product> sortProducts(@PathVariable String param, @RequestParam(value = "direction") String direction) throws NotFoundException {
+    public List<Product> sortProducts(@PathVariable String param, @RequestParam(value = "direction") String direction) {
         return productService.order(param, direction);
     }
 
@@ -57,9 +57,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) {
         Product p = null;
-        if(product != null){
+        if (product != null) {
             p = productService.addProduct(product);
         }
         return p;
@@ -67,12 +67,12 @@ public class ProductController {
 
     @PutMapping
     @ResponseBody
-    public Product updateProduct(@RequestBody Product product){
+    public Product updateProduct(@RequestBody Product product) {
         return productService.updateProduct(product);
     }
 
     @DeleteMapping
-    public void deleteProduct(@RequestBody Product product){
+    public void deleteProduct(@RequestBody Product product) {
         productService.deleteProduct(product);
     }
 }

@@ -59,8 +59,6 @@ export class RoleListComponent implements OnInit {
       }).subscribe((data: HttpResponse<Role[]>) => {
         this.roles = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
-        console.log(this.collectionSize)
-        console.log(data)
       })
     } else {
       this.filter();
@@ -98,7 +96,6 @@ export class RoleListComponent implements OnInit {
   }
 
   filter() {
-    console.log(this.code)
     this.roleService.filterRoles(this.id, this.name, this.code, {
       page: this.page - 1,
       size: this.pageSize,

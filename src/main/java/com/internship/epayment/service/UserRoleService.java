@@ -1,6 +1,5 @@
 package com.internship.epayment.service;
 
-import com.internship.epayment.entity.RoleAuthority;
 import com.internship.epayment.entity.UserRole;
 import javassist.NotFoundException;
 

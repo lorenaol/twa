@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class RoleAuthorityServiceImpl implements RoleAuthorityService {
+
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
@@ -25,21 +26,18 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
 
     @Override
     public RoleAuthority findById(Long id) throws NotFoundException {
-        RoleAuthority roleAuthority = roleAuthorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-        return roleAuthority;
+        return roleAuthorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Transactional
     public RoleAuthority addRoleAuthority(RoleAuthority roleAuthority) {
-        RoleAuthority r = roleAuthorityRepository.save(roleAuthority);
-        return r;
+        return roleAuthorityRepository.save(roleAuthority);
     }
 
     @Override
     @Transactional
     public RoleAuthority updateRoleAuthority(RoleAuthority role) {
-        RoleAuthority r = roleAuthorityRepository.save(role);
-        return r;
+        return roleAuthorityRepository.save(role);
     }
 
 

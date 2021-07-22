@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UserWithAuthoritiesDto} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
+import {Authorities} from "@app/enums/authorities";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import {AuthenticationService} from "@app/services/authentication.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  Authorities = Authorities;
   user!: UserWithAuthoritiesDto | null;
 
   constructor(private router: Router,

@@ -42,13 +42,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         Optional<User> userOptional = userRepository.findUserByName(name);
 
-        if(!userOptional.isPresent()) {
+        if (!userOptional.isPresent()) {
             System.err.println("User not found: " + name);
             throw new UsernameNotFoundException("");
         }
         User user = userOptional.get();
 
-        if(!password.equals(user.getPassword())) {
+        if (!password.equals(user.getPassword())) {
             System.err.println("Wrong password!");
             throw new BadCredentialsException("");
         }
@@ -66,7 +66,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private List<GrantedAuthority> getAuthoritiesOfUser(User user) {
         List<Authority> authorities = new ArrayList<>();
         List<UserRole> userRoles = userRoleRepository.findAllByUserId(user.getId());
-        userRoles.forEach( userRole -> {
+        userRoles.forEach(userRole -> {
             // Get all Authorities Of Role
             List<Authority> authoritiesOfRole = roleAuthorityRepository.findAllByRoleId(userRole.getRole().getId())
                     .stream().map(RoleAuthority::getAuthority).collect(Collectors.toList());

@@ -31,17 +31,17 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
-    public List <Role> findByName(String name){
+    public List<Role> findByName(String name) {
         return roleRepository.findRolesByName(name);
     }
 
-    public Role findByCode(String code){
+    public Role findByCode(String code) {
         return roleRepository.findRoleByCode(code);
     }
 
     @Override
-    public List<Role> order(String param, String direction){
-        if(direction.equals("asc")) {
+    public List<Role> order(String param, String direction) {
+        if (direction.equals("asc")) {
             return roleRepository.findAll(Sort.by(Sort.Direction.ASC, param));
         } else {
             return roleRepository.findAll(Sort.by(Sort.Direction.DESC, param));
@@ -53,25 +53,25 @@ public class RoleServiceImpl implements RoleService {
         String id = params.get(0);
         String name = params.get(1);
         String code = params.get(2);
-        if(!id.equals("") && !name.equals("") && !code.equals("")) {
+        if (!id.equals("") && !name.equals("") && !code.equals("")) {
             return roleRepository.findByNameAndIdAndCode(name, Long.valueOf(id), code, pageable);
         }
-        if(!id.equals("") && !name.equals("")) {
+        if (!id.equals("") && !name.equals("")) {
             return roleRepository.findByNameAndId(name, Long.valueOf(id), pageable);
         }
-        if(!name.equals("") && !code.equals("")) {
+        if (!name.equals("") && !code.equals("")) {
             return roleRepository.findByNameAndCode(name, code, pageable);
         }
-        if(!id.equals("") && !code.equals("")) {
+        if (!id.equals("") && !code.equals("")) {
             return roleRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
         }
-        if(!id.equals("")) {
+        if (!id.equals("")) {
             return roleRepository.findById(Long.valueOf(id), pageable);
         }
-        if(!name.equals("")) {
+        if (!name.equals("")) {
             return roleRepository.findByName(name, pageable);
         }
-        if(!code.equals("")) {
+        if (!code.equals("")) {
             return roleRepository.findRolesByCode(code, pageable);
         }
         return roleRepository.findAll(pageable);

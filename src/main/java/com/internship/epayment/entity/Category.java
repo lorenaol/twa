@@ -12,7 +12,7 @@ public class Category {
     @SequenceGenerator(name = "categories_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "category_name",length = 100)
+    @Column(name = "category_name", length = 100)
     private String categoryName;
 
     @Column(name = "category_code", length = 100)

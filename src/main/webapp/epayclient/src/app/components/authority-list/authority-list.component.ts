@@ -51,8 +51,6 @@ export class AuthorityListComponent implements OnInit {
       }).subscribe((data: HttpResponse<Authority[]>) => {
         this.authorities = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
-        console.log(this.collectionSize)
-        console.log(data)
       })
     } else {
       this.filter();
@@ -100,7 +98,6 @@ export class AuthorityListComponent implements OnInit {
   }
 
   filter() {
-    console.log(this.code)
     this.authorityService.filterAuthorities(this.id, this.name, this.code, {
       page: this.page - 1,
       size: this.pageSize,

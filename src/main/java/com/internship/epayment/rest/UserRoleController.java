@@ -16,7 +16,7 @@ public class UserRoleController {
     private UserRoleService userRoleService;
 
     @GetMapping
-    public List<UserRole> getUserRoles(){
+    public List<UserRole> getUserRoles() {
         return userRoleService.getAll();
     }
 
@@ -26,9 +26,9 @@ public class UserRoleController {
     }
 
     @PostMapping
-    public UserRole addUserRole(@RequestBody UserRole userRole){
+    public UserRole addUserRole(@RequestBody UserRole userRole) {
         UserRole r = null;
-        if(userRole != null){
+        if (userRole != null) {
             r = userRoleService.addUserRole(userRole);
         }
         return r;
@@ -36,12 +36,12 @@ public class UserRoleController {
 
     @PutMapping
     @ResponseBody
-    public UserRole updateUserRole(@RequestBody UserRole role){
+    public UserRole updateUserRole(@RequestBody UserRole role) {
         return userRoleService.updateUserRole(role);
     }
 
     @DeleteMapping
-    public void deleteUserRole(@RequestBody UserRole role){
+    public void deleteUserRole(@RequestBody UserRole role) {
         userRoleService.deleteUserRole(role);
     }
 }

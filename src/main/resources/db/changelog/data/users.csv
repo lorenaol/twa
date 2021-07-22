@@ -1,5 +1,5 @@
 id;name;email;pass;is_active;start_date;end_date;latitude;longitude;address
-1;Dani;dani@trencadis.ro;password1;true;2021-07-01;2021-07-04;44.291921;25.288243;DJ506 84, Talpa-Ogrăzile, Romania
-2;Andreea;andreea@trencadis.ro;password2;true;2021-07-01;2021-07-04;44.738366;24.903717;SDJ659A 3, Pârvu Roșu 115203, Romania
-3;Luiza;luiza@trencadis.ro;password3;true;2021-07-01;2021-07-04;45.142440;24.675466;Strada Episcop Ghenadie 13, Curtea de Argeș 115300, Romania
-4;Lorena;lorena@trencadis.ro;password4;true;2021-07-01;2021-07-04;45.748794;21.220363;Piața Plevnei 6, Timișoara, Romania
+1;Dani;dani@trencadis.ro;Dani;true;2021-07-01;2021-07-04;44.291921;25.288243;DJ506 84, Talpa-Ogrăzile, Romania
+2;Andreea;andreea@trencadis.ro;Andreea;true;2021-07-01;2021-07-04;44.738366;24.903717;SDJ659A 3, Pârvu Roșu 115203, Romania
+3;Luiza;luiza@trencadis.ro;Luiza;true;2021-07-01;2021-07-04;45.142440;24.675466;Strada Episcop Ghenadie 13, Curtea de Argeș 115300, Romania
+4;Lorena;lorena@trencadis.ro;Lorena;true;2021-07-01;2021-07-04;45.748794;21.220363;Piața Plevnei 6, Timișoara, Romania

@@ -28,7 +28,6 @@ public class AuthorityController {
     }
 
     @GetMapping(path = "/sort{param}")
-    //@GetMapping
     public List<Authority> sortAuthorities(@PathVariable String param,
                                            @RequestParam(value = "direction") String direction) throws NotFoundException {
         return authorityService.order(param, direction);

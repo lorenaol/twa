@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CategoryService {
-
     Page<Category> findAll(Pageable pageable);
 
     Category findById(Long id) throws NotFoundException;
@@ -24,5 +23,4 @@ public interface CategoryService {
     List<Category> order(String param, String direction);
 
     Page<Category> filter(List<String> params, Pageable pageable);
-
 }

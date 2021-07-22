@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> order(String param, String direction) {
-        if(direction.equals("asc")) {
+        if (direction.equals("asc")) {
             return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, param));
         } else {
             return categoryRepository.findAll(Sort.by(Sort.Direction.DESC, param));
@@ -66,25 +66,25 @@ public class CategoryServiceImpl implements CategoryService {
         String id = params.get(0);
         String name = params.get(1);
         String code = params.get(2);
-        if(!id.equals("") && !name.equals("") && !code.equals("")) {
+        if (!id.equals("") && !name.equals("") && !code.equals("")) {
             return categoryRepository.findByIdAndCategoryNameAndCategoryCode(Long.valueOf(id), name, code, pageable);
         }
-        if(!id.equals("") && !name.equals("")) {
-            return categoryRepository.findByIdAndCategoryName(Long.valueOf(id),  name, pageable);
+        if (!id.equals("") && !name.equals("")) {
+            return categoryRepository.findByIdAndCategoryName(Long.valueOf(id), name, pageable);
         }
-        if(!name.equals("") && !code.equals("")) {
+        if (!name.equals("") && !code.equals("")) {
             return categoryRepository.findByCategoryNameAndCategoryCode(name, code, pageable);
         }
-        if(!id.equals("") && !code.equals("")) {
+        if (!id.equals("") && !code.equals("")) {
             return categoryRepository.findByIdAndCategoryCode(Long.valueOf(id), code, pageable);
         }
-        if(!id.equals("")) {
+        if (!id.equals("")) {
             return categoryRepository.findById(Long.valueOf(id), pageable);
         }
-        if(!name.equals("")) {
+        if (!name.equals("")) {
             return categoryRepository.findByCategoryName(name, pageable);
         }
-        if(!code.equals("")) {
+        if (!code.equals("")) {
             return categoryRepository.findByCategoryCode(code, pageable);
         }
         return categoryRepository.findAll(pageable);

@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface RoleService {
-
     Page<Role> getAll(Pageable pageable);
 
     Role findById(Long id) throws NotFoundException;
@@ -28,5 +27,4 @@ public interface RoleService {
     List<Role> order(String param, String direction);
 
     Page<Role> filter(List<String> params, Pageable pageable);
-
 }

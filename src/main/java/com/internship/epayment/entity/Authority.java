@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "authorities")
 public class Authority {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorities_seq")
     @SequenceGenerator(name = "authorities_seq", allocationSize = 1)

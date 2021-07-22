@@ -26,7 +26,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public Authority findById(Long id) throws NotFoundException {
-       return authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+        return authorityRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public List<Authority> order(String param, String direction) {
-        if(direction.equals("asc")) {
+        if (direction.equals("asc")) {
             return authorityRepository.findAll(Sort.by(Sort.Direction.ASC, param));
         } else {
             return authorityRepository.findAll(Sort.by(Sort.Direction.DESC, param));
@@ -71,25 +71,25 @@ public class AuthorityServiceImpl implements AuthorityService {
         String id = params.get(0);
         String name = params.get(1);
         String code = params.get(2);
-        if(!id.equals("") && !name.equals("") && !code.equals("")) {
-            return authorityRepository.findByIdAndNameAndCode(Long.valueOf(id),name, code, pageable);
+        if (!id.equals("") && !name.equals("") && !code.equals("")) {
+            return authorityRepository.findByIdAndNameAndCode(Long.valueOf(id), name, code, pageable);
         }
-        if(!id.equals("") && !name.equals("")) {
-            return authorityRepository.findByIdAndName(Long.valueOf(id),name, pageable);
+        if (!id.equals("") && !name.equals("")) {
+            return authorityRepository.findByIdAndName(Long.valueOf(id), name, pageable);
         }
-        if(!name.equals("") && !code.equals("")) {
+        if (!name.equals("") && !code.equals("")) {
             return authorityRepository.findByNameAndCode(name, code, pageable);
         }
-        if(!id.equals("") && !code.equals("")) {
+        if (!id.equals("") && !code.equals("")) {
             return authorityRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
         }
-        if(!id.equals("")) {
+        if (!id.equals("")) {
             return authorityRepository.findById(Long.valueOf(id), pageable);
         }
-        if(!name.equals("")) {
+        if (!name.equals("")) {
             return authorityRepository.findByName(name, pageable);
         }
-        if(!code.equals("")) {
+        if (!code.equals("")) {
             return authorityRepository.findByCode(code, pageable);
         }
         return authorityRepository.findAll(pageable);

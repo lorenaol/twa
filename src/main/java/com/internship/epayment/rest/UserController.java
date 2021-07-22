@@ -1,6 +1,5 @@
 package com.internship.epayment.rest;
 
-
 import com.internship.epayment.entity.User;
 import com.internship.epayment.service.UserService;
 import com.internship.epayment.util.PaginationUtil;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
@@ -23,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers(Pageable pageable){
+    public ResponseEntity<List<User>> getUsers(Pageable pageable) {
         Page<User> page = userService.getAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -31,7 +29,7 @@ public class UserController {
 
     @GetMapping(path = "/filter")
     public ResponseEntity<List<User>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
-                                                  Pageable pageable ) throws NotFoundException {
+                                                  Pageable pageable) {
         Page<User> page = userService.filter(params, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -53,9 +51,9 @@ public class UserController {
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         User u = null;
-        if(user != null){
+        if (user != null) {
             u = userService.addUser(user);
         }
         return u;
@@ -63,13 +61,12 @@ public class UserController {
 
     @PutMapping
     @ResponseBody
-    public User updateUser(@RequestBody User user){
+    public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestBody User user){
+    public void deleteUser(@RequestBody User user) {
         userService.deleteUser(user);
     }
-
 }
