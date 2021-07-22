@@ -4,6 +4,9 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openUserModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
+      <button id="user-romania" class="btn btn-sm btn-info" (click)="openUsersRomaniaModal()">
+        <fa-icon [icon]="faMap" (click)="openUsersRomaniaModal()"></fa-icon>
+      </button>
       <div class="filter">
         <br><br>
         <label for="id">Id: </label>
@@ -23,10 +26,7 @@
         <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
         <th scope="col" (click)="sort('name')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
         <th scope="col" (click)="sort('email')">Email <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('password')">Password <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('isActive')"> Is active <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('startDate')">Start Date <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('endDate')">End Date <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Address</th>
         <th scope="col">Actions <fa-icon [icon]="faArrow"></fa-icon></th>
       </tr>
       </thead>
@@ -35,10 +35,7 @@
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.password }}</td>
-        <td>{{ user.is_active }}</td>
-        <td>{{ user.start_date | date:'yyyy-dd-MM' }}</td>
-        <td>{{ user.end_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ user.address }}</td>
         <td>
           <button class="btn btn-sm btn-info" style="margin: 2px">
             <fa-icon [icon]="faEye" (click)="openUserModal(ModalTypesEnum.VIEW, user)"></fa-icon>

@@ -30,9 +30,11 @@ import { UserDeleteComponent } from './components/user-delete/user-delete.compon
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { LoginComponent } from './components/login/login.component';
-import {BasicAuthInterceptor} from "@app/_helpers/basic-auth.interceptor";
-import {ErrorInterceptor} from "@app/_helpers/error.interceptor";
+import { BasicAuthInterceptor } from "@app/_helpers/basic-auth.interceptor";
+import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 import { HasAuthorityDirective } from './directives/has-authority.directive';
+import { AgmCoreModule } from '@agm/core';
+import { UsersRomaniaComponent } from './components/users-romania/users-romania.component';
 
 import { RoleauthorityListComponent } from './components/roleauthority-list/roleauthority-list.component';
 import { RoleauthorityFormComponent } from './components/roleauthority-form/roleauthority-form.component';
@@ -70,7 +72,8 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     UserRoleFormComponent,
     UserRoleDeleteComponent,
     LoginComponent,
-    HasAuthorityDirective
+    HasAuthorityDirective,
+    UsersRomaniaComponent,
   ],
   imports: [
     CommonModule,
@@ -86,6 +89,9 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     FormsModule,
     SidebarModule,
     ToastrModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w'
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

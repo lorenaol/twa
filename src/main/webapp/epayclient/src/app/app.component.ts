@@ -26,18 +26,9 @@ export class AppComponent {
     this.authenticationService.logout();
   }
 
-  // ngOnInit(): void {
-  //   console.log(this.authenticationService.userValue);
-  //   if (!this.authenticationService.userValue) {
-  //     this.authenticationService.showLogin();
-  //   }
-  // }
 
-
-
-
-login(){
-    this.authenticationService.showLogin();
+  login() {
+      this.authenticationService.showLogin();
   }
 
   isLoggedIn(): boolean {

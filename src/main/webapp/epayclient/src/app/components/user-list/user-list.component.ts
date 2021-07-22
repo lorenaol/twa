@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {faArrowsAltV, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {Component, Input, OnInit} from '@angular/core';
+import {faEye, faPlus, faTrash, faMap} from '@fortawesome/free-solid-svg-icons';
 import {User} from "../../entities/user";
 
 import {ModalService} from "../../services/modal.service";
@@ -8,6 +10,7 @@ import {faEdit} from '@fortawesome/free-regular-svg-icons';
 import {UserService} from "../../services/user.service";
 
 import {HttpResponse} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-user-list',
@@ -22,6 +25,7 @@ export class UserListComponent implements OnInit {
   faArrow = faArrowsAltV;
   faEye = faEye;
   faTrash = faTrash;
+  faMap = faMap;
   page = 1;
   pageSize = 4;
   predicate: string = 'id';
@@ -31,14 +35,12 @@ export class UserListComponent implements OnInit {
   id: string = ""
   name: string = ""
   email: string = ""
-
   users?: User[] | null;
 
   constructor(
     private userService: UserService,
     private modalService: ModalService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -111,6 +113,16 @@ export class UserListComponent implements OnInit {
       this.collectionSize = Number(data.headers.get('X-Total-Count'));
     })
   }
+
+  openUsersRomaniaModal(users?: User[]){
+    if(this.users !== null)
+    this.modalService.openUsersRomaniaModal(users).then((result)=>{
+      if(result) {
+        this.loadData();
+      }
+    });
+  }
+
 
 
 }

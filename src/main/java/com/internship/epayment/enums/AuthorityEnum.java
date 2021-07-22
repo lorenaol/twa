@@ -7,7 +7,6 @@ public enum AuthorityEnum {
     EPAY_AUTH("EPAY_AUTH"),
     EPAY_PRODUCT("EPAY_PRODUCT");
 
-
     private final String code;
 
     AuthorityEnum(String code) {

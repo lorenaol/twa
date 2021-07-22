@@ -38,6 +38,17 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="latitude" type="DECIMAL(10,6)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="longitude" type="DECIMAL(10,6)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="address" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
         </createTable>
     </changeSet>
 
@@ -53,7 +64,9 @@
             <column name="is_active" type="boolean"/>
             <column name="start_date" type="datetime"/>
             <column name="end_date" type="datetime"/>
-
+            <column name="latitude" type="numeric"/>
+            <column name="longitude" type="numeric"/>
+            <column name="address" type="string"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

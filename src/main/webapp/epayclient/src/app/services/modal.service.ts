@@ -14,8 +14,10 @@ import {ProductDeleteComponent} from "../components/product-delete/product-delet
 import {ProductFormComponent} from "../components/product-form/product-form.component";
 import {RoleDeleteComponent} from "../components/role-delete/role-delete.component";
 import {User} from "../entities/user";
+
 import {UserFormComponent} from "../components/user-form/user-form.component";
 import {UserDeleteComponent} from "../components/user-delete/user-delete.component";
+import {UsersRomaniaComponent} from "../components/users-romania/users-romania.component";
 import {Roleauthority} from "../entities/roleauthority";
 import {RoleauthorityDeleteComponent} from "../components/roleauthority-delete/roleauthority-delete.component";
 import {RoleauthorityFormComponent} from "../components/roleauthority-form/roleauthority-form.component";
@@ -30,7 +32,6 @@ import {UserRoleFormComponent} from "../components/user-role-form/user-role-form
 export class ModalService {
 
   modalType?: ModalTypesEnum;
-
 
   constructor(private modalService: NgbModal) {
   }
@@ -49,16 +50,19 @@ export class ModalService {
   }
 
   openUserModal(modalType: ModalTypesEnum, inputUser?: User) {
-    const modalRef: NgbModalRef = this.modalService.open(UserFormComponent);
+    const modalRef: NgbModalRef = this.modalService.open(UserFormComponent, {size: "xl"});
     modalRef.componentInstance.modalType = modalType;
-
     modalRef.componentInstance.inputUser = inputUser;
+    modalRef.componentInstance.latitude = inputUser?.latitude;
+    modalRef.componentInstance.longitude = inputUser?.longitude;
+    modalRef.componentInstance.address = inputUser?.address;
 
     return modalRef.result
       .then(result => {
         return result;
       });
   }
+
   openUserRoleModal(modalType: ModalTypesEnum, inputUserRole?: User_role) {
     const modalRef: NgbModalRef = this.modalService.open(UserRoleFormComponent);
     modalRef.componentInstance.modalType = modalType;
@@ -84,7 +88,6 @@ export class ModalService {
 
   openRoleModal(modalType: ModalTypesEnum, inputRole?: Role) {
     const modalRef: NgbModalRef = this.modalService.open(RoleFormComponent);
-
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputRole = inputRole;
 
@@ -97,6 +100,15 @@ export class ModalService {
   openDeleteModalUser(inputUser: User) {
     const modalRef: NgbModalRef = this.modalService.open(UserDeleteComponent);
     modalRef.componentInstance.inputUser = inputUser;
+
+    return modalRef.result
+      .then(result => {
+        return result;
+      });
+  }
+
+  openUsersRomaniaModal(users?: User[]){
+    const modalRef: NgbModalRef = this.modalService.open(UsersRomaniaComponent, {size: "xl"});
 
     return modalRef.result
       .then(result => {
@@ -144,6 +156,7 @@ export class ModalService {
         return result;
       });
   }
+
   openDeleteUserRoleModal(inputUserRole: User_role) {
     const modalRef: NgbModalRef = this.modalService.open(UserRoleDeleteComponent);
     modalRef.componentInstance.inputUserRole = inputUserRole;
