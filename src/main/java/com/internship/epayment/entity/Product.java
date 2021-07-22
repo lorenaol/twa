@@ -17,7 +17,8 @@ public class Product {
 
     private long quantity;
 
-    private Date expire_date;
+    @Column(name = "expire_date")
+    private Date expireDate;
 
     private String sku;
 
@@ -55,12 +56,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Date getExpire_date() {
-        return expire_date;
+    public Date getExpireDate() {
+        return expireDate;
     }
 
-    public void setExpire_date(Date expire_date) {
-        this.expire_date = expire_date;
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public String getSku() {

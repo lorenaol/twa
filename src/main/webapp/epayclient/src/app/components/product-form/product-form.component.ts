@@ -65,7 +65,7 @@ export class ProductFormComponent implements OnInit {
     product.price = this.productForm.get('price')!.value;
     product.name = this.productForm.get('name')!.value;
     product.quantity = this.productForm.get('quantity')!.value;
-    product.expire_date = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
+    product.expireDate = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
     product.sku = this.productForm.get('sku')!.value;
     product.code = this.productForm.get('code')!.value;
 
@@ -73,13 +73,13 @@ export class ProductFormComponent implements OnInit {
   }
 
   private updateForm(product: Product): void {
-    const expireDate = new Date(product?.expire_date!);
+    const expireDate = new Date(product?.expireDate!);
     this.productForm.setValue({
       id: product?.id,
       price: product?.price,
       name: product?.name,
       quantity: product?.quantity,
-      expire_date: new NgbDate(expireDate?.getFullYear(), expireDate?.getMonth() + 1, expireDate?.getDate()),
+      expireDate: new NgbDate(expireDate?.getFullYear(), expireDate?.getMonth() + 1, expireDate?.getDate()),
       sku: product?.sku,
       code: product?.code
     });
