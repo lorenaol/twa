@@ -4,26 +4,35 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openCategoryModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
-      <div class="filter">
-        <br><br>
-        <label for="id">Id: </label>
-        <input type="text" id="id" name="id" [(ngModel)]="id">
-        <label for="categoryName">Name: </label>
-        <input type="text" id="categoryName" name="categoryName" [(ngModel)]="categoryName">
-        <label for="categoryCode">Code: </label>
-        <input type="text" id="categoryCode" name="categoryCode" [(ngModel)]="categoryCode">
-        <button class="filterButton" (click)="filter()">Filtreaza</button>
-      </div>
     </div>
   </div>
   <div class="card-body">
+    <div class="filter">
+      <label for="id">Id: </label>
+      <input type="text" id="id" name="id" [(ngModel)]="id">
+      <label for="categoryName">Name: </label>
+      <input type="text" id="categoryName" name="categoryName" [(ngModel)]="categoryName">
+      <label for="categoryCode">Code: </label>
+      <input type="text" id="categoryCode" name="categoryCode" [(ngModel)]="categoryCode">
+      <button class="btn btn-dark">
+        <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
+      </button>
+    </div>
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('categoryName')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('categoryCode')">Code <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('dateAdded')">Date Added <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Id
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('id', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('id', false)"></fa-icon></th>
+        <th scope="col">Name
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('categoryName', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('categoryName', false)"></fa-icon></th>
+        <th scope="col">Code
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('categoryCode', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('categoryCode', false)"></fa-icon></th>
+        <th scope="col">Date Added
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('dateAdded', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('dateAdded', false)"></fa-icon></th>
         <th scope="col">Actions</th>
       </tr>
       </thead>

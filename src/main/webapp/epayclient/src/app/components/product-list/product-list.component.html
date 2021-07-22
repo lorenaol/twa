@@ -4,31 +4,46 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openProductModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
-      <div class="filter">
-        <br><br>
-        <label for="id">Id: </label>
-        <input type="text" id="id" name="id" [(ngModel)]="id">
-        <label for="name">Name: </label>
-        <input type="text" id="name" name="name" [(ngModel)]="name">
-        <label for="code">Code: </label>
-        <input type="text" id="code" name="code" [(ngModel)]="code" >
-        <label for="sku">Sku: </label>
-        <input type="text" id="sku" name="sku" [(ngModel)]="sku" >
-        <button class="filterButton" (click)="filter()">Filtreaza</button>
-      </div>
     </div>
   </div>
   <div class="card-body">
+    <div class="filter">
+      <label for="id">Id: </label>
+      <input type="text" id="id" name="id" [(ngModel)]="id">
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" [(ngModel)]="name">
+      <label for="code">Code: </label>
+      <input type="text" id="code" name="code" [(ngModel)]="code" >
+      <label for="sku">Sku: </label>
+      <input type="text" id="sku" name="sku" [(ngModel)]="sku" >
+      <button class="btn btn-dark">
+        <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
+      </button>
+    </div>
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
-        <th scope="col" (click)="sort('id')">Id <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('price')">Price <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('name')">Name <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('quantity')">Quantity <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('expire_date')">Expire_Date <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('sku')">Sku <fa-icon [icon]="faArrow"></fa-icon></th>
-        <th scope="col" (click)="sort('code')">Code <fa-icon [icon]="faArrow"></fa-icon></th>
+        <th scope="col">Id
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('id', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('id', false)"></fa-icon></th>
+        <th scope="col">Price
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('price', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('price', false)"></fa-icon></th>
+        <th scope="col">Name
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('name', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('name', false)"></fa-icon></th>
+        <th scope="col">Quantity
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('quantity', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('quantity', false)"></fa-icon></th>
+        <th scope="col">Expire_Date
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('expire_date', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('expire_date', false)"></fa-icon></th>
+        <th scope="col">Sku
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('sku', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('sku', false)"></fa-icon></th>
+        <th scope="col">Code
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('code', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('code', false)"></fa-icon></th>
         <th scope="col">Actions</th>
       </tr>
       </thead>

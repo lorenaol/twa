@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowsAltV, faEdit, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faEdit, faEye, faPlus, faTrash, faArrowUp, faArrowDown, faFilter} from '@fortawesome/free-solid-svg-icons';
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {Authority} from "@app/entities/authority";
 import {ModalService} from "@app/services/modal.service";
@@ -16,7 +16,9 @@ export class AuthorityListComponent implements OnInit {
   faPlus = faPlus;
   faEdit = faEdit;
   faEye = faEye;
-  faArrow = faArrowsAltV;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faFilter = faFilter;
   faTrash = faTrash;
   name: string = ""
   code: string = ""
@@ -28,7 +30,6 @@ export class AuthorityListComponent implements OnInit {
   ascending: boolean = true;
 
   authorities?: Authority[] | null;
-  stat?: string[] = ['id', 'name', 'code', 'startDate', 'endDate']
 
   constructor(private authorityService: AuthorityService,
               private modalService: ModalService) {
@@ -73,20 +74,10 @@ export class AuthorityListComponent implements OnInit {
     });
   }
 
-  sort(col: string) {
-    if (this.stat !== undefined) {
-      if (this.stat.includes(col, 0)) {
-        this.stat.splice(this.stat.indexOf(col, 0));
-        this.predicate = col;
-        this.ascending = true;
-        this.loadData();
-      } else {
-        this.stat.push(col);
-        this.ascending = false;
-        this.predicate = col;
-        this.loadData();
-      }
-    }
+  sort(col : string, ascending: boolean) {
+    this.predicate = col;
+    this.ascending = ascending;
+    this.loadData();
   }
 
   sort2(): string[] {

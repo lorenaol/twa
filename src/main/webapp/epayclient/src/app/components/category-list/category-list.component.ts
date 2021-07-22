@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowsAltV, faEye, faPlus, faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
-import {Category} from "@app/entities/category";
-import {CategoryService} from "@app/services/category.service";
-import {ModalService} from "@app/services/modal.service";
-import {ModalTypesEnum} from "@app/enums/modal-types.enum";
+import {faArrowUp, faArrowDown, faFilter, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {Category} from "../../entities/category";
+import {CategoryService} from "../../services/category.service";
+import {ModalService} from "../../services/modal.service";
+import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {faEdit} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-category-list',
@@ -17,7 +18,9 @@ export class CategoryListComponent implements OnInit {
   faEdit = faEdit;
   faEye = faEye;
   faTrash = faTrash;
-  faArrow = faArrowsAltV;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faFilter = faFilter;
   page = 1;
   pageSize = 4;
   collectionSize = 0;
@@ -25,7 +28,6 @@ export class CategoryListComponent implements OnInit {
   ascending: boolean = true;
 
   categories?: Category[] | null;
-  stat?: string[] = ['id', 'categoryName', 'categoryCode', 'dateAdded']
   id: string = ""
   categoryName: string = ""
   categoryCode: string = ""
@@ -42,7 +44,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   loadData(): void {
-    if (this.id == "" && this.categoryName == "") {
+    if(this.id == "" && this.categoryName == "") {
       this.categoryService.getCategories({
           page: this.page - 1,
           size: this.pageSize,
@@ -59,7 +61,7 @@ export class CategoryListComponent implements OnInit {
 
   openCategoryModal(modalTypeEnum: ModalTypesEnum, inputCategory?: Category) {
     this.modalService.openCategoryModal(modalTypeEnum, inputCategory).then((result) => {
-      if (result) {
+      if(result) {
         this.loadData();
       }
     });
@@ -67,26 +69,16 @@ export class CategoryListComponent implements OnInit {
 
   openDeleteModal(category: Category) {
     this.modalService.openDeleteModal(category).then((result) => {
-      if (result) {
+      if(result) {
         this.loadData();
       }
     });
   }
 
-  sort(col: string) {
-    if (this.stat !== undefined) {
-      if (this.stat.includes(col, 0)) {
-        this.stat.splice(this.stat.indexOf(col, 0));
-        this.predicate = col;
-        this.ascending = true;
-        this.loadData();
-      } else {
-        this.stat.push(col);
-        this.predicate = col;
-        this.ascending = false;
-        this.loadData();
-      }
-    }
+  sort(col : string, ascending: boolean) {
+    this.predicate = col;
+    this.ascending = ascending;
+    this.loadData();
   }
 
   sort2(): string[] {

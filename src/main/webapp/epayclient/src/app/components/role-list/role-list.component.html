@@ -4,7 +4,6 @@
       <button class="btn btn-sm btn-success">
         <fa-icon [icon]="faPlus" (click)="openRoleModal(ModalTypesEnum.CREATE)"></fa-icon>
       </button>
-
     </div>
   </div>
   <div class="card-body">
@@ -16,7 +15,7 @@
       <label for="code">Code: </label>
       <input type="text" id="code" name="code" [(ngModel)]="code" >
       <button class="btn btn-dark">
-        <fa-icon [icon]="faFilter"  (click)="filter()"></fa-icon>
+        <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
       </button>
     </div>
     <table class="table table-bordered table-striped">
