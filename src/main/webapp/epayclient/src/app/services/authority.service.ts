@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {Authority} from "../entities/authority";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
+import {Role} from "../entities/role";
 
 
 type EntityResponseType = HttpResponse<Authority>;
@@ -18,9 +19,8 @@ export class AuthorityService {
 
   constructor(private http: HttpClient) { }
 
-
-  public getAuthorities(): Observable<EntityArrayResponseType> {
-    return this.http.get<Authority[]>(this.AUTHORITY_URL, { observe: 'response' })
+  public getAuthorities(pageble?: any): Observable<EntityArrayResponseType> {
+    return this.http.get<Authority[]>(this.AUTHORITY_URL, {params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -53,6 +53,18 @@ export class AuthorityService {
   public deleteAuthority(authority: Authority): Observable<EntityResponseType>  {
     return this.http.delete<Authority>(this.AUTHORITY_URL, {body: authority, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortAuthorities(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    return this.http.get<Role[]>(this.AUTHORITY_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+
+  public filterAuthorities(id:string, name:string, code:string, pageble?: any): Observable<EntityArrayResponseType> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code]);
+    return this.http.get<Role[]>(this.AUTHORITY_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
 }

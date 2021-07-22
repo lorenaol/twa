@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {Product} from "../entities/product";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
+import {Role} from "../entities/role";
 
 type EntityResponseType = HttpResponse<Product>;
 type EntityArrayResponseType = HttpResponse<Product[]>;
@@ -23,8 +24,8 @@ export class ProductService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getProducts(): Observable<EntityArrayResponseType> {
-    return this.http.get<Product[]>(this.PRODUCT_URL, { observe: 'response' })
+  public getProducts(pageble?: any): Observable<EntityArrayResponseType> {
+    return this.http.get<Product[]>(this.PRODUCT_URL, {params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -48,6 +49,18 @@ export class ProductService {
   public deleteProduct(product: Product): Observable<EntityResponseType>  {
     return this.http.delete<Product>(this.PRODUCT_URL, {body: product, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortProducts(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    return this.http.get<Product[]>(this.PRODUCT_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+
+  public filterProducts(id:string, name:string, code:string, sku:string, pageble?: any): Observable<EntityArrayResponseType> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code, sku]);
+    return this.http.get<Role[]>(this.PRODUCT_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 
 

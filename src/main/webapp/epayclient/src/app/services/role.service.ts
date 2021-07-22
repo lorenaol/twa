@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {Role} from "../entities/role";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
@@ -22,8 +22,8 @@ export class RoleService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getRoles(): Observable<EntityArrayResponseType> {
-    return this.http.get<Role[]>(this.ROLE_URL, { observe: 'response' })
+  public getRoles(pageble?: any): Observable<EntityArrayResponseType> {
+    return this.http.get<Role[]>(this.ROLE_URL, {params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -54,5 +54,16 @@ export class RoleService {
   public deleteRole(role: Role): Observable<EntityResponseType>  {
     return this.http.delete<Role>(this.ROLE_URL, {body: role, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public sortRoles(column: string, direction :string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('direction', direction);
+    return this.http.get<Role[]>(this.ROLE_URL + '/sort' + column, {params, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+  public filterRoles(id:string, name:string, code:string, pageble?: any): Observable<EntityArrayResponseType> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code]);
+    return this.http.get<Role[]>(this.ROLE_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 }

@@ -1,14 +1,17 @@
 package com.internship.epayment.service;
 
 import com.internship.epayment.dto.UserWithAuthoritiesDto;
+import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.User;
 import javassist.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAll();
+    Page<User> getAll(Pageable pageable);
 
     User findById(Long id) throws NotFoundException;
 
@@ -23,5 +26,7 @@ public interface UserService {
     void deleteUser(User user);
 
     UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException;
+
+    Page<User> filter(List<String> params, Pageable pageable);
 }
 

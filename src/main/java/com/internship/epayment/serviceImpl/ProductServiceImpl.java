@@ -5,10 +5,13 @@ import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -18,10 +21,8 @@ public class ProductServiceImpl implements ProductsService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> getAll() {
-        List<Product> list = new ArrayList<Product>();
-        productRepository.findAll().forEach(list::add);
-        return list;
+    public Page<Product> getAll(Pageable pageable) {
+       return productRepository.findAll(pageable);
     }
 
     @Override
@@ -55,5 +56,50 @@ public class ProductServiceImpl implements ProductsService {
     @Transactional
     public void deleteProduct(Product product) {
         productRepository.delete(product);
+    }
+
+    @Override
+    public List<Product> order(String param, String direction) {
+        if(direction.equals("asc")) {
+            return productRepository.findAll(Sort.by(Sort.Direction.ASC, param));
+        } else {
+            return productRepository.findAll(Sort.by(Sort.Direction.DESC, param));
+        }
+    }
+
+    @Override
+    public Page<Product> filter(List<String> params, Pageable pageable) {
+        String id = params.get(0);
+        String name = params.get(1);
+        String code = params.get(2);
+        String sku = params.get(3);
+        if(!sku.equals("")) {
+            return  productRepository.findBySku(sku, pageable);
+        }
+        if(!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
+            return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
+        }
+        if(!id.equals("") && !name.equals("") && !code.equals("")) {
+            return productRepository.findByIdAndNameAndCode(Long.valueOf(id),name, code, pageable);
+        }
+        if(!id.equals("") && !name.equals("")) {
+            return  productRepository.findByIdAndName(Long.valueOf(id), name, pageable);
+        }
+        if(!name.equals("") && !code.equals("")) {
+            return productRepository.findByNameAndCode(name, code, pageable);
+        }
+        if(!id.equals("") && !code.equals("")) {
+            return  productRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
+        }
+        if(!id.equals("")) {
+            return productRepository.findById(Long.valueOf(id), pageable);
+        }
+        if(!name.equals("")) {
+            return productRepository.findByName(name, pageable);
+        }
+        if(!code.equals("")) {
+            return productRepository.findByCode(code, pageable);
+        }
+        return productRepository.findAll(pageable);
     }
 }

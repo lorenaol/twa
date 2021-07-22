@@ -1,5 +1,6 @@
 export enum ModalTypesEnum {
   CREATE = 'create',
   EDIT = 'edit',
-  VIEW = 'view'
+  VIEW = 'view',
+  FILTER = 'filter'
 }

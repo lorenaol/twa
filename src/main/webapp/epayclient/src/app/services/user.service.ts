@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {User} from "../entities/user";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
+import {Role} from "@app/entities/role";
 
 type EntityResponseType = HttpResponse<User>;
 type EntityArrayResponseType = HttpResponse<User[]>;
@@ -24,8 +25,8 @@ export class UserService {
   }
 
 
-  public getUsers(): Observable<EntityArrayResponseType> {
-    return this.http.get<User[]>(this.USER_URL, {observe: 'response'})
+  public getUsers(pageable?: any): Observable<EntityArrayResponseType> {
+    return this.http.get<User[]>(this.USER_URL, {params:pageable, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
@@ -49,5 +50,11 @@ export class UserService {
   public deleteUser(user: User): Observable<EntityResponseType> {
     return this.http.delete<User>(this.USER_URL, {body: user, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
+  }
+
+  public filterUsers(id:string, name:string, email:string, pageble?: any): Observable<EntityArrayResponseType> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, email]);
+    return this.http.get<User[]>(this.USER_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => res));
   }
 }

@@ -23,6 +23,7 @@ import {User_role} from "../entities/user_role";
 import {UserRoleDeleteComponent} from "../components/user-role-delete/user-role-delete.component";
 import {UserRoleFormComponent} from "../components/user-role-form/user-role-form.component";
 
+
 @Injectable({
   providedIn: 'root'
 })
