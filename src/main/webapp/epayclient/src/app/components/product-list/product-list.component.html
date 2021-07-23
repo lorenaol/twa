@@ -12,10 +12,10 @@
       <input type="text" id="id" name="id" [(ngModel)]="id">
       <label for="name">Name: </label>
       <input type="text" id="name" name="name" [(ngModel)]="name">
+      <label for="sku">Sku: </label>
+      <input type="text" id="sku" name="sku" [(ngModel)]="sku">
       <label for="code">Code: </label>
       <input type="text" id="code" name="code" [(ngModel)]="code" >
-      <label for="sku">Sku: </label>
-      <input type="text" id="sku" name="sku" [(ngModel)]="sku" >
       <button class="btn btn-dark">
         <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
       </button>
@@ -35,9 +35,9 @@
         <th scope="col">Quantity
           <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('quantity', true)"></fa-icon>
           <fa-icon [icon]="faArrowDown" (click)="sort('quantity', false)"></fa-icon></th>
-        <th scope="col">Expire_Date
-          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('expire_date', true)"></fa-icon>
-          <fa-icon [icon]="faArrowDown" (click)="sort('expire_date', false)"></fa-icon></th>
+        <th scope="col">Expire Date
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('expireDate', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('expireDate', false)"></fa-icon></th>
         <th scope="col">Sku
           <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('sku', true)"></fa-icon>
           <fa-icon [icon]="faArrowDown" (click)="sort('sku', false)"></fa-icon></th>
@@ -53,7 +53,7 @@
         <td>{{ product.price }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.quantity }}</td>
-        <td>{{ product.expire_date | date:'yyyy-dd-MM' }}</td>
+        <td>{{ product.expireDate | date:'yyyy-dd-MM' }}</td>
         <td>{{ product.sku }}</td>
         <td>{{ product.code }}</td>
         <td>

@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/filter")
-    public ResponseEntity<List<User>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
+    public ResponseEntity<List<User>> filterUsers(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
                                                   Pageable pageable) {
         Page<User> page = userService.filter(params, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);

@@ -34,7 +34,7 @@ public class AuthorityController {
     }
 
     @GetMapping(path = "/filter")
-    public ResponseEntity<List<Authority>> filterRoles(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
+    public ResponseEntity<List<Authority>> filterAuthorities(@RequestHeader(name = "FILTER-PARAMS") List<String> params,
                                                        Pageable pageable ) throws NotFoundException {
         Page<Authority> page = authorityService.filter(params, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);

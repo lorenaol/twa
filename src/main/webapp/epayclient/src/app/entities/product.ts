@@ -3,7 +3,7 @@ export class Product {
   price?: number;
   name?: string;
   quantity?: number;
-  expire_date?: Date;
+  expireDate?: Date;
   sku?: string;
   code?: string;
 }

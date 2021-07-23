@@ -4,7 +4,6 @@ import {Category} from "../entities/category";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
-import {Role} from "../entities/role";
 
 type EntityResponseType = HttpResponse<Category>;
 type EntityArrayResponseType = HttpResponse<Category[]>;
@@ -58,7 +57,7 @@ export class CategoryService {
 
   public filterCategories(id:string, categoryName:string, categoryCode:string, pageble?: any): Observable<EntityArrayResponseType> {
     const params = new HttpHeaders().set('FILTER-PARAMS', [id, categoryName, categoryCode]);
-    return this.http.get<Role[]>(this.CATEGORY_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
+    return this.http.get<Category[]>(this.CATEGORY_URL + '/filter', { headers: params, params:pageble, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 }
