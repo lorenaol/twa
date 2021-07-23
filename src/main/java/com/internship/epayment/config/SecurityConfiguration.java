@@ -34,11 +34,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/users").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())// andreea 2
-                .antMatchers("/api/categories").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())//luiza 3
-                .antMatchers("/api/products").hasAuthority(AuthorityEnum.EPAY_PRODUCT.getCode())//lorena 3
-                .antMatchers("/api/authorities").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
-                .antMatchers("/api/roles").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
+                .antMatchers("/api/users/**").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())// andreea 2
+                .antMatchers("/api/categories/**").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())//luiza 3
+                .antMatchers("/api/products/**").hasAuthority(AuthorityEnum.EPAY_PRODUCT.getCode())//lorena 3
+                .antMatchers("/api/authorities/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
+                .antMatchers("/api/roles/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }
