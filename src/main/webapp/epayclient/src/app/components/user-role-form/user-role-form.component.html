@@ -19,7 +19,7 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <div *ngIf="users!==undefined && users!==null">
-          <p-dropdown [options]="users" optionLabel="name" formControlName="user" [style]="{'width':'100%'}"></p-dropdown>
+          <p-dropdown [options]="users" optionLabel="name" formControlName="user" placeholder="Select a user" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
 
         </div>
       </div>
@@ -27,7 +27,7 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <div *ngIf="roles!==undefined && roles!==null">
-          <p-dropdown [options]="roles" optionLabel="name" formControlName="role" [style]="{'width':'100%'}"></p-dropdown>
+          <p-dropdown [options]="roles" optionLabel="name" formControlName="role" placeholder="Select a role" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
         </div>
       </div>
     </div>

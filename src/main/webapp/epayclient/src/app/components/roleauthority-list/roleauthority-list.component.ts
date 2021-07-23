@@ -45,6 +45,7 @@ export class RoleauthorityListComponent implements OnInit {
   }
 
   openDeleteRoleauthorityModal(roleauthority: Roleauthority) {
+    console.log(roleauthority);
     this.modalService.openDeleteRoleauthorityModal(roleauthority).then((result) => {
       if (result) {
         this.loadData();

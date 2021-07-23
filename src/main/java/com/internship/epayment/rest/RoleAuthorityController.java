@@ -42,7 +42,7 @@ public class RoleAuthorityController {
     }
 
     @DeleteMapping
-    public void deleteRole(@RequestBody RoleAuthority role) {
+    public void deleteRoleAuthority(@RequestBody RoleAuthority role) {
         roleAuthorityService.deleteRoleAuthority(role);
     }
 }

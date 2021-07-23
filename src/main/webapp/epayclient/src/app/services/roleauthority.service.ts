@@ -38,6 +38,7 @@ export class RoleauthorityService {
   }
 
   public deleteRoleAuthority(roleauthority: Roleauthority): Observable<EntityResponseType>  {
+    console.log(roleauthority);
     return this.http.delete<Roleauthority>(this.ROLEAUTHORITY_URL, {body: roleauthority, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
