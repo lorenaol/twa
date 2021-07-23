@@ -190,6 +190,7 @@ export class ModalService {
       });
   }
   openDeleteRoleauthorityModal(inputRoleauthority: Roleauthority) {
+
     const modalRef: NgbModalRef = this.modalService.open(RoleauthorityDeleteComponent);
     modalRef.componentInstance.inputRoleauthority = inputRoleauthority;
 

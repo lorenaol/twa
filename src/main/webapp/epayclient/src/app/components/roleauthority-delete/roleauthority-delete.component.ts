@@ -13,7 +13,7 @@ import {RoleauthorityService} from "@app/services/roleauthority.service";
 })
 export class RoleauthorityDeleteComponent implements OnInit {
 
-  inputRoleauhority?: Roleauthority;
+  inputRoleauthority?: Roleauthority;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -30,7 +30,7 @@ export class RoleauthorityDeleteComponent implements OnInit {
   }
 
   delete(): void {
-    this.subscribeToSaveResponse(this.roleauthorityService.deleteRoleAuthority(this.inputRoleauhority!));
+    this.subscribeToSaveResponse(this.roleauthorityService.deleteRoleAuthority(this.inputRoleauthority!));
   }
 
   private subscribeToSaveResponse(result: Observable<HttpResponse<Roleauthority>>): void {
