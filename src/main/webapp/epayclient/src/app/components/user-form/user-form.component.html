@@ -105,25 +105,13 @@
               </div>
             </div>
         </div>
+
         <div class="col-sm-6">
-          <div  *ngIf="ModalTypesEnum.VIEW == modalType">
-            <agm-map [latitude]= "inputUser?.latitude || 0"
-                     [longitude]="inputUser?.longitude || 0"
-                     (mapClick)="mapClicked($event)"
-                     [zoom]="zoom">
 
-              <agm-marker
-                [latitude]= "inputUser?.latitude || 0"
-                [longitude]="inputUser?.longitude || 0"
-                [label] = "inputUser?.name?.charAt(0) || '' "
-                [markerDraggable] = "false">
-
-                <agm-info-window>
-                  <strong>{{inputUser?.name}}</strong>
-                </agm-info-window>
-              </agm-marker>
-            </agm-map>
-          </div>
+          <div class="container">
+            <div class="form-group">
+              <label>Enter address</label>
+              <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
 
           <div *ngIf="ModalTypesEnum.VIEW != modalType">
             <agm-map [latitude]= "inputUser?.latitude || 44.441146195052944"
@@ -143,6 +131,13 @@
                 </agm-info-window>
               </agm-marker>
             </agm-map>
+
+          </div>
+              <h5>Address: {{address}}</h5>
+              <div>Latitude: {{latitude}}</div>
+              <div>Longitude: {{longitude}}</div>
+            </div>
+
           </div>
         </div>
       </div>

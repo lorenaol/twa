@@ -90,7 +90,8 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     SidebarModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w'
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+      libraries: ['places']
     })
   ],
   providers: [

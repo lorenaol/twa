@@ -29,11 +29,11 @@ class EpaymentApplicationTests {
         categoryService.addCategory(category2);
     }
 
-    @Test
-    public void findAllCategories(){
-        List<Category> list = categoryService.findAll();
-        assertTrue(list.size() > 0);
-    }
+//    @Test
+//    public void findAllCategories(){
+//        List<Category> list = categoryService.findAll();
+//        assertTrue(list.size() > 0);
+//    }
 
     @Test
     public void addCategoryTest(){
@@ -43,12 +43,12 @@ class EpaymentApplicationTests {
         assertNull(category.getId());
     }
 
-
-    @Test
-    public void findByIdTest() throws NotFoundException {
-        Category category = categoryService.findAll().get(0);
-        assertEquals(category.getCategoryName(),"Diverse");
-    }
+//
+//    @Test
+//    public void findByIdTest() throws NotFoundException {
+//        Category category = categoryService.findAll().get(0);
+//        assertEquals(category.getCategoryName(),"Diverse");
+//    }
 
     @Test()
     public void updateCategoryTest() throws NotFoundException {
