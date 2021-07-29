@@ -75,6 +75,7 @@ export class UserFormComponent implements OnInit {
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
+          this.address = place.formatted_address;
           this.zoom = 12;
         });
       });
@@ -239,6 +240,13 @@ export class UserFormComponent implements OnInit {
   }
 
   markers: marker[] = [];
+
+  // markerDragEnd2($event: MouseEvent) {
+  //   console.log($event);
+  //   this.latitude = $event.coords.lat;
+  //   this.longitude = $event.coords.lng;
+  //   this.getAddress(this.latitude, this.longitude);
+  // }
  }
 
 interface marker {
