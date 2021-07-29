@@ -120,8 +120,8 @@
                      [zoom]="zoom-5">
 
               <agm-marker
-                [latitude]= "inputUser?.latitude || 44.441146195052944"
-                [longitude]="inputUser?.longitude ||  26.106725370342822"
+                [latitude]= "latitude || 44.441146195052944"
+                [longitude]="longitude ||  26.106725370342822"
                 [label] = "inputUser?.name?.charAt(0) || '' "
                 [markerDraggable] = "true"
                 (dragEnd)="markerDragEnd($event)">
@@ -133,9 +133,9 @@
             </agm-map>
 
           </div>
-              <h5>Address: {{address}}</h5>
-              <div>Latitude: {{latitude}}</div>
-              <div>Longitude: {{longitude}}</div>
+<!--              <h5>Address: {{address}}</h5>-->
+<!--              <div>Latitude: {{latitude}}</div>-->
+<!--              <div>Longitude: {{longitude}}</div>-->
             </div>
 
           </div>
