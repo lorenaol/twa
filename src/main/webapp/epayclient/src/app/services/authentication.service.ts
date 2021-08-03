@@ -9,6 +9,7 @@ import {environment} from "@environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
+import {SigninComponent} from "@app/components/signin/signin.component";
 
 
 @Injectable({
@@ -19,6 +20,7 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<UserWithAuthoritiesDto | null>;
   public user: Observable<UserWithAuthoritiesDto | null>;
   private loginDialog: NgbModalRef | null;
+  private signinDialog: NgbModalRef | null;
 
   constructor(
     private router: Router,
@@ -29,6 +31,7 @@ export class AuthenticationService {
     this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
     this.user = this.userSubject.asObservable();
     this.loginDialog = null;
+    this.signinDialog = null;
   }
 
   public get userValue(): UserWithAuthoritiesDto | null {
@@ -79,5 +82,16 @@ export class AuthenticationService {
       return user?.authorityCode?.indexOf(authority) !== -1;
     })
     return userHasAuth(this.user);
+  }
+
+  showSignin() {
+    if (!this.signinDialog || !this.modalService.hasOpenModals) {
+      this.signinDialog = this.modalService.open(SigninComponent, {
+        beforeDismiss: () => {
+          this.signinDialog = null;
+          return true;
+        }
+      ,size: "xl"});
+    }
   }
 }

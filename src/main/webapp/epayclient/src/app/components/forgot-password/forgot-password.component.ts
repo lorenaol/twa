@@ -1,22 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationService} from "@app/services/authentication.service";
-import {first} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "@app/services/user.service";
+import {AuthenticationService} from "@app/services/authentication.service";
+import {first} from "rxjs/operators";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class ForgotPasswordComponent implements OnInit {
+
+  forgotForm!: FormGroup;
   loading = false;
   submitted = false;
   returnUrl!: string ;
   error = '';
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+    this.forgotForm = this.formBuilder.group({
+      email: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -43,19 +42,19 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.loginForm!.controls;
+    return this.forgotForm!.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.loginForm!.invalid) {
+    if (this.forgotForm!.invalid) {
       return;
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.userService.forgotPassword(this.f.email.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -67,7 +66,4 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  goToFPass() {
-    this.userService.showFPass();
-  }
 }

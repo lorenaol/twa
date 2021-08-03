@@ -1,8 +1,8 @@
 package com.internship.epayment.entity;
 
 import javax.persistence.*;
-
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +31,27 @@ public class User {
     private double longitude;
 
     private String address;
+
+    private String token;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime token_creation_date;
+
+    public LocalDateTime getTokenCreationDate() {
+        return token_creation_date;
+    }
+
+    public void setTokenCreationDate(LocalDateTime token_creation_date) {
+        this.token_creation_date = token_creation_date;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;

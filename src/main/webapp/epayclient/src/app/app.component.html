@@ -12,6 +12,7 @@
   <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link" style="color: white">User</button></a></span>
   <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">User Role</button></a></span>
   <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>
+
   <div class="spacer"></div>
 
 
@@ -21,9 +22,12 @@
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
       <div *ngIf="isLoggedIn()">
         <span><a (click)="logout()"><button class="btn btn-link " ><span class="em em-user2"></span>Logout</button></a></span>
+        <span><a (click)="changepass()"><button class="btn btn-link " ><span class="em em-user2"></span>Reset Password</button></a></span>
       </div>
       <div *ngIf="!isLoggedIn()">
+        <li>
         <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
+        </li><li><span><a (click)="signin()"><button class="btn btn-link " ><span class="em em-user2"></span>Sign In</button></a></span></li>
       </div>
     </div>
   </div>

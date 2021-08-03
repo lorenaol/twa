@@ -9,14 +9,15 @@ import {ToastrService} from "ngx-toastr";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {MapsAPILoader, MouseEvent} from "@agm/core";
 import {UserService} from "@app/services/user.service";
+import {AuthenticationService} from "@app/services/authentication.service";
 
 
 @Component({
   selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class UserFormComponent implements OnInit {
+export class SigninComponent implements OnInit {
 
   ModalTypesEnum = ModalTypesEnum;
   faCalendar = faCalendar;
@@ -37,19 +38,19 @@ export class UserFormComponent implements OnInit {
     address: []
   });
 
+
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private userService: UserService,
-    private apiloader: MapsAPILoader
+    private apiloader: MapsAPILoader,
+    private authenticationService: AuthenticationService
   ) {
   }
 
   ngOnInit(): void {
-    if (this.inputUser !== undefined) {
-      this.updateForm(this.inputUser);
-    }
+
   }
 
   close(): void {
@@ -64,8 +65,6 @@ export class UserFormComponent implements OnInit {
       this.subscribeToSaveResponse(this.userService.addUser(user));
     }
   }
-
-
 
   private createFromForm(): User {
     const start_date = this.userForm.get('start_date')!.value;
@@ -82,23 +81,6 @@ export class UserFormComponent implements OnInit {
     user.longitude = this.longitude;
     user.address = this.address;
     return user;
-  }
-
-  private updateForm(user: User): void {
-    const start_date = new Date(user?.start_date!);
-    const end_date = new Date(user?.end_date!);
-    this.userForm.setValue({
-      id: user?.id,
-      name: user?.name,
-      email: user?.email,
-      password: user?.password,
-      is_active: user?.is_active,
-      start_date: new NgbDate(start_date?.getFullYear(), start_date?.getMonth() + 1, start_date?.getDate()),
-      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getMonth() + 1, end_date?.getDate()),
-      latitude: user?.latitude,
-      longitude: user?.longitude,
-      address: user?.address
-    });
   }
 
   private subscribeToSaveResponse(result: Observable<HttpResponse<User>>): void {
@@ -178,6 +160,11 @@ export class UserFormComponent implements OnInit {
   }
 
   markers: marker[] = [];
+
+  goToUrl() {
+    this.authenticationService.showLogin();
+
+  }
 }
 
 interface marker {
