@@ -33,11 +33,13 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getUsersByName(userName: string): Observable<EntityArrayResponseType> {
-    const params = new HttpParams();
-    params.append('name', userName);
-    return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
-      .pipe(map((res: EntityArrayResponseType) => res));
+  public getUsersByName(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('name', userName);
+    /*const params = new HttpParams();
+    params.append('name', userName);*/
+    console.log(params)
+    return this.http.get<User>(this.USER_URL + '/findByName', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
   }
 
   public updateUser(user: User): Observable<EntityResponseType> {

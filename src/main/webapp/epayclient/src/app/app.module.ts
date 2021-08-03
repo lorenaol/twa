@@ -43,6 +43,7 @@ import { RoleauthorityDeleteComponent } from './components/roleauthority-delete/
 import { UserRoleListComponent } from './components/user-role-list/user-role-list.component';
 import { UserRoleFormComponent } from './components/user-role-form/user-role-form.component';
 import { UserRoleDeleteComponent } from './components/user-role-delete/user-role-delete.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
     LoginComponent,
     HasAuthorityDirective,
     UsersRomaniaComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     CommonModule,

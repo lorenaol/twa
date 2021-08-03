@@ -11,17 +11,21 @@ import {RoleauthorityListComponent} from "./components/roleauthority-list/roleau
 import {LoginComponent} from "@app/components/login/login.component";
 import {AuthGuard} from "@app/_helpers/auth.guard";
 import {Authorities} from "@app/enums/authorities";
+import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart.component";
+import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
-  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
+ // { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
+  { path: 'products', component: ProductListComponent},
   { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
   { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'shoppingcart', component: ShoppingCartComponent}
 ];
 
 @NgModule({

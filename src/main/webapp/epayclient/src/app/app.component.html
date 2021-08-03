@@ -1,3 +1,7 @@
+<div>
+  <router-outlet></router-outlet>
+</div>
+
 <div class="toolbar" role="banner">
   <img
     width="40"
@@ -7,7 +11,8 @@
   <span><a routerLink="/"><button class="btn btn-link" style="color: white">Home</button></a></span>
   <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link" style="color: white">Category</button></a></span>
   <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Authority</button></a></span>
-  <span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link" style="color: white">Product</button></a></span>
+  <!--span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link" style="color: white">Product</button></a></span-->
+  <span><a routerLink="/products"><button class="btn btn-link" style="color: white">Product</button></a></span>
   <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Role</button></a></span>
   <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link" style="color: white">User</button></a></span>
   <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">User Role</button></a></span>
@@ -28,17 +33,52 @@
     </div>
   </div>
 
+  <!--p-dropdown [options]="products" optionLabel="name" formControlName="product"
+              placeholder="Select a user" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown-->
+    <div class="dropdown">
+      <button class="dropbtn" (mouseover)="getProducts()">
+        <i class="fa fa-caret-down"></i>
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
+      </button>
+      <div class="dropdown-content">
+        <div *ngFor="let product of products">
+          {{product.name}}
+          {{product.price}}
+        </div>
+        <a href="/shoppingcart">Vezi detalii cos</a>
+      </div>
+    </div>
+  <!--div ngbDropdown>
+    <button class="btn btn-sm btn-success" id="cart" ngbDropdownToggle>
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="cart">
+      <tr *ngFor="let product of products">
+        <td>{{product}}</td>
+      </tr>
+    </div>
+  </div-->
 
-  <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
+
+      <!--div *ngIf="products!==undefined && products!==null">
+        <p-dropdown [options]="products"  class="btn btn-sm btn-success" optionLabel="name" formControlName="user" placeholder="Select a user" [showClear]="true" [style]="{'width':'100%'}">
+          <fa-icon [icon]="faShoppingCart"></fa-icon>
+        </p-dropdown>
+      </div-->
+
+
+  <!--span><a routerLink="/shoppingcart"><button class="btn btn-sm btn-success"> <fa-icon [icon]="faShoppingCart"></fa-icon></button></a></span-->
+  <!--button class="btn btn-sm btn-success">
+    <fa-icon [icon]="faShoppingCart"></fa-icon>
+  </button-->
+
+
+  <!--a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
     <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 24 24" fill="#fff">
       <path d="M0 0h24v24H0V0z" fill="none"/>
       <path
         d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
     </svg>
-  </a>
-</div>
-
-<div>
-  <router-outlet></router-outlet>
+  </a-->
 </div>

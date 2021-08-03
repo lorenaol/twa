@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowUp, faArrowDown, faFilter, faEye, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Product} from "../../entities/product";
-import {ProductService} from "../../services/product.service";
-import {ModalService} from "../../services/modal.service";
-import {ModalTypesEnum} from "../../enums/modal-types.enum";
+import {faArrowUp, faArrowDown, faFilter, faEye, faPlus, faTrash, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {Product} from "@app/entities/product";
+import {ProductService} from "@app/services/product.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {faEdit} from '@fortawesome/free-regular-svg-icons';
 import {HttpResponse} from "@angular/common/http";
+import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
   faTrash = faTrash;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
+  faShoppingCart = faShoppingCart;
   faFilter = faFilter;
   predicate: string = 'id';
   ascending: boolean = true;
@@ -37,7 +39,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private shopping_cartService: Shopping_cartService
   ) {
   }
 
@@ -69,6 +72,11 @@ export class ProductListComponent implements OnInit {
         this.loadData();
       }
     });
+  }
+
+  openAddToCart(product: Product) {
+    this.shopping_cartService.init(product);
+   // this.modalService.openAddToCart(product);
   }
 
   openDeleteProductModal(product: Product) {
