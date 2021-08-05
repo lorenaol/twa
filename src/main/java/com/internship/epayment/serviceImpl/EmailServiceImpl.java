@@ -61,7 +61,7 @@ public class EmailServiceImpl implements EmailService {
         String process = templateEngine.process("change_password", context);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-        helper.setSubject("Welcome " + user.getName());
+        helper.setSubject("Hello " + user.getName());
         helper.setText(process, true);
         helper.setTo(user.getEmail());
         javaMailSender.send(mimeMessage);

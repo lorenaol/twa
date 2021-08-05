@@ -48,6 +48,12 @@ export class UserService {
     return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
+  public getUserByCode(userEmail: string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams();
+    params.append('email', userEmail);
+    return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
   public forgotPassword(userEmail: string): Observable<EntityArrayResponseType> {
     return this.http.post<User[]>(this.USER_URL+"/forgot-password"+"/"+userEmail,{}, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));

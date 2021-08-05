@@ -1,6 +1,7 @@
 package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.User;
+import com.internship.epayment.repository.UserRepository;
 import com.internship.epayment.service.EmailService;
 import com.internship.epayment.service.UserService;
 import com.internship.epayment.util.PaginationUtil;
@@ -10,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.mail.MessagingException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/users")
@@ -22,6 +26,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+
+
 
     @Autowired
     private EmailService emailService;
@@ -64,11 +72,17 @@ public class UserController {
     @PostMapping
     public User addUser(@RequestBody User user) throws MessagingException {
         User u = null;
-        if (user != null) {
-            u = userService.addUser(user);
-            // TO DO emailService.sendEmail
 
+        Optional<User> user2 = Optional.ofNullable(userRepository.findUserByEmail(user.getEmail()));
+        System.out.println(user2);
+
+        if (user != null && user2.isEmpty()) {
+//            System.out.println(userService.findByEmail(user.getEmail()));
+            u = userService.addUser(user);
             emailService.sendMail(u) ;
+        }
+        if(u == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Email already used");
         }
         return u;
     }
@@ -89,9 +103,12 @@ public class UserController {
     public String forgotPassword(@PathVariable String email) throws MessagingException{
 
         String response = userService.forgotPassword(email);
+        if(response == "Invalid email id."){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Email not found");
+        }
         User somth = userService.findByEmail(email);
-        emailService.sendMailFPass(somth);
         if (!response.startsWith("Invalid")) {
+            emailService.sendMailFPass(somth);
             response = "http://localhost:8082/api/users/reset-password/" + response;
         }
 
@@ -103,9 +120,21 @@ public class UserController {
                                 @PathVariable String password)  throws MessagingException{
 
         User somth = userService.findByToken(token);
-        //System.out.println(somth.getName());
+        String response = userService.resetPassword(token,password);
+        if(response == "Invalid token."){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid token.");
+        }
+        else{
+            if(response == "Token expired."){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Token expired");
+            }
+        }
+
+        System.out.println(somth.getName());
+        if(somth!=null){
         emailService.sendMailCPass(somth);
-        return userService.resetPassword(token, password);
+        }
+        return response;
     }
 
 }

@@ -93,17 +93,20 @@ export class SigninComponent implements OnInit {
   private onSaveSuccess(): void {
     this.activeModal.close(true);
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.success('User created!', 'Success!');
+      this.toastr.success('You have been registered! Check your email', 'Success!');
+      this.goToUrl();
     } else {
-      this.toastr.success('User modified!', 'Success!');
+      this.toastr.success('You have been registered! Check your email!', 'Success!');
+      this.goToUrl();
     }
   }
 
   private onSaveError(): void {
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.error('Error creating user!', 'Error!');
+      this.toastr.error('Email may have been taken! Try another!', 'Error!');
+
     } else {
-      this.toastr.error('Error modifying user!', 'Error!');
+      this.toastr.error('Email may have been taken! Try another!', 'Error!');
     }
   }
 

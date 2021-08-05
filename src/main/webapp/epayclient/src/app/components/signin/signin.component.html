@@ -138,11 +138,13 @@
           </agm-marker>
         </agm-map>
       </div>
+      <p style="margin-top:2vh;font-weight: bold">Don't forget to move the pin!</p>
     </div>
   </div>
   <div class="modal-footer">
     <div *ngIf="ModalTypesEnum.VIEW != modalType">
-      <button type="submit" id="save" class="btn btn-success"  (click)="goToUrl()">Save</button>
+      <button type="submit" id="save" class="btn btn-success" >Save</button>
+<!--      (click)="goToUrl()"-->
     </div>
   </div>
 </form>
