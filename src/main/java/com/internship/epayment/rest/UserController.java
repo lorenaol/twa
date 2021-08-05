@@ -77,7 +77,7 @@ public class UserController {
         System.out.println(user2);
 
         if (user != null && user2.isEmpty()) {
-//            System.out.println(userService.findByEmail(user.getEmail()));
+
             u = userService.addUser(user);
             emailService.sendMail(u) ;
         }
@@ -119,7 +119,7 @@ public class UserController {
     public String resetPassword(@PathVariable String token,
                                 @PathVariable String password)  throws MessagingException{
 
-        User somth = userService.findByToken(token);
+        User user = userService.findByToken(token);
         String response = userService.resetPassword(token,password);
         if(response == "Invalid token."){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid token.");
@@ -129,10 +129,8 @@ public class UserController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Token expired");
             }
         }
-
-        System.out.println(somth.getName());
-        if(somth!=null){
-        emailService.sendMailCPass(somth);
+        if(user!=null){
+        emailService.sendMailCPass(user);
         }
         return response;
     }

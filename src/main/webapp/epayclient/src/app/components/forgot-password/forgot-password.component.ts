@@ -71,36 +71,11 @@ export class ForgotPasswordComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          // this.toastr.success('Check your email! Click the link to change your password ', 'Success!');
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          // this.toastr.error('Email does not exist!');
           this.error = error;
           this.loading = false;
         });
-
-
     }
-
-  // onSubmit(): void{
-  //   this.userService.forgotPassword(this.f.email.value).subscribe(
-  //     () => this.onSaveSuccess(),
-  //     () => this.onSaveError()
-  //   );
-  // }
-  //
-  // private onSaveSuccess(): void {
-  //
-  //     this.toastr.success('e bine', 'Success!');
-  // }
-  //
-  // private onSaveError(): void {
-  //
-  //     this.toastr.error('nu e bine!', 'Error!');
-  //
-  // }
-
-
-
 }

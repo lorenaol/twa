@@ -13,25 +13,7 @@ import javax.mail.MessagingException;
 @RestController
 @RequestMapping(path = "/api/email")
 public class EmailController {
-//    private EmailSenderService emailService;
-//
-//    /*
-//     * Send HTML mail with inline image
-//     */
-//    @RequestMapping(value = "/sendMailWithInlineImage", method = RequestMethod.POST)
-//    public String sendMailWithInline(
-//            @RequestParam("recipientName") final String recipientName,
-//            @RequestParam("recipientEmail") final String recipientEmail,
-//            @RequestParam("image") final MultipartFile image,
-//            final Locale locale)
-//            throws MessagingException, IOException {
-//
-//        this.emailService.sendMailWithInline(
-//                recipientName, recipientEmail, image.getName(),
-//                image.getBytes(), image.getContentType(), locale);
-//        return "redirect:sent.html";
-//
-//    }
+
     @Autowired
     private EmailService emailService;
 

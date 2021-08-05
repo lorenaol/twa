@@ -93,16 +93,6 @@ export class UserService {
         ,size: "xl"});
     }
   }
-  showCPass() {
-    if (!this.changeDialog || !this.modalService.hasOpenModals) {
-      this.changeDialog = this.modalService.open(ResetPasswordComponent, {
-        beforeDismiss: () => {
-          this.forgotDialog = null;
-          return true;
-        }
-        ,size: "xl"});
-    }
-  }
 
   public resetPassword(userToken: string, userPassword: string): Observable<EntityArrayResponseType> {
     return this.http.put<User[]>(this.USER_URL+"/reset-password"+"/"+userToken+"/"+userPassword,{}, {observe: 'response'})
