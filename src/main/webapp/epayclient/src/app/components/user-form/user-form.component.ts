@@ -52,12 +52,8 @@ export class UserFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // if (this.inputUser !== undefined) {
-    //   this.updateForm(this.inputUser);
-    // }
     //load Places Autocomplete
     this.apiloader.load().then(() => {
-    //  this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
@@ -65,7 +61,6 @@ export class UserFormComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          //     console.log("branzaaaaaaaaaaaaaaaaa",place );
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -80,18 +75,6 @@ export class UserFormComponent implements OnInit {
         });
       });
     });
-  }
-
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.userForm.get('latitude')!.setValue(position.coords.latitude);
-        this.userForm.get('longitude')!.setValue(position.coords.longitude);
-        this.zoom = 12;
-        this.getAddress(position.coords.latitude, position.coords.longitude);
-      });
-    }
   }
 
   close(): void {
@@ -127,7 +110,7 @@ export class UserFormComponent implements OnInit {
   private updateForm(user: User): void {
     const start_date = new Date(user?.start_date!);
     const end_date = new Date(user?.end_date!);
-    this.userForm.setValue({
+    this.userForm.patchValue({
       id: user?.id,
       name: user?.name,
       email: user?.email,
@@ -253,13 +236,6 @@ export class UserFormComponent implements OnInit {
   }
 
   markers: marker[] = [];
-
-  // markerDragEnd2($event: MouseEvent) {
-  //   console.log($event);
-  //   this.latitude = $event.coords.lat;
-  //   this.longitude = $event.coords.lng;
-  //   this.getAddress(this.latitude, this.longitude);
-  // }
 }
 
 interface marker {
