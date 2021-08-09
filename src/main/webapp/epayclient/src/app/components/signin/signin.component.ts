@@ -9,14 +9,15 @@ import {ToastrService} from "ngx-toastr";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {MapsAPILoader, MouseEvent} from "@agm/core";
 import {UserService} from "@app/services/user.service";
+import {AuthenticationService} from "@app/services/authentication.service";
 
 
 @Component({
   selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class UserFormComponent implements OnInit {
+export class SigninComponent implements OnInit {
 
   ModalTypesEnum = ModalTypesEnum;
   faCalendar = faCalendar;
@@ -37,19 +38,19 @@ export class UserFormComponent implements OnInit {
     address: []
   });
 
+
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private userService: UserService,
-    private apiloader: MapsAPILoader
+    private apiloader: MapsAPILoader,
+    private authenticationService: AuthenticationService
   ) {
   }
 
   ngOnInit(): void {
-    if (this.inputUser !== undefined) {
-      this.updateForm(this.inputUser);
-    }
+
   }
 
   close(): void {
@@ -64,8 +65,6 @@ export class UserFormComponent implements OnInit {
       this.subscribeToSaveResponse(this.userService.addUser(user));
     }
   }
-
-
 
   private createFromForm(): User {
     const start_date = this.userForm.get('start_date')!.value;
@@ -84,23 +83,6 @@ export class UserFormComponent implements OnInit {
     return user;
   }
 
-  private updateForm(user: User): void {
-    const start_date = new Date(user?.start_date!);
-    const end_date = new Date(user?.end_date!);
-    this.userForm.setValue({
-      id: user?.id,
-      name: user?.name,
-      email: user?.email,
-      password: user?.password,
-      is_active: user?.is_active,
-      start_date: new NgbDate(start_date?.getFullYear(), start_date?.getMonth() + 1, start_date?.getDate()),
-      end_date: new NgbDate(end_date?.getFullYear(), end_date?.getMonth() + 1, end_date?.getDate()),
-      latitude: user?.latitude,
-      longitude: user?.longitude,
-      address: user?.address
-    });
-  }
-
   private subscribeToSaveResponse(result: Observable<HttpResponse<User>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
@@ -111,17 +93,20 @@ export class UserFormComponent implements OnInit {
   private onSaveSuccess(): void {
     this.activeModal.close(true);
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.success('User created!', 'Success!');
+      this.toastr.success('You have been registered! Check your email', 'Success!');
+      this.goToUrl();
     } else {
-      this.toastr.success('User modified!', 'Success!');
+      this.toastr.success('You have been registered! Check your email!', 'Success!');
+      this.goToUrl();
     }
   }
 
   private onSaveError(): void {
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.error('Error creating user!', 'Error!');
+      this.toastr.error('Email may have been taken! Try another!', 'Error!');
+
     } else {
-      this.toastr.error('Error modifying user!', 'Error!');
+      this.toastr.error('Email may have been taken! Try another!', 'Error!');
     }
   }
 
@@ -178,6 +163,11 @@ export class UserFormComponent implements OnInit {
   }
 
   markers: marker[] = [];
+
+  goToUrl() {
+    this.authenticationService.showLogin();
+
+  }
 }
 
 interface marker {

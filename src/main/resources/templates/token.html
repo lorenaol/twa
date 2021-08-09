@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div> Use this token to change your password <a th:href="@{http://localhost:4200/users/reset-password/{token} (token = ${user.token})}">Click</a></div>
+<div> THIS TOKEN EXPIRES IN 30 MINUTES</div>
+
+
+</body>
+</html>

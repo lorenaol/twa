@@ -11,6 +11,7 @@ import {RoleauthorityListComponent} from "./components/roleauthority-list/roleau
 import {LoginComponent} from "@app/components/login/login.component";
 import {AuthGuard} from "@app/_helpers/auth.guard";
 import {Authorities} from "@app/enums/authorities";
+import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
   { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'users/reset-password/:token', component: ResetPasswordComponent}
+
 ];
 
 @NgModule({
