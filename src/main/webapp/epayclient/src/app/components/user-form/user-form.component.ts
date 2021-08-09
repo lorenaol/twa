@@ -24,6 +24,12 @@ export class UserFormComponent implements OnInit {
   modalType?: ModalTypesEnum;
   // inputUser?: User;
 
+  // latitude: number = 0;
+  // longitude: number = 0;
+  zoom: number = 12;
+  // address?: string;
+  private geoCoder: any;
+
   userForm = this.fb.group({
     id: [],
     name: [],
@@ -48,14 +54,13 @@ export class UserFormComponent implements OnInit {
   }
 
   @ViewChild('search')
-  public searchElementRef: any;
+  public searchElementRef!: ElementRef;
 
 
   ngOnInit(): void {
     //load Places Autocomplete
     this.apiloader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
-
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -67,7 +72,7 @@ export class UserFormComponent implements OnInit {
             return;
           }
 
-          //set latitude, longitude, adress and zoom
+          //set latitude, longitude, address and zoom
           this.userForm.get('latitude')!.setValue(place.geometry.location.lat());
           this.userForm.get('longitude')!.setValue(place.geometry.location.lng());
           this.userForm.get('address')!.setValue(place.formatted_address);
@@ -89,7 +94,6 @@ export class UserFormComponent implements OnInit {
       this.subscribeToSaveResponse(this.userService.addUser(user));
     }
   }
-
 
 
   private createFromForm(): User {
@@ -155,16 +159,11 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  // latitude: number = 0;
-  // longitude: number = 0;
-  zoom: number = 12;
-  // address?: string;
-  private geoCoder: any;
 
   // user.address = this.userForm.get('address')!.value;
 
   mapClicked($event: MouseEvent) {
-    if(ModalTypesEnum.VIEW === this.modalType){
+    if (ModalTypesEnum.VIEW === this.modalType) {
       return;
     }
     this.userForm.get('latitude')!.setValue($event.coords.lat);

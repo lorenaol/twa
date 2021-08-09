@@ -98,7 +98,10 @@
         <div class="input-group">
           <label for="address" class="col-sm-4 col-form-label">Address:</label>
           <input id="address" class="form-control" formControlName="address"
-                 [readOnly]="true">
+                 (keydown.enter)="$event.preventDefault()"
+                 placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                 type="text" #search
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
         </div>
       </div>
     </div>
@@ -108,12 +111,12 @@
       <div class="container">
 
         <div class="form-group">
-          <div *ngIf="ModalTypesEnum.VIEW != modalType">
-            <label>Enter address</label>
-            <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
-                   placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
-                   type="text" #search>
-          </div>
+          <!--          <div *ngIf="ModalTypesEnum.VIEW != modalType">-->
+          <!--            <label>Enter address</label>-->
+          <!--            <input [value]="searchText" type="text" class="form-control" (keydown.enter)="$event.preventDefault()"-->
+          <!--                   placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"-->
+          <!--                   type="text" #search>-->
+          <!--          </div>-->
           <div>
             <agm-map [latitude]="userForm.get('latitude')?.value || 44.441146195052944"
                      [longitude]="userForm.get('longitude')?.value  || 26.106725370342822"
