@@ -69,7 +69,7 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
-    @PostMapping(path = "/post")
+    @PostMapping
     public User addUser(@RequestBody User user) throws MessagingException {
         User u = null;
 
