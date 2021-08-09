@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {NgbActiveModal, NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
@@ -23,7 +23,13 @@ export class SigninComponent implements OnInit {
   faCalendar = faCalendar;
 
   modalType?: ModalTypesEnum;
-  inputUser?: User;
+  // inputUser?: User;
+
+  // latitude: number = 0;
+  // longitude: number = 0;
+  zoom: number = 12;
+  // address?: string;
+  private geoCoder: any;
 
   userForm = this.fb.group({
     id: [],
@@ -45,12 +51,38 @@ export class SigninComponent implements OnInit {
     private toastr: ToastrService,
     private userService: UserService,
     private apiloader: MapsAPILoader,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private ngZone: NgZone
   ) {
   }
 
-  ngOnInit(): void {
+  @ViewChild('search')
+  public searchElementRef!: ElementRef;
 
+
+  ngOnInit(): void {
+    //load Places Autocomplete
+    this.apiloader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude, address and zoom
+          this.userForm.get('latitude')!.setValue(place.geometry.location.lat());
+          this.userForm.get('longitude')!.setValue(place.geometry.location.lng());
+          this.userForm.get('address')!.setValue(place.formatted_address);
+          this.zoom = 12;
+        });
+      });
+    });
   }
 
   close(): void {
@@ -70,16 +102,16 @@ export class SigninComponent implements OnInit {
     const start_date = this.userForm.get('start_date')!.value;
     const end_date = this.userForm.get('end_date')!.value;
     const user = new User();
-    user.id = this.inputUser?.id;
+    // user.id = this.userForm.get('id')!.value;
     user.name = this.userForm.get('name')!.value;
     user.email = this.userForm.get('email')!.value;
     user.password = this.userForm.get('password')!.value;
     user.is_active = this.userForm.get('is_active')!.value;
     user.start_date = new Date(start_date.year, start_date.month - 1, start_date.day);
     user.end_date = new Date(end_date.year, end_date.month - 1, end_date.day);
-    user.latitude = this.latitude;
-    user.longitude = this.longitude;
-    user.address = this.address;
+    user.latitude = this.userForm.get('latitude')!.value;
+    user.longitude = this.userForm.get('longitude')!.value;
+    user.address = this.userForm.get('address')!.value;
     return user;
   }
 
@@ -104,20 +136,18 @@ export class SigninComponent implements OnInit {
   private onSaveError(): void {
     if (this.modalType === ModalTypesEnum.CREATE) {
       this.toastr.error('Email may have been taken! Try another!', 'Error!');
-
     } else {
-      this.toastr.error('Email may have been taken! Try another!', 'Error!');
+      debugger
+      this.toastr.error('Email may have been taken! Try another2!', 'Error!');
     }
   }
 
-  latitude: number = 0;
-  longitude: number = 0;
-  zoom: number = 12;
-  address?: string;
-
   mapClicked($event: MouseEvent) {
-    this.latitude = $event.coords.lat;
-    this.longitude = $event.coords.lng;
+    if (ModalTypesEnum.VIEW === this.modalType) {
+      return;
+    }
+    this.userForm.get('latitude')!.setValue($event.coords.lat);
+    this.userForm.get('longitude')!.setValue($event.coords.lng);
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -126,14 +156,14 @@ export class SigninComponent implements OnInit {
     this.apiloader.load().then(() => {
       let geocoder = new google.maps.Geocoder;
       let latlng = {
-        lat: this.latitude,
-        lng: this.longitude
+        lat: this.userForm.get('latitude')!.value,
+        lng: this.userForm.get('longitude')!.value,
       };
       geocoder.geocode({
         'location': latlng
       }, function (results, status) {
         if (results[0]) {
-          that.address = results[0].formatted_address;
+          that.userForm.get('address')!.setValue(results[0].formatted_address);
         } else {
           console.log('Not found');
         }
@@ -142,23 +172,47 @@ export class SigninComponent implements OnInit {
   }
 
   markerDragEnd($event: MouseEvent) {
-    this.latitude = $event.coords.lat;
-    this.longitude = $event.coords.lng;
+    this.userForm.get('latitude')!.setValue($event.coords.lat);
+    this.userForm.get('longitude')!.setValue($event.coords.lng);
+    // this.getAddress(this.latitude, this.longitude);
     const that = this;
     this.apiloader.load().then(() => {
       let geocoder = new google.maps.Geocoder;
       let latlng = {
-        lat: this.latitude,
-        lng: this.longitude
+        lat: this.userForm.get('latitude')!.value,
+        lng: this.userForm.get('longitude')!.value,
       };
       geocoder.geocode({
         'location': latlng
       }, function (results, status) {
         if (results[0]) {
-          that.address = results[0].formatted_address;
+          that.userForm.get('address')!.setValue(results[0].formatted_address);
         } else {
         }
       });
+    });
+  }
+
+  getAddress(latitude: number, longitude: number) {
+    this.geoCoder.geocode({
+      'location': {
+        lat: latitude,
+        lng: longitude
+      }
+    }, (results: { formatted_address: string | undefined; }[], status: string) => {
+      console.log(results);
+      console.log(status);
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 12;
+          this.userForm.get('address')!.setValue(results[0].formatted_address);
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
     });
   }
 
@@ -166,7 +220,6 @@ export class SigninComponent implements OnInit {
 
   goToUrl() {
     this.authenticationService.showLogin();
-
   }
 }
 
