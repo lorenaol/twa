@@ -26,6 +26,10 @@
             <column name="pass" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
+            <column name="token" type="varchar(128)">
+            </column>
+            <column name="token_creation_date" type="TIMESTAMP">
+            </column>
             <column name="is_active" type="BOOLEAN">
                 <constraints nullable="false" />
             </column>
@@ -61,6 +65,8 @@
             <column name="name" type="string"/>
             <column name="email" type="string"/>
             <column name="pass" type="string"/>
+            <column name="token" type="string"/>
+            <column name="token_creation_date" type="string"/>
             <column name="is_active" type="boolean"/>
             <column name="start_date" type="datetime"/>
             <column name="end_date" type="datetime"/>

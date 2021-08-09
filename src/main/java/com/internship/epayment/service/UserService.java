@@ -1,12 +1,12 @@
 package com.internship.epayment.service;
 
 import com.internship.epayment.dto.UserWithAuthoritiesDto;
-import com.internship.epayment.entity.Role;
 import com.internship.epayment.entity.User;
 import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 public interface UserService {
@@ -16,7 +16,7 @@ public interface UserService {
 
     User findByName(String name)throws NotFoundException;
 
-    User findByEmail(String code) throws NotFoundException;
+    User findByEmail(String code) throws MessagingException;
 
     User addUser(User user);
 
@@ -24,8 +24,15 @@ public interface UserService {
 
     void deleteUser(User user);
 
+    String forgotPassword(String email);
+
+    String resetPassword(String token, String password);
+
+
     UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException;
 
     Page<User> filter(List<String> params, Pageable pageable);
+
+    User findByToken(String token);
 }
 

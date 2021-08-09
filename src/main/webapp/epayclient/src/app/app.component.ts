@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
 import {Authorities} from "@app/enums/authorities";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {UserService} from "@app/services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,10 @@ export class AppComponent {
   faUser = faUser;
   user!: UserWithAuthoritiesDto | null;
 
+
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
+              private userService: UserService,
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }
@@ -36,6 +39,14 @@ export class AppComponent {
       return true;
     }
     return false;
+  }
+
+  signin() {
+    this.authenticationService.showSignin();
+  }
+
+  changepass() {
+    this.userService.showFPass();
   }
 }
 
