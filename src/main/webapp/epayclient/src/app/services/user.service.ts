@@ -4,11 +4,9 @@ import {User} from "../entities/user";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
-import {SigninComponent} from "@app/components/signin/signin.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ForgotPasswordComponent} from "@app/components/forgot-password/forgot-password.component";
-import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 
 type EntityResponseType = HttpResponse<User>;
 type EntityArrayResponseType = HttpResponse<User[]>;

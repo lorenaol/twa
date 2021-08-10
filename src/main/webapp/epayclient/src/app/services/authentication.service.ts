@@ -9,7 +9,6 @@ import {environment} from "@environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
-import {SigninComponent} from "@app/components/signin/signin.component";
 import {ModalService} from "@app/services/modal.service";
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 
@@ -87,20 +86,10 @@ export class AuthenticationService {
     return userHasAuth(this.user);
   }
 
-  // showSignin() {
-  //   if (!this.signinDialog) {
-  //     this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
-  //   }
-  // }
-
   showSignin() {
-    if (!this.signinDialog || !this.modalService.hasOpenModals) {
-      this.signinDialog = this.modalService.open(SigninComponent, {
-        beforeDismiss: () => {
-          this.signinDialog = null;
-          return true;
-        }
-        ,size: "xl"});
+    if (!this.signinDialog) {
+      this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
     }
   }
+
 }
