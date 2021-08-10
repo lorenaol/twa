@@ -10,6 +10,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {SigninComponent} from "@app/components/signin/signin.component";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 
 
 @Injectable({
@@ -25,7 +27,8 @@ export class AuthenticationService {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private modalService2: ModalService
   ) {
     let user = localStorage.getItem('user');
     this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
@@ -84,6 +87,12 @@ export class AuthenticationService {
     return userHasAuth(this.user);
   }
 
+  // showSignin() {
+  //   if (!this.signinDialog) {
+  //     this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
+  //   }
+  // }
+
   showSignin() {
     if (!this.signinDialog || !this.modalService.hasOpenModals) {
       this.signinDialog = this.modalService.open(SigninComponent, {
@@ -91,7 +100,7 @@ export class AuthenticationService {
           this.signinDialog = null;
           return true;
         }
-      ,size: "xl"});
+        ,size: "xl"});
     }
   }
 }

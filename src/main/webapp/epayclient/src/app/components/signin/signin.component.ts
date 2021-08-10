@@ -94,6 +94,7 @@ export class SigninComponent implements OnInit {
     if (user.id !== undefined) {
       this.subscribeToSaveResponse(this.userService.updateUser(user));
     } else {
+      debugger
       this.subscribeToSaveResponse(this.userService.addUser(user));
     }
   }
@@ -137,7 +138,6 @@ export class SigninComponent implements OnInit {
     if (this.modalType === ModalTypesEnum.CREATE) {
       this.toastr.error('Email may have been taken! Try another!', 'Error!');
     } else {
-      debugger
       this.toastr.error('Email may have been taken! Try another2!', 'Error!');
     }
   }
