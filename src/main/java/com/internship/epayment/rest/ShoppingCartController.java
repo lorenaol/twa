@@ -44,4 +44,9 @@ public class ShoppingCartController {
         return shoppingCartService.updateShoppingCart(shoppingCart);
     }
 
+    @DeleteMapping
+    public void deleteShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+        shoppingCartService.deleteShoppingCart(shoppingCart);
+    }
+
 }

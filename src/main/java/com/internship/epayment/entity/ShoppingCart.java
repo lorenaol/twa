@@ -21,6 +21,16 @@ public class ShoppingCart {
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
 
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    private Long quantity;
+
     public Long getId() {
         return id;
     }

@@ -32,6 +32,8 @@
             <column name="code" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
+            <column name="image" type="clob">
+            </column>
         </createTable>
     </changeSet>
 
@@ -47,6 +49,7 @@
             <column name="expire_date" type="datetime"/>
             <column name="sku" type="string"/>
             <column name="code" type="string"/>
+            <column name="image" type="string"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

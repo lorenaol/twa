@@ -19,6 +19,44 @@
   <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>
   <div class="spacer"></div>
 
+  <div *ngIf="!inShoppingCart()">
+
+    <div class="dropdown">
+      <button class="dropbtn" (mouseenter)="getCarts()" >
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
+      </button>
+      <div class="dropdown-content">
+        <div class="products">
+          <tr *ngFor="let cart of shoppingCarts">
+            <td class="image2{{cart.product?.id}}">
+            </td>
+            <td> x {{cart?.quantity}}
+            </td>
+            <td class="productName">{{cart.product?.name}}</td>
+            <td>{{cart.product?.price}} Lei</td>
+          </tr>
+        </div>
+        <a href="/shoppingcart" >Vezi detalii cos</a>
+      </div>
+    </div>
+    <!--div ngbDropdown>
+      <button class="btn"  (click)="getCarts(); setImage()"  id="dropdownBasic2" style="color: white" ngbDropdownToggle>
+        <fa-icon [icon]="faShoppingCart"></fa-icon></button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+        <div class="products">
+          <tr *ngFor="let cart of shoppingCarts">
+            <td class="image2{{cart.product?.id}}">
+            </td>
+            <td> x {{cart?.quantity}}
+            </td>
+            <td class="productName">{{cart.product?.name}}</td>
+            <td>{{cart.product?.price}} Lei</td>
+          </tr>
+        </div>
+        <a href="/shoppingcart" >Vezi detalii cos</a>
+      </div>
+    </div-->
+  </div>
 
   <div ngbDropdown>
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>
@@ -35,19 +73,8 @@
 
   <!--p-dropdown [options]="products" optionLabel="name" formControlName="product"
               placeholder="Select a user" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown-->
-    <div class="dropdown">
-      <button class="dropbtn" (mouseover)="getProducts()">
-        <i class="fa fa-caret-down"></i>
-        <fa-icon [icon]="faShoppingCart"></fa-icon>
-      </button>
-      <div class="dropdown-content">
-        <div *ngFor="let product of products">
-          {{product.name}}
-          {{product.price}}
-        </div>
-        <a href="/shoppingcart">Vezi detalii cos</a>
-      </div>
-    </div>
+
+
   <!--div ngbDropdown>
     <button class="btn btn-sm btn-success" id="cart" ngbDropdownToggle>
       <fa-icon [icon]="faShoppingCart"></fa-icon>
@@ -73,12 +100,12 @@
   </button-->
 
 
-  <!--a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
+  <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
     <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 24 24" fill="#fff">
       <path d="M0 0h24v24H0V0z" fill="none"/>
       <path
         d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
     </svg>
-  </a-->
+  </a>
 </div>

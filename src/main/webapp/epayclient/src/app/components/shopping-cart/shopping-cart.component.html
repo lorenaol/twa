@@ -1,0 +1,52 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">Cosul meu
+      <fa-icon class="cart" [icon]="faShoppingCart"></fa-icon>
+    </div>
+  </div>
+  <div class="card-body">
+    <div *ngIf=!emptyCart() class="products row">
+      <div class="col-sm-8">
+        Produse:
+        <div class="row details" *ngFor="let cart of shoppingCarts">
+          <div class="image{{cart?.product?.id}} col-sm-3">
+          </div>
+          <div class="productName col-sm-3"><b>Nume:</b> {{cart?.product?.name}}
+            <div><b>Sku:</b> {{cart?.product?.sku}}</div>
+            <div><b>Cod:</b> {{cart?.product?.code}}</div>
+          </div>
+          <div class="col-sm-4 quantity">{{cart?.quantity}} buc
+          <p>Disponibilitate: In stoc<br>
+            Garantie inclusa:  Persoana fizica 24 luni | Persoana juridica 12 luni</p></div>
+          <div class="col-sm-1 price">{{cart?.product?.price! * cart?.quantity!}} Lei</div>
+          <div class="col-sm-1">
+            <button class="btn btn-sm btn-danger" style="margin: 2px">
+             <fa-icon [icon]="faTrash" (click)="delete(cart?.product)"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="col-sm-4 command">
+        <div class="commandTitle">Sumar comanda:</div>
+        <div>Cost produse: {{productsCost}} Lei</div>
+        <div>Cost livrare: {{deliveryCost}} Lei</div>
+        <hr class="solid">
+        <div class="total">Total: {{total}} Lei</div>
+        </div>
+      </div>
+    <div *ngIf=emptyCart()>
+      <div class="title"> Cosul tau este gol!
+        <br><br>
+        <p class="mesaj"> Daca ai un cont te rugam sa intri in cont si te vom directiona catre produsele din cos
+          <br>
+          sau te poti <a href="/products">intoarce in magazin</a> pentru a continua cumparaturile.</p>
+        <br>
+        <a href="/products" class="empty-cart-primary-btn pho-btn btn btn-primary">
+          Intoarce-te in magazin
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -45,4 +45,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
         return shoppingCartRepository.save(shoppingCart);
     }
+
+    @Override
+    @Transactional
+    public void deleteShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCartRepository.delete(shoppingCart);
+    }
 }

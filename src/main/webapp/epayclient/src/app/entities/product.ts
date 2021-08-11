@@ -6,4 +6,5 @@ export class Product {
   expireDate?: Date;
   sku?: string;
   code?: string;
+  image?: string;
 }

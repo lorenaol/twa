@@ -15,7 +15,17 @@ public class Product {
 
     private String name;
 
+    private String image;
+
     private long quantity;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Column(name = "expire_date")
     private Date expireDate;

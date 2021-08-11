@@ -75,8 +75,8 @@ export class ProductListComponent implements OnInit {
   }
 
   openAddToCart(product: Product) {
+    console.log("addToCart")
     this.shopping_cartService.init(product);
-   // this.modalService.openAddToCart(product);
   }
 
   openDeleteProductModal(product: Product) {
