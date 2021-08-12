@@ -1,9 +1,11 @@
 agm-map{
-  height: 500px;
+  height: 420px;
 }
 
 .modal-body{
   display: flex;
+  /*height: 550px;*/
+  /*overflow:auto;*/
 }
 
 .modal-header{
@@ -14,3 +16,4 @@ agm-map{
   font-size: large;
   font-weight: bold;
 }
+

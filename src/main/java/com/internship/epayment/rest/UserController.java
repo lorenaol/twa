@@ -30,7 +30,6 @@ public class UserController {
     private UserRepository userRepository;
 
 
-
     @Autowired
     private EmailService emailService;
 
@@ -73,16 +72,16 @@ public class UserController {
     public User addUser(@RequestBody User user) throws MessagingException {
         User u = null;
 
-        Optional<User> user2 = Optional.ofNullable(userRepository.findUserByEmail(user.getEmail()));
+        User user2 = userRepository.findUserByEmail(user.getEmail());
         System.out.println(user2);
 
-        if (user != null && user2.isEmpty()) {
+        if (user != null && user2 == null) {
 
             u = userService.addUser(user);
-            emailService.sendMail(u) ;
+            emailService.sendMail(u);
         }
-        if(u == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Email already used");
+        if (u == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email already used");
         }
         return u;
     }
@@ -100,11 +99,11 @@ public class UserController {
 
     @SneakyThrows
     @PostMapping("/forgot-password/{email}")
-    public String forgotPassword(@PathVariable String email) throws MessagingException{
+    public String forgotPassword(@PathVariable String email) throws MessagingException {
 
         String response = userService.forgotPassword(email);
-        if(response == "Invalid email id."){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Email not found");
+        if (response == "Invalid email id.") {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found");
         }
         User somth = userService.findByEmail(email);
         if (!response.startsWith("Invalid")) {
@@ -117,20 +116,19 @@ public class UserController {
 
     @PutMapping("/reset-password/{token}/{password}")
     public String resetPassword(@PathVariable String token,
-                                @PathVariable String password)  throws MessagingException{
+                                @PathVariable String password) throws MessagingException {
 
         User user = userService.findByToken(token);
-        String response = userService.resetPassword(token,password);
-        if(response == "Invalid token."){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid token.");
-        }
-        else{
-            if(response == "Token expired."){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Token expired");
+        String response = userService.resetPassword(token, password);
+        if (response == "Invalid token.") {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid token.");
+        } else {
+            if (response == "Token expired.") {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Token expired");
             }
         }
-        if(user!=null){
-        emailService.sendMailCPass(user);
+        if (user != null) {
+            emailService.sendMailCPass(user);
         }
         return response;
     }

@@ -72,29 +72,33 @@ public class ProductServiceImpl implements ProductsService {
         String name = params.get(1);
         String code = params.get(2);
         String sku = params.get(3);
-        if (!sku.equals("")) {
-            return productRepository.findBySku(sku, pageable);
+
+        if (!id.equals("")) {
+            return productRepository.findById(Long.valueOf(id), pageable);
         }
-        if (!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
-            return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
+//        if (!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
+//            return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
+//        }
+        if (!sku.equals("") && !name.equals("") && !code.equals("")) {
+            return productRepository.findBySkuAndNameAndCode(sku, name, code, pageable);
         }
-        if (!id.equals("") && !name.equals("") && !code.equals("")) {
-            return productRepository.findByIdAndNameAndCode(Long.valueOf(id), name, code, pageable);
-        }
-        if (!id.equals("") && !name.equals("")) {
-            return productRepository.findByIdAndName(Long.valueOf(id), name, pageable);
+        if (!sku.equals("") && !name.equals("")) {
+            return productRepository.findBySkuAndName(sku, name, pageable);
         }
         if (!name.equals("") && !code.equals("")) {
             return productRepository.findByNameAndCode(name, code, pageable);
         }
-        if (!id.equals("") && !code.equals("")) {
-            return productRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
+        if (!sku.equals("") && !code.equals("")) {
+            return productRepository.findBySkuAndCode(sku, code, pageable);
         }
-        if (!id.equals("")) {
-            return productRepository.findById(Long.valueOf(id), pageable);
+//        if (!name.equals("")) {
+//            return productRepository.findByName(name, pageable);
+//        }
+        if(!name.equals("")){
+            return productRepository.findProductsByName(name,pageable);
         }
-        if (!name.equals("")) {
-            return productRepository.findByName(name, pageable);
+        if (!sku.equals("")) {
+            return productRepository.findBySku(sku, pageable);
         }
         if (!code.equals("")) {
             return productRepository.findByCode(code, pageable);

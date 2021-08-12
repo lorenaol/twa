@@ -4,6 +4,7 @@ import com.internship.epayment.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -22,13 +23,19 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findBySku(String sku, Pageable pageable);
 
-    Page<Product> findByIdAndCode(Long id, String code, Pageable pageable);
+    Page<Product> findBySkuAndCode(String sku, String code, Pageable pageable);
 
-    Page<Product> findByIdAndName(Long id, String name, Pageable pageable);
+    @Query("select p from Product p where p.name like %:name% and p.sku=:sku")
+    Page<Product> findBySkuAndName(String sku, String name, Pageable pageable);
 
+    @Query("select p from Product p where p.name like %:name% and p.code=:code")
     Page<Product> findByNameAndCode(String name, String code, Pageable pageable);
 
-    Page<Product> findByIdAndNameAndCode(Long id, String name, String code, Pageable pageable);
+    @Query("select p from Product p where p.name like %:name% and p.code=:code and p.sku=:sku")
+    Page<Product> findBySkuAndNameAndCode(String sku, String name, String code, Pageable pageable);
 
     Page<Product> findBySkuAndCodeAndIdAndName(String sku, String code, Long id, String name, Pageable pageable);
+
+    @Query("select p from Product p where p.name like %:name%")
+    Page<Product> findProductsByName(String name, Pageable pageable);
 }
