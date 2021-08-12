@@ -85,44 +85,6 @@ public class ProductController {
         productService.deleteProduct(product);
     }
 
-//    @GetMapping("/export/excel")
-//    public void exportToExcel(HttpServletResponse response, @RequestHeader(name = "FILTER-PARAMS") List<String> params,
-//                              Pageable pageable) throws IOException {
-//
-//        response.setContentType("application/octet-stream");
-//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
-//        String currentDateTime = dateFormatter.format(new Date());
-//
-//        String headerValue = "attachment; filename=products_" + currentDateTime + ".xlsx";
-//        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
-//        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, headerValue);
-//
-//        List<Product> productList = productService.filter(params, pageable).toList();
-//
-//        ProductExcelExporter excelExporter = new ProductExcelExporter(productList);
-//
-//        excelExporter.export(response);
-//    }
-//
-//    @GetMapping("/export/pdf")
-//    public void exportToPDF(HttpServletResponse response, @RequestHeader(name = "FILTER-PARAMS") List<String> params,
-//                            Pageable pageable) throws DocumentException, IOException {
-//        response.setContentType("application/pdf");
-//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-//        //  String currentDateTime = "2021-08-04_10_54_33";
-//        String currentDateTime = dateFormatter.format(new Date()).replace(":", "_");
-//
-//        String headerValue = "attachment; filename=products_" + currentDateTime + ".pdf";
-//        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
-//        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, headerValue);
-//
-//        List<Product> productList = productService.filter(params, pageable).toList();
-//
-//        ProductPDFExporter exporter = new ProductPDFExporter(productList);
-//        exporter.export(response);
-//
-//    }
-
     @GetMapping("/export/{type}")
     public void export(HttpServletResponse response, @PathVariable String type, @RequestHeader(name = "FILTER-PARAMS") List<String> params,
                        Pageable pageable) throws Exception {

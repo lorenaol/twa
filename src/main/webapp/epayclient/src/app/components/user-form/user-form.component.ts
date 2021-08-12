@@ -22,12 +22,7 @@ export class UserFormComponent implements OnInit {
   faCalendar = faCalendar;
 
   modalType?: ModalTypesEnum;
-  // inputUser?: User;
-
-  // latitude: number = 0;
-  // longitude: number = 0;
   zoom: number = 12;
-  // address?: string;
   private geoCoder: any;
 
   userForm = this.fb.group({
@@ -159,8 +154,6 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-
-  // user.address = this.userForm.get('address')!.value;
 
   mapClicked($event: MouseEvent) {
     if (ModalTypesEnum.VIEW === this.modalType) {

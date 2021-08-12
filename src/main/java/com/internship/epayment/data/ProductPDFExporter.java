@@ -39,17 +39,6 @@ public class ProductPDFExporter {
             cell.setPhrase(new Phrase(String.valueOf(s), font));
             table.addCell(cell);
         }
-//        cell.setPhrase(new Phrase("ID", font));
-//        table.addCell(cell);
-//
-//        cell.setPhrase(new Phrase("Name", font));
-//        table.addCell(cell);
-//
-//        cell.setPhrase(new Phrase("Sku", font));
-//        table.addCell(cell);
-//
-//        cell.setPhrase(new Phrase("Code", font));
-//        table.addCell(cell);
     }
 
     private void writeTableData(PdfPTable table) {
