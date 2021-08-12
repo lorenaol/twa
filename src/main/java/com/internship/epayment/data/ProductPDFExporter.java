@@ -6,16 +6,20 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class ProductPDFExporter {
     private List<Product> productList;
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
     public ProductPDFExporter(List<Product> productList) {
         this.productList = productList;
@@ -29,7 +33,7 @@ public class ProductPDFExporter {
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(Color.WHITE);
 
-        List<String> strings = Arrays.asList(new String[]{"ID", "Name", "Sku", "Code"});
+        String[] strings = new String[]{"ID", "Name", "Sku", "Code"};
 
         for (String s : strings) {
             cell.setPhrase(new Phrase(String.valueOf(s), font));

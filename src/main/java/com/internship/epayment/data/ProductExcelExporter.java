@@ -27,7 +27,6 @@ public class ProductExcelExporter {
         sheet = workbook.createSheet("Products");
 
         Row row = sheet.createRow(0);
-        //sheet.autoSizeColumn(0);
         sheet.setColumnWidth(0, 1000);
 
         CellStyle style = workbook.createCellStyle();
@@ -36,10 +35,15 @@ public class ProductExcelExporter {
         font.setFontHeight(16);
         style.setFont(font);
 
-        createCell(row, 0, "ID", style);
-        createCell(row, 1, "Name", style);
-        createCell(row, 2, "Sku", style);
-        createCell(row, 3, "Code", style);
+        String[] strings = new String[]{"ID", "Name", "Sku", "Code"};
+        for (int i = 0; i < strings.length; i++) {
+            createCell(row, i, strings[i], style);
+        }
+
+//        createCell(row, 0, "ID", style);
+//        createCell(row, 1, "Name", style);
+//        createCell(row, 2, "Sku", style);
+//        createCell(row, 3, "Code", style);
     }
 
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
