@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {User} from "../entities/user";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {Observable, throwError} from "rxjs";
+import {map, tap} from "rxjs/operators";
 import {environment} from "@environments/environment";
 import {SigninComponent} from "@app/components/signin/signin.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ForgotPasswordComponent} from "@app/components/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
+import {PasswordChangeComponent} from "@app/components/password-change/password-change.component";
 
 type EntityResponseType = HttpResponse<User>;
 type EntityArrayResponseType = HttpResponse<User[]>;
@@ -21,10 +22,17 @@ export class UserService {
   private readonly USER_URL = environment.apiUrl + 'users';
   private forgotDialog: NgbModalRef | null;
   private changeDialog: NgbModalRef | null;
-
+  password: any;
   constructor(private http: HttpClient, private modalService: NgbModal) {
     this.forgotDialog = null;
     this.changeDialog = null;
+
+    // let userName = JSON.parse(localStorage.getItem('user')!).userName;
+    // if(userName!=null){
+    // this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{
+    //   this.password = data.body?.password;
+    //   console.log(this.password);
+    // });}
   }
 
   public addUser(user: User): Observable<EntityResponseType> {
@@ -42,12 +50,20 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getUsersByName(userName: string): Observable<EntityArrayResponseType> {
-    const params = new HttpParams();
-    params.append('name', userName);
-    return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
-      .pipe(map((res: EntityArrayResponseType) => res));
+  public getUsersByName(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('name',userName);
+
+    return this.http.get<User>(this.USER_URL + '/findByName', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
   }
+  public getUsersByEmail(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('email',userName);
+
+    return this.http.get<User>(this.USER_URL + '/findByEmail', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
+  }
+
+
   public getUserByCode(userEmail: string): Observable<EntityArrayResponseType> {
     const params = new HttpParams();
     params.append('email', userEmail);
@@ -66,7 +82,7 @@ export class UserService {
 
 
 
-  public updateUser(user: User): Observable<EntityResponseType> {
+  public updateUser(user: User | null): Observable<EntityResponseType> {
     return this.http.put<User>(this.USER_URL, user, {observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
@@ -93,9 +109,43 @@ export class UserService {
         ,size: "xl"});
     }
   }
+  showCPass() {
+    if (!this.changeDialog || !this.modalService.hasOpenModals) {
+      this.forgotDialog = this.modalService.open(PasswordChangeComponent, {
+        beforeDismiss: () => {
+          this.forgotDialog = null;
+          return true;
+        }
+        ,size: "xl"});
+    }
+  }
 
   public resetPassword(userToken: string, userPassword: string): Observable<EntityArrayResponseType> {
     return this.http.put<User[]>(this.USER_URL+"/reset-password"+"/"+userToken+"/"+userPassword,{}, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
+  public resetPasswordLoggedIn(init_password: string, change_password: string, email: string): Observable<EntityArrayResponseType> {
+    let userName = JSON.parse(localStorage.getItem('user')!).userName;
+    console.log(userName);
+
+    this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;console.log(this.password);});
+    console.log(this.password);
+
+    if(init_password==this.password){
+
+      this.getUsersByEmail(email).subscribe((data:HttpResponse<User>)=>{
+        let user = data.body;
+        // @ts-ignore
+        user.password = change_password;
+        this.updateUser(user).subscribe()
+        })
+    }
+    console.log("fgretgrtgrt");
+    this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;console.log(this.password);});
+    console.log(this.password);
+
+    return this.http.put<User[]>(this.USER_URL+"/reset-password-logged-in"+"/"+init_password+"/"+change_password+"/"+email,{}, {observe: 'response'})
+      .pipe(map((res: EntityArrayResponseType) => res));
+  }
+
 }

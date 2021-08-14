@@ -19,7 +19,7 @@
 
   <div ngbDropdown>
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>
-      <fa-icon [icon]="faUser"></fa-icon>&nbsp;{{user?.userName}}</button>
+      <fa-icon [icon]="faUser"></fa-icon>&nbsp;{{user?.email}}</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
       <div *ngIf="isLoggedIn()">
         <span><a (click)="logout()"><button class="btn btn-link " ><span class="em em-user2"></span>Logout</button></a></span>

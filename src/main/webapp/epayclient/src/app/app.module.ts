@@ -46,6 +46,8 @@ import { UserRoleDeleteComponent } from './components/user-role-delete/user-role
 import { SigninComponent } from './components/signin/signin.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { PasswordChangeComponent } from './components/password-change/password-change.component';
+
 
 
 @NgModule({
@@ -80,6 +82,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     SigninComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    PasswordChangeComponent,
+
   ],
   imports: [
     CommonModule,

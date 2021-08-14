@@ -52,6 +52,12 @@ public class UserServiceImpl implements UserService {
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
         return user.get();
     }
+    @Override
+    public String findPassByName(String name){
+        Optional<User> user = userRepository.findUserByName(name);
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
+        return user.get().getPassword();
+    }
 
     @Override
     public User findByEmail(String email) {
@@ -108,10 +114,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException {
+    public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserEmail) throws NotFoundException {
         //pas 1.getUser de pe currentUserName
-        User user = findByName(currentUserName);
-
+        User user = findByEmail(currentUserEmail);
+        System.out.println(user.getName());
         //pas 2.luam rolurile userului
         List<Role> roles = new ArrayList<>();
         userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
@@ -136,7 +142,7 @@ public class UserServiceImpl implements UserService {
         });
 
         //pas 4.bagam ce ne intereseaza in dto si il returnam
-        return new UserWithAuthoritiesDto(currentUserName, authorities);
+        return new UserWithAuthoritiesDto(currentUserEmail, authorities);
     }
 
     public String forgotPassword(String email) {

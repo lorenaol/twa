@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
-import {UserWithAuthoritiesDto} from "@app/entities/user";
+import {User, UserWithAuthoritiesDto} from "@app/entities/user";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "@app/services/authentication.service";
 import {Authorities} from "@app/enums/authorities";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {UserService} from "@app/services/user.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   Authorities = Authorities;
   faUser = faUser;
   user!: UserWithAuthoritiesDto | null;
+  private password: string | undefined;
 
 
   constructor(private router: Router,
@@ -25,17 +27,22 @@ export class AppComponent {
   }
 
   logout() {
+
     this.authenticationService.logout();
   }
 
 
   login() {
       this.authenticationService.showLogin();
+
   }
 
   isLoggedIn(): boolean {
     let user = localStorage.getItem('user');
+
+
     if (user) {
+
       return true;
     }
     return false;
@@ -46,7 +53,8 @@ export class AppComponent {
   }
 
   changepass() {
-    this.userService.showFPass();
+
+    this.userService.showCPass();
   }
 }
 
