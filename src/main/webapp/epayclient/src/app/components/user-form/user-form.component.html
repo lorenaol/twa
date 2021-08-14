@@ -1,155 +1,145 @@
- <form name="userForm" (ngSubmit)="save()" [formGroup]="userForm">
-      <div class="modal-header">
-        <div *ngIf="ModalTypesEnum.CREATE == modalType">
-          <h4 class="modal-title" id="modal-basic-title">Create User</h4>
-        </div>
-        <div *ngIf="ModalTypesEnum.EDIT == modalType">
-          <h4 class="modal-title" id="modal-basic-title">Edit User - ID: {{inputUser?.id}}</h4>
-        </div>
-        <div *ngIf="ModalTypesEnum.VIEW == modalType">
-          <h4 class="modal-title" id="modal-basic-title">View User - ID: {{inputUser?.id}}</h4>
-        </div>
+<form name="userForm" (ngSubmit)="save()" [formGroup]="userForm">
+  <div class="modal-header">
+    <div *ngIf="ModalTypesEnum.CREATE == modalType">
+      <h4 class="modal-title" id="modal-basic-title">Create User</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.EDIT == modalType">
+      <h4 class="modal-title" id="modal-basic-title">Edit User - ID: {{userForm.get('id')?.value}}</h4>
+    </div>
+    <div *ngIf="ModalTypesEnum.VIEW == modalType">
+      <h4 class="modal-title" id="modal-basic-title">View User - ID: {{userForm.get('id')?.value}}</h4>
+    </div>
 
-        <button type="button" class="close" aria-label="Close" (click)="close()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="col-sm-6">
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="name" class="col-sm-4 col-form-label">Name:</label>
+          <input id="name" class="form-control" formControlName="name"
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
+        </div>
       </div>
 
-      <div class="modal-body">
-        <div class="col-sm-6">
-            <div class="form-group row">
-              <label for="name" class="col-sm-4 col-form-label">Name</label>
-              <div class="col-sm-8">
-                <input id="name" class="form-control" formControlName="name"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="email" class="col-sm-4 col-form-label">Email</label>
-              <div class="col-sm-8">
-                <input id="email" class="form-control" formControlName="email"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="password" class="col-sm-4 col-form-label">Password</label>
-              <div class="col-sm-8">
-                <input id="password" class="form-control" formControlName="password"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="is_active" class="col-sm-4 col-form-label">Is Active</label>
-              <div class="col-sm-8">
-                <input id="is_active" class="form-control" formControlName="is_active"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="start_date" class="col-sm-4 col-form-label">Start date</label>
-              <div class="col-sm-8">
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" id="start_date" name="dp" formControlName="start_date"
-                         ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
-                            [disabled]="ModalTypesEnum.VIEW == modalType">
-                      <fa-icon [icon]="faCalendar"></fa-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row" >
-              <label for="end_date" class="col-sm-4 col-form-label">End date</label>
-              <div class="col-sm-8">
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" id="end_date" name="dp" formControlName="end_date"
-                         ngbDatepicker #e="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"
-                            [disabled]="ModalTypesEnum.VIEW == modalType">
-                      <fa-icon [icon]="faCalendar"></fa-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
-              <label for="latitude" class="col-sm-4 col-form-label">Latitude</label>
-              <div class="col-sm-8">
-                <input id="latitude" class="form-control" formControlName="latitude"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
-              <label for="longitude" class="col-sm-4 col-form-label">Longitude</label>
-              <div class="col-sm-8">
-                <input id="longitude" class="form-control" formControlName="longitude"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
-
-            <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
-              <label for="address" class="col-sm-4 col-form-label">Address</label>
-              <div class="col-sm-8">
-                <input id="address" class="form-control" formControlName="address"
-                       [readOnly]="ModalTypesEnum.VIEW == modalType">
-              </div>
-            </div>
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="email" class="col-sm-4 col-form-label">Email:</label>
+          <input id="email" class="form-control" formControlName="email"
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
         </div>
-        <div class="col-sm-6">
-          <div  *ngIf="ModalTypesEnum.VIEW == modalType">
-            <agm-map [latitude]= "inputUser?.latitude || 0"
-                     [longitude]="inputUser?.longitude || 0"
-                     (mapClick)="mapClicked($event)"
-                     [zoom]="zoom">
+      </div>
 
-              <agm-marker
-                [latitude]= "inputUser?.latitude || 0"
-                [longitude]="inputUser?.longitude || 0"
-                [label] = "inputUser?.name?.charAt(0) || '' "
-                [markerDraggable] = "false">
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="password" class="col-sm-4 col-form-label">Password:</label>
+          <input id="password" class="form-control" formControlName="password"
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
+        </div>
+      </div>
 
-                <agm-info-window>
-                  <strong>{{inputUser?.name}}</strong>
-                </agm-info-window>
-              </agm-marker>
-            </agm-map>
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="is_active" class="col-sm-4 col-form-label">Is Active:</label>
+          <input id="is_active" class="form-control" formControlName="is_active"
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="start_date" class="col-sm-4 col-form-label">Start date:</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" id="start_date" name="dp" formControlName="start_date"
+                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
+                    [disabled]="ModalTypesEnum.VIEW == modalType">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
           </div>
+        </div>
+      </div>
 
-          <div *ngIf="ModalTypesEnum.VIEW != modalType">
-            <agm-map [latitude]= "inputUser?.latitude || 44.441146195052944"
-                     [longitude]="inputUser?.longitude || 26.106725370342822"
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="end_date" class="col-sm-4 col-form-label">End date:</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" id="end_date" name="dp" formControlName="end_date"
+                 ngbDatepicker #e="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"
+                    [disabled]="ModalTypesEnum.VIEW == modalType">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="latitude" class="col-sm-4 col-form-label">Latitude:</label>
+          <input id="latitude" class="form-control" formControlName="latitude"
+                 [readOnly]="true">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="longitude" class="col-sm-4 col-form-label">Longitude:</label>
+          <input id="longitude" class="form-control" formControlName="longitude"
+                 [readOnly]="true">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="input-group">
+          <label for="address" class="col-sm-4 col-form-label">Address:</label>
+          <input id="address" class="form-control" formControlName="address"
+                 (keydown.enter)="$event.preventDefault()"
+                 placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                 type="text" #search
+                 [readOnly]="ModalTypesEnum.VIEW == modalType">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+
+      <div class="container">
+
+        <div class="form-group">
+          <div>
+            <agm-map [latitude]="userForm.get('latitude')?.value || 44.441146195052944"
+                     [longitude]="userForm.get('longitude')?.value  || 26.106725370342822"
                      (mapClick)="mapClicked($event)"
                      [zoom]="zoom-5">
 
               <agm-marker
-                [latitude]= "inputUser?.latitude || 44.441146195052944"
-                [longitude]="inputUser?.longitude ||  26.106725370342822"
-                [label] = "inputUser?.name?.charAt(0) || '' "
-                [markerDraggable] = "true"
+                [latitude]="userForm.get('latitude')?.value || 44.441146195052944"
+                [longitude]="userForm.get('longitude')?.value ||  26.106725370342822"
+                [label]="userForm.get('name')?.value?.charAt(0) || '' "
+                [markerDraggable]="ModalTypesEnum.VIEW != modalType"
                 (dragEnd)="markerDragEnd($event)">
 
                 <agm-info-window>
-                  <strong>{{inputUser?.name}}</strong>
+                  <strong>{{userForm.get('name')?.value}}</strong>
                 </agm-info-window>
               </agm-marker>
             </agm-map>
+
           </div>
         </div>
+
       </div>
-      <div class="modal-footer">
-        <div *ngIf="ModalTypesEnum.VIEW != modalType">
-          <button type="submit" id="save" class="btn btn-success">Save</button>
-        </div>
-      </div>
- </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div *ngIf="ModalTypesEnum.VIEW != modalType">
+      <button type="submit" id="save" class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
 

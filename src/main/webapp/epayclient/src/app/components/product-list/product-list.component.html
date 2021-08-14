@@ -20,6 +20,7 @@
         <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
       </button>
     </div>
+
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
@@ -44,7 +45,20 @@
         <th scope="col">Code
           <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('code', true)"></fa-icon>
           <fa-icon [icon]="faArrowDown" (click)="sort('code', false)"></fa-icon></th>
-        <th scope="col">Actions</th>
+        <th scope="col">Actions
+          <div class="row">
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Export Data</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <span><a (click)="exportExcel()"><button ngbDropdownItem>Export to Excel</button></a> </span>
+                  <span><a (click)="exportPdf()"><button ngbDropdownItem>Export PDF</button></a> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+
       </tr>
       </thead>
       <tbody>

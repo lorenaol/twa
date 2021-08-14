@@ -43,7 +43,6 @@ import { RoleauthorityDeleteComponent } from './components/roleauthority-delete/
 import { UserRoleListComponent } from './components/user-role-list/user-role-list.component';
 import { UserRoleFormComponent } from './components/user-role-form/user-role-form.component';
 import { UserRoleDeleteComponent } from './components/user-role-delete/user-role-delete.component';
-import { SigninComponent } from './components/signin/signin.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
@@ -79,7 +78,6 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     LoginComponent,
     HasAuthorityDirective,
     UsersRomaniaComponent,
-    SigninComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     PasswordChangeComponent,
@@ -100,7 +98,8 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     SidebarModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w'
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+      libraries: ['places']
     })
   ],
   providers: [

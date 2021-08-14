@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {User} from "../entities/user";
-import {Observable, throwError} from "rxjs";
-import {map, tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
-import {SigninComponent} from "@app/components/signin/signin.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ForgotPasswordComponent} from "@app/components/forgot-password/forgot-password.component";
-import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 import {PasswordChangeComponent} from "@app/components/password-change/password-change.component";
 
 type EntityResponseType = HttpResponse<User>;
@@ -62,8 +60,6 @@ export class UserService {
     return this.http.get<User>(this.USER_URL + '/findByEmail', {params, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
-
-
   public getUserByCode(userEmail: string): Observable<EntityArrayResponseType> {
     const params = new HttpParams();
     params.append('email', userEmail);

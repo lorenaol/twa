@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit {
     price: [],
     name: [],
     quantity: [],
-    expire_date: [],
+    expireDate: [],
     sku: [],
     code: []
   });
@@ -59,7 +59,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   private createFromForm(): Product {
-    const expireDate = this.productForm.get('expire_date')!.value;
+    const expireDate = this.productForm.get('expireDate')!.value;
     const product = new Product();
     product.id = this.inputProduct?.id;
     product.price = this.productForm.get('price')!.value;
