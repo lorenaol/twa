@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,13 +40,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        User userOptional = userRepository.findUserByEmail(name);
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findUserByEmail(name));
 
         if (userOptional == null) {
             System.err.println("User not found: " + name);
             throw new UsernameNotFoundException("");
         }
-        User user = userOptional;
+        User user = userOptional.get();
 
         if (!password.equals(user.getPassword())) {
             System.err.println("Wrong password!");
