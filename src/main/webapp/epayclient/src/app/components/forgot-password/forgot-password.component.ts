@@ -45,12 +45,12 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
 
     // let userName = localStorage.getItem('user')!.split(`"`)[15];
-    let userName = JSON.parse(localStorage.getItem('user')!).userName;
-    console.log(userName);
-
-    this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;});
-    console.log(this.password);
-    // console.log(data.body?.password);
+    // let userName = JSON.parse(localStorage.getItem('user')!).userName;
+    // console.log(userName);
+    //
+    // this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;});
+    // console.log(this.password);
+    // // console.log(data.body?.password);
 
     this.forgotForm = this.formBuilder.group({
       email: ['', Validators.required]
