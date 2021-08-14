@@ -42,7 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         Optional<User> userOptional = Optional.ofNullable(userRepository.findUserByEmail(name));
 
-        if (userOptional == null) {
+        if (!userOptional.isPresent()) {
             System.err.println("User not found: " + name);
             throw new UsernameNotFoundException("");
         }
