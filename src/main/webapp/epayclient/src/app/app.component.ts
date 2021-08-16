@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UserWithAuthoritiesDto} from "@app/entities/user";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "@app/services/authentication.service";
-import {Authorities} from "@app/enums/authorities";
+import {Component, ViewEncapsulation} from '@angular/core';
+import {User, UserWithAuthoritiesDto} from "@app/entities/user";
+import { Router } from "@angular/router";
+import { AuthenticationService } from "@app/services/authentication.service";
+import { Authorities } from "@app/enums/authorities";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {Category} from "@app/entities/category";
@@ -20,7 +20,10 @@ import {UserService} from "@app/services/user.service";
 export class AppComponent {
   Authorities = Authorities;
   faUser = faUser;
+  faBars = faBars;
   user!: UserWithAuthoritiesDto | null;
+  categories?: Category[] | null;
+  items: MenuItem[] = [{}];
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
@@ -94,6 +97,14 @@ export class AppComponent {
       return true;
     }
     return false;
+  }
+
+  signin() {
+    this.authenticationService.showSignin();
+  }
+
+  changepass() {
+    this.userService.showFPass();
   }
 }
 
