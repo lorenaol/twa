@@ -1,5 +1,7 @@
 package com.internship.epayment.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,6 +20,8 @@ public class User {
     private String email;
 
     @Column(name = "pass", length = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //specifica modul în care proprietatea poate fi accesată în timpul serializării („citire”) și deserializare („scriere”)
     private String password;
 
     private boolean is_active;
