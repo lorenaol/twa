@@ -1,0 +1,56 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header">
+    <div class="h3">{{product?.name}}
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="main-info">
+      <div class="col-sm-4" class="col-image">
+        <div class="image"></div>
+        <div class="images">
+          <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}"
+                      [showThumbnailNavigators]="false" [showItemNavigators]="true"
+                      [showThumbnails]="false" [circular]="true">
+
+            <ng-template pTemplate="item" let-item>
+              <img [src]="item.source" style="width: 100%;"/>
+            </ng-template>
+          </p-galleria>
+        </div>
+      </div>
+      <div class="col-sm-3" class="col-info">
+        <div class="info">
+          <p class="first"><strong>Quantity: {{product?.quantity}}</strong></p>
+          <p><strong>Sku: {{product?.sku}}</strong></p>
+          <p><strong>Code: {{product?.code}}</strong></p>
+        </div>
+        <div class="info">
+          <p class="first"><fa-icon [icon]="faTruck"></fa-icon>  Delivery to: {{user}}</p>
+          <p><fa-icon [icon]="faCalendarDay"></fa-icon>  Estimate Date: {{estimateDate}}</p>
+        </div>
+        <div class="info">
+          <p class="first"><strong><fa-icon [icon]="faUndo"></fa-icon>  Free return in 30 days </strong></p>
+          <p><strong><fa-icon [icon]="faScroll"></fa-icon>  Warranty included:</strong></p>
+            <ul>
+              <li>Individuals: 24 months</li>
+              <li>Legal entities: 12 months</li>
+            </ul>
+          <p><strong><fa-icon [icon]="faShield"></fa-icon>  eProtect</strong></p>
+        </div>
+
+      </div>
+      <div class="col-sm-5 col3" class="col-btn">
+        <h3>{{product?.price}}$</h3>
+        <div class="buttons">
+          <button id="cart"><fa-icon id="cart-i" [icon]="faCart"></fa-icon>  Add to cart</button>
+          <button id="favorites"><fa-icon id="heart" [icon]="faHeart"></fa-icon>  Add to favorites</button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

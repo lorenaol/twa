@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
   id: string = "";
   code: string = "";
   sku: string = "";
+  category: string= "";
 
   products?: Product[] | null;
 
