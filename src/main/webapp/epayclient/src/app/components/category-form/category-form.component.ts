@@ -66,7 +66,6 @@ export class CategoryFormComponent implements OnInit {
     category.categoryDescription = this.categoryForm.get('categoryDescription')!.value;
     category.storeId = this.categoryForm.get('storeId')!.value;
     category.dateAdded = new Date(dateAdded.year, dateAdded.month-1, dateAdded.day);
-
     return category;
   }
 

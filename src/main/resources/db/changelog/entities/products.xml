@@ -32,6 +32,10 @@
             <column name="code" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
+            <column name="category_id" type="bigint">
+            </column>
+            <column name="image" type="clob">
+            </column>
         </createTable>
     </changeSet>
 
@@ -47,6 +51,16 @@
             <column name="expire_date" type="datetime"/>
             <column name="sku" type="string"/>
             <column name="code" type="string"/>
+            <column name="category_id" type="numeric"/>
+            <column name="image" type="string"/>
         </loadData>
+    </changeSet>
+
+    <changeSet id="4" author="dani">
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="products"
+                                 constraintName="fk_category_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categories"/>
     </changeSet>
 </databaseChangeLog>

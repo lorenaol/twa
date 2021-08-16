@@ -1,6 +1,10 @@
 package com.internship.epayment.serviceImpl;
 
+import com.internship.epayment.entity.Category;
+import com.internship.epayment.entity.Image;
 import com.internship.epayment.entity.Product;
+import com.internship.epayment.repository.CategoryRepository;
+import com.internship.epayment.repository.ImageRepository;
 import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
@@ -18,6 +22,15 @@ public class ProductServiceImpl implements ProductsService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @Autowired
+    private ImageServiceImpl imageService;
 
     @Override
     public Page<Product> getAll(Pageable pageable) {
@@ -42,18 +55,46 @@ public class ProductServiceImpl implements ProductsService {
     @Override
     @Transactional
     public Product addProduct(Product product) {
-        return productRepository.save(product);
+       int i;
+       Product p = productRepository.save(product);
+
+       for(i = 0; i < product.getImages().size(); i++)
+       {
+            Image im = product.getImages().get(i);
+            im.setProduct(p);
+            imageRepository.save(im);
+
+       }
+        return p;
     }
 
     @Override
     @Transactional
     public Product updateProduct(Product product) {
-        return productRepository.save(product);
+        int i;
+        Product p = productRepository.save(product);
+        for(i = 0; i < product.getImages().size(); i++)
+        {
+            Image im = product.getImages().get(i);
+            if(product.getImages().get(i).getId() == null){
+                im.setProduct(p);
+                imageRepository.save(im);
+            }
+            else
+                imageRepository.delete(im);
+
+        }
+        return p;
     }
 
     @Override
     @Transactional
     public void deleteProduct(Product product) {
+        int i;
+        for(i = 0; i < product.getImages().size(); i++){
+            Image im = product.getImages().get(i);
+            imageRepository.delete(im);
+        }
         productRepository.delete(product);
     }
 

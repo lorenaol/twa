@@ -1,3 +1,5 @@
+import {Product} from "@app/entities/product";
+
 export class Category {
   id?: number;
   categoryName?: string;
@@ -5,4 +7,5 @@ export class Category {
   categoryDescription?: string;
   storeId?: string;
   dateAdded?: Date;
+  products?: Product[];
 }
