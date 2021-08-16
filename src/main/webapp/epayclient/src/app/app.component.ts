@@ -8,8 +8,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {Category} from "@app/entities/category";
 import {CategoryService} from "@app/services/category.service";
 import {MenuItem} from 'primeng/api';
-
 import {UserService} from "@app/services/user.service";
+import  {environment} from "@environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -53,7 +53,7 @@ export class AppComponent {
          v = v.concat([
            {
              label: product.name,
-             url:"http://localhost:4200/products/" + product.id,
+             url:`${environment.browserURL}` + "products/" + product.id,
            }
            ]);
       }
@@ -67,13 +67,13 @@ export class AppComponent {
         if(i === 0)
           this.items[0] = {
             label: `${category.categoryName}`,
-           url:"http://localhost:4200/categories/" + category.id,
+            url: `${environment.browserURL}` + "categories/" + category.id,
             items: this.f(category)
           };
         else
           this.items.push({
             label: `${category.categoryName}`,
-            url:"http://localhost:4200/categories/" + category.id,
+            url: `${environment.browserURL}` + "categories/" + category.id,
             items: this.f(category)
           });
         i++;
