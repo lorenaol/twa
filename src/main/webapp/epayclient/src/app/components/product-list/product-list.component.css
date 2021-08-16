@@ -1,0 +1,7 @@
+.filter{
+  display:flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  height: auto;
+}
+

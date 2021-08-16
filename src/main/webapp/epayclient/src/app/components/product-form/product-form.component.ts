@@ -8,6 +8,11 @@ import {HttpResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {ProductService} from "@app/services/product.service";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {Category} from "@app/entities/category";
+import {CategoryService} from "@app/services/category.service";
+import {Image} from "@app/entities/image";
+import {ImageService} from "@app/services/image.service";
+
 
 @Component({
   selector: 'app-product-form',
@@ -21,6 +26,10 @@ export class ProductFormComponent implements OnInit {
 
   modalType?: ModalTypesEnum;
   inputProduct?: Product;
+  image?: string;
+  images?: Image[] = [];
+  categories?: Category[] | null | undefined = [];
+  uploadedFiles: any[] = [];
   productForm = this.fb.group({
     id: [],
     price: [],
@@ -28,22 +37,86 @@ export class ProductFormComponent implements OnInit {
     quantity: [],
     expireDate: [],
     sku: [],
-    code: []
+    code: [],
+    category: [],
+    image:[],
+    images:[]
   });
 
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
-    private productService: ProductService
-  ) {
-  }
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     if (this.inputProduct !== undefined) {
       this.updateForm(this.inputProduct);
     }
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data.body;
+    })
   }
+
+  getBase64Image($event: any): void {
+    let me = this;
+    let file = $event.originalEvent.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      me.image = reader.result?.toString().substring(23);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  getBase64MoreImages($event: any): void {
+    let me = this;
+    let i: number;
+    me.images = [];
+    for(i = 0; i < $event.currentFiles.length; i++){
+      let file = $event.currentFiles[i];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        if(reader.result?.toString().substring(23))
+          if(me.images)
+            me.images.push({
+              imageCode: reader.result?.toString().substring(23)
+            });
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+  }
+
+  getBase64MoreImagesEdit($event: any): void {
+    let me = this;
+    let i: number;
+    for(i = 0; i < $event.currentFiles.length; i++){
+      let file = $event.currentFiles[i];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        if(reader.result?.toString().substring(23))
+          if (me.inputProduct?.images)
+            me.inputProduct?.images.push({
+              imageCode: reader.result?.toString().substring(23)
+            });
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+    if (this.inputProduct?.images)
+      this.images = this.inputProduct.images;
+  }
+
+
 
   close(): void {
     this.activeModal.close(false);
@@ -68,7 +141,9 @@ export class ProductFormComponent implements OnInit {
     product.expireDate = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
     product.sku = this.productForm.get('sku')!.value;
     product.code = this.productForm.get('code')!.value;
-
+    product.category = this.productForm.get('category')!.value;
+    product.image = this.image;
+    product.images = this.images;
     return product;
   }
 
@@ -81,7 +156,10 @@ export class ProductFormComponent implements OnInit {
       quantity: product?.quantity,
       expireDate: new NgbDate(expireDate?.getFullYear(), expireDate?.getMonth() + 1, expireDate?.getDate()),
       sku: product?.sku,
-      code: product?.code
+      code: product?.code,
+      category: product?.category,
+      image: product?.image,
+      images: product?.images
     });
   }
 

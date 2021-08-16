@@ -19,6 +19,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public addProduct(product: Product): Observable<EntityResponseType>  {
+    console.log(product);
     return this.http.post<Product>(this.PRODUCT_URL, product, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => res));
   }
