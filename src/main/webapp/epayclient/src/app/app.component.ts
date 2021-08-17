@@ -40,7 +40,6 @@ export class AppComponent {
   isLoggedIn(): boolean {
     let user = localStorage.getItem('user');
 
-
     if (user) {
 
       return true;
