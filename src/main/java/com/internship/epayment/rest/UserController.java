@@ -18,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.mail.MessagingException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/users")
@@ -152,6 +151,7 @@ public class UserController {
            user.setPassword(change_password);
            userService.updateUser(user);
            System.out.println(user.getPassword());
+           emailService.sendMailCPass(user);
         }
         return response;
     }

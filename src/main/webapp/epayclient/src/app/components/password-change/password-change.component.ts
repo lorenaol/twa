@@ -5,8 +5,8 @@ import {UserService} from "@app/services/user.service";
 import {AuthenticationService} from "@app/services/authentication.service";
 import {first, map} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
-import {User} from "@app/entities/user";
-import {from, throwError} from "rxjs";
+import {User, UserWithAuthoritiesDto} from "@app/entities/user";
+import {BehaviorSubject, from, throwError} from "rxjs";
 
 @Component({
   selector: 'app-password-change',
@@ -21,7 +21,7 @@ export class PasswordChangeComponent implements OnInit {
   returnUrl!: string ;
   error = '';
   password: any;
-
+  userSubject: BehaviorSubject<UserWithAuthoritiesDto | null>;
 
 
   constructor(
@@ -36,6 +36,8 @@ export class PasswordChangeComponent implements OnInit {
       this.password = data.body?.password;
       console.log(this.password);
     });
+    let user = localStorage.getItem('user');
+    this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
 
   }
 
@@ -78,6 +80,24 @@ export class PasswordChangeComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         error => {
+          if(error == 'OK') {
+
+            let auth = window.btoa(email + ':' + this.f.changePassword.value);
+            let user =JSON.parse(localStorage.getItem('user')!);
+            console.log(user);
+            user.authdata = auth;
+            console.log(auth);
+            localStorage.setItem('user', JSON.stringify(user));
+            console.log(user);
+            console.log();
+            // this.authenticationService.logout();
+            // console.log("gtrdf");
+            // this.authenticationService.login(email, this.f.changePassword.value);
+            // console.log("vrfbrb");
+            this.userSubject.next(user);
+
+
+          }
           this.error = error;
           this.loading = false;
         });
