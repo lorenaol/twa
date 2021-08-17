@@ -43,18 +43,12 @@
           [readOnly]="ModalTypesEnum.VIEW == modalType">
       </div>
     </div>
-    <div class="form-group row">
-      <label for="dateAdded" class="col-sm-4 col-form-label">Date Added</label>
+    <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
+      <label for="createdDate" class="col-sm-4 col-form-label">Created Date</label>
       <div class="col-sm-8">
         <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" id="dateAdded" name="dp" formControlName="dateAdded"
+          <input class="form-control" placeholder="yyyy-mm-dd" id="createdDate" name="dp" formControlName="createdDate"
                  ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
-              [disabled]="ModalTypesEnum.VIEW == modalType">
-              <fa-icon [icon]="faCalendar"></fa-icon>
-            </button>
-          </div>
         </div>
       </div>
     </div>

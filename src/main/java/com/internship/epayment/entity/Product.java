@@ -40,6 +40,9 @@ public class Product {
     @JsonIgnoreProperties("product")
     private List<Image> images;
 
+    @Column(name = "created_date")
+    private Date createdDate;
+
     public Long getId() {
         return id;
     }
@@ -118,5 +121,13 @@ public class Product {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }
