@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,6 +29,8 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private EmailService emailService;
@@ -137,16 +140,21 @@ public class UserController {
                                 @PathVariable String email)  throws MessagingException{
         String response;
         User user = userService.findByEmail(email);
-        if(!initPassword.equals(user.getPassword())){
+
+        if(!passwordEncoder.matches(initPassword,user.getPassword())){
             response = "Password doesn't match! Did your forget your password?";
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Password doesn't match! Did your forget your password?");
         }
         else{
 
            response = "Success!";
-           user.setPassword(changePassword);
+           String changePass =  passwordEncoder.encode(changePassword);
+            System.out.println(changePassword);
+           System.out.println(changePass);
+           user.setPassword(changePass);
            userService.updateUser(user);
            System.out.println(user.getPassword());
+
            emailService.sendMailCPass(user);
         }
         return response;
