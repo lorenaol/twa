@@ -135,10 +135,10 @@ public class UserController {
         return response;
     }
 
-    @PutMapping("/reset-password-logged-in/{initPassword}/{changePassword}/{email}")
-    public String resetPassword(@PathVariable String initPassword,
-                                @PathVariable String changePassword,
-                                @PathVariable String email) throws MessagingException {
+    @PostMapping("/reset-password-logged-in")
+    public String resetPassword(@RequestParam(value = "initPassword") String initPassword,
+                                @RequestParam(value = "changePassword") String changePassword,
+                                @RequestParam(value = "email") String email) throws MessagingException {
         String response;
         User user = userService.findByEmail(email);
 

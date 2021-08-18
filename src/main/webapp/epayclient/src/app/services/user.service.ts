@@ -48,12 +48,8 @@ export class UserService {
     return this.http.get<User>(this.USER_URL + '/findByName', {params, observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
-  public getUsersByEmail(userName: string): Observable<EntityResponseType> {
-    const params = new HttpParams().set('email',userName);
 
-    return this.http.get<User>(this.USER_URL + '/findByEmail', {params, observe: 'response'})
-      .pipe(map((res: EntityResponseType) => res));
-  }
+
   public getUserByCode(userEmail: string): Observable<EntityArrayResponseType> {
     const params = new HttpParams();
     params.append('email', userEmail);
@@ -114,12 +110,21 @@ export class UserService {
     return this.http.put<User[]>(this.USER_URL+"/reset-password"+"/"+userToken+"/"+userPassword,{}, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
+
+
   public resetPasswordLoggedIn(initPassword: string, changePassword: string, email: string): Observable<EntityArrayResponseType> {
 
+    return this.http.post<User[]>(this.USER_URL+"/reset-password-logged-in?initPassword="+initPassword+"&changePassword="+changePassword+"&email="+email,
+      {}, {observe: 'response'})
+       .pipe(map((res: EntityArrayResponseType) => res));
 
-    return this.http.put<User[]>(this.USER_URL+"/reset-password-logged-in"+"/"+initPassword+"/"+changePassword+"/"+email,{}, {observe: 'response'})
-       .pipe(map((res: EntityArrayResponseType) => res))
+  }
 
+  public getUsersByEmail(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('email',userName);
+
+    return this.http.get<User>(this.USER_URL + '/findByEmail', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
   }
 
 }
