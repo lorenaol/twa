@@ -11,12 +11,16 @@ import {RoleauthorityListComponent} from "./components/roleauthority-list/roleau
 import {LoginComponent} from "@app/components/login/login.component";
 import {AuthGuard} from "@app/_helpers/auth.guard";
 import {Authorities} from "@app/enums/authorities";
+import {ProductDetailComponent} from "@app/components/product-detail/product-detail.component";
+import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
+  { path: 'categories/:id', component: CategoryProductsComponent },
   { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},

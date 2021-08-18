@@ -1,3 +1,6 @@
+import {Category} from "@app/entities/category";
+import {Image} from "@app/entities/image";
+
 export class Product {
   id?: number;
   price?: number;
@@ -6,4 +9,7 @@ export class Product {
   expireDate?: Date;
   sku?: string;
   code?: string;
+  category?: Category;
+  image?: string;
+  images?: Image[];
 }

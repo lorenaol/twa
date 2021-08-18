@@ -5,17 +5,60 @@
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
   <span><a routerLink="/"><button class="btn btn-link" style="color: white">Home</button></a></span>
-  <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link" style="color: white">Category</button></a></span>
-  <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Authority</button></a></span>
-  <span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link" style="color: white">Product</button></a></span>
-  <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Role</button></a></span>
-  <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link" style="color: white">User</button></a></span>
-  <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">User Role</button></a></span>
-  <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>
-  <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>
+<!--  <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link" style="color: white">Category</button></a></span>-->
+<!--  <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Authority</button></a></span>-->
+<!--  <span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link" style="color: white">Product</button></a></span>-->
+<!--  <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link" style="color: white">Role</button></a></span>-->
+<!--  <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link" style="color: white">User</button></a></span>-->
+<!--  <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">User Role</button></a></span>-->
+<!--  <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>-->
+<!--  <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>-->
+
+  <div ngbDropdown class="dropdown" *ngIf="isLoggedIn()" >
+    <button class="btn" id="dropdownBasic3" style="color: white" >
+      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Shop</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="menu">
+      <p-tieredMenu [model]="items"></p-tieredMenu>
+    </div>
+
+  </div>
+
 
   <div class="spacer"></div>
 
+  <div ngbDropdown *ngIf="isLoggedIn()">
+    <button class="btn" id="dropdownBasic2" style="color: white" ngbDropdownToggle>
+      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Entitati</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="entitati">
+      <div>
+        <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Authority</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link">Category</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link">Product</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Role</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">Role Authority</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link">User</button></a></span>
+      </div>
+
+      <div>
+        <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">User Role</button></a></span>
+      </div>
+    </div>
+  </div>
 
   <div ngbDropdown>
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>

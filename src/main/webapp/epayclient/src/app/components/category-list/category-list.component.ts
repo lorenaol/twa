@@ -98,6 +98,5 @@ export class CategoryListComponent implements OnInit {
       this.categories = data.body;
       this.collectionSize = Number(data.headers.get('X-Total-Count'));
     })
-
   }
 }
