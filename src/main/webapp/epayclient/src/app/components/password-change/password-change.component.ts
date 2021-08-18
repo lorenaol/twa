@@ -21,7 +21,6 @@ export class PasswordChangeComponent implements OnInit {
   returnUrl!: string ;
   error = '';
   password: any;
-  userSubject: BehaviorSubject<UserWithAuthoritiesDto | null>;
   email_l: any;
 
 
@@ -32,14 +31,6 @@ export class PasswordChangeComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService
   ) {
-    let userName = JSON.parse(localStorage.getItem('user')!).userName;
-    this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{
-      this.password = data.body?.password;
-
-    });
-    let user = localStorage.getItem('user');
-    this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
-
   }
 
   ngOnInit(): void {
@@ -63,19 +54,16 @@ export class PasswordChangeComponent implements OnInit {
       return;
     }
 
-    let userName = JSON.parse(localStorage.getItem('user')!).userName;
-
-    this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;});
-
     let email = JSON.parse(localStorage.getItem('user')!).userName;
     this.loading = true;
     this.userService.resetPasswordLoggedIn(this.f.firstPassword.value, this.f.changePassword.value, email)
       .pipe(first())
       .subscribe(
-        data => {
+        (data) => {
+          console.log(data);
           this.router.navigate([this.returnUrl]);
         },
-        error => {
+        (error) => {
           if(error == 'OK') {
 
             let auth = window.btoa(email + ':' + this.f.changePassword.value);

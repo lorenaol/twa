@@ -75,7 +75,6 @@ public class UserController {
         User u = null;
 
         User user2 = userRepository.findUserByEmail(user.getEmail());
-        System.out.println(user2);
 
         if (user != null && user2 == null) {
 

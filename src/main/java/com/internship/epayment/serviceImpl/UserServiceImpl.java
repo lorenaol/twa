@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
     public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserEmail) throws NotFoundException {
         //pas 1.getUser de pe currentUserName
         User user = findByEmail(currentUserEmail);
-        System.out.println(user.getName());
+//        System.out.println(user.getName());
         //pas 2.luam rolurile userului
         List<Role> roles = new ArrayList<>();
         userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
@@ -165,7 +165,6 @@ public class UserServiceImpl implements UserService {
 
         LocalDateTime time = LocalDateTime.now();
 
-        System.out.println(time);
 
         user.setTokenCreationDate(time);
         user = userRepository.save(user);
