@@ -52,11 +52,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
         User user = userOptional.get();
 
-//        if (!password.equals(user.getPassword())) {
-//            System.err.println("Wrong password!");
-//            throw new BadCredentialsException("");
-//        }
-
         if (!passwordEncoder.matches(password,user.getPassword())) {
             System.err.println("Wrong password!");
             throw new BadCredentialsException("");

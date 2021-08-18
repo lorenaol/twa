@@ -28,12 +28,12 @@ public class ProductPDFExporter {
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
         cell.setBackgroundColor(Color.GRAY);
-        cell.setPadding(4);
+        cell.setPadding(5);
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(Color.WHITE);
 
-        String[] strings = new String[]{"ID", "Name", "Sku", "Code"};
+        String[] strings = new String[]{"ID", "Name", "Sku", "Code", "Category"};
 
         for (String s : strings) {
             cell.setPhrase(new Phrase(String.valueOf(s), font));
@@ -47,6 +47,7 @@ public class ProductPDFExporter {
             table.addCell(product.getName());
             table.addCell(product.getSku());
             table.addCell(product.getCode());
+            table.addCell(product.getCategory().getCategoryName());
         }
     }
 
@@ -64,9 +65,9 @@ public class ProductPDFExporter {
 
         document.add(p);
 
-        PdfPTable table = new PdfPTable(4);
+        PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[]{1.5f, 3.5f, 3.0f, 3.0f});
+        table.setWidths(new float[]{1.5f, 3.5f, 3.0f, 3.0f,3.0f});
         table.setSpacingBefore(10);
 
         writeTableHeader(table);
