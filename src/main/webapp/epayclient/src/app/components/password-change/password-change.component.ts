@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "@app/services/user.service";
 import {AuthenticationService} from "@app/services/authentication.service";
-import {delay, first, map} from "rxjs/operators";
+import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 import {User, UserWithAuthoritiesDto} from "@app/entities/user";
-import {async, BehaviorSubject, from, throwError} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-password-change',
@@ -92,17 +92,7 @@ export class PasswordChangeComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(user));
             console.log(user);
             console.log();
-            // // this.authenticationService.logout();
-            // // console.log("gtrdf");
-            // // this.authenticationService.login(email, this.f.changePassword.value);
-            // // console.log("vrfbrb");
-            // // localStorage.removeItem('user');
-            // // // this.userSubject.next(null);
-            // this.userSubject.next(user);
-            // this.authenticationService.logout();
-            //this.authenticationService.login(email, this.f.changePassword.value).subscribe((data:any)=> {console.log(data.body)});
 
-            // this.router.navigate(['/products']);
             window.location.reload();
           }
           this.error = error;
@@ -112,30 +102,6 @@ export class PasswordChangeComponent implements OnInit {
 
 
   }
-  //
-  // try(){
-  //
-  //   let email = JSON.parse(localStorage.getItem('user')!).userName;
-  //   this.authenticationService.login(email, this.f.changePassword.value)
-  //     .pipe(first())
-  //     .subscribe(
-  //       data => {
-  //         this.router.navigate([this.returnUrl]);
-  //       },
-  //       error => {
-  //         this.error = error;
-  //         this.loading = false;
-  //       });
-  //
-  // }
-  // onSubmit() {
-  //   (async()=>{this.onSubmit2(); await this.delay(100000); this.try();})();
-  // }
-  //
-  //   delay(ms: number) {
-  //     return new Promise(resolve => setTimeout(resolve, ms));
-  //   }
-
 
 
 

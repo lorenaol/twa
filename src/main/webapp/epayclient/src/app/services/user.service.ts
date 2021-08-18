@@ -120,51 +120,11 @@ export class UserService {
       .pipe(map((res: EntityArrayResponseType) => res));
   }
   public resetPasswordLoggedIn(init_password: string, change_password: string, email: string): Observable<EntityArrayResponseType> {
-    // let userName = JSON.parse(localStorage.getItem('user')!).userName;
-    // console.log(userName);
-
-    // this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;console.log(this.password);});
-    // console.log(this.password);
-    //
-    //
-    //   this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{
-    //     let user = data.body;
-    //     if(user?.password == init_password){
-    //     user.password = change_password;
-    //     this.updateUser(user).subscribe()
-    //     console.log(user?.password);}
-    //     else{
-    //       console.log(user?.password);
-    //     }
-    //
-    //     })
-
-
-    // post la url/changePassword cu body parola_veche/parola_noua/id
-    // sa returneze status pentru parola veche nu e cea buna
-    // alt status ok s a schimbat parola
-    //
-
-    // this.getUsersByEmail(email).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;console.log(this.password);});
-    // console.log(this.password);
-
-
 
 
     return this.http.put<User[]>(this.USER_URL+"/reset-password-logged-in"+"/"+init_password+"/"+change_password+"/"+email,{}, {observe: 'response'})
        .pipe(map((res: EntityArrayResponseType) => res))
-    //    .subscribe(data=>{
-    //   //   //if in functie de status true
-    //   //   // inlocuim parola in base64 din local storage
-    //        // else
-    //         // mesajul de eroare
-    //         // toastr
-    //       //parolele in body
-    // //post
-    //
-    //      console.log(data);
-    //
-    //    });
+
   }
 
 }

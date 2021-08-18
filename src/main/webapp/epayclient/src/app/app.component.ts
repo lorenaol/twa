@@ -107,7 +107,7 @@ export class AppComponent {
   }
 
   changepass() {
-    this.userService.showFPass();
+    this.userService.showCPass();
   }
 }
 
