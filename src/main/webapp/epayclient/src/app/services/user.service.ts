@@ -114,10 +114,10 @@ export class UserService {
     return this.http.put<User[]>(this.USER_URL+"/reset-password"+"/"+userToken+"/"+userPassword,{}, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
-  public resetPasswordLoggedIn(init_password: string, change_password: string, email: string): Observable<EntityArrayResponseType> {
+  public resetPasswordLoggedIn(initPassword: string, changePassword: string, email: string): Observable<EntityArrayResponseType> {
 
 
-    return this.http.put<User[]>(this.USER_URL+"/reset-password-logged-in"+"/"+init_password+"/"+change_password+"/"+email,{}, {observe: 'response'})
+    return this.http.put<User[]>(this.USER_URL+"/reset-password-logged-in"+"/"+initPassword+"/"+changePassword+"/"+email,{}, {observe: 'response'})
        .pipe(map((res: EntityArrayResponseType) => res))
 
   }

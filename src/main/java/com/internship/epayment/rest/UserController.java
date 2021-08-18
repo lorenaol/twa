@@ -56,10 +56,6 @@ public class UserController {
     public User getUsersByName(@RequestParam(value = "name") String name) throws NotFoundException {
         return userService.findByName(name);
     }
-    @GetMapping(path = "/findByNamePass")
-    public String getPassByName(@RequestParam(value = "name") String name) throws NotFoundException {
-        return userService.findPassByName(name);
-    }
 
     @GetMapping(path = "/reset-password/{token}")
     public User getUsersByToken(@PathVariable String token) throws NotFoundException {
@@ -135,20 +131,20 @@ public class UserController {
         }
         return response;
     }
-    @PutMapping("/reset-password-logged-in/{init_password}/{change_password}/{email}")
-    public String resetPassword(@PathVariable String init_password,
-                                @PathVariable String change_password,
+    @PutMapping("/reset-password-logged-in/{initPassword}/{changePassword}/{email}")
+    public String resetPassword(@PathVariable String initPassword,
+                                @PathVariable String changePassword,
                                 @PathVariable String email)  throws MessagingException{
         String response;
         User user = userService.findByEmail(email);
-        if(!init_password.equals(user.getPassword())){
+        if(!initPassword.equals(user.getPassword())){
             response = "Password doesn't match! Did your forget your password?";
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Password doesn't match! Did your forget your password?");
         }
         else{
 
            response = "Success!";
-           user.setPassword(change_password);
+           user.setPassword(changePassword);
            userService.updateUser(user);
            System.out.println(user.getPassword());
            emailService.sendMailCPass(user);

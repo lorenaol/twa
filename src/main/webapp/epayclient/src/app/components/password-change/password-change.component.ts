@@ -48,9 +48,6 @@ export class PasswordChangeComponent implements OnInit {
       changePassword: ['', Validators.required]
     });
 
-    let email = JSON.parse(localStorage.getItem('user')!).userName;
-    this.returnUrl = 'http:///localhost:4200'+this.router.url;
-    redirectUri: 'http://localhost:4200'+this.router.url;
 
   }
   // convenience getter for easy access to form fields
@@ -84,13 +81,8 @@ export class PasswordChangeComponent implements OnInit {
 
             let auth = window.btoa(email + ':' + this.f.changePassword.value);
             let user =JSON.parse(localStorage.getItem('user')!);
-            console.log(user);
             user.authdata = auth;
-            console.log(auth);
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(user);
-            console.log();
-
             window.location.reload();
           }
           this.error = error;
