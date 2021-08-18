@@ -24,11 +24,6 @@ export class UserService {
   constructor(private http: HttpClient, private modalService: NgbModal) {
     this.forgotDialog = null;
     this.changeDialog = null;
-    // let userName = JSON.parse(localStorage.getItem('user')!).userName;
-    // this.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{
-    //   this.password = data.body?.password;
-    //   console.log(this.password);
-    // });
 
   }
 

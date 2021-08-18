@@ -66,8 +66,6 @@ export class PasswordChangeComponent implements OnInit {
       return;
     }
 
-    // this.userService.getUsersByName(userName).subscribe((data:HttpResponse<User>)=>{password = data.body?.password;user = data.body;user.password=inputpass;this.userService.updateUser(user).subscribe()});
-
     let userName = JSON.parse(localStorage.getItem('user')!).userName;
     console.log(userName);
 
