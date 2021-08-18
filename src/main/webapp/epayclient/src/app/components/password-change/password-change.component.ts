@@ -35,7 +35,7 @@ export class PasswordChangeComponent implements OnInit {
     let userName = JSON.parse(localStorage.getItem('user')!).userName;
     this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{
       this.password = data.body?.password;
-      console.log(this.password);
+
     });
     let user = localStorage.getItem('user');
     this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
@@ -64,10 +64,9 @@ export class PasswordChangeComponent implements OnInit {
     }
 
     let userName = JSON.parse(localStorage.getItem('user')!).userName;
-    console.log(userName);
 
-    this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;console.log(this.password);});
-    console.log(this.password);
+    this.userService.getUsersByEmail(userName).subscribe((data:HttpResponse<User>)=>{this.password = data.body?.password;});
+
     let email = JSON.parse(localStorage.getItem('user')!).userName;
     this.loading = true;
     this.userService.resetPasswordLoggedIn(this.f.firstPassword.value, this.f.changePassword.value, email)

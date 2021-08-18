@@ -134,28 +134,23 @@ public class UserController {
         }
         return response;
     }
+
     @PutMapping("/reset-password-logged-in/{initPassword}/{changePassword}/{email}")
     public String resetPassword(@PathVariable String initPassword,
                                 @PathVariable String changePassword,
-                                @PathVariable String email)  throws MessagingException{
+                                @PathVariable String email) throws MessagingException {
         String response;
         User user = userService.findByEmail(email);
 
-        if(!passwordEncoder.matches(initPassword,user.getPassword())){
+        if (!passwordEncoder.matches(initPassword, user.getPassword())) {
             response = "Password doesn't match! Did your forget your password?";
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Password doesn't match! Did your forget your password?");
-        }
-        else{
-
-           response = "Success!";
-           String changePass =  passwordEncoder.encode(changePassword);
-            System.out.println(changePassword);
-           System.out.println(changePass);
-           user.setPassword(changePass);
-           userService.updateUser(user);
-           System.out.println(user.getPassword());
-
-           emailService.sendMailCPass(user);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Password doesn't match! Did your forget your password?");
+        } else {
+            response = "Success!";
+            String changePass = passwordEncoder.encode(changePassword);
+            user.setPassword(changePass);
+            userService.updateUser(user);
+            emailService.sendMailCPass(user);
         }
         return response;
     }
