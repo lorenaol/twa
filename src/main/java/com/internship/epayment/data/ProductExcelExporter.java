@@ -35,7 +35,7 @@ public class ProductExcelExporter {
         font.setFontHeight(16);
         style.setFont(font);
 
-        String[] strings = new String[]{"ID", "Name", "Sku", "Code"};
+        String[] strings = new String[]{"ID", "Name", "Sku", "Code", "Category"};
         for (int i = 0; i < strings.length; i++) {
             createCell(row, i, strings[i], style);
         }
@@ -68,6 +68,7 @@ public class ProductExcelExporter {
             createCell(row, columnCount++, product.getName(), style);
             createCell(row, columnCount++, product.getSku(), style);
             createCell(row, columnCount++, product.getCode(), style);
+            createCell(row, columnCount++, product.getCategory().getCategoryName(), style);
         }
     }
 
