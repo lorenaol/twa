@@ -16,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -35,6 +36,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
@@ -48,7 +52,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
         User user = userOptional.get();
 
-        if (!password.equals(user.getPassword())) {
+        if (!passwordEncoder.matches(password,user.getPassword())) {
             System.err.println("Wrong password!");
             throw new BadCredentialsException("");
         }
