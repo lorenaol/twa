@@ -12,7 +12,7 @@ export class User {
 }
 
 export class UserWithAuthoritiesDto {
-  userName?: string;
+  email?: string;
   authorityCode?: string[];
   authdata?: string;
 }

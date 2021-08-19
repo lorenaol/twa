@@ -21,7 +21,7 @@ public class LoginController {
     public UserWithAuthoritiesDto login() throws NotFoundException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        System.out.println(currentUserName);
+//        System.out.println(currentUserName);
         return userService.getUserWithAuthorities(currentUserName);
     }
 }

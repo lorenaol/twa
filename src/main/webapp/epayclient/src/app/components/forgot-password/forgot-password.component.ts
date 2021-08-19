@@ -25,6 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
   returnUrl!: string ;
   error = '';
   response !: Observable<EntityArrayResponseType>;
+  password: any;
 
 
   constructor(
@@ -42,6 +43,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.forgotForm = this.formBuilder.group({
       email: ['', Validators.required]
     });

@@ -13,7 +13,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-public class EmailServiceImpl implements EmailService {
+public class   EmailServiceImpl implements EmailService {
 
 
 
