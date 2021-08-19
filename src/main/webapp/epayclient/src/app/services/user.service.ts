@@ -112,11 +112,12 @@ export class UserService {
   }
 
 
-  public resetPasswordLoggedIn(initPassword: string, changePassword: string, email: string): Observable<EntityArrayResponseType> {
+  public resetPasswordLoggedIn(initPassword: string, changePassword: string, email: string): Observable<HttpResponse<any>> {
 
-    return this.http.post<User[]>(this.USER_URL+"/reset-password-logged-in?initPassword="+initPassword+"&changePassword="+changePassword+"&email="+email,
-      {}, {observe: 'response'})
-       .pipe(map((res: EntityArrayResponseType) => res));
+    // @ts-ignore
+    return this.http.post<>(this.USER_URL+"/reset-password-logged-in?initPassword="+initPassword+"&changePassword="+changePassword+"&email="+email,
+      {}, {observe: 'response', })
+       .pipe(map((res: HttpResponse<any>) => {return res}));
 
   }
 
