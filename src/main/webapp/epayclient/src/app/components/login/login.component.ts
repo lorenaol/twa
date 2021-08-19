@@ -4,6 +4,7 @@ import {AuthenticationService} from "@app/services/authentication.service";
 import {first} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
+import {UserService} from "@app/services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private userService: UserService,
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
@@ -64,6 +66,9 @@ export class LoginComponent implements OnInit {
           this.error = error;
           this.loading = false;
         });
+  }
 
+  goToFPass() {
+    this.userService.showFPass();
   }
 }

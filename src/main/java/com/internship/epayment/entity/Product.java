@@ -1,7 +1,11 @@
 package com.internship.epayment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -11,6 +15,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "products_seq")
     @SequenceGenerator(name = "products_seq", allocationSize = 1)
     private Long id;
+
     private double price;
 
     private String name;
@@ -33,6 +38,17 @@ public class Product {
     private String sku;
 
     private String code;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnoreProperties("products")
+    private Category category;
+
+    private String image;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties("product")
+    private List<Image> images;
 
     public Long getId() {
         return id;
@@ -88,5 +104,29 @@ public class Product {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

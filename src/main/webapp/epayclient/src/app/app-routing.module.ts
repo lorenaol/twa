@@ -13,19 +13,26 @@ import {AuthGuard} from "@app/_helpers/auth.guard";
 import {Authorities} from "@app/enums/authorities";
 import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart.component";
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
+import {ProductDetailComponent} from "@app/components/product-detail/product-detail.component";
+import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
+import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
+  { path: 'categories/:id', component: CategoryProductsComponent },
  // { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
   { path: 'products', component: ProductListComponent},
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
   { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'login', component: LoginComponent},
-  { path: 'shoppingcart', component: ShoppingCartComponent}
+  { path: 'shoppingcart', component: ShoppingCartComponent},
+  { path: 'users/reset-password/:token', component: ResetPasswordComponent}
+
 ];
 
 @NgModule({

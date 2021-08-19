@@ -13,15 +13,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final long EXPIRE_TOKEN_AFTER_MINUTES = 30;
 
     @Autowired
     private UserRepository userRepository;
@@ -31,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Page<User> getAll(Pageable pageable) {
@@ -55,12 +63,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByToken(String token) {
+        return userRepository.findUserByToken(token);
+    }
+
+    @Override
     public User addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Override
     public User updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -129,6 +144,83 @@ public class UserServiceImpl implements UserService {
         //pas 4.bagam ce ne intereseaza in dto si il returnam
         return new UserWithAuthoritiesDto(currentUserName, authorities);
     }
+
+    public String forgotPassword(String email) {
+
+        Optional<User> userOptional = Optional
+                .ofNullable(userRepository.findUserByEmail(email));
+
+        if (!userOptional.isPresent()) {
+            return "Invalid email id.";
+        }
+
+        User user = userOptional.get();
+        user.setToken(generateToken());
+
+        LocalDateTime time = LocalDateTime.now();
+
+        System.out.println(time);
+
+        user.setTokenCreationDate(time);
+        user = userRepository.save(user);
+
+        return user.getToken();
+    }
+
+    public String resetPassword(String token, String password) {
+
+        Optional<User> userOptional = Optional
+                .ofNullable(userRepository.findUserByToken(token));
+
+        if (!userOptional.isPresent()) {
+            return "Invalid token.";
+        }
+
+        LocalDateTime tokenCreationDate = userOptional.get().getTokenCreationDate();
+
+        if (isTokenExpired(tokenCreationDate)) {
+            return "Token expired.";
+        }
+
+        User user = userOptional.get();
+
+      // user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setToken(null);
+        user.setTokenCreationDate(null);
+
+        userRepository.save(user);
+
+        return "Your password successfully updated.";
+    }
+
+    /**
+     * Generate unique token. You may add multiple parameters to create a strong
+     * token.
+     *
+     * @return unique token
+     */
+    private String generateToken() {
+        StringBuilder token = new StringBuilder();
+
+        return token.append(UUID.randomUUID().toString())
+                .append(UUID.randomUUID().toString()).toString();
+    }
+
+    /**
+     * Check whether the created token expired or not.
+     *
+     * @param tokenCreationDate
+     * @return true or false
+     */
+    private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration diff = Duration.between(tokenCreationDate, now);
+
+        return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
+    }
+
 
 
 }

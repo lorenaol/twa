@@ -1,3 +1,57 @@
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+
+.menu{
+  display: none;
+}
+.dropdown:hover .menu{
+  display: inline-block;
+  position: absolute;
+  margin-top: -7px;
+  padding: 0;
+}
+
+.p-menuitem-link:hover ~ p-tieredmenusub ul {
+  display: grid!important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  min-height: 0px!important;
+  padding: 0;
+  max-height: 300px;
+  overflow: auto;
+
+  left: 100%;
+  top:0;
+}
+.p-menuitem-link ~ p-tieredmenusub ul:hover{
+  display: grid!important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  max-height: 300px;
+  overflow: auto;
+
+  left: 100%;
+  top:0;
+}
+.entitati button {
+  color: black!important;
+}
+
+.entitati button:hover{
+  text-decoration: none!important;
+  color: black!important;
+}
+
+.btn-link{
+  text-align: start;
+}
+
+.btn-link:hover{
+  background-color: rgb(247 247 247);
+}
 /* The dropdown container */
 .dropdown {
   float: left;

@@ -16,10 +16,13 @@
       <input type="text" id="sku" name="sku" [(ngModel)]="sku">
       <label for="code">Code: </label>
       <input type="text" id="code" name="code" [(ngModel)]="code" >
+      <label for="code">Category: </label>
+      <input type="text" id="category" name="category" [(ngModel)]="category" >
       <button class="btn btn-dark">
         <fa-icon [icon]="faFilter" (click)="filter()"></fa-icon>
       </button>
     </div>
+
     <table class="table table-bordered table-striped">
       <thead class="thead-light">
       <tr>
@@ -44,18 +47,38 @@
         <th scope="col">Code
           <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('code', true)"></fa-icon>
           <fa-icon [icon]="faArrowDown" (click)="sort('code', false)"></fa-icon></th>
+
+        <th scope="col">Category
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('category', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('category', false)"></fa-icon></th>
         <th scope="col">Actions</th>
+
+        <th scope="col">Actions
+          <div class="row">
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Export Data</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <span><a (click)="exportExcel()"><button ngbDropdownItem>Export to Excel</button></a> </span>
+                  <span><a (click)="exportPdf()"><button ngbDropdownItem>Export PDF</button></a> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.id }}</td>
         <td>{{ product.price }}</td>
-        <td>{{ product.name }}</td>
+        <td [routerLink]="['/products', product.id]">{{ product.name }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.expireDate | date:'yyyy-dd-MM' }}</td>
         <td>{{ product.sku }}</td>
         <td>{{ product.code }}</td>
+        <td>{{ product.category?.categoryName}}</td>
         <td>
           <button class="btn btn-sm btn-info" style="margin: 2px">
             <fa-icon [icon]="faEye" (click)="openProductModal(ModalTypesEnum.VIEW, product)"></fa-icon>

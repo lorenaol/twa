@@ -19,6 +19,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public addProduct(product: Product): Observable<EntityResponseType>  {
+    console.log(product);
     return this.http.post<Product>(this.PRODUCT_URL, product, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => res));
   }
@@ -62,5 +63,14 @@ export class ProductService {
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
+  public exportToExcel(id:string, name:string, code:string, sku:string, pageble?: any): Observable<HttpResponse<Blob>> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code, sku]);
+    return this.http.get(this.PRODUCT_URL + '/export/excel', { headers: params, params:pageble, observe: 'response',responseType:'blob' });
+  }
+
+  public exportToPdf(id:string, name:string, code:string, sku:string, pageble?: any): Observable<HttpResponse<Blob>> {
+    const params = new HttpHeaders().set('FILTER-PARAMS', [id, name, code, sku]);
+    return this.http.get(this.PRODUCT_URL + '/export/pdf', { headers: params, params:pageble, observe: 'response',responseType:'blob' });
+  }
 
 }

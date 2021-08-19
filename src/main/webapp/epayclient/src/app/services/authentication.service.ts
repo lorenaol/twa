@@ -10,6 +10,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
+import {ModalService} from "@app/services/modal.service";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 
 
 @Injectable({
@@ -20,17 +22,20 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<UserWithAuthoritiesDto | null>;
   public user: Observable<UserWithAuthoritiesDto | null>;
   private loginDialog: NgbModalRef | null;
+  private signinDialog: NgbModalRef | null;
 
   constructor(
     private shopping_cartService : Shopping_cartService,
     private router: Router,
     private http: HttpClient,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private modalService2: ModalService
   ) {
     let user = localStorage.getItem('user');
     this.userSubject = new BehaviorSubject<UserWithAuthoritiesDto | null>(user ? JSON.parse(user) : null);
     this.user = this.userSubject.asObservable();
     this.loginDialog = null;
+    this.signinDialog = null;
   }
 
   public get userValue(): UserWithAuthoritiesDto | null {
@@ -55,7 +60,6 @@ export class AuthenticationService {
         this.loginDialog = null;
         return user;
       }));
-
   }
 
 
@@ -85,4 +89,11 @@ export class AuthenticationService {
     })
     return userHasAuth(this.user);
   }
+
+  showSignin() {
+    if (!this.signinDialog) {
+      this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
+    }
+  }
+
 }

@@ -50,13 +50,11 @@ export class ModalService {
       });
   }
 
+
   openUserModal(modalType: ModalTypesEnum, inputUser?: User) {
     const modalRef: NgbModalRef = this.modalService.open(UserFormComponent, {size: "xl"});
-    modalRef.componentInstance.modalType = modalType;
-    modalRef.componentInstance.inputUser = inputUser;
-    modalRef.componentInstance.latitude = inputUser?.latitude;
-    modalRef.componentInstance.longitude = inputUser?.longitude;
-    modalRef.componentInstance.address = inputUser?.address;
+    modalRef.componentInstance.setData(modalType,inputUser!);
+
 
     return modalRef.result
       .then(result => {
@@ -80,7 +78,8 @@ export class ModalService {
     const modalRef: NgbModalRef = this.modalService.open(ProductFormComponent);
     modalRef.componentInstance.modalType = modalType;
     modalRef.componentInstance.inputProduct = inputProduct;
-
+    modalRef.componentInstance.image = inputProduct?.image;
+    modalRef.componentInstance.images = inputProduct?.images;
     return modalRef.result
       .then(result => {
         return result;

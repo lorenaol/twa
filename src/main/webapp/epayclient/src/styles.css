@@ -332,3 +332,10 @@ input{
 .filterButton{
   margin-left: 40px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pac-container {
+  z-index: 10000 !important;
+}

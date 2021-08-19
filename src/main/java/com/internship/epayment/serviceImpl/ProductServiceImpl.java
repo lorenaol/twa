@@ -1,6 +1,10 @@
 package com.internship.epayment.serviceImpl;
 
+import com.internship.epayment.entity.Category;
+import com.internship.epayment.entity.Image;
 import com.internship.epayment.entity.Product;
+import com.internship.epayment.repository.CategoryRepository;
+import com.internship.epayment.repository.ImageRepository;
 import com.internship.epayment.repository.ProductRepository;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
@@ -18,6 +22,15 @@ public class ProductServiceImpl implements ProductsService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @Autowired
+    private ImageServiceImpl imageService;
 
     @Override
     public Page<Product> getAll(Pageable pageable) {
@@ -42,18 +55,46 @@ public class ProductServiceImpl implements ProductsService {
     @Override
     @Transactional
     public Product addProduct(Product product) {
-        return productRepository.save(product);
+       int i;
+       Product p = productRepository.save(product);
+
+       for(i = 0; i < product.getImages().size(); i++)
+       {
+            Image im = product.getImages().get(i);
+            im.setProduct(p);
+            imageRepository.save(im);
+
+       }
+        return p;
     }
 
     @Override
     @Transactional
     public Product updateProduct(Product product) {
-        return productRepository.save(product);
+        int i;
+        Product p = productRepository.save(product);
+        for(i = 0; i < product.getImages().size(); i++)
+        {
+            Image im = product.getImages().get(i);
+            if(product.getImages().get(i).getId() == null){
+                im.setProduct(p);
+                imageRepository.save(im);
+            }
+            else
+                imageRepository.delete(im);
+
+        }
+        return p;
     }
 
     @Override
     @Transactional
     public void deleteProduct(Product product) {
+        int i;
+        for(i = 0; i < product.getImages().size(); i++){
+            Image im = product.getImages().get(i);
+            imageRepository.delete(im);
+        }
         productRepository.delete(product);
     }
 
@@ -72,29 +113,33 @@ public class ProductServiceImpl implements ProductsService {
         String name = params.get(1);
         String code = params.get(2);
         String sku = params.get(3);
-        if (!sku.equals("")) {
-            return productRepository.findBySku(sku, pageable);
+
+        if (!id.equals("")) {
+            return productRepository.findById(Long.valueOf(id), pageable);
         }
-        if (!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
-            return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
+//        if (!id.equals("") && !name.equals("") && !code.equals("") && !sku.equals("")) {
+//            return productRepository.findBySkuAndCodeAndIdAndName(sku, code, Long.valueOf(id), name, pageable);
+//        }
+        if (!sku.equals("") && !name.equals("") && !code.equals("")) {
+            return productRepository.findBySkuAndNameAndCode(sku, name, code, pageable);
         }
-        if (!id.equals("") && !name.equals("") && !code.equals("")) {
-            return productRepository.findByIdAndNameAndCode(Long.valueOf(id), name, code, pageable);
-        }
-        if (!id.equals("") && !name.equals("")) {
-            return productRepository.findByIdAndName(Long.valueOf(id), name, pageable);
+        if (!sku.equals("") && !name.equals("")) {
+            return productRepository.findBySkuAndName(sku, name, pageable);
         }
         if (!name.equals("") && !code.equals("")) {
             return productRepository.findByNameAndCode(name, code, pageable);
         }
-        if (!id.equals("") && !code.equals("")) {
-            return productRepository.findByIdAndCode(Long.valueOf(id), code, pageable);
+        if (!sku.equals("") && !code.equals("")) {
+            return productRepository.findBySkuAndCode(sku, code, pageable);
         }
-        if (!id.equals("")) {
-            return productRepository.findById(Long.valueOf(id), pageable);
+//        if (!name.equals("")) {
+//            return productRepository.findByName(name, pageable);
+//        }
+        if(!name.equals("")){
+            return productRepository.findProductsByName(name,pageable);
         }
-        if (!name.equals("")) {
-            return productRepository.findByName(name, pageable);
+        if (!sku.equals("")) {
+            return productRepository.findBySku(sku, pageable);
         }
         if (!code.equals("")) {
             return productRepository.findByCode(code, pageable);

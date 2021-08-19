@@ -11,5 +11,19 @@ spring:
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.xml
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: epay.rachetutele@gmail.com
+    password: Itscoronatime19
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
 server:
   port: 8082

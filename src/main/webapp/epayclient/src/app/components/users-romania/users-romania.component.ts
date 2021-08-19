@@ -21,6 +21,7 @@ export class UsersRomaniaComponent implements OnInit {
   loadData(): void {
     this.userService.getUsers().subscribe((data: any) => {
       this.users = data.body;
+      this.loadMarkers();
     })
   }
 
@@ -43,11 +44,7 @@ export class UsersRomaniaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    (async () => {
       this.loadData();
-      await this.delay(1000);
-      this.loadMarkers();
-    })();
   }
 
   close(): void {

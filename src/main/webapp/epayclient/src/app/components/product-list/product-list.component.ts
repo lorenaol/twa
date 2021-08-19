@@ -6,6 +6,8 @@ import {ModalService} from "@app/services/modal.service";
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {faEdit} from '@fortawesome/free-regular-svg-icons';
 import {HttpResponse} from "@angular/common/http";
+import * as fileSaver from 'file-saver';
+
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 
@@ -34,6 +36,7 @@ export class ProductListComponent implements OnInit {
   id: string = "";
   code: string = "";
   sku: string = "";
+  category: string= "";
 
   products?: Product[] | null;
 
@@ -49,15 +52,15 @@ export class ProductListComponent implements OnInit {
   }
 
   loadData(): void {
-    if(this.name =="" &&
-      this.code =="" &&
-      this.id =="" && this.sku == ""
+    if (this.name == "" &&
+      this.code == "" &&
+      this.id == "" && this.sku == ""
     ) {
-      this.productService.getProducts( {
+      this.productService.getProducts({
         page: this.page - 1,
         size: this.pageSize,
         sort: this.sort2()
-      }).subscribe((data : HttpResponse<Product[]>) => {
+      }).subscribe((data: HttpResponse<Product[]>) => {
         this.products = data.body;
         this.collectionSize = Number(data.headers.get('X-Total-Count'));
       })
@@ -68,7 +71,7 @@ export class ProductListComponent implements OnInit {
 
   openProductModal(modalTypeEnum: ModalTypesEnum, inputProduct?: Product) {
     this.modalService.openProductModal(modalTypeEnum, inputProduct).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
@@ -81,11 +84,12 @@ export class ProductListComponent implements OnInit {
 
   openDeleteProductModal(product: Product) {
     this.modalService.openDeleteProductModal(product).then((result) => {
-      if(result) {
+      if (result) {
         this.loadData();
       }
     });
   }
+
   sort2(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
@@ -94,7 +98,7 @@ export class ProductListComponent implements OnInit {
     return result;
   }
 
-  sort(col : string, ascending: boolean) {
+  sort(col: string, ascending: boolean) {
     this.predicate = col;
     this.ascending = ascending;
     this.loadData();
@@ -110,4 +114,39 @@ export class ProductListComponent implements OnInit {
       this.collectionSize = Number(data.headers.get('X-Total-Count'));
     })
   }
+
+  exportExcel() {
+    this.productService.exportToExcel(this.id, this.name, this.code, this.sku, {
+      sort: this.sort2()
+    })
+      .subscribe((response:HttpResponse<Blob>) => {
+        // console.log(response);
+        const str = response.headers.get("Content-Disposition");
+        const splitted = str!.split("=");
+        const fileName = splitted[1];
+        // console.log(splitted)
+          fileSaver.saveAs(response.body!, fileName);
+      }
+      , error => console.log('Error downloading the file')
+      , () => console.log('File downloaded successfully'));
+  }
+
+
+  exportPdf() {
+    this.productService.exportToPdf(this.id, this.name, this.code, this.sku, {
+      sort: this.sort2()
+    })
+      .subscribe((response:HttpResponse<Blob>) => {
+          // console.log(response);
+          const str = response.headers.get("Content-Disposition");
+          const splitted = str!.split("=");
+          const fileName = splitted[1];
+          // console.log(splitted)
+          fileSaver.saveAs(response.body!, fileName);
+        }
+        , error => console.log('Error downloading the file')
+        , () => console.log('File downloaded successfully'));
+  }
+
+
 }

@@ -18,7 +18,8 @@ import {CommonModule} from "@angular/common";
 import { AuthorityListComponent } from './components/authority-list/authority-list.component';
 import { AuthorityFormComponent } from './components/authority-form/authority-form.component';
 import { AuthorityDeleteComponent } from './components/authority-delete/authority-delete.component';
-
+import {MegaMenuModule} from 'primeng/megamenu';
+import {PanelModule} from 'primeng/panel';
 
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
@@ -44,6 +45,14 @@ import { UserRoleListComponent } from './components/user-role-list/user-role-lis
 import { UserRoleFormComponent } from './components/user-role-form/user-role-form.component';
 import { UserRoleDeleteComponent } from './components/user-role-delete/user-role-delete.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import {ButtonModule} from 'primeng/button';
+import {FileUploadModule} from 'primeng/fileupload';
+import { CategoryProductsComponent } from './components/category-products/category-products.component';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import {GalleriaModule} from 'primeng/galleria';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -76,6 +85,11 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     HasAuthorityDirective,
     UsersRomaniaComponent,
     ShoppingCartComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ProductDetailComponent,
+    CategoryProductsComponent
+
   ],
   imports: [
     CommonModule,
@@ -90,9 +104,16 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     DropdownModule,
     FormsModule,
     SidebarModule,
+    MegaMenuModule,
+    PanelModule,
+    ButtonModule,
+    TieredMenuModule,
+    FileUploadModule,
+    GalleriaModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w'
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+      libraries: ['places']
     })
   ],
   providers: [
