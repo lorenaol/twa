@@ -42,6 +42,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public List<ShoppingCart> findShoppingCartsByUserId(Long id) {
+        return shoppingCartRepository.findShoppingCartsByUserId(id);
+    }
+
+
+    @Override
     public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
         return shoppingCartRepository.save(shoppingCart);
     }

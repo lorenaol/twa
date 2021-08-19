@@ -19,26 +19,32 @@
   <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link" style="color: white">Role Authority</button></a></span>
   <div class="spacer"></div>
 
-  <div *ngIf="!inShoppingCart()">
+
 
     <div class="dropdown">
       <button class="dropbtn" (mouseenter)="getCarts()" >
         <fa-icon [icon]="faShoppingCart"></fa-icon>
       </button>
+
       <div class="dropdown-content">
         <div class="products">
-          <tr *ngFor="let cart of shoppingCarts">
-            <td class="image2{{cart.product?.id}}">
-            </td>
-            <td> x {{cart?.quantity}}
-            </td>
-            <td class="productName">{{cart.product?.name}}</td>
-            <td>{{cart.product?.price}} Lei</td>
-          </tr>
+          <div class="row" *ngFor="let cart of shoppingCarts">
+            <div class="image2{{cart?.product?.id}} col-sm-3">
+            </div>
+            <div class="col-sm-1"> x{{cart?.quantity}}
+            </div>
+            <div class="productName col-sm-3">{{cart.product?.name}}</div>
+            <div class="col-sm-2">{{cart.product?.price}} Lei</div>
+            <div class="col-sm-2">
+              <button class="btn btn-xs delete" (click) = "delete(cart)"><b>X</b></button>
+            </div>
+          </div>
         </div>
         <a href="/shoppingcart" >Vezi detalii cos</a>
       </div>
     </div>
+
+
     <!--div ngbDropdown>
       <button class="btn"  (click)="getCarts(); setImage()"  id="dropdownBasic2" style="color: white" ngbDropdownToggle>
         <fa-icon [icon]="faShoppingCart"></fa-icon></button>
@@ -56,7 +62,7 @@
         <a href="/shoppingcart" >Vezi detalii cos</a>
       </div>
     </div-->
-  </div>
+
 
   <div ngbDropdown>
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>

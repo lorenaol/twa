@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "@app/services/authentication.service";
 import {first} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   error = '';
 
   constructor(
+    private shopping_cartService : Shopping_cartService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -62,5 +64,6 @@ export class LoginComponent implements OnInit {
           this.error = error;
           this.loading = false;
         });
+
   }
 }

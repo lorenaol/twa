@@ -9,6 +9,7 @@ import {environment} from "@environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
+import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class AuthenticationService {
   private loginDialog: NgbModalRef | null;
 
   constructor(
+    private shopping_cartService : Shopping_cartService,
     private router: Router,
     private http: HttpClient,
     private modalService: NgbModal
@@ -46,11 +48,14 @@ export class AuthenticationService {
         // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
         user.authdata = auth;
         localStorage.setItem('user', JSON.stringify(user));
+        this.shopping_cartService.updateCart();
+        this.shopping_cartService.selectOldProducts();
         this.userSubject.next(user);
         this.loginDialog?.close();
         this.loginDialog = null;
         return user;
       }));
+
   }
 
 

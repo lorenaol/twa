@@ -38,6 +38,11 @@ public class ShoppingCartController {
         return  shoppingCartService.findProductsByName(name);
     }
 
+    @GetMapping(path = "/findById")
+    public List<ShoppingCart> getProductsByName(@RequestParam(value = "id") Long id) throws NotFoundException {
+        return  shoppingCartService.findShoppingCartsByUserId(id);
+    }
+
     @PutMapping
     @ResponseBody
     public ShoppingCart updateShoppingCart(@RequestBody ShoppingCart shoppingCart) {

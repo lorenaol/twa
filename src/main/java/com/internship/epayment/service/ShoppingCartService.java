@@ -14,6 +14,8 @@ public interface ShoppingCartService {
 
     List<Product> findProductsByName(String name);
 
+    List<ShoppingCart> findShoppingCartsByUserId(Long id);
+
     ShoppingCart updateShoppingCart(ShoppingCart shoppingCart);
 
     void deleteShoppingCart(ShoppingCart shoppingCart);

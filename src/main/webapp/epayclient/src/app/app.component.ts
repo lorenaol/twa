@@ -27,13 +27,12 @@ export class AppComponent {
               private shopping_cartService : Shopping_cartService
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
-  //  this.shopping_cartService.productsCurrentUser?.subscribe(products => this.products = products);
-   // localStorage.setItem('shoppingCart', JSON.stringify([]));
   }
 
   logout() {
     this.authenticationService.logout();
-    //this.shopping_cartService.getProducts();
+    localStorage.removeItem('userId');
+    localStorage.setItem('shoppingCarts', JSON.stringify([]));
   }
 
 
@@ -55,41 +54,37 @@ export class AppComponent {
   getCarts() : void {
     console.log("getCarts");
     (async () => {
-      this.shopping_cartService.f();
-      this.shopping_cartService.updateCart();
-      this.shopping_cartService.set();
-      await this.delay(1000);
-      this.shoppingCarts = this.shopping_cartService.get();
+     // this.shopping_cartService.f();
+     // this.shopping_cartService.updateCart();
+      //this.shopping_cartService.set();
+    //  await this.delay(1000);
+      this.shoppingCarts = JSON.parse(localStorage.getItem('shoppingCarts')!);
       await this.delay(0);
       this.setImage();
     })();
   }
 
-  /*count :number = 0
-  getProducts(): void {
-    this.count++;
-    this.shopping_cartService.f();
-    this.shopping_cartService.updateCart();
-    this.shopping_cartService.getProducts();
-    //if(this.count == 1)
-    //this.setImage();
-  }*/
-
   setImage(): void {
-    for(let cart of this.shoppingCarts!) {
-      let imageWrapper = document.querySelector('.image2' + cart?.product?.id);
-      let image = new Image(30, 30);
+    if(this.shoppingCarts) {
+      for (let cart of this.shoppingCarts!) {
+        let imageWrapper = document.querySelector('.image2' + cart?.product?.id);
+        let image = new Image(30, 30);
 
-      image.src = "data:image/png;base64," + cart?.product?.image;
-      image.alt = cart?.product?.name || '';
-      if (imageWrapper) imageWrapper.appendChild(image);
+        image.src = "data:image/png;base64," + cart?.product?.image;
+        image.alt = cart?.product?.name || '';
+        if (imageWrapper) imageWrapper.appendChild(image);
+      }
     }
   }
-
-
-  inShoppingCart() : boolean {
-    return this.router.url == '/shoppingcart';
+  delete(cart:ShoppingCart): void {
+      this.shopping_cartService.delete(cart);
+      this.getCarts();
   }
+
+
+ /* inShoppingCart() : boolean {
+    return this.router.url == '/shoppingcart';
+  }*/
 
 }
 

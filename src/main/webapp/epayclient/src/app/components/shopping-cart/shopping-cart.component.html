@@ -9,19 +9,20 @@
       <div class="col-sm-8">
         Produse:
         <div class="row details" *ngFor="let cart of shoppingCarts">
-          <div class="image{{cart?.product?.id}} col-sm-3">
+          <div class="image{{cart?.product?.id}} col-sm-2">
           </div>
-          <div class="productName col-sm-3"><b>Nume:</b> {{cart?.product?.name}}
+          <div class="productName col-sm-2"><b>Nume:</b> {{cart?.product?.name}}
             <div><b>Sku:</b> {{cart?.product?.sku}}</div>
             <div><b>Cod:</b> {{cart?.product?.code}}</div>
           </div>
-          <div class="col-sm-4 quantity">{{cart?.quantity}} buc
+          <div class="col-sm-3 quantity">{{cart?.quantity}} buc
           <p>Disponibilitate: In stoc<br>
             Garantie inclusa:  Persoana fizica 24 luni | Persoana juridica 12 luni</p></div>
-          <div class="col-sm-1 price">{{cart?.product?.price! * cart?.quantity!}} Lei</div>
-          <div class="col-sm-1">
+          <div class="col-sm-1 price">{{myRound(cart?.product?.price! * cart?.quantity!)}} Lei</div>
+          <div class="col-sm-3">
+            <p-dropdown [options]="selectNumber(cart?.quantity!)" placeholder="Select number" [(ngModel)]="quantityToDelete" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
             <button class="btn btn-sm btn-danger" style="margin: 2px">
-             <fa-icon [icon]="faTrash" (click)="delete(cart?.product)"></fa-icon>
+             <fa-icon [icon]="faTrash" (click)="delete(cart)"></fa-icon>
             </button>
           </div>
         </div>
