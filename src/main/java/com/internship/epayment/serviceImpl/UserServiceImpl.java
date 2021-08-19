@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Page<User> getAll(Pageable pageable) {
@@ -65,11 +69,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Override
     public User updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -174,18 +180,16 @@ public class UserServiceImpl implements UserService {
 
         if (isTokenExpired(tokenCreationDate)) {
             return "Token expired.";
-
         }
 
         User user = userOptional.get();
 
-        user.setPassword(password);
+      // user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setToken(null);
         user.setTokenCreationDate(null);
 
         userRepository.save(user);
-
-
 
         return "Your password successfully updated.";
     }
