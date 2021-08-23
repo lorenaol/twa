@@ -3,7 +3,7 @@ import {Product} from "./product";
 
 export class ShoppingCart {
   id?: number;
-  user?: User | null;
+  userId?: number;
   product?: Product;
   quantity?: number;
 }

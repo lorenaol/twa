@@ -53,8 +53,8 @@ export class AuthenticationService {
         // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
         user.authdata = auth;
         localStorage.setItem('user', JSON.stringify(user));
-        this.shopping_cartService.updateCart();
         this.shopping_cartService.selectOldProducts();
+        this.shopping_cartService.updateCart();
         this.userSubject.next(user);
         this.loginDialog?.close();
         this.loginDialog = null;

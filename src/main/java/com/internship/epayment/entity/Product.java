@@ -24,14 +24,6 @@ public class Product {
 
     private long quantity;
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     @Column(name = "expire_date")
     private Date expireDate;
 
@@ -43,8 +35,6 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     @JsonIgnoreProperties("products")
     private Category category;
-
-    private String image;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnoreProperties("product")

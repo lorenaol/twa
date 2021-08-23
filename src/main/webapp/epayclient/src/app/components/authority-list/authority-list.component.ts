@@ -11,6 +11,7 @@ import {HttpResponse} from "@angular/common/http";
   templateUrl: './authority-list.component.html',
   styleUrls: ['./authority-list.component.css']
 })
+
 export class AuthorityListComponent implements OnInit {
   ModalTypesEnum = ModalTypesEnum;
   faPlus = faPlus;

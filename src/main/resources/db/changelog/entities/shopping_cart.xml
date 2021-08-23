@@ -16,8 +16,6 @@
             </column>
 
             <column name="user_id" type="bigint">
-                <constraints foreignKeyName="shopping_cart_user_fk" references="users(id)"
-                             nullable="false" />
             </column>
             <column name="product_id" type="bigint">
                 <constraints foreignKeyName="shopping_cart_product_fk" references="products(id)"

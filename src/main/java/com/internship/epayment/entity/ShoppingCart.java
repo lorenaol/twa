@@ -13,9 +13,8 @@ public class ShoppingCart {
     @SequenceGenerator(name = "shopping_cart_seq", allocationSize = 1)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
+    @Column(name = "user_id")
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
@@ -39,13 +38,12 @@ public class ShoppingCart {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    @JsonProperty
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Product getProduct() {

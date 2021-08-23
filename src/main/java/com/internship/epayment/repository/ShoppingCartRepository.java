@@ -11,12 +11,5 @@ import java.util.List;
 @Repository
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
 
-    @Query("select sc from ShoppingCart sc where sc.user.name =:name")
-    List<ShoppingCart> findShoppingCartByUserName(String name);
-
-    @Query("select sc.product from ShoppingCart sc where sc.user.name =:name")
-    List<Product> findProductsByUserName(String name);
-
-    @Query("select  sc from ShoppingCart sc where sc.user.id=:id")
     List<ShoppingCart> findShoppingCartsByUserId(Long id);
 }

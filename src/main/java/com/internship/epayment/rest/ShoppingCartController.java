@@ -28,19 +28,15 @@ public class ShoppingCartController {
         }
         return s;
     }
+
+    @GetMapping(path = "/findByUserId")
+    public List<ShoppingCart> getShoppingCartsByUserId(@RequestParam(value = "id") Long id) throws NotFoundException {
+        return  shoppingCartService.findByUserId(id);
+    }
+
     @GetMapping(path = "/findByName")
     public List<ShoppingCart> getShoppingCartsByName(@RequestParam(value = "name") String name) throws NotFoundException {
         return  shoppingCartService.findByName(name);
-    }
-
-    @GetMapping(path = "/findProductsByName")
-    public List<Product> getProductsByName(@RequestParam(value = "name") String name) throws NotFoundException {
-        return  shoppingCartService.findProductsByName(name);
-    }
-
-    @GetMapping(path = "/findById")
-    public List<ShoppingCart> getProductsByName(@RequestParam(value = "id") Long id) throws NotFoundException {
-        return  shoppingCartService.findShoppingCartsByUserId(id);
     }
 
     @PutMapping

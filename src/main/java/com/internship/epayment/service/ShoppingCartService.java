@@ -10,11 +10,9 @@ public interface ShoppingCartService {
 
     ShoppingCart addShoppingCart(ShoppingCart shoppingCart);
 
+    List<ShoppingCart> findByUserId(Long id);
+
     List<ShoppingCart> findByName(String name);
-
-    List<Product> findProductsByName(String name);
-
-    List<ShoppingCart> findShoppingCartsByUserId(Long id);
 
     ShoppingCart updateShoppingCart(ShoppingCart shoppingCart);
 

@@ -90,12 +90,13 @@ export class ShoppingCartComponent implements OnInit {
 
   delete(cart:ShoppingCart): void {
     console.log("delete");
+    this.shopping_cartService.delete(cart, this.quantityToDelete);
   //  (async () => {
     //  console.log(this.quantityToDelete);
       if(this.quantityToDelete == cart?.quantity) {
-        this.shopping_cartService.delete(cart);
+     //   this.shopping_cartService.delete(cart);
       } else {
-        this.shopping_cartService.updateQuantity(cart, this.quantityToDelete);
+      //  this.shopping_cartService.updateQuantity(cart, this.quantityToDelete);
       }
     //  await  this.delay(100);
       this.ngOnInit();

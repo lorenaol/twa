@@ -3,21 +3,14 @@ import {User, UserWithAuthoritiesDto} from "@app/entities/user";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "@app/services/authentication.service";
 import { Authorities } from "@app/enums/authorities";
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {Category} from "@app/entities/category";
 import {CategoryService} from "@app/services/category.service";
 import {MenuItem} from 'primeng/api';
 import {UserService} from "@app/services/user.service";
 import  {environment} from "@environments/environment";
-import {User, UserWithAuthoritiesDto} from "@app/entities/user";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "@app/services/authentication.service";
-import {Authorities} from "@app/enums/authorities";
 import { faUser, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
-import {Product} from "@app/entities/product";
-import {environment} from "@environments/environment";
 import {ShoppingCart} from "@app/entities/shoppingcart";
 
 
@@ -142,7 +135,7 @@ export class AppComponent {
     }
   }
   delete(cart:ShoppingCart): void {
-      this.shopping_cartService.delete(cart);
+      this.shopping_cartService.delete(cart, cart.quantity!);
       this.getCarts();
   }
 

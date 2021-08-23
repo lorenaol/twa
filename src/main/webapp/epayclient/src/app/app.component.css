@@ -52,14 +52,17 @@
 .btn-link:hover{
   background-color: rgb(247 247 247);
 }
+
 /* The dropdown container */
-.dropdown {
-  float: left;
+.cart {
+  /*float: left;*/
+  position: relative;
+  display: inline-block;
   /*overflow: hidden;*/
 }
 
 /* Dropdown button */
-.dropdown {
+.cart {
   font-size: 16px;
   border: none;
   outline: none;
@@ -76,18 +79,22 @@
   outline: none;
   color: white;
   /*width: max-content;*/
-  padding: 10px 110px;
+  padding: 10px 15px;
   background-color: inherit;
   /*font-family: inherit; !* Important for vertical align on mobile phones *!*/
   /*margin: 0; !* Important for vertical align on mobile phones *!*/
 }
 
-  /* Dropdown content (hidden by default) */
+/* Dropdown content (hidden by default) */
 .dropdown-content {
-  display: none;
   position: absolute;
+  display: none;
+  margin-left:-100px;
+  margin-top:-5px;
   background-color: #ffffff;
+  /*padding-right:80px;*/
   /*min-width: 200px;*/
+  width:230px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -123,6 +130,16 @@
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.cart:hover .dropdown-content {
   display: block;
+  /*flex-wrap: wrap;*/
+  /*flex-direction: column;*/
 }
+.prod {
+  flex: 0 0 20%;
+}
+
+.row {
+  display: flex;
+}
+
