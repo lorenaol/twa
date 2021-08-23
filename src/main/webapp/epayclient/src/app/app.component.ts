@@ -46,7 +46,6 @@ export class AppComponent {
     this.categoryService.getCategories().subscribe((data: any) => {
       this.categories = data.body;
       this.loadItems();
-      console.log(this.categories);
     })
   }
 
