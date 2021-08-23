@@ -136,15 +136,14 @@ public class UserController {
 
     @PostMapping(value = "/reset-password-logged-in")
     public Boolean resetPassword(@RequestParam(value = "initPassword") String initPassword,
-                                @RequestParam(value = "changePassword") String changePassword,
-                                @RequestParam(value = "email") String email) throws MessagingException {
+                                 @RequestParam(value = "changePassword") String changePassword,
+                                 @RequestParam(value = "email") String email) throws MessagingException {
 
         User user = userService.findByEmail(email);
         if (!passwordEncoder.matches(initPassword, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Password doesn't match! Did your forget your password?");
         } else {
-            String changePass = passwordEncoder.encode(changePassword);
-            user.setPassword(changePass);
+            user.setPassword(changePassword);
             userService.updateUser(user);
             emailService.sendMailCPass(user);
         }
