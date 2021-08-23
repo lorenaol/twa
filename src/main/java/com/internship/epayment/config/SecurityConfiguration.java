@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/users/**").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
                 .antMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
                 .antMatchers("/api/categories/**").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
-                .antMatchers("/api/products/**").permitAll()
+                .antMatchers("/api/products/**").hasAuthority(AuthorityEnum.EPAY_PRODUCT.getCode())//lorena 3
                 .antMatchers("/api/authorities/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
                 .antMatchers("/api/roles/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
