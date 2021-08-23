@@ -7,6 +7,7 @@ import {environment} from "@environments/environment";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ForgotPasswordComponent} from "@app/components/forgot-password/forgot-password.component";
+import {PasswordChangeComponent} from "@app/components/password-change/password-change.component";
 
 type EntityResponseType = HttpResponse<User>;
 type EntityArrayResponseType = HttpResponse<User[]>;
@@ -19,10 +20,11 @@ export class UserService {
   private readonly USER_URL = environment.apiUrl + 'users';
   private forgotDialog: NgbModalRef | null;
   private changeDialog: NgbModalRef | null;
-
+  password: any;
   constructor(private http: HttpClient, private modalService: NgbModal) {
     this.forgotDialog = null;
     this.changeDialog = null;
+
   }
 
   public addUser(user: User): Observable<EntityResponseType> {
@@ -40,12 +42,14 @@ export class UserService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getUsersByName(userName: string): Observable<EntityArrayResponseType> {
-    const params = new HttpParams();
-    params.append('name', userName);
-    return this.http.get<User[]>(this.USER_URL, {params, observe: 'response'})
-      .pipe(map((res: EntityArrayResponseType) => res));
+  public getUsersByName(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('name',userName);
+
+    return this.http.get<User>(this.USER_URL + '/findByName', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
   }
+
+
   public getUserByCode(userEmail: string): Observable<EntityArrayResponseType> {
     const params = new HttpParams();
     params.append('email', userEmail);
@@ -64,7 +68,7 @@ export class UserService {
 
 
 
-  public updateUser(user: User): Observable<EntityResponseType> {
+  public updateUser(user: User | null): Observable<EntityResponseType> {
     return this.http.put<User>(this.USER_URL, user, {observe: 'response'})
       .pipe(map((res: EntityResponseType) => res));
   }
@@ -91,9 +95,37 @@ export class UserService {
         ,size: "xl"});
     }
   }
+  showCPass() {
+    if (!this.changeDialog || !this.modalService.hasOpenModals) {
+      this.forgotDialog = this.modalService.open(PasswordChangeComponent, {
+        beforeDismiss: () => {
+          this.forgotDialog = null;
+          return true;
+        }
+        ,size: "xl"});
+    }
+  }
 
   public resetPassword(userToken: string, userPassword: string): Observable<EntityArrayResponseType> {
     return this.http.put<User[]>(this.USER_URL+"/reset-password"+"/"+userToken+"/"+userPassword,{}, {observe: 'response'})
       .pipe(map((res: EntityArrayResponseType) => res));
   }
+
+
+  public resetPasswordLoggedIn(initPassword: string, changePassword: string, email: string): Observable<HttpResponse<any>> {
+
+    // @ts-ignore
+    return this.http.post<>(this.USER_URL+"/reset-password-logged-in?initPassword="+initPassword+"&changePassword="+changePassword+"&email="+email,
+      {}, {observe: 'response', })
+       .pipe(map((res: HttpResponse<any>) => {return res}));
+
+  }
+
+  public getUsersByEmail(userName: string): Observable<EntityResponseType> {
+    const params = new HttpParams().set('email',userName);
+
+    return this.http.get<User>(this.USER_URL + '/findByEmail', {params, observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
+  }
+
 }

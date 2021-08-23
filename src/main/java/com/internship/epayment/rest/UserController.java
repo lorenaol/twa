@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,6 +30,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private EmailService emailService;
@@ -73,7 +77,6 @@ public class UserController {
         User u = null;
 
         User user2 = userRepository.findUserByEmail(user.getEmail());
-        System.out.println(user2);
 
         if (user != null && user2 == null) {
 
@@ -131,6 +134,22 @@ public class UserController {
             emailService.sendMailCPass(user);
         }
         return response;
+    }
+
+    @PostMapping(value = "/reset-password-logged-in")
+    public Boolean resetPassword(@RequestParam(value = "initPassword") String initPassword,
+                                 @RequestParam(value = "changePassword") String changePassword,
+                                 @RequestParam(value = "email") String email) throws MessagingException {
+
+        User user = userService.findByEmail(email);
+        if (!passwordEncoder.matches(initPassword, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Password doesn't match! Did your forget your password?");
+        } else {
+            user.setPassword(changePassword);
+            userService.updateUser(user);
+            emailService.sendMailCPass(user);
+        }
+        return true;
     }
 
 }

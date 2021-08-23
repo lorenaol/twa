@@ -40,8 +40,8 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
-  login(username: string, password: string) {
-    let auth = window.btoa(username + ':' + password);
+  login(email: string, password: string) {
+    let auth = window.btoa(email + ':' + password);
     return this.http.get<any>(`${environment.apiUrl}login`, {
       headers: {
         Authorization: `Basic ${auth}`
@@ -51,6 +51,7 @@ export class AuthenticationService {
         // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
         user.authdata = auth;
         localStorage.setItem('user', JSON.stringify(user));
+        console.log();
         this.userSubject.next(user);
         this.loginDialog?.close();
         this.loginDialog = null;
@@ -89,6 +90,7 @@ export class AuthenticationService {
   showSignin() {
     if (!this.signinDialog) {
       this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
+
     }
   }
 

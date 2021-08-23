@@ -42,6 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
                 .antMatchers("/api/users/forgot-password/**").permitAll()
                 .antMatchers("/api/users/reset-password/**").permitAll()
+                .antMatchers("/api/users/reset-password-logged-in/**").permitAll()
                 .antMatchers("/api/users/**").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
                 .antMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
                 .antMatchers("/api/categories/**").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())

@@ -36,14 +36,11 @@ export class ResetPasswordComponent implements OnInit {
     this.route.params.subscribe((params)=> {
       this.token1 = params.token;
 
-      console.log(this.token1);
     });
 
     this.newPasForm = this.formBuilder.group({
+
       password: ['', Validators.required]
-      //aici
-
-
 
     });
 

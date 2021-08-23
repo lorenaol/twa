@@ -10,6 +10,7 @@ import {CategoryService} from "@app/services/category.service";
 import {MenuItem} from 'primeng/api';
 import {UserService} from "@app/services/user.service";
 import  {environment} from "@environments/environment";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,8 @@ export class AppComponent {
   user!: UserWithAuthoritiesDto | null;
   categories?: Category[] | null;
   items: MenuItem[] = [{}];
+  private password: string | undefined;
+
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
@@ -105,7 +108,7 @@ export class AppComponent {
   }
 
   changepass() {
-    this.userService.showFPass();
+    this.userService.showCPass();
   }
 }
 
