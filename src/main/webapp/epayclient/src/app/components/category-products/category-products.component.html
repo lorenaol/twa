@@ -16,7 +16,7 @@
           <p><strong>{{product?.price}}$</strong></p>
         </div>
        <div class="buttons">
-         <button id="cart"><fa-icon id="cart-i" [icon]="faCart"></fa-icon>  Add to cart</button>
+         <button id="cart"><fa-icon id="cart-i" [icon]="faCart" (click)="addToCart(product)"></fa-icon>  Add to cart</button>
          <button id="favorites"><fa-icon id="heart" [icon]="faHeart"></fa-icon>  Add to favorites</button>
        </div>
      </div>

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
-import {ShoppingCart, ShoppingCartDto} from "@app/entities/shoppingcart";
+import {ShoppingCart} from "@app/entities/shoppingcart";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
 import {UserService} from "@app/services/user.service";
 import {Product} from "@app/entities/product";
-import {User} from "@app/entities/user";
 
 type EntityResponseType = HttpResponse<ShoppingCart>;
 type EntityArrayResponseType = HttpResponse<ShoppingCart[]>;
@@ -20,9 +19,6 @@ export class Shopping_cartService {
   inputProduct?: Product
   shoppingCart = new ShoppingCart();
   shoppingCarts? : ShoppingCart[] | null = [];
-  shoppingCartDto = new ShoppingCart();
-  shoppingCartsDto : ShoppingCart[] | null = [];
-  static shoppingCartId = 0;
   found?:boolean;
 
   constructor(private http: HttpClient,
@@ -36,42 +32,22 @@ export class Shopping_cartService {
 
 
   init(product: any): void {
-    let current = new Date();
     this.inputProduct = product;
-    //this.localStorageProducts();
     this.setUserId();
-    (async () => {
-     // this.setQuantity();
-      //await this.delay(1000);
-     /// this.updateCart();
-      await this.delay(1000);
-      //this.selectOldProducts();
-     // this.newFunction();
-     // await  this.delay(1000);
-      // this.call();
-    })();
-
   }
 
   updateCart(): void {
-    console.log("update")
     if(localStorage.getItem('user')) {
-      console.log("user pus")
       if(localStorage.getItem('userId')) {
         this.getShoppingCartsByUserId(JSON.parse(localStorage.getItem('userId')!)).subscribe((data: any) => {
           if (data.body.length) {
-            console.log(data.body)
-            console.log("sunt produse la neauth")
             for (let s of data.body) {
-              this.getShoppingCartsByUserName(JSON.parse(localStorage.getItem('user')!).userName)
+              this.getShoppingCartsByUserEmail(JSON.parse(localStorage.getItem('user')!).userName)
                 .subscribe((data2: any) => {
                   if (data2.body.length) {
-                    console.log(data2.body);
-                    console.log("sunt prod in baza auth")
                     this.found = false;
                     for (let s2 of data2.body) {
                       if (s.product.id == s2.product.id) {
-                        console.log("acelasi prod de 2 ori")
                         this.found = true;
                         s2.quantity += s.quantity;
                         this.updateShoppingCart(s2).subscribe();
@@ -79,12 +55,11 @@ export class Shopping_cartService {
                       }
                     }
                     if (!this.found) {
-                      console.log("nu exista deja prod")
                       s.userId = data2.body[0].userId;
                       this.updateShoppingCart(s).subscribe();
                     }
                   } else {
-                    this.userService.getUsersByName(JSON.parse(localStorage.getItem('user')!).userName)
+                    this.userService.getUsersByEmail(JSON.parse(localStorage.getItem('user')!).userName)
                       .subscribe((data2: any) => {
                         s.userId = data2.body.id;
                         this.updateShoppingCart(s).subscribe();
@@ -101,10 +76,9 @@ export class Shopping_cartService {
 
   selectOldProducts(): void {
     this.shoppingCarts = JSON.parse(localStorage.getItem('shoppingCarts')!);
-    this.getShoppingCartsByUserName(JSON.parse(localStorage.getItem('user')!).userName)
+    this.getShoppingCartsByUserEmail(JSON.parse(localStorage.getItem('user')!).userName)
       .subscribe((data:any)=>{
         if (data.body.length) {
-          console.log(data.body);
           if (this.shoppingCarts?.length) {
             for(let d of data.body){
               this.found = false;
@@ -158,7 +132,7 @@ export class Shopping_cartService {
   setUserId(): void {
     this.found = false;
     if(localStorage.getItem('user')) {
-      this.userService.getUsersByName(JSON.parse(localStorage.getItem('user')!).userName).subscribe((data:any)=>
+      this.userService.getUsersByEmail(JSON.parse(localStorage.getItem('user')!).userName).subscribe((data:any)=>
       {
         this.shoppingCart.userId = data.body.id;
         this.localStorageProducts();
@@ -179,11 +153,7 @@ export class Shopping_cartService {
     this.getShoppingCartsByUserId(this.shoppingCart.userId!).subscribe((data:any)=> {
       if(data.body) {
         for(let s of data.body) {
-          console.log(data.body)
-          console.log(s.product.id == this.shoppingCart.product?.id);
-          console.log(this.shoppingCart.product)
           if(s.product.id == this.shoppingCart.product?.id) {
-            console.log('cds')
             this.found = true;
             s.quantity = this.shoppingCart.quantity;
             this.updateShoppingCart(s).subscribe();
@@ -191,7 +161,6 @@ export class Shopping_cartService {
         }
       }
       if(!this.found) {
-        console.log('..........')
         this.addToShoppingCart(this.shoppingCart).subscribe();
       }
     })
@@ -202,7 +171,7 @@ export class Shopping_cartService {
     if(quantity == shoppingCart.quantity) {
       this.shoppingCarts?.forEach((s, index)=>{
         if(s.product?.id == shoppingCart.product?.id) {
-          this.shoppingCarts?.splice(index,1);
+          this.shoppingCarts?.splice(index, 1);
         }
       })
       localStorage.setItem('shoppingCarts', JSON.stringify(this.shoppingCarts));
@@ -235,9 +204,6 @@ export class Shopping_cartService {
     }
   }
 
-
-
-
   public addToShoppingCart(shoppingCart: ShoppingCart): Observable<EntityResponseType>{
     return this.http.post<ShoppingCart>(this.SHOPPING_CART_URL, shoppingCart, {observe: 'response'})
       .pipe(map((res:EntityResponseType) => res));
@@ -253,16 +219,11 @@ export class Shopping_cartService {
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
-  public getShoppingCartsByUserName(name: string): Observable<EntityArrayResponseType> {
-    const params = new HttpParams().set('name', name);
-    return this.http.get<ShoppingCart[]>(this.SHOPPING_CART_URL + "/findByName", {params, observe: 'response' })
+  public getShoppingCartsByUserEmail(email: string): Observable<EntityArrayResponseType> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<ShoppingCart[]>(this.SHOPPING_CART_URL + "/findByEmail", {params, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
-  // public getProductsByUserName(name : string) : Observable<HttpResponse<Product[]>> {
-  //   const params = new HttpParams().set('name', name);
-  //   return this.http.get<Product[]>(this.SHOPPING_CART_URL + "/findProductsByName", {params, observe: 'response' })
-  //     .pipe(map((res: HttpResponse<Product[]>) => res));
-  // }
 
   public deleteShoppingCart(shoppingCart: ShoppingCart): Observable<EntityResponseType> {
     return this.http.delete<ShoppingCart>(this.SHOPPING_CART_URL, {body: shoppingCart, observe: 'response'})

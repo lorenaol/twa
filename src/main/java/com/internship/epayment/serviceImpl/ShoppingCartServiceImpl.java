@@ -1,9 +1,6 @@
 package com.internship.epayment.serviceImpl;
 
-import com.internship.epayment.entity.Authority;
-import com.internship.epayment.entity.Product;
 import com.internship.epayment.entity.ShoppingCart;
-import com.internship.epayment.entity.UserRole;
 import com.internship.epayment.repository.ShoppingCartRepository;
 import com.internship.epayment.repository.UserRepository;
 import com.internship.epayment.service.ShoppingCartService;
@@ -41,8 +38,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public List<ShoppingCart> findByName(String name) {
-        Long id = userRepository.findUserByName(name).get().getId();
+    public List<ShoppingCart> findByEmail(String email) {
+        Long id = userRepository.findUserByEmail(email).getId();
        return shoppingCartRepository.findShoppingCartsByUserId(id);
     }
 

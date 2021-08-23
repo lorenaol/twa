@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "@app/entities/product";
 import {ShoppingCart} from "@app/entities/shoppingcart";
-import {UserService} from "@app/services/user.service";
-import {HttpResponse} from "@angular/common/http";
-import {User} from "@app/entities/user";
 import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
@@ -34,13 +31,6 @@ export class ShoppingCartComponent implements OnInit {
       this.shoppingCarts = JSON.parse(localStorage.getItem('shoppingCarts')!);
       await this.delay(0);
       this.setImage();
-      //this.shopping_cartService.getProducts();
-      // this.shopping_cartService.set();
-      // await  this.delay(1000);
-      // this.shoppingCarts = this.shopping_cartService.get();
-      // console.log(this.shoppingCarts)
-      // await  this.delay(1000);
-      // this.setImage();
     })();
   }
 
@@ -48,7 +38,6 @@ export class ShoppingCartComponent implements OnInit {
 
 
   emptyCart(): boolean {
-    //console.log(this.products)
     return this.shoppingCarts?.length == 0;
   }
 
@@ -59,7 +48,6 @@ export class ShoppingCartComponent implements OnInit {
     this.deliveryCost = 0;
     for (let cart of this.shoppingCarts!) {
       this.productsCost += cart?.product?.price! * cart?.quantity!;
-      // console.log(cart?.product?.price! * cart?.quantity!)
       let imageWrapper = document.querySelector('.image' + cart?.product?.id);
       let image = new Image(150, 150);
 
@@ -70,8 +58,6 @@ export class ShoppingCartComponent implements OnInit {
     this.productsCost = Number((Math.round(this.productsCost * 100) / 100).toFixed(2));
     this.total = this.productsCost + this.deliveryCost;
     this.total = Number((Math.round(this.total * 100) / 100).toFixed(2));
-    //console.log(this.total)
-
   }
 
   myRound(x: number): number {
@@ -89,21 +75,8 @@ export class ShoppingCartComponent implements OnInit {
 
 
   delete(cart:ShoppingCart): void {
-    console.log("delete");
     this.shopping_cartService.delete(cart, this.quantityToDelete);
-  //  (async () => {
-    //  console.log(this.quantityToDelete);
-      if(this.quantityToDelete == cart?.quantity) {
-     //   this.shopping_cartService.delete(cart);
-      } else {
-      //  this.shopping_cartService.updateQuantity(cart, this.quantityToDelete);
-      }
-    //  await  this.delay(100);
-      this.ngOnInit();
-      // await  this.delay(1000);
-      // this.setImage();
- //   })();
-
+    this.ngOnInit();
   }
 
 }

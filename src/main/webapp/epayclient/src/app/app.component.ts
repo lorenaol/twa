@@ -13,7 +13,6 @@ import { faUser, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
 import {ShoppingCart} from "@app/entities/shoppingcart";
 
-import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -29,6 +28,7 @@ export class AppComponent {
   user!: UserWithAuthoritiesDto | null;
   categories?: Category[] | null;
   items: MenuItem[] = [{}];
+  shoppingCarts?: ShoppingCart[] | null;
   private password: string | undefined;
 
 
@@ -111,14 +111,9 @@ export class AppComponent {
     }
     return false;
   }
-  shoppingCarts?: ShoppingCart[] | null;
+
   getCarts() : void {
-    console.log("getCarts");
     (async () => {
-     // this.shopping_cartService.f();
-     // this.shopping_cartService.updateCart();
-      //this.shopping_cartService.set();
-    //  await this.delay(1000);
       this.shoppingCarts = JSON.parse(localStorage.getItem('shoppingCarts')!);
       await this.delay(0);
       this.setImage();
@@ -141,12 +136,6 @@ export class AppComponent {
       this.shopping_cartService.delete(cart, cart.quantity!);
       this.getCarts();
   }
-
-
- /* inShoppingCart() : boolean {
-    return this.router.url == '/shoppingcart';
-  }*/
-
 
   signin() {
     this.authenticationService.showSignin();

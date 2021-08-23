@@ -12,7 +12,7 @@ public interface ShoppingCartService {
 
     List<ShoppingCart> findByUserId(Long id);
 
-    List<ShoppingCart> findByName(String name);
+    List<ShoppingCart> findByEmail(String email);
 
     ShoppingCart updateShoppingCart(ShoppingCart shoppingCart);
 

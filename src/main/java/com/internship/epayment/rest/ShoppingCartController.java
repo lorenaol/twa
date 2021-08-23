@@ -34,9 +34,9 @@ public class ShoppingCartController {
         return  shoppingCartService.findByUserId(id);
     }
 
-    @GetMapping(path = "/findByName")
-    public List<ShoppingCart> getShoppingCartsByName(@RequestParam(value = "name") String name) throws NotFoundException {
-        return  shoppingCartService.findByName(name);
+    @GetMapping(path = "/findByEmail")
+    public List<ShoppingCart> getShoppingCartsByName(@RequestParam(value = "email") String email) throws NotFoundException {
+        return  shoppingCartService.findByEmail(email);
     }
 
     @PutMapping

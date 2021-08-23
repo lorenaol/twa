@@ -53,53 +53,41 @@
   background-color: rgb(247 247 247);
 }
 
-/* The dropdown container */
 .cart {
-  /*float: left;*/
   position: relative;
   display: inline-block;
-  /*overflow: hidden;*/
 }
 
-/* Dropdown button */
+
 .cart {
   font-size: 16px;
   border: none;
   outline: none;
   color: white;
-  /*padding: 0px -100px;*/
-  /*background-color: inherit;*/
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+  font-family: inherit;
+  margin: 0;
 }
+
 .dropbtn {
-  /*position: relative;*/
   font-size: 16px;
   border: none;
   outline: none;
   color: white;
-  /*width: max-content;*/
   padding: 10px 15px;
   background-color: inherit;
-  /*font-family: inherit; !* Important for vertical align on mobile phones *!*/
-  /*margin: 0; !* Important for vertical align on mobile phones *!*/
 }
 
-/* Dropdown content (hidden by default) */
 .dropdown-content {
   position: absolute;
   display: none;
   margin-left:-100px;
   margin-top:-5px;
   background-color: #ffffff;
-  /*padding-right:80px;*/
-  /*min-width: 200px;*/
   width:230px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   float: none;
   color: black;
@@ -108,8 +96,8 @@
   display: block;
   text-align: left;
 }
-.dropdown-content .products {
 
+.dropdown-content .products {
   float: none;
   border-style: none none ridge none;
   color: black;
@@ -117,24 +105,19 @@
   text-decoration: #0c0c0c;
   display: block;
   text-align: left;
-  /*width: 500px;*/
-  /*height: 100px;*/
 }
 .delete {
   color: #f44336;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #ddd;
 }
 
-/* Show the dropdown menu on hover */
 .cart:hover .dropdown-content {
   display: block;
-  /*flex-wrap: wrap;*/
-  /*flex-direction: column;*/
 }
+
 .prod {
   flex: 0 0 20%;
 }
