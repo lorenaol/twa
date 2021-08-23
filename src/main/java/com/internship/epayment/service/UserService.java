@@ -34,5 +34,8 @@ public interface UserService {
     Page<User> filter(List<String> params, Pageable pageable);
 
     User findByToken(String token);
+
+    String findPassByName(String name);
+
 }
 

@@ -53,6 +53,8 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { PasswordChangeComponent } from './components/password-change/password-change.component';
+
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ProductDetailComponent,
-    CategoryProductsComponent
+    CategoryProductsComponent,
+    PasswordChangeComponent,
 
   ],
   imports: [

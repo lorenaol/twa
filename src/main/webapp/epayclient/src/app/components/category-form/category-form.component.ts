@@ -21,6 +21,7 @@ export class CategoryFormComponent implements OnInit {
 
   modalType?: ModalTypesEnum;
   inputCategory?: Category;
+  createdDate?: Date;
 
   categoryForm = this.fb.group({
     id: [],
@@ -28,7 +29,7 @@ export class CategoryFormComponent implements OnInit {
     categoryCode: [],
     categoryDescription: [],
     storeId: [],
-    dateAdded: []
+    createdDate: []
   });
 
   constructor(
@@ -42,6 +43,8 @@ export class CategoryFormComponent implements OnInit {
     if (this.inputCategory !== undefined) {
       this.updateForm(this.inputCategory);
     }
+    let today = new Date();
+    this.createdDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   }
 
   close(): void {
@@ -58,26 +61,25 @@ export class CategoryFormComponent implements OnInit {
   }
 
   private createFromForm(): Category {
-    const dateAdded = this.categoryForm.get('dateAdded')!.value;
     const category = new Category();
     category.id = this.inputCategory?.id;
     category.categoryName = this.categoryForm.get('categoryName')!.value;
     category.categoryCode = this.categoryForm.get('categoryCode')!.value;
     category.categoryDescription = this.categoryForm.get('categoryDescription')!.value;
     category.storeId = this.categoryForm.get('storeId')!.value;
-    category.dateAdded = new Date(dateAdded.year, dateAdded.month-1, dateAdded.day);
+    category.createdDate = this.createdDate;
     return category;
   }
 
   private updateForm(category: Category): void {
-    const dateAdded = new Date(category?.dateAdded!);
+    const createdDate = new Date(category?.createdDate!);
     this.categoryForm.setValue({
       id: category?.id,
       categoryName: category?.categoryName,
       categoryCode: category?.categoryCode,
       categoryDescription: category?.categoryDescription,
       storeId: category?.storeId,
-      dateAdded: new NgbDate(dateAdded?.getFullYear(), dateAdded?.getMonth() + 1, dateAdded?.getDate())
+      createdDate: new NgbDate(createdDate?.getFullYear(), createdDate?.getMonth() + 1, createdDate?.getDate())
     });
   }
 

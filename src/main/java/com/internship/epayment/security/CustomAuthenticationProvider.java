@@ -44,7 +44,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        Optional<User> userOptional = userRepository.findUserByName(name);
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findUserByEmail(name));
 
         if (!userOptional.isPresent()) {
             System.err.println("User not found: " + name);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .body{
+            text-align: center;
+            column-count: 1;
+            background: lightblue;
+            color: black;
+        }
+
+        p{
+            font-size: 25px;
+            color: black;
+        }
+
+        .content{
+            display: block;
+            text-align: center;
+            border: solid 2px black;
+            background: white;
+            font-size: 20px;
+            margin: 1% 30%;
+            color: black;
+        }
+        .content:hover{
+            background: #0195e0;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <p>Today, in database are:</p>
+    <br>
+    <div class="content">
+        <h1><span th:text="${products}"></span> products</h1>
+    </div>
+    <br>
+    <div class="content">
+        <h1><span th:text="${categories}"></span> categories</h1>
+    </div>
+    <br>
+</div>
+
+</body>
+</html>

@@ -13,6 +13,7 @@ import { faUser, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {Shopping_cartService} from "@app/services/shopping_cart.service";
 import {ShoppingCart} from "@app/entities/shoppingcart";
 
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,8 @@ export class AppComponent {
   user!: UserWithAuthoritiesDto | null;
   categories?: Category[] | null;
   items: MenuItem[] = [{}];
+  private password: string | undefined;
+
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
@@ -150,7 +153,7 @@ export class AppComponent {
   }
 
   changepass() {
-    this.userService.showFPass();
+    this.userService.showCPass();
   }
 }
 

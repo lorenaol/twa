@@ -4,20 +4,20 @@ import java.util.List;
 
 public class UserWithAuthoritiesDto {
 
-    private String userName;
+    private String email;
     private List<String> authorityCode;
 
     public UserWithAuthoritiesDto(String userName, List<String> authorityCode) {
-        this.userName = userName;
+        this.email = userName;
         this.authorityCode = authorityCode;
     }
 
     public String getUserName() {
-        return userName;
+        return email;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.email = userName;
     }
 
     public List<String> getAuthorityCode() {

@@ -37,9 +37,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public Page<User> getAll(Pageable pageable) {
         return userRepository.findAll(pageable);
@@ -58,6 +55,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String findPassByName(String name) {
+        Optional<User> user = userRepository.findUserByName(name);
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
+        return user.get().getPassword();
+    }
+
+    @Override
     public User findByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -69,13 +73,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Override
     public User updateUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -114,10 +116,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserName) throws NotFoundException {
+    public UserWithAuthoritiesDto getUserWithAuthorities(String currentUserEmail) throws NotFoundException {
         //pas 1.getUser de pe currentUserName
-        User user = findByName(currentUserName);
-
+        User user = findByEmail(currentUserEmail);
+//        System.out.println(user.getName());
         //pas 2.luam rolurile userului
         List<Role> roles = new ArrayList<>();
         userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
@@ -142,7 +144,7 @@ public class UserServiceImpl implements UserService {
         });
 
         //pas 4.bagam ce ne intereseaza in dto si il returnam
-        return new UserWithAuthoritiesDto(currentUserName, authorities);
+        return new UserWithAuthoritiesDto(currentUserEmail, authorities);
     }
 
     public String forgotPassword(String email) {
@@ -159,7 +161,6 @@ public class UserServiceImpl implements UserService {
 
         LocalDateTime time = LocalDateTime.now();
 
-        System.out.println(time);
 
         user.setTokenCreationDate(time);
         user = userRepository.save(user);
@@ -184,8 +185,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userOptional.get();
 
-      // user.setPassword(password);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         user.setToken(null);
         user.setTokenCreationDate(null);
 
@@ -220,7 +220,6 @@ public class UserServiceImpl implements UserService {
 
         return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
     }
-
 
 
 }

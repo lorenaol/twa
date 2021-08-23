@@ -1,7 +1,3 @@
-<div>
-  <router-outlet></router-outlet>
-</div>
-
 <div class="toolbar" role="banner">
   <img
     width="40"
@@ -9,7 +5,6 @@
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
   <span><a routerLink="/"><button class="btn btn-link" style="color: white">Home</button></a></span>
-
   <div ngbDropdown class="dropdown">
     <button class="btn" id="dropdownBasic3" style="color: white" >
       <fa-icon [icon]="faBars"></fa-icon>&nbsp;Shop</button>
@@ -45,6 +40,7 @@
   </div>
 
   <div ngbDropdown>
+  <div ngbDropdown >
     <button class="btn" id="dropdownBasic2" style="color: white" ngbDropdownToggle>
       <fa-icon [icon]="faBars"></fa-icon>&nbsp;Entitati</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="entitati">
@@ -78,33 +74,10 @@
     </div>
   </div>
 
-
-
-
-
-    <!--div ngbDropdown>
-      <button class="btn"  (click)="getCarts(); setImage()"  id="dropdownBasic2" style="color: white" ngbDropdownToggle>
-        <fa-icon [icon]="faShoppingCart"></fa-icon></button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        <div class="products">
-          <tr *ngFor="let cart of shoppingCarts">
-            <td class="image2{{cart.product?.id}}">
-            </td>
-            <td> x {{cart?.quantity}}
-            </td>
-            <td class="productName">{{cart.product?.name}}</td>
-            <td>{{cart.product?.price}} Lei</td>
-          </tr>
-        </div>
-        <a href="/shoppingcart" >Vezi detalii cos</a>
-      </div>
-    </div-->
-
-
   <div ngbDropdown>
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>
-      <fa-icon [icon]="faUser"></fa-icon>&nbsp;{{user?.userName}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="entitati">
+      <fa-icon [icon]="faUser"></fa-icon>&nbsp;{{user?.email}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
       <div *ngIf="isLoggedIn()">
         <span><a (click)="logout()"><button class="btn btn-link " ><span class="em em-user2"></span>Logout</button></a></span>
         <span><a (click)="changepass()"><button class="btn btn-link " ><span class="em em-user2"></span>Reset Password</button></a></span>
@@ -114,7 +87,6 @@
         <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
         </li><li><span><a (click)="signin()"><button class="btn btn-link " ><span class="em em-user2"></span>Sign Up</button></a></span></li>
       </div>
-
     </div>
   </div>
 

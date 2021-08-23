@@ -23,7 +23,7 @@
             <column name="quantity" type="bigint">
                 <constraints nullable="false" />
             </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="expire_date"  type="TIMESTAMP">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="expire_date" type="date">
                 <constraints nullable="false" />
             </column>
             <column name="sku" type="varchar(128)">
@@ -34,7 +34,12 @@
             </column>
             <column name="category_id" type="bigint">
             </column>
+
             <column name="image" type="clob">
+            </column>
+
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="date">
+                <constraints nullable="false" />
             </column>
         </createTable>
     </changeSet>
@@ -48,11 +53,12 @@
             <column name="price" type="numeric"/>
             <column name="name" type="string"/>
             <column name="quantity" type="numeric"/>
-            <column name="expire_date" type="datetime"/>
+            <column name="expire_date" type="date"/>
             <column name="sku" type="string"/>
             <column name="code" type="string"/>
             <column name="category_id" type="numeric"/>
             <column name="image" type="string"/>
+            <column name="created_date" type="date"/>
         </loadData>
     </changeSet>
 
