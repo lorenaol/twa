@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -38,4 +39,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where p.name like %:name%")
     Page<Product> findProductsByName(String name, Pageable pageable);
+
+    @Query("select p from Product p where trunc(p.createdDate) = trunc(sysdate)")
+    List<Product> findProductsByDateToday();
+
+    @Query("select p from Product p where trunc(p.createdDate) <= trunc(sysdate) and trunc(p.createdDate) >= trunc(sysdate-5)")
+    List<Product> findProductsByDateWeek();
+    
+    @Query("select p from Product p where trunc(p.createdDate) <= trunc(sysdate) and trunc(p.createdDate) >= trunc(sysdate-31)")
+    List<Product> findProductsByDateMonth();
 }

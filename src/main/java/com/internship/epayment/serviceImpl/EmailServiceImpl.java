@@ -18,6 +18,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -101,28 +102,17 @@ public class EmailServiceImpl implements EmailService {
 
     @Scheduled(cron = "0 0 16 * * ?")
     public void productsAndCategoriesToday() throws MessagingException{
-        List<Product> products = productRepository.findAll();
-        List<Category> categories = categoryRepository.findAll();
-        int nr_products = 0, nr_categories = 0;
-        Date today = new Date();
-        for(Product product : products){
-            Date d = product.getCreatedDate();
-            if(d.getDate() == today.getDate() && d.getMonth() == today.getMonth() && d.getYear() == today.getYear())
-                nr_products++;
-        }
-        for(Category category : categories){
-            Date d = category.getCreatedDate();
-            if(d.getDate() == today.getDate() && d.getMonth() == today.getMonth() && d.getYear() == today.getYear())
-                nr_categories++;
-        }
-        sendMailProductsCateg(nr_products, nr_categories, "day");
+        List<Product> products = productRepository.findProductsByDateToday();
+        List<Category> categories = categoryRepository.findCategoriesByDateToday();
+
+        sendMailProductsCateg(products.size(), categories.size(), "day");
     }
 
     @Scheduled(cron = "0 0 16 ? * FRI")
     public void productsAndCategoriesWeek() throws MessagingException{
-        List<Product> products = productRepository.findAll();
-        List<Category> categories = categoryRepository.findAll();
-        int nr_products = 0, nr_categories = 0;
+        List<Product> products = productRepository.findProductsByDateWeek();
+        List<Category> categories = categoryRepository.findCategoriesByDateWeek();
+        int nrProducts = 0, nrCategories = 0;
         Date today = new Date();
         Calendar calendar1 = new GregorianCalendar();
         calendar1.setTime(today);
@@ -134,7 +124,7 @@ public class EmailServiceImpl implements EmailService {
             calendar2.setTime(d);
             int week2 = calendar2.get(calendar2.WEEK_OF_YEAR);
             if(d.getYear() == today.getYear() && week1 == week2)
-                nr_products++;
+                nrProducts++;
 
         }
 
@@ -144,27 +134,27 @@ public class EmailServiceImpl implements EmailService {
             calendar2.setTime(d);
             int week2 = calendar2.get(calendar2.WEEK_OF_YEAR);
             if(d.getYear() == today.getYear() && week1 == week2)
-                nr_categories++;
+                nrCategories++;
         }
-        sendMailProductsCateg(nr_products, nr_categories, "week");
+        sendMailProductsCateg(nrProducts, nrCategories, "week");
     }
 
     @Scheduled(cron = "0 0 16 LW * ?")
     public void productsAndCategoriesMonth() throws MessagingException{
-        List<Product> products = productRepository.findAll();
-        List<Category> categories = categoryRepository.findAll();
-        int nr_products = 0, nr_categories = 0;
+        List<Product> products = productRepository.findProductsByDateMonth();
+        List<Category> categories = categoryRepository.findCategoriesByDateMonth();
+        int nrProducts = 0, nrCategories = 0;
         Date today = new Date();
         for(Product product : products){
             Date d = product.getCreatedDate();
             if(d.getMonth() == today.getMonth() && d.getYear() == today.getYear())
-                nr_products++;
+                nrProducts++;
         }
         for(Category category : categories){
             Date d = category.getCreatedDate();
             if(d.getMonth() == today.getMonth() && d.getYear() == today.getYear())
-                nr_categories++;
+                nrCategories++;
         }
-        sendMailProductsCateg(nr_products, nr_categories, "month");
+        sendMailProductsCateg(nrProducts, nrCategories, "month");
     }
 }
