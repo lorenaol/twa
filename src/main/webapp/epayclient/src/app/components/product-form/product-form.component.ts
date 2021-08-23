@@ -30,6 +30,8 @@ export class ProductFormComponent implements OnInit {
   images?: Image[] = [];
   categories?: Category[] | null | undefined = [];
   uploadedFiles: any[] = [];
+  createdDate?: Date;
+
   productForm = this.fb.group({
     id: [],
     price: [],
@@ -40,7 +42,8 @@ export class ProductFormComponent implements OnInit {
     code: [],
     category: [],
     image:[],
-    images:[]
+    images:[],
+    createdDate:[]
   });
 
   constructor(
@@ -58,6 +61,9 @@ export class ProductFormComponent implements OnInit {
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data.body;
     })
+    let today = new Date();
+    this.createdDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
   }
 
   getBase64Image($event: any): void {
@@ -144,11 +150,13 @@ export class ProductFormComponent implements OnInit {
     product.category = this.productForm.get('category')!.value;
     product.image = this.image;
     product.images = this.images;
+    product.createdDate = this.createdDate;
     return product;
   }
 
   private updateForm(product: Product): void {
     const expireDate = new Date(product?.expireDate!);
+    const createdDate = new Date(product?.createdDate!);
     this.productForm.setValue({
       id: product?.id,
       price: product?.price,
@@ -159,7 +167,8 @@ export class ProductFormComponent implements OnInit {
       code: product?.code,
       category: product?.category,
       image: product?.image,
-      images: product?.images
+      images: product?.images,
+      createdDate: new NgbDate(createdDate?.getFullYear(), createdDate?.getMonth() + 1, createdDate?.getDate())
     });
   }
 

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
   { path: 'categories/:id', component: CategoryProductsComponent },
-  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
+  { path: 'products', component: ProductListComponent},
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
   { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},

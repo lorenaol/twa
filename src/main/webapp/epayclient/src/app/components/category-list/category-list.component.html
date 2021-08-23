@@ -30,9 +30,9 @@
         <th scope="col">Code
           <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('categoryCode', true)"></fa-icon>
           <fa-icon [icon]="faArrowDown" (click)="sort('categoryCode', false)"></fa-icon></th>
-        <th scope="col">Date Added
-          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('dateAdded', true)"></fa-icon>
-          <fa-icon [icon]="faArrowDown" (click)="sort('dateAdded', false)"></fa-icon></th>
+        <th scope="col">Created Date
+          <fa-icon class = "arrowUp" [icon]="faArrowUp" (click)="sort('createdDate', true)"></fa-icon>
+          <fa-icon [icon]="faArrowDown" (click)="sort('createdDate', false)"></fa-icon></th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
@@ -41,7 +41,7 @@
         <td>{{ category.id }}</td>
         <td>{{ category.categoryName }}</td>
         <td>{{ category.categoryCode }}</td>
-        <td>{{ category.dateAdded | date:'yyyy-dd-MM' }}</td>
+        <td>{{ category.createdDate | date:'yyyy-dd-MM' }}</td>
         <td>
           <button class="btn btn-sm btn-info" style="margin: 2px">
             <fa-icon [icon]="faEye" (click)="openCategoryModal(ModalTypesEnum.VIEW, category)"></fa-icon>

@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.mail.MessagingException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/users")
@@ -26,6 +27,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private UserRepository userRepository;
 

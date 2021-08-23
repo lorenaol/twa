@@ -12,4 +12,5 @@ export class Product {
   category?: Category;
   image?: string;
   images?: Image[];
+  createdDate?: Date;
 }

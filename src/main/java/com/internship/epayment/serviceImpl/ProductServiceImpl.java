@@ -6,15 +6,18 @@ import com.internship.epayment.entity.Product;
 import com.internship.epayment.repository.CategoryRepository;
 import com.internship.epayment.repository.ImageRepository;
 import com.internship.epayment.repository.ProductRepository;
+import com.internship.epayment.service.EmailService;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 @Service
@@ -29,8 +32,6 @@ public class ProductServiceImpl implements ProductsService {
     @Autowired
     private ImageRepository imageRepository;
 
-    @Autowired
-    private ImageServiceImpl imageService;
 
     @Override
     public Page<Product> getAll(Pageable pageable) {
@@ -97,6 +98,7 @@ public class ProductServiceImpl implements ProductsService {
         }
         productRepository.delete(product);
     }
+
 
     @Override
     public List<Product> order(String param, String direction) {
