@@ -37,9 +37,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public Page<User> getAll(Pageable pageable) {
         return userRepository.findAll(pageable);
@@ -56,8 +53,9 @@ public class UserServiceImpl implements UserService {
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
         return user.get();
     }
+
     @Override
-    public String findPassByName(String name){
+    public String findPassByName(String name) {
         Optional<User> user = userRepository.findUserByName(name);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
         return user.get().getPassword();
@@ -75,13 +73,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Override
     public User updateUser(User user) {
-       // user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -189,8 +185,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userOptional.get();
 
-      // user.setPassword(password);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         user.setToken(null);
         user.setTokenCreationDate(null);
 
@@ -225,7 +220,6 @@ public class UserServiceImpl implements UserService {
 
         return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
     }
-
 
 
 }
