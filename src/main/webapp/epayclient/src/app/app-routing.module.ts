@@ -12,7 +12,6 @@ import {LoginComponent} from "@app/components/login/login.component";
 import {AuthGuard} from "@app/_helpers/auth.guard";
 import {Authorities} from "@app/enums/authorities";
 import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart.component";
-import {Shopping_cartService} from "@app/services/shopping_cart.service";
 import {ProductDetailComponent} from "@app/components/product-detail/product-detail.component";
 import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";

@@ -7,8 +7,8 @@ import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {faEdit} from '@fortawesome/free-regular-svg-icons';
 import {HttpResponse} from "@angular/common/http";
 import * as fileSaver from 'file-saver';
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
 
-import {Shopping_cartService} from "@app/services/shopping_cart.service";
 
 
 @Component({
@@ -43,7 +43,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private modalService: ModalService,
-    private shopping_cartService: Shopping_cartService
+    private shoppingCartService: ShoppingCartService
   ) {
   }
 
@@ -78,7 +78,7 @@ export class ProductListComponent implements OnInit {
   }
 
   openAddToCart(product: Product) {
-    this.shopping_cartService.init(product);
+    this.shoppingCartService.init(product);
   }
 
   openDeleteProductModal(product: Product) {

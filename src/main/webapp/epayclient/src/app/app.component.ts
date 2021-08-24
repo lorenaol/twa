@@ -10,8 +10,8 @@ import {MenuItem} from 'primeng/api';
 import {UserService} from "@app/services/user.service";
 import  {environment} from "@environments/environment";
 import { faUser, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
-import {Shopping_cartService} from "@app/services/shopping_cart.service";
 import {ShoppingCart} from "@app/entities/shoppingcart";
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
 
 
 @Component({
@@ -36,7 +36,7 @@ export class AppComponent {
               private authenticationService: AuthenticationService,
               private categoryService: CategoryService,
               private userService: UserService,
-              private shopping_cartService : Shopping_cartService
+              private shoppingCartService : ShoppingCartService
   ) {
     this.authenticationService.user.subscribe(x => this.user = x);
   }
@@ -133,7 +133,7 @@ export class AppComponent {
     }
   }
   delete(cart:ShoppingCart): void {
-      this.shopping_cartService.delete(cart, cart.quantity!);
+      this.shoppingCartService.delete(cart, cart.quantity!);
       this.getCarts();
   }
 

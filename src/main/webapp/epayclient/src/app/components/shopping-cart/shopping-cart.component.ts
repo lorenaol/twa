@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "@app/entities/product";
 import {ShoppingCart} from "@app/entities/shoppingcart";
 import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Shopping_cartService} from "@app/services/shopping_cart.service";
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
+
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,7 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   productsCost: number = 0;
   quantityToDelete : number =0;
 
-  constructor(private shopping_cartService: Shopping_cartService) {
+  constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   delay(ms: number) {
@@ -75,7 +76,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   delete(cart:ShoppingCart): void {
-    this.shopping_cartService.delete(cart, this.quantityToDelete);
+    this.shoppingCartService.delete(cart, this.quantityToDelete);
     this.ngOnInit();
   }
 

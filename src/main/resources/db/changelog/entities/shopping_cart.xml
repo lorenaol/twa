@@ -26,16 +26,4 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="rachetii">
-        <loadData
-                file="classpath:db/changelog/data/shopping_cart.csv"
-                separator=";"
-                tableName="shopping_cart">
-
-            <column name="id" type="numeric"/>
-            <column name="user_id" type="numeric"/>
-            <column name="product_id" type="numeric"/>
-            <column name="quantity" type="numeric"/>
-        </loadData>
-    </changeSet>
 </databaseChangeLog>

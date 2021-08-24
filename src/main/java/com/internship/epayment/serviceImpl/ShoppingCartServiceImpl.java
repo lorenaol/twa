@@ -22,9 +22,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public List<ShoppingCart> getAll() {
-        List<ShoppingCart> list = new ArrayList<>();
-        shoppingCartRepository.findAll().forEach(list::add);
-        return list;
+        return shoppingCartRepository.findAll();
     }
 
     @Override

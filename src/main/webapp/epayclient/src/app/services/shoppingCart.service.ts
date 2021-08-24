@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<ShoppingCart[]>;
 @Injectable({
   providedIn: 'root'
 })
-export class Shopping_cartService {
+export class ShoppingCartService {
 
   private readonly SHOPPING_CART_URL = environment.apiUrl + 'shoppingcart';
   inputProduct?: Product
@@ -24,12 +24,6 @@ export class Shopping_cartService {
   constructor(private http: HttpClient,
               private userService: UserService) {
   }
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  products: Product[] = [];
-
 
   init(product: any): void {
     this.inputProduct = product;
@@ -65,7 +59,6 @@ export class Shopping_cartService {
                         this.updateShoppingCart(s).subscribe();
                       })
                   }
-
                 })
             }
           }
@@ -96,14 +89,9 @@ export class Shopping_cartService {
           } else{
             localStorage.setItem('shoppingCarts', JSON.stringify(data.body));
           }
-
-
         }
       })
-
-
   }
-
 
   localStorageProducts() {
     this.shoppingCarts = JSON.parse(localStorage.getItem('shoppingCarts')!);
