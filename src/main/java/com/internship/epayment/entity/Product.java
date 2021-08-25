@@ -20,6 +20,8 @@ public class Product {
 
     private String name;
 
+    private String image;
+
     private long quantity;
 
     @Column(name = "expire_date")
@@ -33,8 +35,6 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     @JsonIgnoreProperties("products")
     private Category category;
-
-    private String image;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnoreProperties("product")

@@ -44,6 +44,7 @@ import { RoleauthorityDeleteComponent } from './components/roleauthority-delete/
 import { UserRoleListComponent } from './components/user-role-list/user-role-list.component';
 import { UserRoleFormComponent } from './components/user-role-form/user-role-form.component';
 import { UserRoleDeleteComponent } from './components/user-role-delete/user-role-delete.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import {ButtonModule} from 'primeng/button';
 import {FileUploadModule} from 'primeng/fileupload';
@@ -85,6 +86,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     LoginComponent,
     HasAuthorityDirective,
     UsersRomaniaComponent,
+    ShoppingCartComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ProductDetailComponent,

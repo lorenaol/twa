@@ -24,6 +24,7 @@ import {RoleauthorityFormComponent} from "../components/roleauthority-form/rolea
 import {User_role} from "../entities/user_role";
 import {UserRoleDeleteComponent} from "../components/user-role-delete/user-role-delete.component";
 import {UserRoleFormComponent} from "../components/user-role-form/user-role-form.component";
+import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart.component";
 
 
 @Injectable({
@@ -210,5 +211,6 @@ export class ModalService {
       });
 
   }
+
 }
 

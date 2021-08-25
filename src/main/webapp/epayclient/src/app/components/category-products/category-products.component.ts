@@ -5,6 +5,9 @@ import {Category} from "@app/entities/category";
 import {Product} from "@app/entities/product";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
+
+
 @Component({
   selector: 'app-category-products',
   templateUrl: './category-products.component.html',
@@ -21,7 +24,8 @@ export class CategoryProductsComponent implements OnInit {
   faCart = faShoppingCart;
 
   constructor(private route: ActivatedRoute,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -41,6 +45,10 @@ export class CategoryProductsComponent implements OnInit {
       this.categoryService.getCategoryById(this.id).subscribe((data: any) => {
         this.category = data.body;
       });
+  }
+
+  addToCart(product?: Product): void {
+    this.shoppingCartService.init(product);
   }
 
   setImage(): void{
