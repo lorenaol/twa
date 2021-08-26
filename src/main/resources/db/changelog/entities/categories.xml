@@ -29,7 +29,7 @@
             <column name="store_id" type="varchar(64)">
                 <constraints nullable="true" />
             </column>
-            <column name="date_added" type="date" valueDate="sysdate" defaultValueComputed="sysdate">
+            <column name="created_date" type="date" valueDate="sysdate" defaultValueComputed="sysdate">
                 <constraints nullable="false" />
             </column>
             <column name="last_updated" type="date">
@@ -48,7 +48,7 @@
             <column name="category_name" type="string"/>
             <column name="category_code" type="string"/>
             <column name="category_description" type="string"/>
-            <column name="date_added" type="date"/>
+            <column name="created_date" type="date"/>
             <column name="last_updated" type="date"/>
         </loadData>
     </changeSet>

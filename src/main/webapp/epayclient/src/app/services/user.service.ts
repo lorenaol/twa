@@ -24,7 +24,6 @@ export class UserService {
   constructor(private http: HttpClient, private modalService: NgbModal) {
     this.forgotDialog = null;
     this.changeDialog = null;
-
   }
 
   public addUser(user: User): Observable<EntityResponseType> {

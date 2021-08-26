@@ -9,7 +9,7 @@ import { faScroll } from "@fortawesome/free-solid-svg-icons";
 import { faShieldAlt} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart} from "@fortawesome/free-solid-svg-icons";
-
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
 
 
 @Component({
@@ -47,7 +47,8 @@ export class ProductDetailComponent implements OnInit {
   ];
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -65,6 +66,10 @@ export class ProductDetailComponent implements OnInit {
         this.product = data.body;
         this.setImages();
       })
+  }
+
+  addToCart(product?: Product): void {
+    this.shoppingCartService.init(product);
   }
 
   setImages(): void{

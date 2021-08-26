@@ -21,9 +21,5 @@ public class EmailController {
     public String sendMail(@RequestBody User user) throws MessagingException{
         emailService.sendMail(user);
         return "Email Sent Successsfully.!";
-
     }
-
-
-
 }

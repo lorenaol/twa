@@ -28,8 +28,8 @@ public class Category {
     private String storeId;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_added", length = 100)
-    private Date dateAdded;
+    @Column(name = "created_date", length = 100)
+    private Date createdDate;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnoreProperties("category")
@@ -59,12 +59,12 @@ public class Category {
         this.categoryCode = categoryCode;
     }
 
-    public Date getDateAdded() {
-        return dateAdded;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getCategoryDescription() {

@@ -15,5 +15,5 @@ public interface EmailService {
 
     String sendMailCPass(User user) throws MessagingException;
 
-
+    String sendMailProductsCateg(int products, int categories, String c) throws MessagingException;
 }

@@ -5,3 +5,8 @@
   height: auto;
 }
 
+.cart-body h2{
+  margin-top: 100px;
+  height: 100px;
+  /*position: absolute;*/
+}

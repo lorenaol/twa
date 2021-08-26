@@ -1,6 +1,7 @@
 package com.internship.epayment.repository;
 
 import com.internship.epayment.entity.Category;
+import com.internship.epayment.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,4 +32,12 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Page<Category> findByIdAndCategoryNameAndCategoryCode(Long id, String name, String code, Pageable pageable);
 
+    @Query("select c from Category c where trunc(c.createdDate) = trunc(sysdate)")
+    List<Category> findCategoriesByDateToday();
+
+    @Query("select c from Category c where trunc(c.createdDate) <= trunc(sysdate) and trunc(c.createdDate) >= trunc(sysdate-5)")
+    List<Category> findCategoriesByDateWeek();
+
+    @Query("select c from Category c where trunc(c.createdDate) <= trunc(sysdate) and trunc(c.createdDate) >= trunc(sysdate-31)")
+    List<Category> findCategoriesByDateMonth();
 }

@@ -11,6 +11,7 @@ import {LoginComponent} from "@app/components/login/login.component";
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import {ModalService} from "@app/services/modal.service";
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
+import {ShoppingCartService} from "@app/services/shoppingCart.service";
 
 
 @Injectable({
@@ -24,6 +25,7 @@ export class AuthenticationService {
   private signinDialog: NgbModalRef | null;
 
   constructor(
+    private shoppingCartService : ShoppingCartService,
     private router: Router,
     private http: HttpClient,
     private modalService: NgbModal,
@@ -52,6 +54,8 @@ export class AuthenticationService {
         user.authdata = auth;
         localStorage.setItem('user', JSON.stringify(user));
         console.log();
+        this.shoppingCartService.selectOldProducts();
+        this.shoppingCartService.updateCart();
         this.userSubject.next(user);
         this.loginDialog?.close();
         this.loginDialog = null;
@@ -90,7 +94,6 @@ export class AuthenticationService {
   showSignin() {
     if (!this.signinDialog) {
       this.modalService2.openUserModal(ModalTypesEnum.CREATE, undefined);
-
     }
   }
 

@@ -5,7 +5,8 @@
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
   <span><a routerLink="/"><button class="btn btn-link" style="color: white">Home</button></a></span>
-  <div ngbDropdown class="dropdown" *ngIf="isLoggedIn()" >
+
+  <div ngbDropdown class="dropdown">
     <button class="btn" id="dropdownBasic3" style="color: white" >
       <fa-icon [icon]="faBars"></fa-icon>&nbsp;Shop</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="menu">
@@ -16,8 +17,30 @@
 
 
   <div class="spacer"></div>
+  <div class="dropdown cart">
+    <button class="dropbtn" (mouseenter)="getCarts()" >
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </button>
 
-  <div ngbDropdown *ngIf="isLoggedIn()">
+    <div class="dropdown-content">
+      <div class="products">
+        <div class="row" *ngFor="let cart of shoppingCarts">
+          <div class="prod image2{{cart?.product?.id}} col-sm-3">
+          </div>
+          <div class="prod col-sm-1"> x{{cart?.quantity}}
+          </div>
+          <div class="prod productName col-sm-3">{{cart.product?.name}}</div>
+          <div class="prod col-sm-2">{{cart.product?.price}} Lei</div>
+          <div class="prod col-sm-2">
+            <button class="btn btn-xs delete" (click) = "delete(cart)"><b>X</b></button>
+          </div>
+        </div>
+      </div>
+      <a href="/shoppingcart" >Vezi detalii cos</a>
+    </div>
+  </div>
+
+  <div ngbDropdown>
     <button class="btn" id="dropdownBasic2" style="color: white" ngbDropdownToggle>
       <fa-icon [icon]="faBars"></fa-icon>&nbsp;Entitati</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="entitati">
@@ -30,7 +53,7 @@
       </div>
 
       <div>
-        <span><a routerLink="/products" *hasAuthority="Authorities.EPAY_PRODUCT"><button class="btn btn-link">Product</button></a></span>
+        <span><a routerLink="/products"><button class="btn btn-link">Product</button></a></span>
       </div>
 
       <div>
@@ -61,9 +84,10 @@
       </div>
       <div *ngIf="!isLoggedIn()">
         <li>
-        <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
+          <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
         </li><li><span><a (click)="signin()"><button class="btn btn-link " ><span class="em em-user2"></span>Sign Up</button></a></span></li>
       </div>
+
     </div>
   </div>
 

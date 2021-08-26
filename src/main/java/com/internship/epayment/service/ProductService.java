@@ -3,6 +3,7 @@ package com.internship.epayment.service;
 import com.internship.epayment.entity.Product;
 import javassist.NotFoundException;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 public interface ProductService {

@@ -20,6 +20,8 @@ public class Product {
 
     private String name;
 
+    private String image;
+
     private long quantity;
 
     @Column(name = "expire_date")
@@ -34,11 +36,12 @@ public class Product {
     @JsonIgnoreProperties("products")
     private Category category;
 
-    private String image;
-
     @OneToMany(mappedBy = "product")
     @JsonIgnoreProperties("product")
     private List<Image> images;
+
+    @Column(name = "created_date")
+    private Date createdDate;
 
     public Long getId() {
         return id;
@@ -118,5 +121,13 @@ public class Product {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

@@ -6,6 +6,6 @@ export class Category {
   categoryCode?: string;
   categoryDescription?: string;
   storeId?: string;
-  dateAdded?: Date;
+  createdDate?: Date;
   products?: Product[];
 }
