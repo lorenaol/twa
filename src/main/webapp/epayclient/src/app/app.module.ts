@@ -54,7 +54,9 @@ import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
-
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
 
 
 @NgModule({
@@ -92,6 +94,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     ProductDetailComponent,
     CategoryProductsComponent,
     PasswordChangeComponent,
+    SpinnerComponent,
 
   ],
   imports: [
@@ -113,6 +116,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     TieredMenuModule,
     FileUploadModule,
     GalleriaModule,
+    ProgressSpinnerModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
@@ -122,6 +126,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
