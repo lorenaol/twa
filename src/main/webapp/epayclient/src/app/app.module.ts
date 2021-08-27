@@ -54,7 +54,10 @@ import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
-
+import { BreadcrumbModule } from "xng-breadcrumb";
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -92,12 +95,15 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     ProductDetailComponent,
     CategoryProductsComponent,
     PasswordChangeComponent,
+    BreadCrumbsComponent,
+
 
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
@@ -113,6 +119,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     TieredMenuModule,
     FileUploadModule,
     GalleriaModule,
+    BreadcrumbModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
@@ -120,6 +127,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     })
   ],
   providers: [
+    BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
