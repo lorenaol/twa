@@ -54,6 +54,10 @@ import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
+import { BreadcrumbModule } from "xng-breadcrumb";
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
+import {MatIconModule} from "@angular/material/icon";
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
@@ -94,6 +98,7 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     ProductDetailComponent,
     CategoryProductsComponent,
     PasswordChangeComponent,
+    BreadCrumbsComponent,
     SpinnerComponent,
 
   ],
@@ -101,6 +106,7 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     CommonModule,
     HttpClientModule,
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
@@ -116,6 +122,7 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     TieredMenuModule,
     FileUploadModule,
     GalleriaModule,
+    BreadcrumbModule,
     ProgressSpinnerModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -124,6 +131,7 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     })
   ],
   providers: [
+    BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },

@@ -322,9 +322,7 @@ input[type=text] {
   margin-left: 30px;
   margin-bottom: 5px;
 }
-label{
-  margin-left: 30px;
-}
+
 input{
   width: 200px;
   margin-left: 10px;
@@ -338,4 +336,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .pac-container {
   z-index: 10000 !important;
+}
+.xng-breadcrumb-trail{
+  display: inline-block;
 }
