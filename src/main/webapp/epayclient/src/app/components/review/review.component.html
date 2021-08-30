@@ -1,0 +1,26 @@
+<div class="card" style="margin-top: 6vh">
+  <div class="card-header row">
+    <div class="col-sm-1 reviewImage"></div>
+    <div class="col-sm-8">
+      <div class="h3">Scrie review pentru:
+      </div>
+      <div>
+        Nume:{{product?.name}}, Sku:{{product?.sku}}, Cod:{{product?.code}}
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="col-sm-12">
+          <textarea class="form-control review-content" id="review-body" name="content" rows="7" placeholder="Descrie experiența ta cu produsul" required=""></textarea>
+          <br>
+          <button (click)="addReview()" class="btn btn-sm btn-primary">Adauga review</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

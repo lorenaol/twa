@@ -15,12 +15,12 @@ import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart
 import {ProductDetailComponent} from "@app/components/product-detail/product-detail.component";
 import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
+import {ReviewComponent} from "@app/components/review/review.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
   { path: 'categories/:id', component: CategoryProductsComponent },
- // { path: 'products', component: ProductListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_PRODUCT]}},
   { path: 'products', component: ProductListComponent},
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
@@ -30,7 +30,8 @@ const routes: Routes = [
   { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'login', component: LoginComponent},
   { path: 'shoppingcart', component: ShoppingCartComponent},
-  { path: 'users/reset-password/:token', component: ResetPasswordComponent}
+  { path: 'users/reset-password/:token', component: ResetPasswordComponent},
+  { path: 'reviews', component: ReviewComponent}
 
 ];
 

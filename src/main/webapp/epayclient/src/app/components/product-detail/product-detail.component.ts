@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { ProductService } from "@app/services/product.service";
 import { Product } from "@app/entities/product";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,8 @@ import { faShieldAlt} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {ShoppingCartService} from "@app/services/shoppingCart.service";
+import {ReviewService} from "@app/services/review.service";
+import {environment} from "@environments/environment";
 
 
 @Component({
@@ -48,6 +50,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
+              private reviewService: ReviewService,
+              private router: Router,
               private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
@@ -58,6 +62,12 @@ export class ProductDetailComponent implements OnInit {
 
     this.user = (JSON.parse(localStorage.getItem("user") || '{}').userName );
     this.setDate();
+  }
+
+  addReview(): void {
+    this.reviewService.setProduct(this.product!);
+    //this.reviewService.setProductId(this.id);
+    this.router.navigate(['/reviews']);
   }
 
   loadData(): void{

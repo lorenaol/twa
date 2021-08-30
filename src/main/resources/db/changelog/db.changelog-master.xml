@@ -13,4 +13,5 @@
     <include file="classpath:db/changelog/entities/user_roles.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/shopping_cart.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/images.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/entities/reviews.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

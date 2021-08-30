@@ -54,6 +54,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
+import { ReviewComponent } from './components/review/review.component';
 
 
 
@@ -92,6 +93,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
     ProductDetailComponent,
     CategoryProductsComponent,
     PasswordChangeComponent,
+    ReviewComponent,
 
   ],
   imports: [
