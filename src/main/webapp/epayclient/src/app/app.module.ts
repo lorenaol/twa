@@ -56,6 +56,13 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { ReviewComponent } from './components/review/review.component';
 
+import { BreadcrumbModule } from "xng-breadcrumb";
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
+import {MatIconModule} from "@angular/material/icon";
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
 
 
 @NgModule({
@@ -93,6 +100,8 @@ import { ReviewComponent } from './components/review/review.component';
     ProductDetailComponent,
     CategoryProductsComponent,
     PasswordChangeComponent,
+    BreadCrumbsComponent,
+    SpinnerComponent,
     ReviewComponent,
 
   ],
@@ -100,6 +109,7 @@ import { ReviewComponent } from './components/review/review.component';
     CommonModule,
     HttpClientModule,
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
@@ -115,6 +125,8 @@ import { ReviewComponent } from './components/review/review.component';
     TieredMenuModule,
     FileUploadModule,
     GalleriaModule,
+    BreadcrumbModule,
+    ProgressSpinnerModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
@@ -122,8 +134,10 @@ import { ReviewComponent } from './components/review/review.component';
     })
   ],
   providers: [
+    BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

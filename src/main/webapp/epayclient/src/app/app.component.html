@@ -15,7 +15,6 @@
 
   </div>
 
-
   <div class="spacer"></div>
   <div class="dropdown cart">
     <button class="dropbtn" (mouseenter)="getCarts()" >
@@ -89,7 +88,9 @@
       </div>
 
     </div>
+
   </div>
+
 
 
   <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
@@ -100,8 +101,27 @@
         d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
     </svg>
   </a>
+
+
 </div>
+
+<div style="width: 100%; height: auto; background-color: #0c0c0c;">
+  <app-bread-crumbs ></app-bread-crumbs>
+</div>
+
+<div style="width: 100%; height: auto; margin-top:35px">
+  <div style="">
+    <xng-breadcrumb [separator]="iconTemplate" ></xng-breadcrumb>
+    <ng-template #iconTemplate>
+      <mat-icon>chevron_right</mat-icon>
+    </ng-template>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
 
 <div>
   <router-outlet></router-outlet>
 </div>
+
+<app-spinner></app-spinner>
