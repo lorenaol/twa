@@ -12,6 +12,7 @@ import { faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {ShoppingCartService} from "@app/services/shoppingCart.service";
 import {ReviewService} from "@app/services/review.service";
 import {environment} from "@environments/environment";
+import {Review} from "@app/entities/review";
 
 
 @Component({
@@ -31,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
   faShield = faShieldAlt;
   faHeart = faHeart;
   faCart = faShoppingCart;
+  reviews? : Review[];
 
   images: any[]=[];
   responsiveOptions:any[] = [
@@ -75,6 +77,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getProductById(this.id).subscribe((data: any) => {
         this.product = data.body;
         this.setImages();
+        this.getReviews();
       })
   }
 
@@ -119,5 +122,11 @@ export class ProductDetailComponent implements OnInit {
     let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(today);
     let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(today);
     this.estimateDate = `${da}-${mo}-${ye}`;
+  }
+
+  getReviews() : void {
+    this.reviewService.getReviewsByProductId(this.product?.id!).subscribe((data:any) => {
+      this.reviews = data.body;
+    })
   }
 }

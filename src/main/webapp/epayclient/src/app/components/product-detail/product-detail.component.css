@@ -93,6 +93,16 @@ button{
 #review:hover{
   background-color: #4141fc;
 }
+.numberReviews{
+  font-size:20px;
+}
+hr.solid {
+  border-top: 2px solid #bbb;
+}
+.review{
+  border-bottom: solid 2px #dedbdb;
+  margin-bottom: 20px;
+}
 /deep/ .p-galleria .p-galleria-item-nav{
   color: grey!important;
 }

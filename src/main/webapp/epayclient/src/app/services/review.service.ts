@@ -19,7 +19,7 @@ export class ReviewService {
   private readonly REVIEW_URL = environment.apiUrl + 'reviews';
   private productId?: number;
   private review = new Review();
-  private product = new Product();
+  private product? : Product;
 
   constructor(private http: HttpClient) { }
 
@@ -32,12 +32,12 @@ export class ReviewService {
   }
 
   getProduct() : Product  {
-    return this.product;
+    return this.product!;
 }
 
   setReview(review: Review): void {
     this.review = review;
-    this.review.productId = this.product.id;
+    this.review.productId = this.product!.id;
     if(localStorage.getItem('user')) {
       this.review.userName = JSON.parse(localStorage.getItem('user')!).userName;
     } else {

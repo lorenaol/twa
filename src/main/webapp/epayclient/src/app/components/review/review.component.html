@@ -16,6 +16,22 @@
         <div class="col-sm-12">
           <textarea class="form-control review-content" id="review-body" name="content" rows="7" placeholder="Descrie experiența ta cu produsul" required=""></textarea>
           <br>
+          <div>
+            Adauga poze reale cu produsul, pentru a ajuta si alti clienti!
+            <small class="text-muted">(optional)</small>
+            <!--div class="form-group row">
+              <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>
+              <div class="col-sm-12">
+                <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImages($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >
+                  <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                  </ng-template>
+                </p-fileUpload>
+              </div>
+            </div-->
+          </div>
           <button (click)="addReview()" class="btn btn-sm btn-primary">Adauga review</button>
         </div>
       </div>
