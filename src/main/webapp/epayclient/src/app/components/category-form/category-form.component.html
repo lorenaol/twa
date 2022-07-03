@@ -1,4 +1,4 @@
-<form name="categoryForm" (ngSubmit)="save()" [formGroup]="categoryForm">
+<form name="categoryForm"  [formGroup]="categoryForm">
   <div class="modal-header">
     <div *ngIf="ModalTypesEnum.CREATE == modalType">
       <h4 class="modal-title" id="modal-basic-title">Create Category</h4>
@@ -7,7 +7,7 @@
       <h4 class="modal-title" id="modal-basic-title">Edit Category - ID: {{inputCategory?.id}}</h4>
     </div>
     <div *ngIf="ModalTypesEnum.VIEW == modalType">
-      <h4 class="modal-title" id="modal-basic-title">View Category - ID: {{inputCategory?.id}}</h4>
+      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>
     </div>
 
     <button type="button" class="close" aria-label="Close" (click)="close()">
@@ -16,46 +16,65 @@
   </div>
   <div class="modal-body">
     <div class="form-group row">
-      <label for="categoryName" class="col-sm-4 col-form-label">Name</label>
+      <label for="Nume" class="col-sm-4 col-form-label">Nume</label>
       <div class="col-sm-8">
-        <input id="categoryName" class="form-control" formControlName="categoryName"
-          [readOnly]="ModalTypesEnum.VIEW == modalType">
+     {{inputCategory?.user?.name}}
       </div>
     </div>
     <div class="form-group row">
-      <label for="categoryCode" class="col-sm-4 col-form-label">Code</label>
+      <label for="Locatie" class="col-sm-4 col-form-label">Locatie</label>
       <div class="col-sm-8">
-        <input id="categoryCode" class="form-control" formControlName="categoryCode"
-          [readOnly]="ModalTypesEnum.VIEW == modalType">
+        {{inputCategory?.oras}}
       </div>
     </div>
     <div class="form-group row">
-      <label for="categoryDescription" class="col-sm-4 col-form-label">Description</label>
+      <label for="categoryDescription" class="col-sm-4 col-form-label">Materie</label>
       <div class="col-sm-8">
-        <input id="categoryDescription" class="form-control" formControlName="categoryDescription"
-          [readOnly]="ModalTypesEnum.VIEW == modalType">
+        {{inputCategory?.materie}}
       </div>
     </div>
     <div class="form-group row">
-      <label for="storeId" class="col-sm-4 col-form-label">Store Id</label>
+      <label for="storeId" class="col-sm-4 col-form-label">Descriere</label>
       <div class="col-sm-8">
-        <input id="storeId" class="form-control" formControlName="storeId"
-          [readOnly]="ModalTypesEnum.VIEW == modalType">
+       {{inputCategory?.detalii}}
       </div>
     </div>
-    <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
-      <label for="createdDate" class="col-sm-4 col-form-label">Created Date</label>
+
+    <div class="form-group row">
+      <label for="Telefon" class="col-sm-4 col-form-label">Telefon</label>
       <div class="col-sm-8">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" id="createdDate" name="dp" formControlName="createdDate"
-                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-        </div>
+        {{inputCategory?.telefon}}
       </div>
     </div>
+
+    <div class="form-group row">
+      <label for="storeId" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-8">
+        {{inputCategory?.user?.email}}
+      </div>
+    </div>
+
+<!--    <div class="form-group row">-->
+<!--      <label for="storeId" class="col-sm-4 col-form-label">Recenzii</label>-->
+<!--      <div class="col-sm-8">-->
+<!--       <div *ngFor="let review of reviews">-->
+<!--         Recenzie lasata de {{review?.userName}} :-->
+<!--         <p>{{review?.text}}</p>-->
+<!--         <p>{{review?.text2}}</p>-->
+<!--       </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="form-group row">-->
+<!--      <label for="storeId" class="col-sm-4 col-form-label">Facultate</label>-->
+<!--      <div class="col-sm-8">-->
+<!--        {{inputCategory?.facultate}}-->
+<!--      </div>-->
+<!--    </div>-->
+
   </div>
-  <div *ngIf="ModalTypesEnum.VIEW != modalType">
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success">Save</button>
+      <button class="add-rec btn btn-success" (click)="redirect()">Adauga recenzie</button>
     </div>
-  </div>
+
 </form>

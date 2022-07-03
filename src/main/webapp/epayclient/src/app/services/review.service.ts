@@ -19,31 +19,42 @@ export class ReviewService {
   private readonly REVIEW_URL = environment.apiUrl + 'reviews';
   private productId?: number;
   private review = new Review();
-  private product? : Product;
+  private static product? : Product;
+  images:  Map<number, string[]> = new Map<number, string[]>();
+  reviewId? : number;
 
   constructor(private http: HttpClient) { }
 
-  setProductId(id?: number){
-    this.productId = id;
+  setImages(images: Map<number, string[]>) : void {
+    this.images = images;
+  }
+
+  getImages() :  Map<number, string[]> {
+    return this.images;
+  }
+
+  getReviewId() : number {
+    return this.reviewId!;
   }
 
   setProduct(product: Product) : void{
-    this.product = product;
+    ReviewService.product = product;
+    sessionStorage.setItem('reviewProduct', JSON.stringify(product));
   }
 
   getProduct() : Product  {
-    return this.product!;
+    return ReviewService.product!;
 }
 
   setReview(review: Review): void {
     this.review = review;
-    this.review.productId = this.product!.id;
-    if(localStorage.getItem('user')) {
-      this.review.userName = JSON.parse(localStorage.getItem('user')!).userName;
-    } else {
-      this.review.userName = 'unknownUser';
-    }
-    this.addReview(this.review).subscribe();
+    // this.review.productId = JSON.parse(sessionStorage.getItem('reviewProduct')!).id;
+    // if(localStorage.getItem('user')) {
+    //   this.review.userName = JSON.parse(localStorage.getItem('user')!).userName;
+    // } else {
+    //   this.review.userName = 'unknownUser';
+    // }
+    this.addReview(this.review).subscribe((data:any)=> this.reviewId = data.body.id);
   }
 
   public addReview(review: Review): Observable<EntityResponseType>{

@@ -52,21 +52,21 @@ export class ProductListComponent implements OnInit {
   }
 
   loadData(): void {
-    if (this.name == "" &&
-      this.code == "" &&
-      this.id == "" && this.sku == ""
-    ) {
-      this.productService.getProducts({
-        page: this.page - 1,
-        size: this.pageSize,
-        sort: this.sort2()
-      }).subscribe((data: HttpResponse<Product[]>) => {
-        this.products = data.body;
-        this.collectionSize = Number(data.headers.get('X-Total-Count'));
-      })
-    } else {
-      this.filter();
-    }
+    // if (this.name == "" &&
+    //   this.code == "" &&
+    //   this.id == "" && this.sku == ""
+    // ) {
+    //   this.productService.getProducts({
+    //     page: this.page - 1,
+    //     size: this.pageSize,
+    //     sort: this.sort2()
+    //   }).subscribe((data: HttpResponse<Product[]>) => {
+    //     this.products = data.body;
+    //     this.collectionSize = Number(data.headers.get('X-Total-Count'));
+    //   })
+    // } else {
+    //   this.filter();
+    // }
   }
 
   openProductModal(modalTypeEnum: ModalTypesEnum, inputProduct?: Product) {

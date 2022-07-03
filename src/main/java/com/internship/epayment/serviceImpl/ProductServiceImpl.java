@@ -6,7 +6,7 @@ import com.internship.epayment.entity.Product;
 import com.internship.epayment.repository.CategoryRepository;
 import com.internship.epayment.repository.ImageRepository;
 import com.internship.epayment.repository.ProductRepository;
-import com.internship.epayment.service.EmailService;
+//import com.internship.epayment.service.EmailService;
 import com.internship.epayment.service.ProductsService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

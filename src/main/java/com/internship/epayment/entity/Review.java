@@ -1,7 +1,8 @@
 package com.internship.epayment.entity;
 
-import javax.persistence.*;
 
+
+import javax.persistence.*;
 
 
 @Entity
@@ -16,12 +17,31 @@ public class Review {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "product_id")
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "anunt_id", referencedColumnName = "id", nullable = false)
+    private Anunt anunt;
+
+    public Anunt getAnunt() {
+        return anunt;
+    }
+
+    public void setAnunt(Anunt anunt) {
+        this.anunt = anunt;
+    }
 
     private String text;
 
+    private String text2;
+
     private int stars;
+
+    public String getText2() {
+        return text2;
+    }
+
+    public void setText2(String text2) {
+        this.text2 = text2;
+    }
 
     public Long getId() {
         return id;
@@ -39,13 +59,7 @@ public class Review {
         this.userName = userName;
     }
 
-    public Long getProductId() {
-        return productId;
-    }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 
     public String getText() {
         return text;

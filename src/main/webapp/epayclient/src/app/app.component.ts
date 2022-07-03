@@ -9,9 +9,13 @@ import {CategoryService} from "@app/services/category.service";
 import {MenuItem} from 'primeng/api';
 import {UserService} from "@app/services/user.service";
 import  {environment} from "@environments/environment";
-import { faUser, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faShoppingCart, faGraduationCap} from '@fortawesome/free-solid-svg-icons';
 import {ShoppingCart} from "@app/entities/shoppingcart";
 import {ShoppingCartService} from "@app/services/shoppingCart.service";
+import {Product} from "@app/entities/product";
+import {ModalTypesEnum} from "@app/enums/modal-types.enum";
+import {ModalService} from "@app/services/modal.service";
+import {ChannelService, ChatClientService, StreamI18nService} from "stream-chat-angular";
 
 
 @Component({
@@ -22,8 +26,10 @@ import {ShoppingCartService} from "@app/services/shoppingCart.service";
 })
 export class AppComponent {
   Authorities = Authorities;
+  ModalTypesEnum = ModalTypesEnum;
   faUser = faUser;
   faShoppingCart = faShoppingCart;
+  faGr = faGraduationCap;
   faBars = faBars;
   user!: UserWithAuthoritiesDto | null;
   categories?: Category[] | null;
@@ -36,15 +42,22 @@ export class AppComponent {
               private authenticationService: AuthenticationService,
               private categoryService: CategoryService,
               private userService: UserService,
-              private shoppingCartService : ShoppingCartService
+              private modalService: ModalService,
+              private shoppingCartService : ShoppingCartService,
+
   ) {
+
     this.authenticationService.user.subscribe(x => this.user = x);
   }
 
 
-  ngOnInit(): void {
-      this.loadData();
+   ngOnInit(): void {
+    this.loadData();
 
+  }
+
+  chat() : void {
+    this.router.navigate(["/chat"]);
   }
 
   loadData(): void {
@@ -102,6 +115,13 @@ export class AppComponent {
   }
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  openProductModal(modalTypeEnum: ModalTypesEnum, inputProduct?: Product) {
+    this.modalService.openProductModal(modalTypeEnum, inputProduct).then((result) => {
+      if (result) {
+        this.loadData();
+      }
+    });
   }
 
   isLoggedIn(): boolean {

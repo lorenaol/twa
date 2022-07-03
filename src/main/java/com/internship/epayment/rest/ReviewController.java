@@ -31,7 +31,7 @@ public class ReviewController {
 
     @GetMapping(path = "/findByProductId")
     public List<Review> getReviewsByProductId(@RequestParam(value = "id") Long id) throws NotFoundException {
-        return  reviewService.findByProductId(id);
+        return  reviewService.findByAnuntId(id);
     }
 
     @PutMapping

@@ -95,7 +95,7 @@ public class EmailServiceImpl implements EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
         helper.setSubject("Products and categories per " + c);
         helper.setText(process, true);
-        helper.setTo("raduna.daniel@trencadis.ro");
+        helper.setTo("raduna.daniel2@trencadis.ro");
         javaMailSender.send(mimeMessage);
         return "Sent";
     }

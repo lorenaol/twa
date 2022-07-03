@@ -1,41 +1,61 @@
 <div class="card" style="margin-top: 6vh">
-  <div class="card-header row">
-    <div class="col-sm-1 reviewImage"></div>
-    <div class="col-sm-8">
-      <div class="h3">Scrie review pentru:
-      </div>
-      <div>
-        Nume:{{product?.name}}, Sku:{{product?.sku}}, Cod:{{product?.code}}
-      </div>
-    </div>
-  </div>
+<!--  <div class="card-header "> Recenzie-->
+<!--&lt;!&ndash;    <div class="col-sm-1 reviewImage"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="col-sm-8">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="h3">&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        Nume:{{product?.name}}, Sku:{{product?.sku}}, Cod:{{product?.code}}&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--  </div>-->
 
   <div class="card-body">
-    <div class="row">
-      <div class="col-sm-7">
-        <div class="col-sm-12">
-          <textarea class="form-control review-content" id="review-body" name="content" rows="7" placeholder="Descrie experiența ta cu produsul" required=""></textarea>
-          <br>
-          <div>
-            Adauga poze reale cu produsul, pentru a ajuta si alti clienti!
-            <small class="text-muted">(optional)</small>
-            <!--div class="form-group row">
-              <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>
-              <div class="col-sm-12">
-                <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImages($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >
-                  <ng-template pTemplate="content">
-                    <ul *ngIf="uploadedFiles.length">
-                      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                    </ul>
-                  </ng-template>
-                </p-fileUpload>
-              </div>
-            </div-->
-          </div>
-          <button (click)="addReview()" class="btn btn-sm btn-primary">Adauga review</button>
-        </div>
-      </div>
+    <div class="ceva">
+      <p class="add-p">Adauga recenzie pentru:<strong> {{product?.user?.name}}</strong></p>
 
+      <p class="add-e">Email : {{product?.user?.email}}</p>
+
+      <p class="add-m">Pentru materia: {{product?.materie}}</p>
+    </div>
+    <br>
+    <div class="row">
+
+      <div class="col-sm-6">
+
+        <img class="imagine" src="https://elireview.com/wp-content/uploads/2020/10/ELI-WebsiteImage-final.png">
+<!--                <p class="addf-p">Speram ca experienta ta a fost cat mai buna! <br>Ajuta alti utilizatori-->
+<!--                oferind o recenzie reala.</p>-->
+
+      </div>
+      <div class="col-sm-6">
+      <div class="col-sm-12">
+        <textarea class="form-control review-content" id="review-body" name="content" rows="7" placeholder="Descrie experiența ta cu {{product?.user?.name}}" required=""></textarea>
+        <br>
+        <textarea class="form-control review-content" id="review-body2" name="content" rows="7" placeholder="Ai recomandari pentru {{product?.user?.name}}" required=""></textarea>
+
+<!--        <div>-->
+<!--          Adauga poze reale cu produsul, pentru a ajuta si alti clienti!-->
+<!--          <small class="text-muted">(optional)</small>-->
+<!--          <div class="form-group row">-->
+<!--            <div class="col-sm-12">-->
+<!--              <p-fileUpload name="demo[]"  (onSelect)="setEvent($event); getBase64MoreImages($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >-->
+<!--                <ng-template pTemplate="content">-->
+<!--                  <ul *ngIf="uploadedFiles.length">-->
+<!--                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>-->
+<!--                  </ul>-->
+<!--                </ng-template>-->
+<!--              </p-fileUpload>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+    </div>
+
+
+    </div>
+    <div class="final">  <ngb-rating class="rating" [max]= "5" [(rate)]="selected" ></ngb-rating></div>
+   <div> <button (click)="addReview()" class="btn btn-sm btn-primary">Adauga review</button>
     </div>
   </div>
 </div>

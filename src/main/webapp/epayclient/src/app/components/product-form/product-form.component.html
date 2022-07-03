@@ -1,7 +1,7 @@
 <form name="productForm" (ngSubmit)="save()" [formGroup]="productForm">
   <div class="modal-header">
     <div *ngIf="ModalTypesEnum.CREATE == modalType">
-      <h4 class="modal-title" id="modal-basic-title">Create Product</h4>
+      <h4 class="modal-title" id="modal-basic-title">Adauga Anunt</h4>
     </div>
     <div *ngIf="ModalTypesEnum.EDIT == modalType">
       <h4 class="modal-title" id="modal-basic-title">Edit Product - ID: {{inputProduct?.id}}</h4>
@@ -14,78 +14,107 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
   <div class="modal-body">
     <div class="form-group row">
-      <label for="price" class="col-sm-4 col-form-label">Price</label>
+      <label for="materie" class="col-sm-4 col-form-label">Materie</label>
+      <div class="materii col-sm-8">
+        <!--      <div *ngIf="categories!==undefined && categories!==null">-->
+        <p-dropdown [options]="categories"  formControlName="materie"
+                    placeholder="Alege o materie" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        <!--      </div>-->
+      </div>
+    </div>
+<!--    <div class="form-group row">-->
+<!--      <label for="materie" class="col-sm-4 col-form-label">Materie</label>-->
+<!--      <div class="col-sm-8">-->
+<!--        <input id="materie" class="form-control" formControlName="materie"-->
+<!--               [readOnly]="ModalTypesEnum.VIEW == modalType">-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="form-group row">
+      <label for="telefon" class="col-sm-4 col-form-label">Telefon</label>
       <div class="col-sm-8">
-        <input id="price" class="form-control" formControlName="price"
+        <input id="telefon" class="form-control" formControlName="telefon"
                [readOnly]="ModalTypesEnum.VIEW == modalType">
       </div>
     </div>
     <div class="form-group row">
-      <label for="name" class="col-sm-4 col-form-label">Name</label>
-      <div class="col-sm-8">
-        <input id="name" class="form-control" formControlName="name"
-               [readOnly]="ModalTypesEnum.VIEW == modalType">
+      <label for="detalii" class="col-sm-4 col-form-label">Detalii</label>
+      <div class="col-sm-8 detalii">
+        <textarea class="form-control " id = "detalii" formControlName="detalii" name="content" rows="5" placeholder="Ofera detalii suplimentare!" required=""></textarea>
+<!--        <input id="detalii" class="form-control" formControlName="detalii"-->
+<!--               [readOnly]="ModalTypesEnum.VIEW == modalType">-->
       </div>
     </div>
+<!--    <div class="form-group row">-->
+<!--      <label for="expireDate" class="col-sm-4 col-form-label">Expire Date</label>-->
+<!--      <div class="col-sm-8">-->
+<!--        <div class="input-group">-->
+<!--          <input class="form-control" placeholder="yyyy-mm-dd" id="expireDate" name="dp" formControlName="expireDate"-->
+<!--                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">-->
+<!--          <div class="input-group-append">-->
+<!--            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"-->
+<!--                    [disabled]="ModalTypesEnum.VIEW == modalType">-->
+<!--              <fa-icon [icon]="faCalendar"></fa-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">-->
+<!--      <label for="createdDate" class="col-sm-4 col-form-label">Created Date</label>-->
+<!--      <div class="col-sm-8">-->
+<!--        <input id="createdDate" class="form-control" formControlName="createdDate"-->
+<!--               ngbDatepicker #f="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="form-group row">
-      <label for="quantity" class="col-sm-4 col-form-label">Quantity</label>
+      <label for="oras" class="col-sm-4 col-form-label">Oras</label>
       <div class="col-sm-8">
-        <input id="quantity" class="form-control" formControlName="quantity"
-               [readOnly]="ModalTypesEnum.VIEW == modalType">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="expireDate" class="col-sm-4 col-form-label">Expire Date</label>
-      <div class="col-sm-8">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" id="expireDate" name="dp" formControlName="expireDate"
-                 ngbDatepicker #d="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
-                    [disabled]="ModalTypesEnum.VIEW == modalType">
-              <fa-icon [icon]="faCalendar"></fa-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group row" *ngIf="ModalTypesEnum.VIEW == modalType">
-      <label for="createdDate" class="col-sm-4 col-form-label">Created Date</label>
-      <div class="col-sm-8">
-        <input id="createdDate" class="form-control" formControlName="createdDate"
-               ngbDatepicker #f="ngbDatepicker" [readOnly]="ModalTypesEnum.VIEW == modalType">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="sku" class="col-sm-4 col-form-label">Sku</label>
-      <div class="col-sm-8">
-        <input id="sku" class="form-control" formControlName="sku"
-               [readOnly]="ModalTypesEnum.VIEW == modalType">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="code" class="col-sm-4 col-form-label">Code</label>
-      <div class="col-sm-8">
-        <input id="code" class="form-control" formControlName="code"
+        <input id="oras" class="form-control" formControlName="oras"
                [readOnly]="ModalTypesEnum.VIEW == modalType">
       </div>
     </div>
 
+
     <div class="form-group row">
-      <label for="category" class="col-sm-4 col-form-label">Category</label>
-      <div class="col-sm-12">
-        <div *ngIf="categories!==undefined && categories!==null">
-          <p-dropdown dataKey="categoryName" [options]="categories" optionLabel="categoryName" formControlName="category"
-                      placeholder="Select a category" [showClear]="true" [style]="{'width':'50%'}"></p-dropdown>
-        </div>
+      <label for="tip" class="col-sm-4 col-form-label">Rol</label>
+      <div class="tip-medi col-sm-8">
+        <p-dropdown  id="tip"  formControlName="tip" [options]="tipuri"  formControlName="tip"
+                     placeholder="tip" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
       </div>
     </div>
+
+    <div class="form-group row">
+      <label for="facultate" class="col-sm-4 col-form-label">Facultate</label>
+      <div class="tip-medi col-sm-8">
+        <p-dropdown  id="facultate"  formControlName="facultate" [options]="facultati"  formControlName="facultate"
+                     placeholder="Facultate" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="an" class="col-sm-4 col-form-label">An universitar</label>
+      <div class="tip-medi col-sm-8">
+        <p-dropdown  id="an"  formControlName="tip" [options]="ani"  formControlName="an"
+                     placeholder="An universitar" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="clasa" class="col-sm-4 col-form-label">Clasa</label>
+      <div class="tip-medi col-sm-8">
+        <p-dropdown  id="clasa"  formControlName="clasa" [options]="clase"  formControlName="clasa"
+                     placeholder="Clasa" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+      </div>
+    </div>
+
+
   </div>
 
   <div class="form-group row" *ngIf="ModalTypesEnum.VIEW != modalType">
-    <label for="image" class="col-sm-4 col-form-label">Main Image</label>
+    <label for="image" class="anunt-image col-sm-5 col-form-label">Imagine (optional)</label>
     <div class="col-sm-12">
       <p-fileUpload name="demo[]"  (onSelect)="getBase64Image($event)" [showUploadButton]="false" [multiple]="false" accept="image/*" >
         <ng-template pTemplate="content">
@@ -96,31 +125,31 @@
       </p-fileUpload>
     </div>
   </div>
-  <div class="form-group row" *ngIf="ModalTypesEnum.CREATE == modalType">
-    <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>
-    <div class="col-sm-12">
-      <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImages($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >
-        <ng-template pTemplate="content">
-          <ul *ngIf="uploadedFiles.length">
-            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-          </ul>
-        </ng-template>
-      </p-fileUpload>
-    </div>
-  </div>
+<!--  <div class="form-group row" *ngIf="ModalTypesEnum.CREATE == modalType">-->
+<!--    <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>-->
+<!--    <div class="col-sm-12">-->
+<!--      <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImages($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >-->
+<!--        <ng-template pTemplate="content">-->
+<!--          <ul *ngIf="uploadedFiles.length">-->
+<!--            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>-->
+<!--          </ul>-->
+<!--        </ng-template>-->
+<!--      </p-fileUpload>-->
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="form-group row" *ngIf="ModalTypesEnum.EDIT == modalType">
-    <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>
-    <div class="col-sm-12">
-      <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImagesEdit($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >
-        <ng-template pTemplate="content">
-          <ul *ngIf="uploadedFiles.length">
-            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-          </ul>
-        </ng-template>
-      </p-fileUpload>
-    </div>
-  </div>
+<!--  <div class="form-group row" *ngIf="ModalTypesEnum.EDIT == modalType">-->
+<!--    <label for="images" class="col-sm-4 col-form-label"> Aditional Images</label>-->
+<!--    <div class="col-sm-12">-->
+<!--      <p-fileUpload name="demo[]"  (onSelect)="getBase64MoreImagesEdit($event)" [showUploadButton]="false" [multiple]="true" accept="image/*" >-->
+<!--        <ng-template pTemplate="content">-->
+<!--          <ul *ngIf="uploadedFiles.length">-->
+<!--            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>-->
+<!--          </ul>-->
+<!--        </ng-template>-->
+<!--      </p-fileUpload>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <div *ngIf="ModalTypesEnum.VIEW != modalType">
     <div class="modal-footer">

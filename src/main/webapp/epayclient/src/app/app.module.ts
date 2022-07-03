@@ -63,6 +63,11 @@ import {MatIconModule} from "@angular/material/icon";
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
+import { StreamChatModule, StreamAutocompleteTextareaModule } from 'stream-chat-angular';
+import { TranslateModule } from '@ngx-translate/core';
+import { AnuntComponent } from './components/anunt/anunt.component';
+import { ChatComponent } from './components/chat/chat.component';
+
 
 
 @NgModule({
@@ -103,6 +108,8 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     BreadCrumbsComponent,
     SpinnerComponent,
     ReviewComponent,
+    AnuntComponent,
+    ChatComponent
 
   ],
   imports: [
@@ -127,6 +134,9 @@ import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
     GalleriaModule,
     BreadcrumbModule,
     ProgressSpinnerModule,
+    StreamAutocompleteTextareaModule,
+    StreamChatModule,
+    TranslateModule.forRoot(),
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',

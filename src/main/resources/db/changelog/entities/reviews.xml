@@ -15,15 +15,18 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
 
-            <column name="user_name" type="varchar(128)">
-                <constraints nullable="false" />
+            <column name="anunt_id" type="bigint">
+                <constraints foreignKeyName="anunt_fk" references="anunturi(id)"
+                             nullable="false" />
             </column>
 
-            <column name="product_id" type="bigint">
-                <constraints nullable="false"/>
+            <column name="user_name" type="varchar(128)">
             </column>
 
             <column name="text" type="clob">
+            </column>
+
+            <column name="text2" type="clob">
             </column>
 
             <column name="stars" type="int">

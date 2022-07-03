@@ -16,38 +16,44 @@ import {ProductDetailComponent} from "@app/components/product-detail/product-det
 import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
 import {ReviewComponent} from "@app/components/review/review.component";
+import {AnuntComponent} from "@app/components/anunt/anunt.component";
+import {ChatComponent} from "@app/components/chat/chat.component";
+
 
 const routes: Routes = [
 
   {
     path: '',
     component: HomePageComponent,
-    data:{breadcrumb:{label:'Home',info: { myData: { icon: 'home', iconType: 'material' }}}},
+    // data:{breadcrumb:{label:'Home',info: { myData: { icon: 'home', iconType: 'material' }}}},
   },
   { path: 'categories',
     children:[
-    {path:'',component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG], breadcrumb: 'Categories'}},
+    {path:'',component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
   { path: ':id', component: CategoryProductsComponent },
    ]
 },
+  {path: 'chat',
+  component: ChatComponent},
+
  { path: 'products',
    children:[
-     {path:'', component: ProductListComponent,
-       data:{breadcrumb: 'Products'}},
-      { path: ':id', component: ProductDetailComponent, data:{breadcrumb:''}},
+     {path:'', component: ProductListComponent},
+      { path: ':id', component: ProductDetailComponent},
    ]
    },
-  { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH],breadcrumb:'Authorities'}},
-  { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH],breadcrumb:'Roles'}},
-  { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS],breadcrumb:'Users'}},
-  { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN],breadcrumb:'UserRoles'}},
-  { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN],breadcrumb:'RoleAuthorities'}},
+  { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
+  { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
+  { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
+  { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
+  { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
   { path: 'login', component: LoginComponent},
-  { path: 'shoppingcart', component: ShoppingCartComponent, data:{breadcrumb:'ShoppingCart'}},
-  { path: 'users/reset-password/:token', component: ResetPasswordComponent, data:{breadcrumb:'ResetPassword'}},
   { path: 'shoppingcart', component: ShoppingCartComponent},
   { path: 'users/reset-password/:token', component: ResetPasswordComponent},
-  { path: 'reviews', component: ReviewComponent}
+  { path: 'shoppingcart', component: ShoppingCartComponent},
+  { path: 'users/reset-password/:token', component: ResetPasswordComponent},
+  { path: 'reviews', component: ReviewComponent},
+  { path: 'anunturi', component: CategoryProductsComponent}
 
 ];
 

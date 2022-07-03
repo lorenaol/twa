@@ -1,0 +1,55 @@
+.row {
+  justify-content: center;
+}
+.btn {
+  /*margin-top : 20px;*/
+  font-size: 20px;
+  background-color:  rgb(147, 129, 255);
+}
+.rating {
+  margin-left: 630px;
+  color: #f8f83b;
+}
+.btn {
+  margin-left: 660px;
+}
+.btn:hover {
+  background-color: rgb(89, 79, 162);
+}
+
+.col-sm-6 {
+  text-align: right;
+  /*vertical-align: middle;*/
+  height: 50%;
+  /*margin-top: 120px;*/
+}
+.rating {
+  font-size:50px;
+
+}
+.review-content {
+  width: 500px;
+
+}
+.review-content:hover {
+  background-color : rgb(233, 231, 248);
+}
+.card-header {
+  text-align: center;
+}
+.add-p{
+  font-size: 20px;
+}
+.imagine {
+  height: 400px;
+}
+/*.add-p:hover {*/
+/*  color:  rgb(147, 129, 255);*/
+/*}*/
+.card-body {
+  background-color: rgb(243, 243, 246);
+  height: 900px;
+}
+.ceva {
+  text-align: center;
+}

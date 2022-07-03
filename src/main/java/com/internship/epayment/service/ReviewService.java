@@ -10,7 +10,7 @@ public interface ReviewService {
 
     Review addReview(Review review);
 
-    List<Review> findByProductId(Long id);
+    List<Review> findByAnuntId(Long id);
 
     Review updateReview(Review review);
 

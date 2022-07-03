@@ -38,21 +38,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/api/reviews/**").permitAll()
-                .antMatchers("/api/shoppingcart/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/findByEmail/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/tests/**").hasAuthority(AuthorityEnum.TUTOR.getCode())
                 .antMatchers("/api/users/forgot-password/**").permitAll()
                 .antMatchers("/api/users/reset-password/**").permitAll()
-                .antMatchers("/api/users/reset-password-logged-in/**").permitAll()
-                .antMatchers("/api/users/**").hasAuthority(AuthorityEnum.EPAY_USERS.getCode())
-                .antMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
-                .antMatchers("/api/categories/**").hasAuthority(AuthorityEnum.EPAY_CATEG.getCode())
-                .antMatchers("/api/products/**").hasAuthority(AuthorityEnum.EPAY_PRODUCT.getCode())//lorena 3
-                .antMatchers("/api/authorities/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
-                .antMatchers("/api/roles/**").hasAuthority(AuthorityEnum.EPAY_AUTH.getCode())//lorena 4
                 .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }

@@ -4,6 +4,8 @@ import {Product} from "../entities/product";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {environment} from "@environments/environment";
+import {Anunt} from "@app/entities/anunt";
+import {UserService} from "@app/services/user.service";
 
 
 type EntityResponseType = HttpResponse<Product>;
@@ -16,17 +18,18 @@ export class ProductService {
 
   private readonly PRODUCT_URL = environment.apiUrl + 'products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
-  public addProduct(product: Product): Observable<EntityResponseType>  {
+  public addProduct(product: Anunt): Observable<HttpResponse<Anunt>>  {
     console.log(product);
-    return this.http.post<Product>(this.PRODUCT_URL, product, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => res));
+
+    return this.http.post<Anunt>(environment.apiUrl + 'anunturi', product, { observe: 'response' })
+      .pipe(map((res: HttpResponse<Anunt>) => res));
   }
 
-  public getProducts(pageble?: any): Observable<EntityArrayResponseType> {
-    return this.http.get<Product[]>(this.PRODUCT_URL, {params:pageble, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => res));
+  public getProducts(): Observable<HttpResponse<Anunt[]>> {
+    return this.http.get<Anunt[]>(environment.apiUrl + 'anunturi', { observe: 'response' })
+      .pipe(map((res: HttpResponse<Anunt[]>) => res));
   }
 
   public getProductById(id: number): Observable<EntityResponseType> {

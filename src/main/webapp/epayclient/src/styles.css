@@ -1,8 +1,13 @@
 @import '~ngx-toastr/toastr.css';
+@import '~stream-chat-angular/src/assets/styles/css/index.css';
+
+body {
+  margin: 0;
+}
 
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
+  /*font-size: 14px;*/
   color: #333;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -34,7 +39,7 @@ p {
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #1976d2;
+  background-color: #292828;
   color: white;
   font-weight: 600;
 }
@@ -126,7 +131,7 @@ svg.material-icons:not(:last-child) {
 }
 
 .ng-card.highlight-card {
-  background-color: #1976d2;
+  background-color: #000000;
   color: white;
   font-weight: 600;
   border: none;
@@ -157,12 +162,12 @@ svg#rocket-smoke {
 a,
 a:visited,
 a:hover {
-  color: #1976d2;
+  color: #000000;
   text-decoration: none;
 }
 
 a:hover {
-  color: #125699;
+  color: #000000;
 }
 
 .terminal {

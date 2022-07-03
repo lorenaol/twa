@@ -1,12 +1,16 @@
 package com.internship.epayment;
 
 import com.internship.epayment.entity.Category;
+import com.internship.epayment.entity.User;
 import com.internship.epayment.service.CategoryService;
+import com.internship.epayment.service.UserService;
 import javassist.NotFoundException;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,24 +20,29 @@ import static org.junit.jupiter.api.Assertions.*;
 class EpaymentApplicationTests {
 
     @Autowired
-    private CategoryService categoryService;
+    private UserService userService;
 
     @Test
     @BeforeAll
-    public void addSomeDataTest(){
-        Category category1 = new Category();
-        category1.setCategoryName("Diverse 1");
-        categoryService.addCategory(category1);
-        Category category2 = new Category();
-        category1.setCategoryName("Diverse 2");
-        categoryService.addCategory(category2);
+    public void addDataTest(){
+        User user1 = new User();
+        user1.setEmail("lorenaolescu@gmail.com");
+        user1.setAddress("Bucuresti");
+        userService.addUser(user1);
+        User user2 = new User();
+        user2.setEmail("anamaria@gmail.com");
+        user2.setStart_date(new Date());
+        userService.addUser(user2);
     }
 
-//    @Test
-//    public void findAllCategories(){
-//        List<Category> list = categoryService.findAll();
+    @Test
+    public void findAllUsers(){
+//        List<User> list = userService.getAll();
 //        assertTrue(list.size() > 0);
-//    }
+    }
+
+
+
 
     @Test
     public void addCategoryTest(){

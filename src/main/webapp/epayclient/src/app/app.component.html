@@ -1,90 +1,113 @@
-<div class="toolbar" role="banner">
-  <img
-    width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <span><a routerLink="/"><button class="btn btn-link" style="color: white">Home</button></a></span>
+<div  class="toolbar" role="banner">
+<!--  <div class="acs">-->
+<!--  <img-->
+<!--    width="40"-->
 
-  <div ngbDropdown class="dropdown">
-    <button class="btn" id="dropdownBasic3" style="color: white" >
-      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Shop</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="menu">
-      <p-tieredMenu [model]="items"></p-tieredMenu>
-    </div>
-
-  </div>
-
-  <div class="spacer"></div>
-  <div class="dropdown cart">
-    <button class="dropbtn" (mouseenter)="getCarts()" >
-      <fa-icon [icon]="faShoppingCart"></fa-icon>
+<!--    src="data:image/jpeg;base64,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"-->
+<!--  />-->
+<!--  </div>-->
+  <span><a routerLink="/"><button class="btn btn-link" style="color: white; margin-left: 10px;">
+    <fa-icon [icon] = "faGr" size="2x"></fa-icon>
+  </button></a></span>
+  <span><a routerLink="/anunturi"><button class="btn btn-link" style="color: white; margin-left: 10px; font-size:20px;">
+    Anunturi
+<!--    <fa-icon [icon] = "faGr"></fa-icon>-->
+  </button></a></span>
+<!--  <span><a routerLink="/products"><button class="btn btn-link" style="color: white">-->
+<!--    Adauga Anunt-->
+<!--    &lt;!&ndash;    <fa-icon [icon] = "faGr"></fa-icon>&ndash;&gt;-->
+<!--  </button></a></span>-->
+  <div class = "add-an" *ngIf="isLoggedIn()">
+    <button class="btn btn-link" style="color: white;  font-size:20px;" (click)="chat()">
+      Chat
+      <!--    <fa-icon [icon]="faPlus" (click)="openProductModal(ModalTypesEnum.CREATE)"></fa-icon>-->
     </button>
 
-    <div class="dropdown-content">
-      <div class="products">
-        <div class="row" *ngFor="let cart of shoppingCarts">
-          <div class="prod image2{{cart?.product?.id}} col-sm-3">
-          </div>
-          <div class="prod col-sm-1"> x{{cart?.quantity}}
-          </div>
-          <div class="prod productName col-sm-3">{{cart.product?.name}}</div>
-          <div class="prod col-sm-2">{{cart.product?.price}} Lei</div>
-          <div class="prod col-sm-2">
-            <button class="btn btn-xs delete" (click) = "delete(cart)"><b>X</b></button>
-          </div>
-        </div>
-      </div>
-      <a href="/shoppingcart" >Vezi detalii cos</a>
-    </div>
+  <button class="btn btn-link" style="color: white;  font-size:20px;" (click)="openProductModal(ModalTypesEnum.CREATE)">
+    Adauga Anunt
+<!--    <fa-icon [icon]="faPlus" (click)="openProductModal(ModalTypesEnum.CREATE)"></fa-icon>-->
+  </button>
   </div>
 
-  <div ngbDropdown>
-    <button class="btn" id="dropdownBasic2" style="color: white" ngbDropdownToggle>
-      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Entitati</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="entitati">
-      <div>
-        <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Authority</button></a></span>
-      </div>
+<!--  <div ngbDropdown class="dropdown">-->
+<!--    <button class="btn" id="dropdownBasic3" style="color: white" >-->
+<!--      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Shop</button>-->
+<!--    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="menu">-->
+<!--      <p-tieredMenu [model]="items"></p-tieredMenu>-->
+<!--    </div>-->
 
-      <div>
-        <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link">Category</button></a></span>
-      </div>
+<!--  </div>-->
 
-      <div>
-        <span><a routerLink="/products"><button class="btn btn-link">Product</button></a></span>
-      </div>
+  <div class="spacer"></div>
+<!--  <div class="dropdown cart">-->
+<!--    <button class="dropbtn" (mouseenter)="getCarts()" >-->
+<!--      <fa-icon [icon]="faShoppingCart"></fa-icon>-->
+<!--    </button>-->
 
-      <div>
-        <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Role</button></a></span>
-      </div>
+<!--    <div class="dropdown-content">-->
+<!--      <div class="products">-->
+<!--        <div class="row" *ngFor="let cart of shoppingCarts">-->
+<!--          <div class="prod image2{{cart?.product?.id}} col-sm-3">-->
+<!--          </div>-->
+<!--          <div class="prod col-sm-1"> x{{cart?.quantity}}-->
+<!--          </div>-->
+<!--          <div class="prod productName col-sm-3">{{cart.product?.name}}</div>-->
+<!--          <div class="prod col-sm-2">{{cart.product?.price}} Lei</div>-->
+<!--          <div class="prod col-sm-2">-->
+<!--            <button class="btn btn-xs delete" (click) = "delete(cart)"><b>X</b></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <a href="/shoppingcart" >Vezi detalii cos</a>-->
+<!--    </div>-->
+<!--  </div>-->
 
-      <div>
-        <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">Role Authority</button></a></span>
-      </div>
+<!--  <div ngbDropdown>-->
+<!--    <button class="btn" id="dropdownBasic2" style="color: white" ngbDropdownToggle>-->
+<!--      <fa-icon [icon]="faBars"></fa-icon>&nbsp;Entitati</button>-->
+<!--    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="entitati">-->
+<!--      <div>-->
+<!--        <span><a routerLink="/authorities" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Authority</button></a></span>-->
+<!--      </div>-->
 
-      <div>
-        <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link">User</button></a></span>
-      </div>
+<!--      <div>-->
+<!--        <span><a routerLink="/categories" *hasAuthority="Authorities.EPAY_CATEG"><button class="btn btn-link">Category</button></a></span>-->
+<!--      </div>-->
 
-      <div>
-        <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">User Role</button></a></span>
-      </div>
-    </div>
-  </div>
+<!--      <div>-->
+<!--        <span><a routerLink="/products"><button class="btn btn-link">Product</button></a></span>-->
+<!--      </div>-->
 
-  <div ngbDropdown>
+<!--      <div>-->
+<!--        <span><a routerLink="/roles" *hasAuthority="Authorities.EPAY_AUTH"><button class="btn btn-link">Role</button></a></span>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <span><a routerLink="/rolesauthorities" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">Role Authority</button></a></span>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <span><a routerLink="/users" *hasAuthority="Authorities.EPAY_USERS"><button class="btn btn-link">User</button></a></span>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <span><a routerLink="/userroles" *hasAuthority="Authorities.EPAY_ADMIN"><button class="btn btn-link">User Role</button></a></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div ngbDropdown class="login">
     <button class="btn" id="dropdownBasic1" style="color: white" ngbDropdownToggle>
       <fa-icon [icon]="faUser"></fa-icon>&nbsp;{{user?.email}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="color: black">
       <div *ngIf="isLoggedIn()">
-        <span><a (click)="logout()"><button class="btn btn-link " ><span class="em em-user2"></span>Logout</button></a></span>
-        <span><a (click)="changepass()"><button class="btn btn-link " ><span class="em em-user2"></span>Reset Password</button></a></span>
+        <span><a (click)="logout()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Logout</button></a></span>
+        <span><a (click)="changepass()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Reset Password</button></a></span>
       </div>
       <div *ngIf="!isLoggedIn()">
         <li>
-          <span><a (click)="login()"><button class="btn btn-link " ><span class="em em-user2"></span>Login</button></a></span>
-        </li><li><span><a (click)="signin()"><button class="btn btn-link " ><span class="em em-user2"></span>Sign Up</button></a></span></li>
+          <span><a (click)="login()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Login</button></a></span>
+        </li><li><span><a (click)="signin()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Sign Up</button></a></span></li>
       </div>
 
     </div>
@@ -93,30 +116,16 @@
 
 
 
-  <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
-    <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 24 24" fill="#fff">
-      <path d="M0 0h24v24H0V0z" fill="none"/>
-      <path
-        d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
-    </svg>
-  </a>
+<!--  <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">-->
+<!--    <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg"-->
+<!--         viewBox="0 0 24 24" fill="#fff">-->
+<!--      <path d="M0 0h24v24H0V0z" fill="none"/>-->
+<!--      <path-->
+<!--        d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>-->
+<!--    </svg>-->
+<!--  </a>-->
 
 
-</div>
-
-<div style="width: 100%; height: auto; background-color: #0c0c0c;">
-  <app-bread-crumbs ></app-bread-crumbs>
-</div>
-
-<div style="width: 100%; height: auto; margin-top:35px">
-  <div style="">
-    <xng-breadcrumb [separator]="iconTemplate" ></xng-breadcrumb>
-    <ng-template #iconTemplate>
-      <mat-icon>chevron_right</mat-icon>
-    </ng-template>
-  </div>
-  <router-outlet></router-outlet>
 </div>
 
 
@@ -124,4 +133,4 @@
   <router-outlet></router-outlet>
 </div>
 
-<app-spinner></app-spinner>
+

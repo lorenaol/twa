@@ -1,1 +1,43 @@
+.login{
+  margin-left: 10px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+.content {
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: #302e2e;
+  color: white;
+}
+.first {
+  margin-top:70px;
+  /*width: 1300px;*/
+}
+.img-1 img{
+ margin-left: 70px;
+}
+.img2 img{
+  margin-top:10px;
+}
+.content2 {
+  margin-top:-30px;
+  /*margin-left: 10px;*/
+  padding-left: 70px;
+}
+.img3 {
+  padding-left: 70px;
+}
+/*.ceva {*/
+/*  max-width: 2000px;*/
+/*  font-size: xxx-large;*/
+/*  size: A3;*/
+/*}*/
 

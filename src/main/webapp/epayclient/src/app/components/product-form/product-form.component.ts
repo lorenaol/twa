@@ -12,6 +12,11 @@ import {Category} from "@app/entities/category";
 import {CategoryService} from "@app/services/category.service";
 import {Image} from "@app/entities/image";
 import {ImageService} from "@app/services/image.service";
+import {Anunt} from "@app/entities/anunt";
+import {UserService} from "@app/services/user.service";
+import {User} from "@app/entities/user";
+import {environment} from "@environments/environment";
+import {map} from "rxjs/operators";
 
 
 @Component({
@@ -28,22 +33,30 @@ export class ProductFormComponent implements OnInit {
   inputProduct?: Product;
   image?: string;
   images?: Image[] = [];
-  categories?: Category[] | null | undefined = [];
+  categories=["Limba și literatura română","Matematică","Limbi moderne",
+    "Chimie","Fizică","Biologie","Istorie","Geografie","Discipline socio-umane","Programare","Html", "CSS",
+    "Javascript","C++","Java","Python","Software","Office","Photoshop", "Figma", "Religie",
+    "Educație fizică și sport", "Arte plastice", "Educație muzicală", "Altele"];
   uploadedFiles: any[] = [];
   createdDate?: Date;
+  tipuri = ["Meditator", "Student"];
+  facultati= ["Facultatea de Automatica si Calculatoare", "Facultatea de Inginerie Mecanică și Mecatronică",
+  "Facultatea de Electronică, Telecomunicații și Tehnologia Informației", "Facultatea de Transporturi"]
+  ani = ["I", "II", "III", "IV"]
+  clase = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
 
   productForm = this.fb.group({
     id: [],
-    price: [],
-    name: [],
-    quantity: [],
-    expireDate: [],
-    sku: [],
-    code: [],
-    category: [],
+    detalii: [],
+    tip: [],
+    materie: [],
+    telefon: [],
+    user: [],
+    oras: [],
     image:[],
-    images:[],
-    createdDate:[]
+    facultate : [],
+    an : [],
+    clasa: []
   });
 
   constructor(
@@ -51,18 +64,22 @@ export class ProductFormComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private userService: UserService,
   ) {}
-
+  user? :User;
   ngOnInit(): void {
-    if (this.inputProduct !== undefined) {
-      this.updateForm(this.inputProduct);
-    }
-    this.categoryService.getCategories().subscribe(data => {
-      this.categories = data.body;
-    })
-    let today = new Date();
-    this.createdDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    this.userService.getUsersByEmail(JSON.parse(localStorage.getItem("user")!).userName).subscribe((data)=> {
+      this.user = data.body!;
+    });
+    // if (this.inputProduct !== undefined) {
+    //   this.updateForm(this.inputProduct);
+    // }
+    // this.categoryService.getCategories().subscribe(data => {
+    //   this.categories = data.body;
+    // })
+    // let today = new Date();
+    // this.createdDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   }
 
@@ -137,21 +154,42 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  private createFromForm(): Product {
-    const expireDate = this.productForm.get('expireDate')!.value;
-    const product = new Product();
-    product.id = this.inputProduct?.id;
-    product.price = this.productForm.get('price')!.value;
-    product.name = this.productForm.get('name')!.value;
-    product.quantity = this.productForm.get('quantity')!.value;
-    product.expireDate = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
-    product.sku = this.productForm.get('sku')!.value;
-    product.code = this.productForm.get('code')!.value;
-    product.category = this.productForm.get('category')!.value;
-    product.image = this.image;
-    product.images = this.images;
-    product.createdDate = this.createdDate;
-    return product;
+  private createFromForm(): Anunt {
+    // id: [],
+    //   detalii: [],
+    //   tip: [],
+    //   materie: [],
+    //   telefon: [],
+    //   user: [],
+    //   oras: [],
+    // const expireDate = this.productForm.get('expireDate')!.value;
+    const anunt = new Anunt();
+    anunt.id = this.inputProduct?.id;
+    anunt.detalii = this.productForm.get("detalii")!.value;
+    anunt.tip = this.productForm.get("tip")!.value;
+    anunt.materie = this.productForm.get("materie")!.value;
+    anunt.oras = this.productForm.get("oras")!.value;
+    anunt.image = this.image;
+    anunt.an =this.productForm.get("an")!.value;
+    anunt.facultate = this.productForm.get("facultate")!.value;
+    anunt.clasa = this.productForm.get("clasa")!.value;
+    anunt.telefon = this.productForm.get("telefon")!.value;
+  anunt.user =this.user;
+
+
+
+
+    // product.price = this.productForm.get('price')!.value;
+    // product.name = this.productForm.get('name')!.value;
+    // product.quantity = this.productForm.get('quantity')!.value;
+    // product.expireDate = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
+    // product.sku = this.productForm.get('sku')!.value;
+    // product.code = this.productForm.get('code')!.value;
+    // product.category = this.productForm.get('category')!.value;
+    // product.image = this.image;
+    // product.images = this.images;
+    // product.createdDate = this.createdDate;
+    return anunt;
   }
 
   private updateForm(product: Product): void {
@@ -172,7 +210,7 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  private subscribeToSaveResponse(result: Observable<HttpResponse<Product>>): void {
+  private subscribeToSaveResponse(result: Observable<HttpResponse<Anunt>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
       () => this.onSaveError()
@@ -182,17 +220,17 @@ export class ProductFormComponent implements OnInit {
   private onSaveSuccess(): void {
     this.activeModal.close(true);
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.success('Product created!', 'Success!');
+      this.toastr.success('Anunt adaugat!', 'Success!');
     } else {
-      this.toastr.success('Product modified!', 'Success!');
+      this.toastr.success('Anunt modificat!', 'Success!');
     }
   }
 
   private onSaveError(): void {
     if (this.modalType === ModalTypesEnum.CREATE) {
-      this.toastr.error('Error creating product!', 'Error!');
+      this.toastr.error('Eroare la crearea anuntului!', 'Error!');
     } else {
-      this.toastr.error('Error modifying product!', 'Error!');
+      this.toastr.error('Eroare la modificarea produsului!', 'Error!');
     }
   }
 }

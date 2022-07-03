@@ -2,31 +2,24 @@
   position: relative;
   display: inline-block;
 }
+.add-an {
+  margin-left: 73%;
+}
+.toolbar{
+  /*font-family: "Comic Sans MS" ;*/
+  /*font-family: "Lucida Console";*/
+  font-size:20px;
+}
 
 .menu{
   display: none;
 }
+
 .dropdown:hover .menu{
   display: inline-block;
   position: absolute;
   margin-top: -7px;
   padding: 0;
-}
-
-
-.xng-breadcrumb-root {
-  padding: 21px 16px;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #e7f1f1;
-}
-
-.xng-breadcrumb-separator {
-  padding: 0 4px;
-}
-
-.xng-breadcrumb-trail.ng-star-inserted{
-  display:contents;
 }
 
 .p-menuitem-link:hover ~ p-tieredmenusub ul {
@@ -61,13 +54,18 @@
   color: black!important;
 }
 
-.btn-link{
-  text-align: start;
+/*.btn-link{*/
+/*  text-align: start;*/
+/*}*/
+.login {
+  color: black;
 }
-
-.btn-link:hover{
-  background-color: rgb(247 247 247);
+.login:hover {
+  color: black;
 }
+/*.btn-link:hover{*/
+/*  background-color: rgb(247 247 247);*/
+/*}*/
 
 .cart {
   position: relative;

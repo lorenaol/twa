@@ -43,16 +43,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) throws NotFoundException {
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
-    }
-
-    @Override
     public User findByName(String name) throws NotFoundException {
         Optional<User> user = userRepository.findUserByName(name);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + name));
         return user.get();
     }
+    @Override
+    public User findById(Long id) throws NotFoundException {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    }
+
 
     @Override
     public String findPassByName(String name) {
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 //        System.out.println(user.getName());
         //pas 2.luam rolurile userului
         List<Role> roles = new ArrayList<>();
-        userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
+//        userRoleRepository.findAllByUserId(user.getId()).forEach(userRole -> roles.add(userRole.getRole()));
 
 //        List<Role> roles = userRoleRepository.findAllByUserId(user.getId())
 //                .stream().map(UserRole::getRole).collect(Collectors.toList());

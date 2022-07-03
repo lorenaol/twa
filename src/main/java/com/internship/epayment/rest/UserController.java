@@ -2,7 +2,7 @@ package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.User;
 import com.internship.epayment.repository.UserRepository;
-import com.internship.epayment.service.EmailService;
+//import com.internship.epayment.service.EmailService;
 import com.internship.epayment.service.UserService;
 import com.internship.epayment.util.PaginationUtil;
 import javassist.NotFoundException;
@@ -34,8 +34,8 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private EmailService emailService;
+//    @Autowired
+//    private EmailService emailService;
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers(Pageable pageable) {
@@ -81,7 +81,7 @@ public class UserController {
         if (user != null && user2 == null) {
 
             u = userService.addUser(user);
-            emailService.sendMail(u);
+//            emailService.sendMail(u);
         }
         if (u == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email already used");
@@ -110,7 +110,7 @@ public class UserController {
         }
         User somth = userService.findByEmail(email);
         if (!response.startsWith("Invalid")) {
-            emailService.sendMailFPass(somth);
+//            emailService.sendMailFPass(somth);
             response = "http://localhost:8082/api/users/reset-password/" + response;
         }
 
@@ -131,7 +131,7 @@ public class UserController {
             }
         }
         if (user != null) {
-            emailService.sendMailCPass(user);
+//            emailService.sendMailCPass(user);
         }
         return response;
     }
@@ -147,7 +147,7 @@ public class UserController {
         } else {
             user.setPassword(changePassword);
             userService.updateUser(user);
-            emailService.sendMailCPass(user);
+//            emailService.sendMailCPass(user);
         }
         return true;
     }

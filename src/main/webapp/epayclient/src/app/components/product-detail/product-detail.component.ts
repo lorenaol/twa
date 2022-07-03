@@ -64,6 +64,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.user = (JSON.parse(localStorage.getItem("user") || '{}').userName );
     this.setDate();
+    this.getReviews();
   }
 
   addReview(): void {
@@ -77,7 +78,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getProductById(this.id).subscribe((data: any) => {
         this.product = data.body;
         this.setImages();
-        this.getReviews();
+
       })
   }
 
@@ -123,10 +124,36 @@ export class ProductDetailComponent implements OnInit {
     let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(today);
     this.estimateDate = `${da}-${mo}-${ye}`;
   }
-
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   getReviews() : void {
-    this.reviewService.getReviewsByProductId(this.product?.id!).subscribe((data:any) => {
-      this.reviews = data.body;
+    this.reviewService.getReviewsByProductId(this.id!).subscribe((data:any) => {
+        this.reviews = data.body;
+      this.getImages();
     })
+  }
+
+  imagesSrc:  Map<number, string[]> = new Map<number, string[]>();
+  img? : string[];
+  getImages() : void {
+    this.imagesSrc = this.reviewService.getImages();
+    console.log(this.imagesSrc)
+    if(this.reviews) {
+      console.log("czxd")
+      for (let review of this.reviews!) {
+        this.img = this.imagesSrc.get(review.id!);
+        if (this.img) {
+          for (let i = 0; i < this.img.length; i++) {
+            let imageWrapper = document.querySelector(`.reviews .review`);
+            let image = new Image(500, 500);
+            image.src = this.img[i];
+            if (imageWrapper) imageWrapper.appendChild(image);
+
+            console.log(imageWrapper);
+          }
+        }
+      }
+    }
   }
 }

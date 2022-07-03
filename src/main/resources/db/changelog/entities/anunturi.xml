@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="rachetii">
+        <createSequence sequenceName="anunturi_seq" startValue="50" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="rachetii">
+        <createTable tableName="anunturi">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="oras" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="telefon" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="materie" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="tip" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="facultate" type="varchar(128)">
+
+            </column>
+            <column name="an" type="varchar(128)">
+
+            </column>
+            <column name="clasa" type="varchar(128)">
+
+            </column>
+            <column name="detalii" type="clob">
+            </column>
+
+            <column name="image" type="clob">
+            </column>
+
+            <column name="user_anunt_id" type="bigint">
+                <constraints foreignKeyName="user_anunt_user_fk" references="users(id)"
+                             nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+<!--    <changeSet id="3" author="rachetii">-->
+<!--        <loadData-->
+<!--                file="classpath:db/changelog/data/products.csv"-->
+<!--                separator=";"-->
+<!--                tableName="products">-->
+<!--            <column name="id" type="numeric"/>-->
+<!--            <column name="oras" type="numeric"/>-->
+<!--            <column name="telefon" type="string"/>-->
+<!--            <column name="quantity" type="numeric"/>-->
+<!--            <column name="expire_date" type="date"/>-->
+<!--            <column name="sku" type="string"/>-->
+<!--            <column name="code" type="string"/>-->
+<!--            <column name="category_id" type="numeric"/>-->
+<!--            <column name="image" type="string"/>-->
+<!--            <column name="created_date" type="date"/>-->
+<!--        </loadData>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="4" author="dani">-->
+<!--        <addForeignKeyConstraint baseColumnNames="category_id"-->
+<!--                                 baseTableName="products"-->
+<!--                                 constraintName="fk_category_product_id"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="categories"/>-->
+<!--    </changeSet>-->
+</databaseChangeLog>

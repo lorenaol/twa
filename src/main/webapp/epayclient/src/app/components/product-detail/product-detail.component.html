@@ -51,13 +51,20 @@
       </div>
     </div>
     <div class="reviews">
-      <div *ngIf="reviews?.length">
+      <div *ngIf="reviews?.length" >
         <h2>Review-uri
           <small class="numberReviews">({{reviews?.length}} review-uri)</small></h2>
         <hr class="solid">
         <div *ngFor="let review of reviews" class="review row">
-          <div class="col-md-2">{{review.userName}}</div>
-          <div class="col-md-10">{{review.text}}</div>
+<!--          <div class="col-md-2">{{review.userName}}</div>-->
+          <div class="col-md-10">
+            <div>{{review.text}}</div>
+            <div *ngIf="img?.length">
+            <div class="row" *ngFor="let im of img!; let i = index" [attr.data-index]="i">
+              <div class="reviewImage{{review.id}}{{i}}">dvfvdf</div>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
