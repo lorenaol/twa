@@ -1,7 +1,9 @@
 package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.Clasa;
+import com.internship.epayment.entity.Solicitare_Colaborare;
 import com.internship.epayment.service.ClasaService;
+import com.internship.epayment.service.SolicitareColaborareService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,35 +14,36 @@ import java.util.List;
 @RequestMapping(path = "/api/solicitari_colaborare")
 public class SolicitareColaborareController {
     @Autowired
-    private ClasaService clasaService;
+    private SolicitareColaborareService solicitareColaborareService;
+
 
     @GetMapping
-    public List<Clasa> getClase() {
-        return clasaService.getAll();
+    public List<Solicitare_Colaborare> getClase() {
+        return solicitareColaborareService.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Clasa getClasaById(@PathVariable Long id) throws NotFoundException {
-        return clasaService.findById(id);
+    public Solicitare_Colaborare getClasaById(@PathVariable Long id) throws NotFoundException {
+        return solicitareColaborareService.findById(id);
     }
 
     @PostMapping
-    public Clasa addClasa(@RequestBody Clasa clasa) {
-        Clasa c = null;
+    public Solicitare_Colaborare addClasa(@RequestBody Solicitare_Colaborare clasa) {
+        Solicitare_Colaborare c = null;
         if (clasa != null) {
-            c = clasaService.addClasa(clasa);
+            c = solicitareColaborareService.addSolicitareColaborare(clasa);
         }
         return c;
     }
 
     @PutMapping
     @ResponseBody
-    public Clasa updateClasa(@RequestBody Clasa clasa) {
-        return clasaService.updateClasa(clasa);
+    public Solicitare_Colaborare updateClasa(@RequestBody Solicitare_Colaborare clasa) {
+        return solicitareColaborareService.updateSolicitareColaborare(clasa);
     }
 
     @DeleteMapping
-    public void deleteClasa(@RequestBody Clasa clasa) {
-        clasaService.deleteClasa(clasa);
+    public void deleteClasa(@RequestBody Solicitare_Colaborare clasa) {
+        solicitareColaborareService.deleteSolicitareColaborare(clasa);
     }
 }

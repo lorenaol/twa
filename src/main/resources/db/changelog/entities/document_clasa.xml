@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="rachetii">
+        <createSequence sequenceName="documnet_clasa_seq" startValue="50" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="rachetii">
+        <createTable tableName="documnet_clasa">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="clasa_id" type="bigint">
+                <constraints foreignKeyName="clasa1_fk" references="clasa(id)"
+                             nullable="false" />
+            </column>
+            <column name="document_id" type="bigint">
+                <constraints foreignKeyName="document1_fk" references="document(id)"
+                             nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="rachetii">
+        <createSequence sequenceName="solicitare_colaborare_seq" startValue="50" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="rachetii">
+        <createTable tableName="solicitare_colaborare">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="accepted" type="boolean">
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="colab_user_fk" references="users(id)"
+                             nullable="false" />
+            </column>
+
+            <column name="anunt_id" type="bigint">
+                <constraints foreignKeyName="colab_anunt_fk" references="anunturi(id)"
+                             nullable="false" />
+            </column>
+
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="data_solicitare"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="data_raspuns"  type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

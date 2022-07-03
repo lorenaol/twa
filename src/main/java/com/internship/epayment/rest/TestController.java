@@ -1,7 +1,9 @@
 package com.internship.epayment.rest;
 
 import com.internship.epayment.entity.Clasa;
+import com.internship.epayment.entity.Test;
 import com.internship.epayment.service.ClasaService;
+import com.internship.epayment.service.TestService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,35 +14,35 @@ import java.util.List;
 @RequestMapping(path = "/api/teste")
 public class TestController {
     @Autowired
-    private ClasaService clasaService;
+    private TestService testService;
 
     @GetMapping
-    public List<Clasa> getClase() {
-        return clasaService.getAll();
+    public List<Test> getClase() {
+        return testService.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Clasa getClasaById(@PathVariable Long id) throws NotFoundException {
-        return clasaService.findById(id);
+    public Test getClasaById(@PathVariable Long id) throws NotFoundException {
+        return testService.findById(id);
     }
 
     @PostMapping
-    public Clasa addClasa(@RequestBody Clasa clasa) {
-        Clasa c = null;
+    public Test addClasa(@RequestBody Test clasa) {
+        Test c = null;
         if (clasa != null) {
-            c = clasaService.addClasa(clasa);
+            c = testService.addTest(clasa);
         }
         return c;
     }
 
     @PutMapping
     @ResponseBody
-    public Clasa updateClasa(@RequestBody Clasa clasa) {
-        return clasaService.updateClasa(clasa);
+    public Test updateClasa(@RequestBody Test clasa) {
+        return testService.updateTest(clasa);
     }
 
     @DeleteMapping
-    public void deleteClasa(@RequestBody Clasa clasa) {
-        clasaService.deleteClasa(clasa);
+    public void deleteClasa(@RequestBody Test clasa) {
+        testService.deleteTest(clasa);
     }
 }

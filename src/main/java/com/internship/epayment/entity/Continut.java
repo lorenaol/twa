@@ -8,8 +8,8 @@ public class Continut {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anunturi_seq")
-    @SequenceGenerator(name = "anunturi_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "continut_seq")
+    @SequenceGenerator(name = "continut_seq", allocationSize = 1)
     private Long id;
 
     String intrebare;
