@@ -71,6 +71,14 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ReviewListComponent } from './components/review-list/review-list.component';
+import { MyRequestsComponent } from './components/my-requests/my-requests.component';
+import { MyAnnouncesComponent } from './components/my-announces/my-announces.component';
+import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import {MatButtonModule} from "@angular/material/button";
+import { CreateClassDialogComponent } from './components/create-class-dialog/create-class-dialog.component';
+import { ViewClassComponent } from './components/view-class/view-class.component';
+import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
+import { TestsClassComponent } from './components/tests-class/tests-class.component';
 
 import {MatCardModule} from '@angular/material/card';
 
@@ -116,42 +124,51 @@ import {MatCardModule} from '@angular/material/card';
     ChatComponent,
     MyProfileComponent,
     EditProfileComponent,
+    MyRequestsComponent,
+    MyAnnouncesComponent,
+    MyClassesComponent,
+    CreateClassDialogComponent,
+    ViewClassComponent,
+    MaterialsClassComponent,
+    TestsClassComponent
+    EditProfileComponent,
     ReviewListComponent
 
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    BrowserModule,
-    MatIconModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    FontAwesomeModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    FormsModule,
-    MatCardModule,
-    SidebarModule,
-    MegaMenuModule,
-    PanelModule,
-    ButtonModule,
-    TieredMenuModule,
-    FileUploadModule,
-    GalleriaModule,
-    BreadcrumbModule,
-    ProgressSpinnerModule,
-    StreamAutocompleteTextareaModule,
-    StreamChatModule,
-    MatDialogModule,
-    TranslateModule.forRoot(),
-    ToastrModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
-      libraries: ['places']
-    })
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        BrowserModule,
+        MatIconModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        FormsModule,
+        SidebarModule,
+        MatCardModule,
+        MegaMenuModule,
+        PanelModule,
+        ButtonModule,
+        TieredMenuModule,
+        FileUploadModule,
+        GalleriaModule,
+        BreadcrumbModule,
+        ProgressSpinnerModule,
+        StreamAutocompleteTextareaModule,
+        StreamChatModule,
+        MatDialogModule,
+        TranslateModule.forRoot(),
+        ToastrModule.forRoot(),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+            libraries: ['places']
+        }),
+        MatButtonModule
+    ],
   providers: [
     BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

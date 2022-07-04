@@ -164,6 +164,22 @@ export class AppComponent {
   changepass() {
     this.userService.showCPass();
   }
+
+  myRequests() {
+    this.router.navigate(["/cererile-mele"]);
+  }
+
+  myAnnounces() {
+    this.router.navigate(["/anunturile-mele"]);
+  }
+
+  myClasses() {
+    this.router.navigate(["/clasele-mele"]);
+  }
+
+  myProfile() {
+    this.router.navigate(["/profilul-meu"]);
+  }
 }
 
 
