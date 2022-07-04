@@ -9,6 +9,7 @@ export class User {
   latitude?: number;
   longitude?: number;
   address?: string;
+  token?: string|null;
 }
 
 export class UserWithAuthoritiesDto {

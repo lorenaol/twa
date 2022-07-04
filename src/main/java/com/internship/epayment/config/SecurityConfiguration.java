@@ -39,13 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/api/reviews/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/findByEmail/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/tests/**").hasAuthority(AuthorityEnum.TUTOR.getCode())
-                .antMatchers("/api/users/forgot-password/**").permitAll()
-                .antMatchers("/api/users/reset-password/**").permitAll()
-                .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
+//                .antMatchers("/api/reviews/**").permitAll()
+//                .antMatchers(HttpMethod.POST,"/api/users/**").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/users/findByEmail/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/tests/**").hasAuthority(AuthorityEnum.TUTOR.getCode())
+//                .antMatchers("/api/users/forgot-password/**").permitAll()
+//                .antMatchers("/api/users/reset-password/**").permitAll()
+//                .antMatchers("/api/**").hasAuthority(AuthorityEnum.EPAY_ADMIN.getCode())
                 .anyRequest().permitAll();
     }
 

@@ -14,6 +14,10 @@ import java.util.Date;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
+    @SequenceGenerator(name = "users_seq", allocationSize = 1)
+    private Long id;
+
     private String name;
 
     private String email;
@@ -55,13 +59,13 @@ public class User {
         this.token = token;
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

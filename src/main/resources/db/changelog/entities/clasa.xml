@@ -16,12 +16,12 @@
             </column>
 
             <column name="prefosor_email" type="bigint">
-                <constraints foreignKeyName="profesor_fk" references="users(id)"
+                <constraints foreignKeyName="profesor1_fk" references="users(id)"
                              nullable="false" />
             </column>
 
             <column name="student_email" type="bigint">
-                <constraints foreignKeyName="student_fk" references="users(id)"
+                <constraints foreignKeyName="student1_fk" references="users(id)"
                              nullable="false" />
             </column>
         </createTable>

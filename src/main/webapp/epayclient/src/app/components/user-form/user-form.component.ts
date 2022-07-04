@@ -9,6 +9,7 @@ import {ToastrService} from "ngx-toastr";
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {MapsAPILoader, MouseEvent} from "@agm/core";
 import {UserService} from "@app/services/user.service";
+import {StreamChat} from "stream-chat";
 
 
 @Component({
@@ -24,6 +25,8 @@ export class UserFormComponent implements OnInit {
   modalType?: ModalTypesEnum;
   zoom: number = 12;
   private geoCoder: any;
+  streamChat :any;
+  user_global? : User;
 
   userForm = this.fb.group({
     id: [],
@@ -46,6 +49,9 @@ export class UserFormComponent implements OnInit {
     private apiloader: MapsAPILoader,
     private ngZone: NgZone
   ) {
+     this.streamChat = StreamChat.getInstance("v3yqafmr9u5h", {
+      timeout: 6000,
+    })
   }
 
   @ViewChild('search')
@@ -105,6 +111,7 @@ export class UserFormComponent implements OnInit {
     user.latitude = this.userForm.get('latitude')!.value;
     user.longitude = this.userForm.get('longitude')!.value;
     user.address = this.userForm.get('address')!.value;
+    this.user_global = user;
     return user;
   }
 
@@ -140,6 +147,8 @@ export class UserFormComponent implements OnInit {
   private onSaveSuccess(): void {
     this.activeModal.close(true);
     if (this.modalType === ModalTypesEnum.CREATE) {
+      this.streamChat.upsertUser({id: this.user_global?.id, name: this.user_global?.name,
+      email: this.user_global?.email})
       this.toastr.success('User created!', 'Success!');
     } else {
       this.toastr.success('User modified!', 'Success!');
