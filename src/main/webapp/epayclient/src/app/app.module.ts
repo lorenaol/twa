@@ -67,6 +67,9 @@ import { StreamChatModule, StreamAutocompleteTextareaModule } from 'stream-chat-
 import { TranslateModule } from '@ngx-translate/core';
 import { AnuntComponent } from './components/anunt/anunt.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -109,7 +112,9 @@ import { ChatComponent } from './components/chat/chat.component';
     SpinnerComponent,
     ReviewComponent,
     AnuntComponent,
-    ChatComponent
+    ChatComponent,
+    MyProfileComponent,
+    EditProfileComponent
 
   ],
   imports: [
@@ -136,6 +141,7 @@ import { ChatComponent } from './components/chat/chat.component';
     ProgressSpinnerModule,
     StreamAutocompleteTextareaModule,
     StreamChatModule,
+    MatDialogModule,
     TranslateModule.forRoot(),
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({

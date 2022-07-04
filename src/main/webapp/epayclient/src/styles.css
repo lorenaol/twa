@@ -1,5 +1,6 @@
 @import '~ngx-toastr/toastr.css';
 @import '~stream-chat-angular/src/assets/styles/css/index.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
   margin: 0;

@@ -1,0 +1,43 @@
+.input1 {
+  margin-left: 38px;
+  height: 40px;
+  width: 300px;
+}
+
+.input2 {
+  margin-left: 25px;
+  height: 40px;
+  width: 300px
+}
+
+.input3 {
+  margin-left: 41px;
+  height: 40px;
+  width: 300px
+}
+
+.label1 {
+  font-weight: bold;
+  margin-top: 30px;
+  /*margin-left: 75px;*/
+  margin-right: 20px;
+}
+
+.label2 {
+  font-weight: bold;
+  /*margin-left: 75px;*/
+  margin-right: 20px;
+}
+
+.save-button {
+  background-color: #3333ff;
+  color: white;
+  border: none;
+  margin-left: 130px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  width: 150px;
+  border-radius: 30px;
+}

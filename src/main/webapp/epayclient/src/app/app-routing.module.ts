@@ -18,6 +18,8 @@ import {ResetPasswordComponent} from "@app/components/reset-password/reset-passw
 import {ReviewComponent} from "@app/components/review/review.component";
 import {AnuntComponent} from "@app/components/anunt/anunt.component";
 import {ChatComponent} from "@app/components/chat/chat.component";
+import {MyProfileComponent} from "@app/components/my-profile/my-profile.component";
+import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.component";
 
 
 const routes: Routes = [
@@ -53,7 +55,9 @@ const routes: Routes = [
   { path: 'shoppingcart', component: ShoppingCartComponent},
   { path: 'users/reset-password/:token', component: ResetPasswordComponent},
   { path: 'reviews', component: ReviewComponent},
-  { path: 'anunturi', component: CategoryProductsComponent}
+  { path: 'anunturi', component: CategoryProductsComponent},
+  { path: 'profilul-meu', component: MyProfileComponent},
+  { path: 'profil-edit', component: EditProfileComponent}
 
 ];
 
