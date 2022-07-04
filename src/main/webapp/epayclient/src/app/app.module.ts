@@ -70,6 +70,11 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { MyRequestsComponent } from './components/my-requests/my-requests.component';
+import { MyAnnouncesComponent } from './components/my-announces/my-announces.component';
+import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import {MatButtonModule} from "@angular/material/button";
+import { CreateClassDialogComponent } from './components/create-class-dialog/create-class-dialog.component';
 
 
 
@@ -114,41 +119,46 @@ import {MatDialogModule} from "@angular/material/dialog";
     AnuntComponent,
     ChatComponent,
     MyProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    MyRequestsComponent,
+    MyAnnouncesComponent,
+    MyClassesComponent,
+    CreateClassDialogComponent
 
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    BrowserModule,
-    MatIconModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    FontAwesomeModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    FormsModule,
-    SidebarModule,
-    MegaMenuModule,
-    PanelModule,
-    ButtonModule,
-    TieredMenuModule,
-    FileUploadModule,
-    GalleriaModule,
-    BreadcrumbModule,
-    ProgressSpinnerModule,
-    StreamAutocompleteTextareaModule,
-    StreamChatModule,
-    MatDialogModule,
-    TranslateModule.forRoot(),
-    ToastrModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
-      libraries: ['places']
-    })
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        BrowserModule,
+        MatIconModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        FormsModule,
+        SidebarModule,
+        MegaMenuModule,
+        PanelModule,
+        ButtonModule,
+        TieredMenuModule,
+        FileUploadModule,
+        GalleriaModule,
+        BreadcrumbModule,
+        ProgressSpinnerModule,
+        StreamAutocompleteTextareaModule,
+        StreamChatModule,
+        MatDialogModule,
+        TranslateModule.forRoot(),
+        ToastrModule.forRoot(),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+            libraries: ['places']
+        }),
+        MatButtonModule
+    ],
   providers: [
     BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

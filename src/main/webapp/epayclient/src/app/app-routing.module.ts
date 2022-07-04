@@ -20,6 +20,10 @@ import {AnuntComponent} from "@app/components/anunt/anunt.component";
 import {ChatComponent} from "@app/components/chat/chat.component";
 import {MyProfileComponent} from "@app/components/my-profile/my-profile.component";
 import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.component";
+import {MyRequestsComponent} from "@app/components/my-requests/my-requests.component";
+import {MyAnnouncesComponent} from "@app/components/my-announces/my-announces.component";
+import {MyClassesComponent} from "@app/components/my-classes/my-classes.component";
+import {CreateClassDialogComponent} from "@app/components/create-class-dialog/create-class-dialog.component";
 
 
 const routes: Routes = [
@@ -57,8 +61,11 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewComponent},
   { path: 'anunturi', component: CategoryProductsComponent},
   { path: 'profilul-meu', component: MyProfileComponent},
-  { path: 'profil-edit', component: EditProfileComponent}
-
+  { path: 'profil-edit', component: EditProfileComponent},
+  { path: 'cererile-mele', component: MyRequestsComponent},
+  { path: 'anunturile-mele', component: MyAnnouncesComponent},
+  { path: 'clasele-mele', component: MyClassesComponent},
+  { path: 'adauga-clasa', component: CreateClassDialogComponent}
 ];
 
 @NgModule({

@@ -106,8 +106,47 @@
       </div>
       <div *ngIf="!isLoggedIn()">
         <li>
-          <span><a (click)="login()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Login</button></a></span>
-        </li><li><span><a (click)="signin()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Sign Up</button></a></span></li>
+          <span>
+            <a (click)="login()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Login</button>
+            </a>
+          </span>
+        </li>
+        <li>
+        <span>
+          <a (click)="signin()">
+            <button class="btn  " ><span class="em em-user2" style="color: black"></span>Sign Up</button>
+          </a>
+        </span>
+        </li>
+        <li>
+          <span>
+            <a (click)="myRequests()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Cererile mele</button>
+            </a>
+          </span>
+        </li>
+        <li>
+          <span>
+            <a (click)="myAnnounces()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Anunturile mele</button>
+            </a>
+          </span>
+        </li>
+        <li>
+          <span>
+            <a (click)="myClasses()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Clasele mele</button>
+            </a>
+          </span>
+        </li>
+        <li>
+          <span>
+            <a (click)="myProfile()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Profilul meu</button>
+            </a>
+          </span>
+        </li>
       </div>
 
     </div>
