@@ -56,7 +56,17 @@ export class CategoryFormComponent implements OnInit {
     // let today = new Date();
     // this.createdDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   }
-  redirect() : void {
+  redirect2() : void {
+    this.activeModal.close(false);
+    localStorage.setItem("anunt", JSON.stringify(this.inputCategory!));
+    this.router.navigate(["/reviews/"]);
+  }
+  redirect1() : void {
+    this.activeModal.close(false);
+    localStorage.setItem("anunt", JSON.stringify(this.inputCategory!));
+    this.router.navigate(["/review-list/"]);
+  }
+  redirect3() : void {
     this.activeModal.close(false);
     localStorage.setItem("anunt", JSON.stringify(this.inputCategory!));
     this.router.navigate(["/reviews/"]);

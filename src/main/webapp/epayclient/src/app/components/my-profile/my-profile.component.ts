@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.component";
+import {UserService} from "@app/services/user.service";
+import {User} from "@app/entities/user";
 
 @Component({
   selector: 'app-my-profile',
@@ -9,16 +11,20 @@ import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.co
 })
 export class MyProfileComponent implements OnInit {
 
-  selected = 4;
-  userName = "Lorena Olescu";
-  userEmail = "lorenaolescu@gmail.com";
-  userAddress = "Valcea, Cernisoara";
-  userRole = "Tutore";
+  selected = 5;
+  // userName = "Lorena Olescu";
+  // userEmail = "lorenaolescu@gmail.com";
+  // userAddress = "Valcea, Cernisoara";
+  // userRole = "Tutore";
+  user?: User
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
     console.log("a intrat");
+    this.userService.getUsersByEmail(JSON.parse(localStorage.getItem("user")!).userName).subscribe((data:any) => {
+      this.user = data.body;
+    })
   }
 
   openDialog(): void {

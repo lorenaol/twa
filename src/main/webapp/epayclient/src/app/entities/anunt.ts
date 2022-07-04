@@ -4,7 +4,7 @@ export class Anunt {
   id?: number;
   user?: User;
   detalii?: string;
-  tip?: string;
+  // tip?: string;
   materie? : string;
   telefon? : string;
   oras?: string;

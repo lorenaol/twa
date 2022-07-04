@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit {
     const userId = 'floral-bush-5';
     const userId2 = 'floral-bush-6';
     const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZmxvcmFsLWJ1c2gtNSJ9.Xj5S9CSBD1D0R09Gxjx6clVoAhakO2GPeUYv-x9xqOk';
-    this.chatService.init(apiKey, userId, userToken);
+    // this.chatService.init(apiKey, userId, userToken);
     this.streamI18nService.setTranslation();
 
   }
@@ -29,15 +29,16 @@ export class ChatComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // this.userService.getUsersByEmail(JSON.parse(localStorage.getItem("user")!).userName).subscribe((data:any)=>{
     //   let user = data.body;
-    //   const client = StreamChat.getInstance("v3yqafmr9u5h");
-    //   client.connectUser(
-    //     {
-    //       id: 'jlahey',
-    //       name: 'Jim Lahey',
-    //       image: 'https://i.imgur.com/fR9Jz14.png',
-    //     },
-    //     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic2hyaWxsLWdyYXNzLTMifQ.wUGDUVRjK0sFwBOqf9fb4z36HT7O7gqrolMCK3iZrm4",
-    //   );
+      const client = StreamChat.getInstance("v3yqafmr9u5h");
+      client.connectUser(
+        {
+          id: 'anna',
+          name: 'anamaria@gmail.com',
+          image: 'https://i.imgur.com/fR9Jz14.png',
+        },
+        "",
+      );
+    this.chatService.init('v3yqafmr9u5h', 'anna', '');
     // })
     // const chatClient = StreamChat.getInstance("nhqjmqmqgjp8",{
     //   timeout: 6000,

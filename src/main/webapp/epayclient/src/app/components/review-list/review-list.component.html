@@ -1,0 +1,25 @@
+<div class="card" style="margin-top: 7vh">
+
+  <h1 class="mat-h1">Review Anunturi</h1>
+
+</div>
+
+<div class="alert" style="margin-top: 2vh; margin-left:2vh;">
+  <div class="row details" *ngFor="let review of reviews">
+    <mat-icon class="white-icon">person_pin</mat-icon>
+    <div class="util col-sm-2" > {{review.userName}}
+      <ngb-rating class="rating" [(rate)]= "review.stars!" ></ngb-rating>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-body"> {{review.text}}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> {{review.text2}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

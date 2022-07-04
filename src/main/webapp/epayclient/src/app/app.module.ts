@@ -70,8 +70,9 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ReviewListComponent } from './components/review-list/review-list.component';
 
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     AnuntComponent,
     ChatComponent,
     MyProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ReviewListComponent
 
   ],
   imports: [
@@ -130,6 +132,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     ReactiveFormsModule,
     DropdownModule,
     FormsModule,
+    MatCardModule,
     SidebarModule,
     MegaMenuModule,
     PanelModule,

@@ -1,0 +1,11 @@
+.white-icon {
+  color: #6200ed;
+}
+/* Note: If you're using an SVG icon, you should make the class target the `<svg>` element */
+.white-icon svg {
+  fill:#6200ed;
+}
+.card-body{
+  height: 59px;
+  width: 707px;
+}

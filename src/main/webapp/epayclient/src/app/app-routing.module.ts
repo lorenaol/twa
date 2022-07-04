@@ -20,6 +20,7 @@ import {AnuntComponent} from "@app/components/anunt/anunt.component";
 import {ChatComponent} from "@app/components/chat/chat.component";
 import {MyProfileComponent} from "@app/components/my-profile/my-profile.component";
 import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.component";
+import {ReviewListComponent} from "@app/components/review-list/review-list.component";
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: ':id', component: CategoryProductsComponent },
    ]
 },
+  { path: 'review-list', component: ReviewListComponent},
   {path: 'chat',
   component: ChatComponent},
 
