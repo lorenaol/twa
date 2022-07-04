@@ -66,7 +66,7 @@ export class ChatComponent implements OnInit {
       id: {$eq: 'altceva'},
     });
 
-    this.channelService.
+    // this.channelService.
     // this.channelService.loadMoreChannels()
 
   }
