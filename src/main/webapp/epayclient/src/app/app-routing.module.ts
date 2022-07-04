@@ -24,6 +24,9 @@ import {MyRequestsComponent} from "@app/components/my-requests/my-requests.compo
 import {MyAnnouncesComponent} from "@app/components/my-announces/my-announces.component";
 import {MyClassesComponent} from "@app/components/my-classes/my-classes.component";
 import {CreateClassDialogComponent} from "@app/components/create-class-dialog/create-class-dialog.component";
+import {ViewClassComponent} from "@app/components/view-class/view-class.component";
+import {MaterialsClassComponent} from "@app/components/materials-class/materials-class.component";
+import {TestsClassComponent} from "@app/components/tests-class/tests-class.component";
 
 
 const routes: Routes = [
@@ -65,7 +68,10 @@ const routes: Routes = [
   { path: 'cererile-mele', component: MyRequestsComponent},
   { path: 'anunturile-mele', component: MyAnnouncesComponent},
   { path: 'clasele-mele', component: MyClassesComponent},
-  { path: 'adauga-clasa', component: CreateClassDialogComponent}
+  { path: 'adauga-clasa', component: CreateClassDialogComponent},
+  { path: 'vezi-clasa', component: ViewClassComponent},
+  { path: 'materiale-clasa', component: MaterialsClassComponent},
+  { path: 'teste-clasa', component: TestsClassComponent}
 ];
 
 @NgModule({

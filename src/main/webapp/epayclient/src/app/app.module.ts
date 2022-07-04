@@ -75,6 +75,9 @@ import { MyAnnouncesComponent } from './components/my-announces/my-announces.com
 import { MyClassesComponent } from './components/my-classes/my-classes.component';
 import {MatButtonModule} from "@angular/material/button";
 import { CreateClassDialogComponent } from './components/create-class-dialog/create-class-dialog.component';
+import { ViewClassComponent } from './components/view-class/view-class.component';
+import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
+import { TestsClassComponent } from './components/tests-class/tests-class.component';
 
 
 
@@ -123,7 +126,10 @@ import { CreateClassDialogComponent } from './components/create-class-dialog/cre
     MyRequestsComponent,
     MyAnnouncesComponent,
     MyClassesComponent,
-    CreateClassDialogComponent
+    CreateClassDialogComponent,
+    ViewClassComponent,
+    MaterialsClassComponent,
+    TestsClassComponent
 
   ],
     imports: [
