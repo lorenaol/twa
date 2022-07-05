@@ -78,6 +78,7 @@ import { CreateClassDialogComponent } from './components/create-class-dialog/cre
 import { ViewClassComponent } from './components/view-class/view-class.component';
 import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
 import { TestsClassComponent } from './components/tests-class/tests-class.component';
+import { ViewTestComponent } from './components/view-test/view-test.component';
 
 
 
@@ -129,7 +130,8 @@ import { TestsClassComponent } from './components/tests-class/tests-class.compon
     CreateClassDialogComponent,
     ViewClassComponent,
     MaterialsClassComponent,
-    TestsClassComponent
+    TestsClassComponent,
+    ViewTestComponent
 
   ],
     imports: [

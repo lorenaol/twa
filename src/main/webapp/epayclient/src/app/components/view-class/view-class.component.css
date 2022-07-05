@@ -21,40 +21,67 @@
 .colaborator {
   color: #0c0c0c;
   margin-left: 100px;
-  /*margin-top: 50px;*/
-}
-
-.div-button-1 {
-
-}
-
-.div-button-2 {
 }
 
 .materials-button {
   margin-left: 100px;
-  margin-top: 50px;
-  background-color: #0f0f9b;
+  margin-top: 150px;
+  background-color: #4141fc;
   color: white;
   border: none;
   text-decoration: none;
   display: inline-block;
-  font-size: 22px;
+  font-size: 50px;
   height: 75px;
-  width: 200px;
-  /*border-radius: 30px;*/
+  width: 300px;
 }
 
 .tests-button {
   margin-top: 60px;
-  background-color: #0f0f9b;
+  background-color: #4141fc;
   color: white;
   border: none;
   margin-left: 100px;
   text-decoration: none;
   display: inline-block;
-  font-size: 22px;
+  font-size: 50px;
   height: 75px;
-  width: 200px;
-  /*border-radius: 30px;*/
+  width: 300px;
+}
+
+.create-test-button {
+  margin-top: 60px;
+  background-color: #4141fc;
+  color: white;
+  border: none;
+  margin-left: 100px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 50px;
+  height: 75px;
+  width: 300px;
+}
+
+.div-parent {
+  margin: 0;
+}
+
+.card1 {
+  margin-top: 30px;
+  background: #4141fc;
+  float: left;
+  width: 35%;
+  overflow: hidden;
+  margin-left: 10%;
+  height: 400px;
+}
+
+.card2 {
+  margin-top: 30px;
+  background: #4141fc;
+  float: left;
+  overflow: hidden;
+  margin-left: 10%;
+  width: 35%;
+  height: 400px;
 }
