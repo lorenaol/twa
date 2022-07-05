@@ -2,10 +2,10 @@
   <div class="card">
     <h1 class="title">Cererile mele</h1>
     <div class="line1"></div>
-    <div *ngFor="let i of info">
-      <a class="request">Solicitare de la utilizatorul </a> <a class="colaborator">{{i.colaborator}}</a> <a class="request2"> pentru anuntul </a> <a class="anunt">{{i.anunt}}</a>
-      <button mat-button color="primary" class="accept-button" style="position: absolute; right: 230px;" (click)="acceptRequest()"><mat-icon>check</mat-icon></button>
-      <button mat-button class="cancel-button" color="warn" style="position: absolute; right: 150px;" (click)="cancelRequest()"><mat-icon>close</mat-icon></button>
+    <div *ngFor="let i of requests">
+      <a class="request">Solicitare de la utilizatorul </a> <a class="colaborator">{{i.user!.name}}</a> <a class="request2"> pentru anuntul cu topicul </a> <a class="anunt">{{i.anunt!.materie}}</a>
+      <button mat-button color="primary" class="accept-button" style="position: absolute; right: 230px;" (click)="acceptRequest(i)"><mat-icon>check</mat-icon></button>
+      <button mat-button class="cancel-button" color="warn" style="position: absolute; right: 150px;" (click)="cancelRequest(i)"><mat-icon>close</mat-icon></button>
       <div class="line"></div>
     </div>
   </div>

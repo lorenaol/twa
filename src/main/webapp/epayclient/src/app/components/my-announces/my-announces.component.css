@@ -1,0 +1,148 @@
+.card-body{
+  display:  flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width:auto;
+  /*height: auto;*/
+  background: #f7f7f7;
+  /*margin: 5% 10%;*/
+}
+.meniu-total{
+  margin-left: 30px;
+  background-color: #292828;
+  color: white;
+}
+.mattrue:hover {
+  color: rgb(147, 129, 255) ;
+}
+.matfalse:hover {
+  color: rgb(147, 129, 255) ;
+}
+.titlu-meniu{
+  font-size:30px;
+}
+.meniu {
+  margin-left: 10px;
+  font-size:17px;
+  margin-top: 5px;
+  margin-button: 0px;
+
+}
+.meniu:hover {
+  background-color: rgb(147, 129, 255) ;
+}
+.image{
+  cursor: pointer;
+}
+.anunturi {
+  display: flex;
+  justify-content: center;
+  /*padding-left: 80px;*/
+}
+.produs{
+  /*flex: 0 0 25%;*/
+  width: 270px;
+  /*border: solid 5px #2f2e2e;*/
+  border-radius: 25px;
+  height: 250px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  background: white;
+  transition: 0.5s;
+}
+.produs:hover{
+  transform: scale(1.1);
+  background-color: #f0dcf8;
+  /*background-color: #7c7c7c;*/
+}
+.produs .name{
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.image{
+  margin-bottom: 20px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+
+}
+button{
+  width: 100px;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+#favorites{
+  background: white;
+  border: solid 2px #0195e0;
+  border-radius: 20px;
+  padding: 10px;
+  color: #0195e0;
+  font-size: larger;
+}
+
+#favorites:hover{
+  background: #ebf5ff;
+}
+
+#favorites:focus #heart{
+  color: red;
+}
+
+
+#cart{
+  background: #2d5af8;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  /*font-size: larger;*/
+  font-size: 15px;
+}
+#cart:hover{
+  background: #4141fc;
+}
+#cart{
+  color: white;
+  background: rgb(147, 129, 255);
+  padding: 5px;
+  margin-right: 10px;
+}
+
+
+
+
+/*.stock{*/
+/*  font-weight: bold;*/
+/*  padding: 12px;*/
+/*  border-radius: 15px;*/
+/*  margin-bottom: 20px;*/
+/*}*/
+/*.superstock{*/
+/*  background: #09ee09;*/
+/*  color: white;*/
+/*}*/
+
+/*.minstock{*/
+/*  background: orange;*/
+/*  color: white;*/
+/*}*/
+/*.outstock{*/
+/*  background:red;*/
+/*}*/
+/*.price{*/
+/*  color: red;*/
+/*  font-size: 20px;*/
+/*  margin-bottom: 10px;*/
+/*}*/
+

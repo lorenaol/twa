@@ -19,6 +19,16 @@ public class Clasa {
     @JoinColumn(name = "student_email", referencedColumnName = "id", nullable = false)
     private User student;
 
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

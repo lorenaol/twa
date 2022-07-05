@@ -22,8 +22,8 @@ public class ClasaServiceImpl implements ClasaService {
     }
 
     @Override
-    public Clasa findById(Long id) throws NotFoundException {
-        return clasaRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Clasa> findById(String userName)  {
+        return clasaRepository.findClaseByUserId(userName);
     }
 
     @Override

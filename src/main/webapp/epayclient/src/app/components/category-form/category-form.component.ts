@@ -12,6 +12,11 @@ import {Anunt} from "@app/entities/anunt";
 import {Router} from "@angular/router";
 import {ReviewService} from "@app/services/review.service";
 import {Review} from "@app/entities/review";
+import {Solicitare_colaborare} from "@app/entities/solicitare_colaborare";
+import {UserService} from "@app/services/user.service";
+import {
+  Solicitare_colaborareService,
+} from "@app/services/solicitare_colaborare.service";
 
 @Component({
   selector: 'app-category-form',
@@ -42,7 +47,9 @@ export class CategoryFormComponent implements OnInit {
     private toastr: ToastrService,
     private categoryService: CategoryService,
     private router: Router,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private userService: UserService,
+    private solicitareColaborareService: Solicitare_colaborareService
   ) { }
 
   ngOnInit(): void {
@@ -68,8 +75,29 @@ export class CategoryFormComponent implements OnInit {
   }
   redirect3() : void {
     this.activeModal.close(false);
-    localStorage.setItem("anunt", JSON.stringify(this.inputCategory!));
-    this.router.navigate(["/reviews/"]);
+
+
+    this.userService.getUsersByEmail(JSON.parse(localStorage.getItem('user')!).userName).subscribe((data:any) => {
+      let solicitare = new Solicitare_colaborare();
+      solicitare.accepted = false;
+      solicitare.anunt = this.inputCategory;
+      solicitare.user = data.body;
+      let today = new Date();
+      solicitare.dataSolicitare = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      solicitare.dataRaspuns = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      this.solicitareColaborareService.addSolicitare(solicitare).subscribe(()=> {
+        localStorage.setItem("anunt", JSON.stringify(this.inputCategory!));
+        this.router.navigate(["/anunturi/"]);
+      });
+    })
+
+  }
+  isLoggedIn(): boolean {
+    let user = localStorage.getItem('user');
+    if (user) {
+      return true;
+    }
+    return false;
   }
   close(): void {
     this.activeModal.close(false);

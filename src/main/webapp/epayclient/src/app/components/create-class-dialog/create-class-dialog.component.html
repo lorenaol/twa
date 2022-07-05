@@ -2,5 +2,6 @@
 <label class="label">Nume clasa: </label>
 <input class="input" type="text" [(ngModel)]="nameClass">
 <div class="div-button">
-  <button class="accept-button">ACCEPTA</button>
+  <button class="accept-button"  [mat-dialog-close]="nameClass" cdkFocusInitial>ACCEPTA</button>
+<!--  <button mat-button [mat-dialog-close]="nameClass" cdkFocusInitial>ACCEPTA</button>-->
 </div>

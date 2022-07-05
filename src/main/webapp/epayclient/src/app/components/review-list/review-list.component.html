@@ -8,7 +8,7 @@
   <div class="row details" *ngFor="let review of reviews">
     <mat-icon class="white-icon">person_pin</mat-icon>
     <div class="util col-sm-2" > {{review.userName}}
-      <ngb-rating class="rating" [(rate)]= "review.stars!" ></ngb-rating>
+      <ngb-rating class="rating" [max]= "5"  [(rate)]= "review.stars!" ></ngb-rating>
     </div>
 
     <div>

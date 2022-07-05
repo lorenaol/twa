@@ -1,1 +1,24 @@
-<p>my-announces works!</p>
+<div class="card" style="margin-top: 9vh">
+  <!--  <div class="card-header">-->
+  <!--    <div class="h3">{{category?.categoryName}}</div>-->
+  <!--  </div>-->
+
+  <div class="card-body">
+      <div *ngFor="let product of anunturi_currente" class="produs col-sm-3">
+        <div class="image" [routerLink]="['/products', product.id]"></div>
+        <div class="nume">
+          <p><strong>{{product?.user?.name}}</strong></p>
+        </div>
+        <div class="materie">
+          Topic : {{(product?.materie)}}
+        </div>
+        <!--        <div class="telefon">-->
+        <!--          <p><strong>{{product?.telefon}}</strong></p>-->
+        <!--        </div>-->
+        <div class="buttons">
+          <button id="cart"  (click)="openCategoryModal(ModalTypesEnum.EDIT, product)">Vezi detalii</button>
+          <!--         <button id="favorites"><fa-icon id="heart" [icon]="faHeart"></fa-icon>  Add to favorites</button>-->
+        </div>
+  </div>
+  </div>
+</div>

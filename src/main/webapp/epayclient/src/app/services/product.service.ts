@@ -26,6 +26,10 @@ export class ProductService {
     return this.http.post<Anunt>(environment.apiUrl + 'anunturi', product, { observe: 'response' })
       .pipe(map((res: HttpResponse<Anunt>) => res));
   }
+  public getAnunturiByUserEmail(email: string): Observable<HttpResponse<Anunt[]>> {
+    return this.http.get<Anunt[]>(environment.apiUrl + 'anunturi' + '/' + email, { observe: 'response' })
+      .pipe(map((res:HttpResponse<Anunt[]>) => res));
+  }
 
   public getProducts(): Observable<HttpResponse<Anunt[]>> {
     return this.http.get<Anunt[]>(environment.apiUrl + 'anunturi', { observe: 'response' })

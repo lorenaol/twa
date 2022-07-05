@@ -20,12 +20,14 @@ import {Anunt} from "@app/entities/anunt";
 export class ReviewListComponent implements OnInit {
 
   text?: string;
-  reviews : Review[]=[
-    {id : 1, userName: 'Andre', text: 'beauty', text2: 'beauty2fr', stars: 3 },
-    {id : 2, userName: 'Alexde', text: 'beauty', text2: 'beauty2fr', stars: 2 },
-    {id : 3, userName: 'Aoeoer', text: 'beauty', text2: 'beauty2fr', stars: 5 },
-    {id : 4, userName: 'Emmid', text: 'beauty', text2: 'beauty2fr', stars: 6 },
-  ]
+  reviews? : Review[];
+  anunt? : Anunt;
+  //   =[
+  //   {id : 1, userName: 'Andre', text: 'beauty', text2: 'beauty2fr', stars: 3 },
+  //   {id : 2, userName: 'Alexde', text: 'beauty', text2: 'beauty2fr', stars: 2 },
+  //   {id : 3, userName: 'Aoeoer', text: 'beauty', text2: 'beauty2fr', stars: 5 },
+  //   {id : 4, userName: 'Emmid', text: 'beauty', text2: 'beauty2fr', stars: 6 },
+  // ]
 
 
   constructor(  private router: Router,
@@ -36,6 +38,10 @@ export class ReviewListComponent implements OnInit {
     // this.product = JSON.parse(localStorage.getItem('anunt')!);
     // console.log(this.product)
     // this.setImage();
+    this.reviewService.getReviewsByProductId(JSON.parse(localStorage.getItem('anunt')!).id).subscribe((data:any) => {
+      this.reviews = data.body;
+      this.anunt = JSON.parse(localStorage.getItem('anunt')!);
+    });
   }
 
 

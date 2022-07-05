@@ -81,6 +81,8 @@ import { MaterialsClassComponent } from './components/materials-class/materials-
 import { TestsClassComponent } from './components/tests-class/tests-class.component';
 
 import {MatCardModule} from '@angular/material/card';
+import { CreateTestComponent } from './components/create-test/create-test.component';
+import { RaspundereTestComponent } from './components/raspundere-test/raspundere-test.component';
 
 @NgModule({
   declarations: [
@@ -130,9 +132,11 @@ import {MatCardModule} from '@angular/material/card';
     CreateClassDialogComponent,
     ViewClassComponent,
     MaterialsClassComponent,
-    TestsClassComponent
+    TestsClassComponent,
     EditProfileComponent,
-    ReviewListComponent
+    ReviewListComponent,
+    CreateTestComponent,
+    RaspundereTestComponent
 
   ],
     imports: [

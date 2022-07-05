@@ -22,9 +22,9 @@ public class ClasaController {
         return clasaService.getAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Clasa getClasaById(@PathVariable Long id) throws NotFoundException {
-        return clasaService.findById(id);
+    @GetMapping(path = "/{userName}")
+    public List<Clasa> getClasaById(@PathVariable String userName) throws NotFoundException {
+        return clasaService.findById(userName);
     }
 
     @PostMapping

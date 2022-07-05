@@ -22,8 +22,8 @@ public class AnuntServiceImpl implements AnuntService {
     }
 
     @Override
-    public Anunt findById(Long id) throws NotFoundException {
-        return anuntRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Anunt> findById(String email)  {
+        return anuntRepository.findAnunturiByUserId(email);
     }
 
     @Override

@@ -24,6 +24,10 @@
                 <constraints foreignKeyName="student1_fk" references="users(id)"
                              nullable="false" />
             </column>
+
+            <column name="name" type="varchar(128)">
+
+            </column>
         </createTable>
     </changeSet>
 
