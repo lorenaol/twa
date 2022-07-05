@@ -28,6 +28,8 @@ import {ViewClassComponent} from "@app/components/view-class/view-class.componen
 import {MaterialsClassComponent} from "@app/components/materials-class/materials-class.component";
 import {TestsClassComponent} from "@app/components/tests-class/tests-class.component";
 import {ReviewListComponent} from "@app/components/review-list/review-list.component";
+import {CreateTestComponent} from "@app/components/create-test/create-test.component";
+import {RaspundereTestComponent} from "@app/components/raspundere-test/raspundere-test.component";
 
 
 const routes: Routes = [
@@ -73,7 +75,9 @@ const routes: Routes = [
   { path: 'adauga-clasa', component: CreateClassDialogComponent},
   { path: 'vezi-clasa', component: ViewClassComponent},
   { path: 'materiale-clasa', component: MaterialsClassComponent},
-  { path: 'teste-clasa', component: TestsClassComponent}
+  { path: 'teste-clasa', component: TestsClassComponent},
+  {path: 'creare-test', component: CreateTestComponent},
+  {path:'raspuns-test', component:RaspundereTestComponent}
 ];
 
 @NgModule({

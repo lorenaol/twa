@@ -1,1 +1,85 @@
-<p>create-test works!</p>
+<div class="card" style="margin-top: 7vh">
+
+  <h1 class="mat-h1">Creare test</h1>
+
+</div>
+
+
+<form (submit)="$event.preventDefault()" style="margin-top: 2vh; margin-left:2vh;">
+  <div>
+    <h5 style="size: 12px">Adaugă întrebare</h5>
+  </div>
+
+  <mat-form-field class="bracket-inputs" style="margin-top: 1vh; margin-left:2vh;">
+
+    <textarea
+      cdkTextareaAutosize
+      placeholder="Intrebare"
+      #titleInput
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field class="bracket-inputs">
+    <input
+      type="number"
+      #numberInput
+      placeholder="Nota maxima"
+    >
+  </mat-form-field>
+
+
+  <button style="margin-left: 42px" type="submit" id="save" class="btn btn-success" (click)="addToList(titleInput.value,numberInput.value )">Save</button>
+
+</form>
+
+
+<table  class="table" style="margin-top: 10px">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th  scope = "col">Întrebare</th>
+    <th  scope = "col">Notă maximă</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rowTest of test ; let i = index; ">
+    <td>{{i+1}}</td>
+    <td >{{ rowTest.intrebare }}</td>
+    <td>{{ rowTest.notareMaxima }}</td>
+
+  </tr>
+  </tbody>
+</table>
+<div>
+
+
+  <p-table #dt1 [value]="test" >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>No.</th>
+        <th>Intrebare</th>
+        <th>Notare</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Onetest let-i="rowIndex" >
+      <tr>
+        <td>{{i}}</td>
+        <td>{{Onetest.intrebare}}</td>
+        <td>{{Onetest.notareMaxima}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!--<div #dt1 class="alert" style="margin-top: 2vh; margin-left:2vh;">-->
+<!--  <div class="row details" *ngFor="let rowTest of test">-->
+<!--    <div class="util col-sm-2" > {{rowTest.intrebare}}-->
+<!--    </div>-->
+<!--    <div class="util col-sm-2" > {{rowTest.notare}}-->
+<!--    </div>-->
+
+<!--    <div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

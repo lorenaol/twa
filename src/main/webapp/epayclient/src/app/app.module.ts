@@ -83,6 +83,12 @@ import { TestsClassComponent } from './components/tests-class/tests-class.compon
 import {MatCardModule} from '@angular/material/card';
 import { CreateTestComponent } from './components/create-test/create-test.component';
 import { RaspundereTestComponent } from './components/raspundere-test/raspundere-test.component';
+import {TableModule} from "primeng/table";
+import {TextFieldModule} from "@angular/cdk/text-field";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -140,6 +146,12 @@ import { RaspundereTestComponent } from './components/raspundere-test/raspundere
 
   ],
     imports: [
+      TableModule,
+      TextFieldModule,
+      MatPaginatorModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatTableModule,
         CommonModule,
         HttpClientModule,
         BrowserModule,

@@ -22,7 +22,7 @@ public class ContinutController {
     }
 
     @GetMapping(path = "/{id}")
-    public Continut getClasaById(@PathVariable Long id) throws NotFoundException {
+    public List<Continut> getClasaById(@PathVariable Long id) throws NotFoundException {
         return continutService.findById(id);
     }
 
