@@ -21,10 +21,10 @@ export class Chat2Component implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const channel = this.chatService.chatClient.channel('messaging', 'talking-about-angular', {
+    const channel = this.chatService.chatClient.channel('messaging', 'ana', {
       // add as many custom fields as you'd like
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
-      name: 'Talking about Angular',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png',
+      name: 'ana',
     });
     await channel.create();
     this.channelService.init({
