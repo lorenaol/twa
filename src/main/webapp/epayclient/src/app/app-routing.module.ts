@@ -34,6 +34,7 @@ import {ViewTestComponent} from "@app/components/view-test/view-test.component";
 import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
 import {Chat2Component} from "@app/components/chat2/chat2.component";
 import {GradeTestComponent} from "@app/components/grade-test/grade-test.component";
+import {ViewGradedTestComponent} from "@app/components/view-graded-test/view-graded-test.component";
 
 
 const routes: Routes = [
@@ -87,6 +88,7 @@ const routes: Routes = [
   {path:'raspuns-test', component:RaspundereTestComponent},
   { path:'chat2', component: Chat2Component},
   { path:'noteaza-test', component:GradeTestComponent},
+  { path:'vezi-test-notat', component:ViewGradedTestComponent}
 ];
 
 @NgModule({

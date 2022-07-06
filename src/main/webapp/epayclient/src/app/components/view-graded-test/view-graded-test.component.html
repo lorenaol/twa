@@ -1,0 +1,41 @@
+
+<div class="all">
+  <div class="card">
+
+    <div class="div-title">
+
+      <h1 class="title">{{nameTest}}</h1>
+
+    </div>
+
+    <form (submit)="$event.preventDefault()" style="margin-top: 2vh; margin-left:2vh;">
+      <div class="all-questions">
+        <div  class="each-question" *ngFor="let q of test; let i = index">
+          <div>
+            <div  class="question-div">
+              <span class="question">{{i}}. {{q.intrebare}}</span>
+            </div>
+            <div  class="max-score-div">
+              <span class="final-score">{{q.notareMaxima}}</span>
+              <span class="max-score"> / {{q.notareMaxima}}</span>
+            </div>
+          </div>
+          <div class="answer">
+            <p class="answer-text">
+              <span class="raspuns">Raspuns: </span>
+              <span class="raspuns-text">{{q.raspuns}}</span>
+            </p>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </form>
+
+    <div>
+      <p class="final-grade">Rezultat obtinut: <span class="final-grade-grade">{{finalGarde}} / {{totalScore}}</span></p>
+    </div>
+
+
+  </div>
+</div>

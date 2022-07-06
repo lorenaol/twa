@@ -4,15 +4,16 @@ import {Continut} from "@app/entities/continut";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
-import {TestService} from "@app/services/test.service";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-grade-test',
-  templateUrl: './grade-test.component.html',
-  styleUrls: ['./grade-test.component.css']
+  selector: 'app-view-graded-test',
+  templateUrl: './view-graded-test.component.html',
+  styleUrls: ['./view-graded-test.component.css']
 })
-export class GradeTestComponent implements OnInit {
+export class ViewGradedTestComponent implements OnInit {
+
+  finalGarde = 8;
+  totalScore = 10;
 
   @ViewChild('dt1') dt1?: Table;
   test : Continut[] = [{intrebare : 'Problema de matematică de clasa a 3-a pe care 99% dintre adulţi NU ştiu să o rezolve. Este dintr-o culegere din România. Tu reuşeşti?',
@@ -29,11 +30,8 @@ export class GradeTestComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
-  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService,
-               private testService: TestService, private router: Router) {
-
+  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
   }
-
 
   ngOnInit() {
     this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
@@ -48,20 +46,10 @@ export class GradeTestComponent implements OnInit {
   }
 
   submit(): void {
-    let t = JSON.parse(localStorage.getItem('test')!)
-    t.stare = "2";
-    this.testService.updateTest(t).subscribe((data:any)=>{
-      localStorage.setItem("test", JSON.stringify(data.body))
-      this.router.navigate(["/teste-clasa"]);
-    })
+
   }
 
   saveGrade(q: any, grade: any): void {
-    q.raspuns = grade;
-    this.continutService.updateContinut(q).subscribe(()=>{
-
-    });
 
   }
-
 }
