@@ -79,6 +79,10 @@ import { ViewClassComponent } from './components/view-class/view-class.component
 import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
 import { TestsClassComponent } from './components/tests-class/tests-class.component';
 import { ViewTestComponent } from './components/view-test/view-test.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
+import { CreateTestDialogComponent } from './components/create-test-dialog/create-test-dialog.component';
 
 
 
@@ -131,42 +135,46 @@ import { ViewTestComponent } from './components/view-test/view-test.component';
     ViewClassComponent,
     MaterialsClassComponent,
     TestsClassComponent,
-    ViewTestComponent
+    ViewTestComponent,
+    CreateTestDialogComponent
 
   ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        BrowserModule,
-        MatIconModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule,
-        FontAwesomeModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        DropdownModule,
-        FormsModule,
-        SidebarModule,
-        MegaMenuModule,
-        PanelModule,
-        ButtonModule,
-        TieredMenuModule,
-        FileUploadModule,
-        GalleriaModule,
-        BreadcrumbModule,
-        ProgressSpinnerModule,
-        StreamAutocompleteTextareaModule,
-        StreamChatModule,
-        MatDialogModule,
-        TranslateModule.forRoot(),
-        ToastrModule.forRoot(),
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
-            libraries: ['places']
-        }),
-        MatButtonModule
-    ],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    BrowserModule,
+    MatIconModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    FormsModule,
+    SidebarModule,
+    MegaMenuModule,
+    PanelModule,
+    ButtonModule,
+    TieredMenuModule,
+    FileUploadModule,
+    GalleriaModule,
+    BreadcrumbModule,
+    ProgressSpinnerModule,
+    StreamAutocompleteTextareaModule,
+    StreamChatModule,
+    MatDialogModule,
+    TranslateModule.forRoot(),
+    ToastrModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCEhZvh5fNHbTnI4jZM15Pd08jLNaN3F9w',
+      libraries: ['places']
+    }),
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule
+  ],
   providers: [
     BreadcrumbService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
