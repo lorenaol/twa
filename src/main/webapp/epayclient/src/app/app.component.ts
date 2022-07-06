@@ -17,6 +17,10 @@ import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {ModalService} from "@app/services/modal.service";
 import {ChannelService, ChatClientService, StreamI18nService} from "stream-chat-angular";
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -37,6 +41,11 @@ export class AppComponent {
   shoppingCarts?: ShoppingCart[] | null;
   private password: string | undefined;
 
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,

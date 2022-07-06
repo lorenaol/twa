@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import {Clasa} from "@app/entities/clasa";
 import {TestService} from "@app/services/test.service";
 import {Test} from "@app/entities/test";
+import {CreateClassDialogComponent} from "@app/components/create-class-dialog/create-class-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
 
 @Component({
   selector: 'app-view-class',
@@ -15,7 +18,9 @@ export class ViewClassComponent implements OnInit {
   nameColab = 'Lorena';
   clasa? : Clasa;
 
-  constructor(private router: Router, private testService: TestService) { }
+  constructor(private router: Router,
+              public dialog: MatDialog, , private testService: TestService) { }
+
 
   ngOnInit(): void {
     this.clasa = JSON.parse(localStorage.getItem('clasa')!);
@@ -30,14 +35,23 @@ export class ViewClassComponent implements OnInit {
   }
 
   createTest(): void {
-    let test = new Test();
-    test.numeTest = "ceva";
-    this.testService.addTest(test).subscribe(
-      ()=> {
-        localStorage.setItem('test', JSON.stringify(test));
-        this.router.navigate(["/creare-test"]);
-      }
-    )
+    const dialogRef = this.dialog.open(CreateTestDialogComponent, {
+      // width: '250px',
+      // data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+    // let test = new Test();
+    // test.numeTest = "ceva";
+    // this.testService.addTest(test).subscribe(
+    //   ()=> {
+    //     localStorage.setItem('test', JSON.stringify(test));
+    //     this.router.navigate(["/creare-test"]);
+    //   }
+    // )
 
   }
 }

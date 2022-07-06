@@ -140,3 +140,11 @@
   display: flex;
 }
 
+.mat-form-field-cauta {
+  margin-left: 230%;
+}
+
+.mate-label-cauta {
+  margin-top: 10px;
+  color: white;
+}
