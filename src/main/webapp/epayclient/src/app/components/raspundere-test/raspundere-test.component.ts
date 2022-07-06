@@ -13,13 +13,17 @@ import {ContinutService} from "@app/services/continut.service";
 export class RaspundereTestComponent implements OnInit {
 
   @ViewChild('dt1') dt1?: Table;
-  test : Continut[] = [{intrebare : 'value', notareMaxima: 2, raspuns:'frfr'}];
+  test : Continut[] = [{intrebare : 'Problema de matematică de clasa a 3-a pe care 99% dintre adulţi NU ştiu să o rezolve. Este dintr-o culegere din România. Tu reuşeşti?',
+    notareMaxima: 3, raspuns:'frfr'},
+    {intrebare : ' Problema de matematică de clasa a 3-a pe care 99% dintre adulţi NU ştiu să o rezolve. Este dintr-o culegere din România. Tu reuşeşti? Problema de matematică de clasa a 3-a pe care 99% dintre adulţi NU ştiu să o rezolve. Este dintr-o culegere din România. Tu reuşeşti?',
+      notareMaxima: 5, raspuns:'frfr'}];
   dataSource! : MatTableDataSource<Continut>;
   intrebare!: string;
   notare!: number;
   displayedColumns: string[] = ['intrebare', 'notare'];
   // dataSource = ELEMENT_DATA;
 
+  nameTest = "Test matematica X";
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
@@ -53,7 +57,11 @@ export class RaspundereTestComponent implements OnInit {
 
 
 
-  saveAnswer() {
+  saveAnswer(value: string, q: any) {
+
+  }
+
+  submit(): void {
 
   }
 

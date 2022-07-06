@@ -1,77 +1,44 @@
-<div class="card" style="margin-top: 10vh">
+<div class="all">
+  <div class="card">
 
-  <h1 class="mat-h1">Raspuns test</h1>
+    <div class="div-title">
 
+      <h1 class="title">{{nameTest}}</h1>
+
+    </div>
+
+    <form (submit)="$event.preventDefault()" style="margin-top: 2vh; margin-left:2vh;">
+      <div class="all-questions">
+        <div  class="each-question" *ngFor="let q of test; let i = index">
+          <div>
+            <div  class="question-div">
+              <span class="question">{{i}}. {{q.intrebare}}</span>
+            </div>
+            <div  class="max-score-div">
+              <span class="max-score"> / {{q.notareMaxima}}</span>
+            </div>
+          </div>
+          <div class="answer">
+            <div class="answer-text">
+              <mat-form-field appearance="fill" class="add-answer">
+                <mat-label>Adauga raspuns</mat-label>
+                <textarea matInput #answerInput></textarea>
+              </mat-form-field>
+            </div>
+            <div class="submit-answer">
+              <button style="margin-left: 42px; background-color: #1139c4" type="submit" id="save" class="btn btn-success" (click)="saveAnswer(answerInput.value, q)">Salveaza raspuns</button>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+
+
+      </div>
+      <div class="submit-answer">
+        <button style="margin-left: 34%; background-color: #0b2683; font-size: 25px " type="submit" id="submit" class="btn btn-success" (click)="submit()">FINALIZEAZA TEST</button>
+      </div>
+    </form>
+
+  </div>
 </div>
-
-
-<!--<table  class="table" style="margin-top: 10px">-->
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th>No.</th>-->
-<!--    <th  scope = "col">Întrebare</th>-->
-<!--    <th  scope = "col">Notă maximă</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let rowTest of test ; let i = index; ">-->
-<!--    <td>{{i+1}}</td>-->
-<!--    <td >{{ rowTest.intrebare }}</td>-->
-<!--    <td>{{ rowTest.notare }}</td>-->
-
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
-<div class="card" style="width: 100%; margin-top: 10vh">
-
-
-  <p-table #dt1 [value]="test" responsiveLayout="scroll" >
-    <ng-template pTemplate="header">
-      <tr>
-        <th>No.</th>
-        <th>Intrebare</th>
-        <th>Punctaj</th>
-        <th>Raspuns</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-Onetest let-i="rowIndex" >
-      <tr>
-        <td>{{i}}</td>
-        <td>{{Onetest.intrebare}}</td>
-        <td>{{Onetest.notare}}</td>
-        <td pEditableColumn><p-cellEditor>
-          <ng-template pTemplate="input">
-            <input pInputText type="text" [(ngModel)]="Onetest.raspuns">
-          </ng-template>
-          <ng-template pTemplate="output">
-            {{Onetest.raspuns}}
-          </ng-template>
-        </p-cellEditor>
-        </td>
-        <!--        <td style="text-align:center">-->
-        <!--&lt;!&ndash;          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>&ndash;&gt;-->
-        <!--&lt;!&ndash;          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"></button>&ndash;&gt;-->
-        <!--&lt;!&ndash;          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>&ndash;&gt;-->
-        <!--        </td>-->
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
-
-
-<div>
-  <button style="margin-left: 93%; margin-top: 20px" type="submit" id="save" class="btn btn-success" (click)="saveAnswer()">Salvare</button>
-</div>
-
-<!--<div #dt1 class="alert" style="margin-top: 2vh; margin-left:2vh;">-->
-<!--  <div class="row details" *ngFor="let rowTest of test">-->
-<!--    <div class="util col-sm-2" > {{rowTest.intrebare}}-->
-<!--    </div>-->
-<!--    <div class="util col-sm-2" > {{rowTest.notare}}-->
-<!--    </div>-->
-
-<!--    <div>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
