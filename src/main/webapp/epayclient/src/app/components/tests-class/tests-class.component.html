@@ -1,5 +1,11 @@
 <div class="all">
   <div class="card">
-
+    <h1 class="title">Teste:</h1>
+    <div class="line1"></div>
+    <div *ngFor="let t of tests">
+      <a class="name-test">{{t.nume}}</a>
+      <button mat-button color="primary" class="enter-test-button" style="position: absolute; right: 230px;" (click)="enterInTest()">Acceseaza test</button>
+      <div class="line"></div>
+    </div>
   </div>
 </div>

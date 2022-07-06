@@ -24,4 +24,7 @@ export class ViewClassComponent implements OnInit {
     this.router.navigate(["/teste-clasa"]);
   }
 
+  createTest(): void {
+    this.router.navigate([""]);
+  }
 }

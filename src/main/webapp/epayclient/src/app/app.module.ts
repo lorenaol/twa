@@ -79,6 +79,7 @@ import { CreateClassDialogComponent } from './components/create-class-dialog/cre
 import { ViewClassComponent } from './components/view-class/view-class.component';
 import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
 import { TestsClassComponent } from './components/tests-class/tests-class.component';
+import { ViewTestComponent } from './components/view-test/view-test.component';
 
 import {MatCardModule} from '@angular/material/card';
 import { CreateTestComponent } from './components/create-test/create-test.component';
@@ -138,6 +139,8 @@ import {MatInputModule} from "@angular/material/input";
     CreateClassDialogComponent,
     ViewClassComponent,
     MaterialsClassComponent,
+    TestsClassComponent,
+    ViewTestComponent,
     TestsClassComponent,
     EditProfileComponent,
     ReviewListComponent,
