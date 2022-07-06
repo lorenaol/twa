@@ -32,6 +32,7 @@ import {CreateTestComponent} from "@app/components/create-test/create-test.compo
 import {RaspundereTestComponent} from "@app/components/raspundere-test/raspundere-test.component";
 import {ViewTestComponent} from "@app/components/view-test/view-test.component";
 import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
+import {Chat2Component} from "@app/components/chat2/chat2.component";
 
 
 const routes: Routes = [
@@ -78,6 +79,10 @@ const routes: Routes = [
   { path: 'vezi-clasa', component: ViewClassComponent},
   { path: 'materiale-clasa', component: MaterialsClassComponent},
   { path: 'teste-clasa', component: TestsClassComponent},
+  { path: 'vezi-test', component: ViewTestComponent},
+  { path: 'creeaza-test', component: CreateTestDialogComponent}, {
+  path:'chat2', component: Chat2Component
+  },
  { path: 'vezi-test', component: ViewTestComponent},
   { path: 'teste-clasa', component: TestsClassComponent},
   {path: 'creare-test', component: CreateTestComponent},

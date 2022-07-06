@@ -84,6 +84,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
 import { CreateTestDialogComponent } from './components/create-test-dialog/create-test-dialog.component';
+import { Chat2Component } from './components/chat2/chat2.component';
 
 import {MatCardModule} from '@angular/material/card';
 import { CreateTestComponent } from './components/create-test/create-test.component';
@@ -144,6 +145,8 @@ import {MatInputModule} from "@angular/material/input";
     MaterialsClassComponent,
     TestsClassComponent,
     ViewTestComponent,
+    CreateTestDialogComponent,
+    Chat2Component,
     CreateTestDialogComponent,
     ViewTestComponent,
     TestsClassComponent,
