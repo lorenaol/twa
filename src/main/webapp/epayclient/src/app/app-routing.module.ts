@@ -33,6 +33,7 @@ import {RaspundereTestComponent} from "@app/components/raspundere-test/raspunder
 import {ViewTestComponent} from "@app/components/view-test/view-test.component";
 import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
 import {Chat2Component} from "@app/components/chat2/chat2.component";
+import {GradeTestComponent} from "@app/components/grade-test/grade-test.component";
 
 
 const routes: Routes = [
@@ -83,9 +84,8 @@ const routes: Routes = [
   { path: 'teste-clasa', component: TestsClassComponent},
   {path: 'creare-test', component: CreateTestComponent},
   {path:'raspuns-test', component:RaspundereTestComponent},
-  {
-  path:'chat2', component: Chat2Component
-  }
+  { path:'chat2', component: Chat2Component},
+  { path:'noteaza-test', component:GradeTestComponent},
 ];
 
 @NgModule({

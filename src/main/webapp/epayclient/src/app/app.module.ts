@@ -95,6 +95,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 
 import {MatInputModule} from "@angular/material/input";
+import { GradeTestComponent } from './components/grade-test/grade-test.component';
 
 @NgModule({
   declarations: [
@@ -153,7 +154,8 @@ import {MatInputModule} from "@angular/material/input";
     RaspundereTestComponent,
     ViewTestComponent,
     CreateTestDialogComponent,
-    Chat2Component
+    Chat2Component,
+    GradeTestComponent
 
   ],
   imports: [
