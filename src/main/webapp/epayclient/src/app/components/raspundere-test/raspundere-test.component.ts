@@ -34,28 +34,7 @@ export class RaspundereTestComponent implements OnInit {
     this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
       this.test = data.body;
     })
-    // this.test.push({intrebare : 'value', notareMaxima: 2});
-    // this.test.push( {intrebare : 'value', notareMaxima: 2});
-    // console.log(this.test);
-    // this.dt1?.reset();
-
-    // this.dataSource  = new MatTableDataSource<Test>(this.test);
   }
-
-  // refresh() {
-  //   this.myService.doSomething().subscribe((data: PeriodicElement[]) => {
-  //     this.dataSource = test;
-  //   });
-  // }
-
-
-
-  //
-  // ngOnInit(): void {
-  //   this.test = [{intrebare : 'value', notare: 2}];
-  // }
-
-
 
   saveAnswer(value: string, q: any) {
 
