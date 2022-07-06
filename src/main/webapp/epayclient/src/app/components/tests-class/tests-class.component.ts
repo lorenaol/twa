@@ -22,7 +22,12 @@ export class TestsClassComponent implements OnInit {
 
   enterInTest(t:Test): void {
     localStorage.setItem('test', JSON.stringify(t));
-    this.router.navigate(["/vezi-test"]);
+    if(t.stare === "0") {
+      this.router.navigate(["/raspuns-test"]);
+    } else if(t.stare === "1") {
+      this.router.navigate(["/notare-test"]);
+    }
+
   }
 
 }

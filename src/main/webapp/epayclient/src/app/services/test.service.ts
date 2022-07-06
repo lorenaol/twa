@@ -35,6 +35,11 @@ export class TestService {
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 
+  public updateTest(user: Test): Observable<EntityResponseType> {
+    return this.http.put<Test>(this.CONTINUT_URL, user, {observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
+  }
+
 
 
 }

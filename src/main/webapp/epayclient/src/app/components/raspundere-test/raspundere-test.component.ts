@@ -4,6 +4,8 @@ import {Table} from "primeng/table";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
+import {Router} from "@angular/router";
+import {TestService} from "@app/services/test.service";
 
 @Component({
   selector: 'app-raspundere-test',
@@ -27,7 +29,8 @@ export class RaspundereTestComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
-  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
+  constructor(private router: Router, private changeDetection: ChangeDetectorRef,
+              private continutService: ContinutService, private testService: TestService) {
   }
 
   ngOnInit() {
@@ -58,10 +61,19 @@ export class RaspundereTestComponent implements OnInit {
 
 
   saveAnswer(value: string, q: any) {
+      q.raspuns = value;
+      this.continutService.updateContinut(q).subscribe(()=>{
 
+      });
   }
 
   submit(): void {
+    let t = JSON.parse(localStorage.getItem('test')!)
+    t.stare = "1";
+    this.testService.updateTest(t).subscribe((data:any)=>{
+      localStorage.setItem("test", JSON.stringify(data.body))
+      this.router.navigate(["/teste-clasa"]);
+    })
 
   }
 
