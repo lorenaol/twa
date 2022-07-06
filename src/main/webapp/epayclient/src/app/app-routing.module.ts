@@ -80,13 +80,13 @@ const routes: Routes = [
   { path: 'materiale-clasa', component: MaterialsClassComponent},
   { path: 'teste-clasa', component: TestsClassComponent},
   { path: 'vezi-test', component: ViewTestComponent},
-  { path: 'creeaza-test', component: CreateTestDialogComponent}, {
-  path:'chat2', component: Chat2Component
-  },
- { path: 'vezi-test', component: ViewTestComponent},
+
   { path: 'teste-clasa', component: TestsClassComponent},
   {path: 'creare-test', component: CreateTestComponent},
-  {path:'raspuns-test', component:RaspundereTestComponent}
+  {path:'raspuns-test', component:RaspundereTestComponent},
+  {
+  path:'chat2', component: Chat2Component
+  }
 ];
 
 @NgModule({

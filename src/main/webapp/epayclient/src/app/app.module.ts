@@ -153,7 +153,10 @@ import {MatInputModule} from "@angular/material/input";
     EditProfileComponent,
     ReviewListComponent,
     CreateTestComponent,
-    RaspundereTestComponent
+    RaspundereTestComponent,
+    ViewTestComponent,
+    CreateTestDialogComponent,
+    Chat2Component
 
   ],
     imports: [
