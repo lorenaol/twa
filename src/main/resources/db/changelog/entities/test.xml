@@ -22,6 +22,10 @@
             <column defaultValueComputed="CURRENT_TIMESTAMP"  name="date"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
+            <column name="clasa_id" type="bigint">
+                <constraints foreignKeyName="test_clasa2_fk" references="clasa(id)"
+                             nullable="false" />
+            </column>
         </createTable>
     </changeSet>
 

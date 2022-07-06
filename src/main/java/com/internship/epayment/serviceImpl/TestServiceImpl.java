@@ -22,8 +22,8 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Test findById(Long id) throws NotFoundException {
-        return testRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Test> findById(Long id) {
+        return testRepository.findTesteById(id);
     }
 
     @Override

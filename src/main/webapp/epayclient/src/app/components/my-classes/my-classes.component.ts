@@ -24,6 +24,7 @@ export class MyClassesComponent implements OnInit {
   }
 
   enterInClass(c: Clasa): void {
+    localStorage.setItem('clasa', JSON.stringify(c));
     this.router.navigate(["/vezi-clasa"]);
   }
 

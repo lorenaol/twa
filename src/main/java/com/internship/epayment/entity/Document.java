@@ -20,6 +20,18 @@ public class Document {
 
     String denumire;
 
+    @ManyToOne
+    @JoinColumn(name = "clasa_id", referencedColumnName = "id", nullable = false)
+    private Clasa clasa;
+
+    public Clasa getClasa() {
+        return clasa;
+    }
+
+    public void setClasa(Clasa clasa) {
+        this.clasa = clasa;
+    }
+
     public Long getId() {
         return id;
     }

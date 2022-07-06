@@ -22,7 +22,7 @@ export class CreateTestComponent implements OnInit {
   notare!: number;
   displayedColumns: string[] = ['intrebare', 'notare'];
   // dataSource = ELEMENT_DATA;
-
+  current_test? : Test;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
@@ -30,7 +30,7 @@ export class CreateTestComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.current_test = JSON.parse(localStorage.getItem('test')!);
     // this.test.push({intrebare : 'value', notareMaxima: 2});
     // this.test.push( {intrebare : 'value', notareMaxima: 2});
     // console.log(this.test);
@@ -56,7 +56,8 @@ export class CreateTestComponent implements OnInit {
     let continut = new Continut();
     continut.intrebare = value;
     continut.notareMaxima = Number(numberInput);
-    continut.test = JSON.parse(localStorage.getItem('test')!);
+    continut.test = this.current_test;
+    console.log(continut)
     this.test.push(continut);
     this.continutService.addContinut(continut).subscribe();
     // const addTest : Continut = {intrebare : value, notareMaxima: Number(numberInput)};

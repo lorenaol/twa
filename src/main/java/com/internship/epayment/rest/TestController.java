@@ -22,7 +22,7 @@ public class TestController {
     }
 
     @GetMapping(path = "/{id}")
-    public Test getClasaById(@PathVariable Long id) throws NotFoundException {
+    public List<Test> getClasaById(@PathVariable Long id) throws NotFoundException {
         return testService.findById(id);
     }
 
