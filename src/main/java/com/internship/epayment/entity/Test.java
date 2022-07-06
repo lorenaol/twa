@@ -14,7 +14,7 @@ public class Test {
     @SequenceGenerator(name = "test_seq", allocationSize = 1)
     private Long id;
 
-    private LocalDateTime date;
+    private LocalDateTime date1;
 
     @Column(name = "nume_test")
     private String numeTest;
@@ -25,6 +25,16 @@ public class Test {
     @ManyToOne
     @JoinColumn(name = "clasa_id", referencedColumnName = "id", nullable = false)
     private Clasa clasa;
+
+    private String stare;
+
+    public String getStare() {
+        return stare;
+    }
+
+    public void setStare(String stare) {
+        this.stare = stare;
+    }
 
     public Clasa getClasa() {
         return clasa;
@@ -42,12 +52,12 @@ public class Test {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDate1() {
+        return date1;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate1(LocalDateTime date1) {
+        this.date1 = date1;
     }
 
     public String getNumeTest() {

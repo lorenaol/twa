@@ -4,6 +4,7 @@ export class Test {
   id?: number;
   numeTest?: string;
   notareTotala?: number;
-  date?: Date;
+  date1?: Date;
   clasa? : Clasa;
+  stare? : string;
 }

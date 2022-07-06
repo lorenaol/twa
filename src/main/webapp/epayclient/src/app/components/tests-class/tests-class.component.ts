@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {TestService} from "@app/services/test.service";
+import {Test} from "@app/entities/test";
 
 @Component({
   selector: 'app-tests-class',
@@ -8,16 +10,18 @@ import {Router} from "@angular/router";
 })
 export class TestsClassComponent implements OnInit {
 
-  tests = [{nume: 'Test mate'},
-    {nume: 'Test info'},
-    {nume: 'Test fizica'}];
+  tests? :Test[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private testService : TestService) { }
 
   ngOnInit(): void {
+    this.testService.getTesteByClasaId(JSON.parse(localStorage.getItem('clasa')!).id).subscribe((data:any)=> {
+      this.tests = data.body;
+    })
   }
 
-  enterInTest(): void {
+  enterInTest(t:Test): void {
+    localStorage.setItem('test', JSON.stringify(t));
     this.router.navigate(["/vezi-test"]);
   }
 

@@ -2,5 +2,5 @@
 <label class="label">Nume test: </label>
 <input class="input" type="text" [(ngModel)]="nameTest">
 <div class="div-button">
-  <button class="accept-button">CREEAZA</button>
+  <button class="accept-button" [mat-dialog-close]="nameTest" cdkFocusInitial>CREEAZA</button>
 </div>

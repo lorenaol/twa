@@ -14,7 +14,7 @@ import {Test} from "@app/entities/test";
 
 
 type EntityResponseType = HttpResponse<Test>;
-type EntityArrayResponseType = HttpResponse<Document[]>;
+type EntityArrayResponseType = HttpResponse<Test[]>;
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,8 @@ export class TestService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getDocumentByClasaId(id: number): Observable<EntityArrayResponseType> {
-    return this.http.get<Document[]>(this.CONTINUT_URL + '/' + id, { observe: 'response' })
+  public getTesteByClasaId(id: number): Observable<EntityArrayResponseType> {
+    return this.http.get<Test[]>(this.CONTINUT_URL + '/' + id, { observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => res));
   }
 

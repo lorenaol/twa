@@ -1,7 +1,12 @@
+
+
 .colaborator {
   font-weight: bold;
-  color: pink;
+  color: #3333ff;
   font-size: x-large;
+}
+#links a:link, a:hover, a:visited, a:active {
+  color: #000000;
 }
 
 .anunt {
@@ -49,7 +54,7 @@
 
 .request {
   font-size: x-large;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-left: 100px;
 }
 
@@ -61,14 +66,23 @@
 
 .accept-button {
   /*margin-left: 20%;*/
-  margin-top: 2px;
+  color:green;
+  margin-top: 10px;
   border-radius: 50px;
-  transform: scale(1.5);
+  transform: scale(2);
+  border: none;
+  background: none;
+  font-weight: bold;
+
 }
 
 .cancel-button {
   /*margin-left: 0%;*/
-  margin-top: 2px;
+  margin-top: 10px;
   border-radius: 50px;
-  transform: scale(1.5);
+  transform: scale(2);
+  border: none;
+  background: none;
+  font-weight: bold;
+  color:red;
 }

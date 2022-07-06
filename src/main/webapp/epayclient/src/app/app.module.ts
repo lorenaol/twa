@@ -92,7 +92,6 @@ import {TableModule} from "primeng/table";
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 
 @NgModule({

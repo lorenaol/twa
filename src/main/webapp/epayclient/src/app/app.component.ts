@@ -40,6 +40,7 @@ export class AppComponent {
   items: MenuItem[] = [{}];
   shoppingCarts?: ShoppingCart[] | null;
   private password: string | undefined;
+  useri = [1,2,3];
 
   foods: Food[] = [
     {value: 'steak-0', viewValue: 'Steak'},

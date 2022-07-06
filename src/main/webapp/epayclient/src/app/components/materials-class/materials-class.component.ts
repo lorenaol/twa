@@ -29,89 +29,47 @@ export class MaterialsClassComponent implements OnInit {
     //   }
     // })
   }
+
   onUpload($event:any) {
     console.log("se apeleaza")
     for(let file of $event!.files) {
       // this.uploadedFiles.push(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+        reader.onload = () => {
+          console.log(reader.result);
+          let doc = new Document();
+          doc.clasa = JSON.parse(localStorage.getItem('clasa')!);
+          let today = new Date();
+          doc.dataIncarcare = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          doc.denumire = file.name;
 
+          const imageFile = new File([this.dataURItoBlob(reader.result)], file.name, { type: 'image/*' });
+          console.log(imageFile)
+          this.documentService.addDocument(doc).subscribe(()=>{
+            this.ngOnInit();
+          });
+        };
       console.log(file)
       console.log(JSON.stringify(file))
       // localStorage.setItem(file.name, JSON.stringify(file));
-      let doc = new Document();
-      doc.clasa = JSON.parse(localStorage.getItem('clasa')!);
-      let today = new Date();
-      doc.dataIncarcare = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-      doc.denumire = file.name;
-      this.documentService.addDocument(doc).subscribe(()=>{
-        this.ngOnInit();
-      });
+
     }
 
 
     // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
 
-  // postFile(fileToUpload: File): Observable<boolean> {
-  //   // const endpoint = 'your-destination-url';
-  //   // const formData: FormData = new FormData();
-  //   // formData.append('fileKey', fileToUpload, fileToUpload.name);
-  //   // return this.httpSvc
-  //   //   .post(endpoint, formData)
-  //   //   .pipe(map(() => { return true; }));
-  // }
+  dataURItoBlob(dataURI :any) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/*' });
+    return blob;
+  }
 
-  // public getStoredFile(key: string, urlIfNotExist: string): Observable<string> {
-  //   const storedFile = this.getFromStorage(key);
-  //   if (storedFile) {
-  //     return this.objectToObserver<string>(storedFile);
-  //   } else {
-  //     return this.downloadDataAsBase64(urlIfNotExist).pipe(
-  //       map((b64Result: string) => {
-  //         this.saveToStorage(key, b64Result);
-  //         return b64Result;
-  //       })
-  //     );
-  //   }
-  // }
-  // private saveToStorage(key: string, b64Result: string) {
-  //   localStorage.setItem(key, b64Result);
-  // }
-  //
-  // private getFromStorage(key: string) {
-  //   return localStorage.getItem(key);
-  // }
-  // private downloadAsBlob(url: string) {
-  //   return this.httpSvc.get(url, { responseType: 'blob' });
-  // }
-  //
-  // private downloadDataAsBase64(url: string): Observable<string> {
-  //   return this.downloadAsBlob(url).pipe(
-  //     flatMap(blob => {
-  //       return this.blobToBase64(blob).pipe(
-  //         map((b64Result: string) => {
-  //           return b64Result;
-  //         })
-  //       );
-  //     })
-  //   );
-  // }
-  //
-  // private blobToBase64(blob: Blob): Observable<{}> {
-  //   const fileReader = new FileReader();
-  //   const observable = new Observable(observer => {
-  //     fileReader.onloadend = () => {
-  //       observer.next(fileReader.result);
-  //       observer.complete();
-  //     };
-  //   });
-  //   fileReader.readAsDataURL(blob);
-  //   return observable;
-  // }
-  //
-  // private objectToObserver<T>(storedFile: T): Observable<T> {
-  //   return new Observable<T>(observer => {
-  //     observer.next(storedFile);
-  //     observer.complete();
-  //   });
-  // }
+
 }

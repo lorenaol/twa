@@ -4,7 +4,9 @@
   height: 1000px;
   /*background: 92b5fa;*/
 }
-
+.chat{
+  margin-left: 200px;
+}
 .card {
   margin-top: 60px;
   width: 100%;

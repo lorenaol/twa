@@ -1,24 +1,42 @@
-<div class="card" style="margin-top: 7vh">
+<div class="all">
+  <div class="all-card">
+    <div class="card-title">
+      <div class="card" style="margin-top: 7vh">
 
-  <h1 class="mat-h1">Review Anunturi</h1>
+        <h1 class="titlu">Review Anunt</h1>
 
-</div>
-
-<div class="alert" style="margin-top: 2vh; margin-left:2vh;">
-  <div class="row details" *ngFor="let review of reviews">
-    <mat-icon class="white-icon">person_pin</mat-icon>
-    <div class="util col-sm-2" > {{review.userName}}
-      <ngb-rating class="rating" [max]= "5"  [(rate)]= "review.stars!" ></ngb-rating>
+      </div>
     </div>
 
-    <div>
-      <div class="card">
-        <div class="card-body"> {{review.text}}
+    <div class="line2"></div>
+
+    <div class="alert" style="margin-top: 2vh; margin-left:2vh;">
+      <div class="row details" *ngFor="let review of reviews">
+        <div class="card1">
+          <div class="div-pin-name" >
+            <div class="pin-person">
+              <mat-icon class="white-icon">person_pin</mat-icon>
+            </div>
+            <div class="text-name">{{review.userName}}</div>
+          </div>
+          <div>
+            <ngb-rating class="rating" [max]= "5"  [(rate)]= "review.stars!" [readonly] = "true" ></ngb-rating>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body"> {{review.text2}}
+
+        <div class="card2">
+          <div class="card-body">
+            <a style="font-weight: bold;">Descrierea experientei:</a>
+            <br>
+            <a>{{review.text}}</a>
+          </div>
+          <div class="card-body">
+            <a style="font-weight: bold;">Recomandari:</a>
+            <br>
+            <a>{{review.text2}}</a>
+          </div>
         </div>
+        <div class="line"></div>
       </div>
     </div>
   </div>

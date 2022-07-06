@@ -19,9 +19,10 @@
             </column>
             <column name="notare_totala" type="double(10,2)">
             </column>
-            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="date"  type="TIMESTAMP">
+            <column defaultValueComputed="CURRENT_TIMESTAMP"  name="date1"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
+            <column name="stare" type="varchar(128)"></column>
             <column name="clasa_id" type="bigint">
                 <constraints foreignKeyName="test_clasa2_fk" references="clasa(id)"
                              nullable="false" />

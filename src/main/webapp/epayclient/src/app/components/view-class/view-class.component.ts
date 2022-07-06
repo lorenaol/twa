@@ -19,7 +19,7 @@ export class ViewClassComponent implements OnInit {
   clasa? : Clasa;
 
   constructor(private router: Router,
-              public dialog: MatDialog, , private testService: TestService) { }
+              public dialog: MatDialog, private testService: TestService) { }
 
 
   ngOnInit(): void {
@@ -42,6 +42,17 @@ export class ViewClassComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      let test = new Test();
+      test.numeTest = result;
+      let today = new Date();
+      test.date1 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      test.stare = "0";
+      test.notareTotala = 10;
+      test.clasa = JSON.parse(localStorage.getItem("clasa")!);
+      this.testService.addTest(test).subscribe(()=> {
+            localStorage.setItem('test', JSON.stringify(test));
+            this.router.navigate(["/creare-test"]);
+      })
       // this.animal = result;
     });
     // let test = new Test();
