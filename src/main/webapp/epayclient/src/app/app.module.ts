@@ -195,7 +195,6 @@ import {MatInputModule} from "@angular/material/input";
       libraries: ['places']
     }),
     MatButtonModule,
-    MatFormFieldModule,
     MatSelectModule,
     MatOptionModule
   ],
