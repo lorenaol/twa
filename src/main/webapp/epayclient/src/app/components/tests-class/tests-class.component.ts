@@ -25,7 +25,9 @@ export class TestsClassComponent implements OnInit {
     if(t.stare === "0") {
       this.router.navigate(["/raspuns-test"]);
     } else if(t.stare === "1") {
-      this.router.navigate(["/notare-test"]);
+      this.router.navigate(["/noteaza-test"]);
+    } else if(t.stare === "2" ) {
+      this.router.navigate(["/noteaza-test"]);
     }
 
   }

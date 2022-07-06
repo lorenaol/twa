@@ -4,6 +4,8 @@ import {Continut} from "@app/entities/continut";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
+import {TestService} from "@app/services/test.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-grade-test',
@@ -27,7 +29,9 @@ export class GradeTestComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
-  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
+  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService,
+               private testService: TestService, private router: Router) {
+
   }
 
 
@@ -44,10 +48,19 @@ export class GradeTestComponent implements OnInit {
   }
 
   submit(): void {
-
+    let t = JSON.parse(localStorage.getItem('test')!)
+    t.stare = "2";
+    this.testService.updateTest(t).subscribe((data:any)=>{
+      localStorage.setItem("test", JSON.stringify(data.body))
+      this.router.navigate(["/teste-clasa"]);
+    })
   }
 
   saveGrade(q: any, grade: any): void {
+    q.raspuns = grade;
+    this.continutService.updateContinut(q).subscribe(()=>{
+
+    });
 
 }
 
