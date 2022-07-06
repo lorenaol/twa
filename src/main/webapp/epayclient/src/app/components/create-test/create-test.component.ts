@@ -57,6 +57,8 @@ export class CreateTestComponent implements OnInit {
     continut.intrebare = value;
     continut.notareMaxima = Number(numberInput);
     continut.test = this.current_test;
+    continut.raspuns = "nimic";
+    continut.notareIndividuala = 0;
     console.log(continut)
     this.test.push(continut);
     this.continutService.addContinut(continut).subscribe();

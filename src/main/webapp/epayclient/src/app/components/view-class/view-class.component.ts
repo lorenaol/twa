@@ -49,8 +49,8 @@ export class ViewClassComponent implements OnInit {
       test.stare = "0";
       test.notareTotala = 10;
       test.clasa = JSON.parse(localStorage.getItem("clasa")!);
-      this.testService.addTest(test).subscribe(()=> {
-            localStorage.setItem('test', JSON.stringify(test));
+      this.testService.addTest(test).subscribe((data:any)=> {
+            localStorage.setItem('test', JSON.stringify(data.body));
             this.router.navigate(["/creare-test"]);
       })
       // this.animal = result;

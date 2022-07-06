@@ -81,7 +81,7 @@ const routes: Routes = [
   { path: 'teste-clasa', component: TestsClassComponent},
   { path: 'vezi-test', component: ViewTestComponent},
 
-  { path: 'teste-clasa', component: TestsClassComponent},
+  // { path: 'teste-clasa', component: TestsClassComponent},
   {path: 'creare-test', component: CreateTestComponent},
   {path:'raspuns-test', component:RaspundereTestComponent},
   {

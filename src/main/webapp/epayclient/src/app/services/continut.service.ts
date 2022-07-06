@@ -9,6 +9,7 @@ import {UserService} from "@app/services/user.service";
 import {Solicitare_colaborare} from "@app/entities/solicitare_colaborare";
 import {Clasa} from "@app/entities/clasa";
 import {Continut} from "@app/entities/continut";
+import {User} from "@app/entities/user";
 
 
 type EntityResponseType = HttpResponse<Continut>;
@@ -41,6 +42,10 @@ export class ContinutService {
   public deleteSolicitare(solicitare: Solicitare_colaborare): Observable<HttpResponse<Solicitare_colaborare>>  {
     return this.http.delete<Solicitare_colaborare>(environment.apiUrl + 'solicitari_colaborare', {body: solicitare, observe: 'response'})
       .pipe(map((res: HttpResponse<Solicitare_colaborare>) => res));
+  }
+  public updateContinut(user: Continut): Observable<EntityResponseType> {
+    return this.http.put<Continut>(this.CONTINUT_URL, user, {observe: 'response'})
+      .pipe(map((res: EntityResponseType) => res));
   }
 
 

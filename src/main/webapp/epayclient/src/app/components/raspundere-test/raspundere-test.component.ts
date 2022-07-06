@@ -27,7 +27,7 @@ export class RaspundereTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
+    this.continutService.getContinutByTestId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
       this.test = data.body;
     })
     // this.test.push({intrebare : 'value', notareMaxima: 2});
