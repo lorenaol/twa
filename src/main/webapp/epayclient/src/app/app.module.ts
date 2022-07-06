@@ -96,6 +96,7 @@ import {MatTableModule} from "@angular/material/table";
 
 import {MatInputModule} from "@angular/material/input";
 import { GradeTestComponent } from './components/grade-test/grade-test.component';
+import { ViewGradedTestComponent } from './components/view-graded-test/view-graded-test.component';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,8 @@ import { GradeTestComponent } from './components/grade-test/grade-test.component
     ViewTestComponent,
     CreateTestDialogComponent,
     Chat2Component,
-    GradeTestComponent
+    GradeTestComponent,
+    ViewGradedTestComponent
 
   ],
   imports: [

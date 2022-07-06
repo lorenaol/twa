@@ -6,11 +6,14 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
 
 @Component({
-  selector: 'app-grade-test',
-  templateUrl: './grade-test.component.html',
-  styleUrls: ['./grade-test.component.css']
+  selector: 'app-view-graded-test',
+  templateUrl: './view-graded-test.component.html',
+  styleUrls: ['./view-graded-test.component.css']
 })
-export class GradeTestComponent implements OnInit {
+export class ViewGradedTestComponent implements OnInit {
+
+  finalGarde = 8;
+  totalScore = 10;
 
   @ViewChild('dt1') dt1?: Table;
   test : Continut[] = [{intrebare : 'Problema de matematică de clasa a 3-a pe care 99% dintre adulţi NU ştiu să o rezolve. Este dintr-o culegere din România. Tu reuşeşti?',
@@ -29,7 +32,6 @@ export class GradeTestComponent implements OnInit {
 
   constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
   }
-
 
   ngOnInit() {
     this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
@@ -50,5 +52,4 @@ export class GradeTestComponent implements OnInit {
   saveGrade(q: any, grade: any): void {
 
   }
-
 }
