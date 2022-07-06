@@ -41,7 +41,9 @@
   font-size: 20px;
 }
 .imagine {
-  height: 400px;
+  height: 410px;
+  margin-right: 100px;
+  border-radius: 100px;
 }
 /*.add-p:hover {*/
 /*  color:  rgb(147, 129, 255);*/

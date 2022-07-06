@@ -22,8 +22,8 @@ public class SolicitareColaborareServiceImpl implements SolicitareColaborareServ
     }
 
     @Override
-    public Solicitare_Colaborare findById(Long id) throws NotFoundException {
-        return solicitareColaborareRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Solicitare_Colaborare> findById(String email)  {
+        return solicitareColaborareRepository.findSolicitariByAnuntUserId(email);
     }
 
     @Override

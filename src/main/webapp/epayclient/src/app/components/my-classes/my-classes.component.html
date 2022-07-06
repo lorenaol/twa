@@ -3,8 +3,10 @@
     <h1 class="title">Clasele mele</h1>
     <div class="line1"></div>
     <div *ngFor="let c of classes">
-      <a class="name-class">{{c.nume}}</a><a class="ceva" >Elev:</a><a class="student-class">{{c.elev}}</a>
-      <button mat-button color="primary" class="accept-button" style="position: absolute; right: 230px;" (click)="enterInClass()">Intra in clasa</button>
+      <a class="name-class">{{c.name}}</a>
+      <a class="ceva" >Elev:</a><a class="student-class">{{c.student!.name}}</a>
+      <a class="ceva" >Profesor:</a><a class="student-class">{{c.profesor!.name}}</a>
+      <button mat-button color="primary" class="accept-button" style="position: absolute; right: 230px;" (click)="enterInClass(c)">Intra in clasa</button>
       <div class="line"></div>
     </div>
   </div>

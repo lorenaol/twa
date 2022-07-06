@@ -1,22 +1,22 @@
 <div class="all">
   <div class="card">
     <div class="card-body">
-      <h1 class="card-name-text" style="text-transform:uppercase"> {{userName}} </h1>
+      <h1 class="card-name-text" style="text-transform:uppercase"> {{user?.name}} </h1>
       <div class="final">
         <ngb-rating class="rating" [max]= "5" [(rate)]="selected" [readonly]="true"></ngb-rating>
       </div>
       <label class="label1">EMAIL: </label>
       <!--      <input class="input1" type="text" readonly [(ngModel)]="userEmail">-->
-      <label class="input1">{{ userEmail }}</label>
+      <label class="input1">{{ user?.email }}</label>
       <br>
       <br>
       <label class="label2">ADRESA: </label>
-      <label class="input2">{{ userAddress }}</label>
+      <label class="input2">{{ user?.address }}</label>
       <!--      <input class="input2" type="text" readonly [(ngModel)]="userAddress">-->
       <br>
       <br>
       <label class="label2">ROL: </label>
-      <label class="input3">{{ userRole }}</label>
+      <label class="input3">{{ user?.rol }}</label>
       <!--      <input class="input3" type="text" readonly [(ngModel)]="userRole">-->
       <br>
       <br>

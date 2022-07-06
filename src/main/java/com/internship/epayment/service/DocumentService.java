@@ -8,7 +8,7 @@ import java.util.List;
 public interface DocumentService {
     List<Document> getAll();
 
-    Document findById(Long id) throws NotFoundException;
+    List<Document> findById(Long id);
 
     Document addDocument(Document document);
 

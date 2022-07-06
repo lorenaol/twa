@@ -27,6 +27,9 @@ import {CreateClassDialogComponent} from "@app/components/create-class-dialog/cr
 import {ViewClassComponent} from "@app/components/view-class/view-class.component";
 import {MaterialsClassComponent} from "@app/components/materials-class/materials-class.component";
 import {TestsClassComponent} from "@app/components/tests-class/tests-class.component";
+import {ReviewListComponent} from "@app/components/review-list/review-list.component";
+import {CreateTestComponent} from "@app/components/create-test/create-test.component";
+import {RaspundereTestComponent} from "@app/components/raspundere-test/raspundere-test.component";
 import {ViewTestComponent} from "@app/components/view-test/view-test.component";
 import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
 import {Chat2Component} from "@app/components/chat2/chat2.component";
@@ -45,6 +48,7 @@ const routes: Routes = [
   { path: ':id', component: CategoryProductsComponent },
    ]
 },
+  { path: 'review-list', component: ReviewListComponent},
   {path: 'chat',
   component: ChatComponent},
 
@@ -76,7 +80,10 @@ const routes: Routes = [
   { path: 'materiale-clasa', component: MaterialsClassComponent},
   { path: 'teste-clasa', component: TestsClassComponent},
   { path: 'vezi-test', component: ViewTestComponent},
-  { path: 'creeaza-test', component: CreateTestDialogComponent}, {
+  { path: 'teste-clasa', component: TestsClassComponent},
+  {path: 'creare-test', component: CreateTestComponent},
+  {path:'raspuns-test', component:RaspundereTestComponent},
+  {
   path:'chat2', component: Chat2Component
   }
 ];

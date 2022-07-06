@@ -40,6 +40,8 @@ public class User {
 
     private String token;
 
+    private String rol;
+
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime token_creation_date;
 
@@ -49,6 +51,14 @@ public class User {
 
     public void setTokenCreationDate(LocalDateTime token_creation_date) {
         this.token_creation_date = token_creation_date;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getToken() {

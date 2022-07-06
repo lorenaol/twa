@@ -23,8 +23,8 @@ public class DocumentSeviceImpl implements DocumentService {
     }
 
     @Override
-    public Document findById(Long id) throws NotFoundException {
-        return documentRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Document> findById(Long id) {
+        return documentRepository.findDocumenteById(id);
     }
 
     @Override

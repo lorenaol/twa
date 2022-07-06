@@ -6,6 +6,7 @@ export class User {
   is_active?: boolean;
   start_date?: Date;
   end_date?: Date;
+  rol? : string
   latitude?: number;
   longitude?: number;
   address?: string;

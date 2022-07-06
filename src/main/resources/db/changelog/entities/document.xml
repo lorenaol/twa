@@ -20,6 +20,11 @@
             <column defaultValueComputed="CURRENT_TIMESTAMP"  name="data_incarcare"  type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
+            <column name="clasa_id" type="bigint">
+                <constraints foreignKeyName="document_clasa1_fk" references="clasa(id)"
+                             nullable="false" />
+            </column>
+
         </createTable>
     </changeSet>
 

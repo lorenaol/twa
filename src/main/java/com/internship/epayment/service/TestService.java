@@ -9,7 +9,7 @@ import java.util.List;
 public interface TestService {
     List<Test> getAll();
 
-    Test findById(Long id) throws NotFoundException;
+    List<Test> findById(Long id);
 
     Test addTest(Test test);
 

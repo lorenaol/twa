@@ -22,9 +22,9 @@ public class SolicitareColaborareController {
         return solicitareColaborareService.getAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Solicitare_Colaborare getClasaById(@PathVariable Long id) throws NotFoundException {
-        return solicitareColaborareService.findById(id);
+    @GetMapping(path = "/{userName}")
+    public List<Solicitare_Colaborare> getClasaById(@PathVariable String userName) throws NotFoundException {
+        return solicitareColaborareService.findById(userName);
     }
 
     @PostMapping

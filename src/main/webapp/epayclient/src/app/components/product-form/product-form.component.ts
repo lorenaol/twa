@@ -48,7 +48,7 @@ export class ProductFormComponent implements OnInit {
   productForm = this.fb.group({
     id: [],
     detalii: [],
-    tip: [],
+    // tip: [],
     materie: [],
     telefon: [],
     user: [],
@@ -166,7 +166,7 @@ export class ProductFormComponent implements OnInit {
     const anunt = new Anunt();
     anunt.id = this.inputProduct?.id;
     anunt.detalii = this.productForm.get("detalii")!.value;
-    anunt.tip = this.productForm.get("tip")!.value;
+    // anunt.tip = this.productForm.get("tip")!.value;
     anunt.materie = this.productForm.get("materie")!.value;
     anunt.oras = this.productForm.get("oras")!.value;
     anunt.image = this.image;

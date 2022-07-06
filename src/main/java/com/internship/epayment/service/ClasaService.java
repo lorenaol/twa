@@ -10,7 +10,7 @@ public interface ClasaService {
 
     List<Clasa> getAll();
 
-    Clasa findById(Long id) throws NotFoundException;
+    List<Clasa> findById(String userName);
 
     Clasa addClasa(Clasa clasa);
 

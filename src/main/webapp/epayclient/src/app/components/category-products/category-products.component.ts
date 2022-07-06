@@ -146,13 +146,13 @@ export class CategoryProductsComponent implements OnInit {
         }
       }
   }
-  filter2(ceva:any) :void { (async () => {
-    this.anunturi_currente = this.anunturi?.filter(word=>word.tip === ceva);
-    await this.delay(1000);
-    this.setImage();
-    // this.setStock();
-  })();
-  }
+  // filter2(ceva:any) :void { (async () => {
+  //   this.anunturi_currente = this.anunturi?.filter(word=>word.tip === ceva);
+  //   await this.delay(1000);
+  //   this.setImage();
+  //   // this.setStock();
+  // })();
+  // }
   filter3(ceva:any) :void { (async () => {
     this.anunturi_currente = this.anunturi?.filter(word=>word.oras === ceva);
     await this.delay(1000);

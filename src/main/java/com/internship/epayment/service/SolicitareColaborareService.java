@@ -9,7 +9,7 @@ import java.util.List;
 public interface SolicitareColaborareService {
     List<Solicitare_Colaborare> getAll();
 
-    Solicitare_Colaborare findById(Long id) throws NotFoundException;
+    List<Solicitare_Colaborare> findById(String email);
 
     Solicitare_Colaborare addSolicitareColaborare(Solicitare_Colaborare solicitareColaborare);
 

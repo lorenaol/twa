@@ -34,12 +34,14 @@ export class UserFormComponent implements OnInit {
     email: [],
     password: [],
     is_active: [],
+    rol: [],
     start_date: [],
     end_date: [],
     latitude: [],
     longitude: [],
     address: []
   });
+  tipuri = ["Meditator", "Student"];
 
   constructor(
     private fb: FormBuilder,
@@ -105,9 +107,11 @@ export class UserFormComponent implements OnInit {
     user.name = this.userForm.get('name')!.value;
     user.email = this.userForm.get('email')!.value;
     user.password = this.userForm.get('password')!.value;
-    user.is_active = this.userForm.get('is_active')!.value;
-    user.start_date = new Date(start_date.year, start_date.month - 1, start_date.day);
-    user.end_date = new Date(end_date.year, end_date.month - 1, end_date.day);
+    user.is_active = true;
+    user.rol = this.userForm.get('rol')!.value;
+    user.start_date = new Date(2022, 7, 7)
+      // new Date(start_date.year, start_date.month - 1, start_date.day);
+    user.end_date = new Date(2022, 7, 7)
     user.latitude = this.userForm.get('latitude')!.value;
     user.longitude = this.userForm.get('longitude')!.value;
     user.address = this.userForm.get('address')!.value;

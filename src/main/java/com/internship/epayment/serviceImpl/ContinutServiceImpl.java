@@ -22,8 +22,8 @@ public class ContinutServiceImpl implements ContinutService {
     }
 
     @Override
-    public Continut findById(Long id) throws NotFoundException {
-        return continutRepository.findById(id).orElseThrow(() -> new NotFoundException("Nu exista!"));
+    public List<Continut> findById(Long id) {
+        return continutRepository.findContinutByTestId(id);
     }
 
     @Override

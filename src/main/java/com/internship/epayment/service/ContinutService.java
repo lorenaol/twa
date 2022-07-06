@@ -10,7 +10,7 @@ public interface ContinutService {
 
     List<Continut> getAll();
 
-    Continut findById(Long id) throws NotFoundException;
+    List<Continut> findById(Long id);
 
     Continut addContinut(Continut continut);
 

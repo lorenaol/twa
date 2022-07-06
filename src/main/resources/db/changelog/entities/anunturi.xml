@@ -23,9 +23,9 @@
             <column name="materie" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
-            <column name="tip" type="varchar(128)">
-                <constraints nullable="false" />
-            </column>
+<!--            <column name="tip" type="varchar(128)">-->
+<!--                <constraints nullable="false" />-->
+<!--            </column>-->
             <column name="facultate" type="varchar(128)">
 
             </column>

@@ -4,7 +4,7 @@
       <h4 class="modal-title" id="modal-basic-title">Create Category</h4>
     </div>
     <div *ngIf="ModalTypesEnum.EDIT == modalType">
-      <h4 class="modal-title" id="modal-basic-title">Edit Category - ID: {{inputCategory?.id}}</h4>
+      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>
     </div>
     <div *ngIf="ModalTypesEnum.VIEW == modalType">
       <h4 class="modal-title" id="modal-basic-title">Detalii</h4>
@@ -73,8 +73,13 @@
 <!--    </div>-->
 
   </div>
-    <div class="modal-footer">
-      <button class="add-rec btn btn-success" (click)="redirect()">Adauga recenzie</button>
-    </div>
+  <div *ngIf="ModalTypesEnum.VIEW == modalType">
 
+
+    <div class="modal-footer" *ngIf="isLoggedIn()">
+      <button class="add-rec btn btn-success" (click)="redirect1()">Vezi recenzii</button>
+      <button class="add-rec btn btn-success" (click)="redirect2()">Adauga recenzie</button>
+      <button class="add-rec btn btn-success" (click)="redirect3()">Solicita colaborarea</button>
+    </div>
+  </div>
 </form>

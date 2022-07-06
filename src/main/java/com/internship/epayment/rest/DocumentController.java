@@ -22,7 +22,7 @@ public class DocumentController {
     }
 
     @GetMapping(path = "/{id}")
-    public Document getClasaById(@PathVariable Long id) throws NotFoundException {
+    public List<Document> getDocumentByClasaId(@PathVariable Long id) throws NotFoundException {
         return documentService.findById(id);
     }
 

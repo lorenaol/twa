@@ -34,9 +34,9 @@ public class AnuntController {
         return anuntService.getAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Anunt getProductById(@PathVariable Long id) throws NotFoundException {
-        return anuntService.findById(id);
+    @GetMapping(path = "/{email}")
+    public List<Anunt> getProductById(@PathVariable String email) throws NotFoundException {
+        return anuntService.findById(email);
     }
 
     @PostMapping

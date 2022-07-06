@@ -15,8 +15,8 @@
     <include file="classpath:db/changelog/entities/images.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/anunturi.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/reviews.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:db/changelog/entities/document.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/clasa.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:db/changelog/entities/document.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/test.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/continut.xml" relativeToChangelogFile="false"/>
     <include file="classpath:db/changelog/entities/clasa_test.xml" relativeToChangelogFile="false"/>

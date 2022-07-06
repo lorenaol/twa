@@ -113,22 +113,6 @@
       <div *ngIf="isLoggedIn()">
         <span><a (click)="logout()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Logout</button></a></span>
         <span><a (click)="changepass()"><button class="btn  " ><span class="em em-user2" style="color: black"></span>Reset Password</button></a></span>
-      </div>
-      <div *ngIf="!isLoggedIn()">
-        <li>
-          <span>
-            <a (click)="login()">
-              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Login</button>
-            </a>
-          </span>
-        </li>
-        <li>
-        <span>
-          <a (click)="signin()">
-            <button class="btn  " ><span class="em em-user2" style="color: black"></span>Sign Up</button>
-          </a>
-        </span>
-        </li>
         <li>
           <span>
             <a (click)="myRequests()">
@@ -157,6 +141,23 @@
             </a>
           </span>
         </li>
+      </div>
+      <div *ngIf="!isLoggedIn()">
+        <li>
+          <span>
+            <a (click)="login()">
+              <button class="btn  " ><span class="em em-user2" style="color: black"></span>Login</button>
+            </a>
+          </span>
+        </li>
+        <li>
+        <span>
+          <a (click)="signin()">
+            <button class="btn  " ><span class="em em-user2" style="color: black"></span>Sign Up</button>
+          </a>
+        </span>
+        </li>
+
       </div>
 
     </div>

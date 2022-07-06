@@ -23,6 +23,8 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="rol" type="varchar(128)"></column>
+
             <column name="pass" type="varchar(128)">
                 <constraints nullable="false" />
             </column>

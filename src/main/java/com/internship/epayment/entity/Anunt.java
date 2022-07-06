@@ -20,7 +20,7 @@ public class Anunt {
 
     private String materie;
 
-    private String tip;
+//    private String tip;
 
     private String detalii;
 
@@ -75,14 +75,14 @@ public class Anunt {
     public void setMaterie(String materie) {
         this.materie = materie;
     }
-
-    public String getTip() {
-        return tip;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
-    }
+//
+//    public String getTip() {
+//        return tip;
+//    }
+//
+//    public void setTip(String tip) {
+//        this.tip = tip;
+//    }
 
     public String getDetalii() {
         return detalii;

@@ -9,7 +9,7 @@ import java.util.List;
 public interface AnuntService {
     List<Anunt> getAll();
 
-    Anunt findById(Long id) throws NotFoundException;
+    List<Anunt> findById(String id);
 
     Anunt addAnunt(Anunt anunt);
 

@@ -70,6 +70,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ReviewListComponent } from './components/review-list/review-list.component';
 import { MyRequestsComponent } from './components/my-requests/my-requests.component';
 import { MyAnnouncesComponent } from './components/my-announces/my-announces.component';
 import { MyClassesComponent } from './components/my-classes/my-classes.component';
@@ -85,7 +86,15 @@ import {MatOptionModule} from "@angular/material/core";
 import { CreateTestDialogComponent } from './components/create-test-dialog/create-test-dialog.component';
 import { Chat2Component } from './components/chat2/chat2.component';
 
+import {MatCardModule} from '@angular/material/card';
+import { CreateTestComponent } from './components/create-test/create-test.component';
+import { RaspundereTestComponent } from './components/raspundere-test/raspundere-test.component';
+import {TableModule} from "primeng/table";
+import {TextFieldModule} from "@angular/cdk/text-field";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -137,11 +146,23 @@ import { Chat2Component } from './components/chat2/chat2.component';
     MaterialsClassComponent,
     TestsClassComponent,
     ViewTestComponent,
+    TestsClassComponent,
+    EditProfileComponent,
+    ReviewListComponent,
+    CreateTestComponent,
+    RaspundereTestComponent,
+    ViewTestComponent,
     CreateTestDialogComponent,
     Chat2Component
 
   ],
   imports: [
+    TableModule,
+    TextFieldModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
     CommonModule,
     HttpClientModule,
     BrowserModule,
@@ -155,6 +176,7 @@ import { Chat2Component } from './components/chat2/chat2.component';
     DropdownModule,
     FormsModule,
     SidebarModule,
+    MatCardModule,
     MegaMenuModule,
     PanelModule,
     ButtonModule,
