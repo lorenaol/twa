@@ -1,1 +1,51 @@
 <p>grade-test works!</p>
+<div class="all">
+  <div class="card">
+
+    <div class="div-title">
+
+      <h1 class="title">{{nameTest}}</h1>
+
+    </div>
+
+    <form (submit)="$event.preventDefault()" style="margin-top: 2vh; margin-left:2vh;">
+      <div class="all-questions">
+        <div  class="each-question" *ngFor="let q of test; let i = index">
+          <div>
+            <div  class="question-div">
+              <span class="question">{{i}}. {{q.intrebare}}</span>
+            </div>
+            <div  class="max-score-div">
+              <span>
+                <mat-form-field matInput class="nota">
+                  <input
+                    type="number"
+                    #numberInput
+                    placeholder="Nota"
+                    matInput
+                    min = 0
+                  >
+              </mat-form-field></span>
+              <span class="max-score"> / {{q.notareMaxima}}</span>
+              <span>
+                <button mat-button color="primary" class="accept-button" style="position: absolute; right: 40px;" (click)="saveGrade(q, numberInput.value)"><mat-icon>check</mat-icon></button>
+              </span>
+            </div>
+          </div>
+          <div class="answer">
+            <p class="answer-text">
+              <span class="raspuns">Raspuns: </span>
+              <span class="raspuns-text">{{q.raspuns}}</span>
+            </p>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </form>
+    <div class="submit-answer">
+      <button style="margin-left: 34%; background-color: #0b2683; font-size: 25px " type="submit" id="submit" class="btn btn-success" (click)="submit()">NOTEAZA TEST</button>
+    </div>
+
+  </div>
+</div>
