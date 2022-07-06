@@ -29,6 +29,7 @@ import {MaterialsClassComponent} from "@app/components/materials-class/materials
 import {TestsClassComponent} from "@app/components/tests-class/tests-class.component";
 import {ViewTestComponent} from "@app/components/view-test/view-test.component";
 import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
+import {Chat2Component} from "@app/components/chat2/chat2.component";
 
 
 const routes: Routes = [
@@ -75,7 +76,9 @@ const routes: Routes = [
   { path: 'materiale-clasa', component: MaterialsClassComponent},
   { path: 'teste-clasa', component: TestsClassComponent},
   { path: 'vezi-test', component: ViewTestComponent},
-  { path: 'creeaza-test', component: CreateTestDialogComponent}
+  { path: 'creeaza-test', component: CreateTestDialogComponent}, {
+  path:'chat2', component: Chat2Component
+  }
 ];
 
 @NgModule({
