@@ -13,7 +13,7 @@
         <div class="div-button-2">
           <button class="tests-button" (click)="tests()">TESTE</button>
         </div>
-        <div class="div-button-3">
+        <div class="div-button-3" *ngIf="prof()">
           <button class="create-test-button" (click)="createTest()">CREEAZA TEST</button>
         </div>
       </div>

@@ -6,6 +6,7 @@ import {Solicitare_colaborare} from "@app/entities/solicitare_colaborare";
 import {Solicitare_colaborareService} from "@app/services/solicitare_colaborare.service";
 import {ClasaService} from "@app/services/clasa.service";
 import {Clasa} from "@app/entities/clasa";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-requests',
@@ -20,7 +21,8 @@ export class MyRequestsComponent implements OnInit {
 
   requests? : Solicitare_colaborare[];
   constructor(public dialog: MatDialog, private solicitareColaborareService: Solicitare_colaborareService,
-              private clasaService: ClasaService) { }
+              private clasaService: ClasaService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.solicitareColaborareService.getSolicitariByAnuntUserId(JSON.parse(localStorage.getItem('user')!).userName).subscribe((data:any) => {
@@ -50,6 +52,8 @@ export class MyRequestsComponent implements OnInit {
       this.clasaService.addClasa(clasa).subscribe(() => {
         this.solicitareColaborareService.deleteSolicitare(i).subscribe(()=>{
           this.ngOnInit();
+          ///punee aici
+          this.router.navigate(["/clasele-mele"]);
         })
       });
     });

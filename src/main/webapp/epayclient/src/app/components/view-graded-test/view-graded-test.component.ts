@@ -4,6 +4,9 @@ import {Continut} from "@app/entities/continut";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
+import {TestService} from "@app/services/test.service";
+import {Router} from "@angular/router";
+import {Test} from "@app/entities/test";
 
 @Component({
   selector: 'app-view-graded-test',
@@ -25,17 +28,25 @@ export class ViewGradedTestComponent implements OnInit {
   notare!: number;
   displayedColumns: string[] = ['intrebare', 'notare'];
   // dataSource = ELEMENT_DATA;
-
+  notare_maxima = 0;
+  notare_acumulata = 0;
   nameTest = "Test matematica X";
+  current_test? : Test;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
-  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
+  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService,
+               private testService: TestService, private router: Router) {
   }
 
   ngOnInit() {
+    this.current_test = JSON.parse(localStorage.getItem('test')!);
     this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
       this.test = data.body;
+      for ( let i of data.body) {
+        this.notare_maxima += i.notareMaxima;
+        this.notare_acumulata += i.notareIndividuala;
+      }
     })
     // this.test.push({intrebare : 'value', notareMaxima: 2});
     // this.test.push( {intrebare : 'value', notareMaxima: 2});

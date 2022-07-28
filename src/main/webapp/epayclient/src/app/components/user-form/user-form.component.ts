@@ -28,6 +28,7 @@ export class UserFormComponent implements OnInit {
   streamChat :any;
   user_global? : User;
 
+
   userForm = this.fb.group({
     id: [],
     name: [],

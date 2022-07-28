@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Table} from "primeng/table";
 import {Continut} from "@app/entities/continut";
 import {ContinutService} from "@app/services/continut.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-test',
@@ -26,7 +27,9 @@ export class CreateTestComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | undefined;
 
-  constructor( private changeDetection: ChangeDetectorRef, private continutService: ContinutService) {
+  constructor( private changeDetection: ChangeDetectorRef,
+               private continutService: ContinutService,
+               private router: Router) {
   }
 
   ngOnInit() {
@@ -68,6 +71,10 @@ export class CreateTestComponent implements OnInit {
     // this.changeDetection.detectChanges();
     // this.dt1?.reset();
 
+  }
+
+  submit(): void {
+    this.router.navigate(["/teste-clasa"]);
   }
 
 

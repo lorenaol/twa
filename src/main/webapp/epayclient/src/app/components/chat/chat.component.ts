@@ -26,13 +26,15 @@ export class ChatComponent implements OnInit {
     const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZGFyay1kdXN0LTQifQ.LGqnUJeQ0FpiUSXJ2VBtXnEAk9J_Y9buqeppPg3uK-k';
     this.chatService.init(apiKey, userId, userToken);
     this.streamI18nService.setTranslation();
+
   }
 
   async ngOnInit() {
+
     const channel = this.chatService.chatClient.channel('messaging', 'ana', {
       // add as many custom fields as you'd like
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png',
-      name: 'ana',
+      name:'ana',
     });
     await channel.create();
     // this.chatService.chatClient.upsertUser({
@@ -52,10 +54,10 @@ export class ChatComponent implements OnInit {
       { id: 'userID3', role: 'admin', book: 'Fahrenheit 451'}
     ]);
     await channel.addMembers(['userID1', 'userID2']);
-      const channel2 = this.chatService.chatClient.channel('messaging', 'altceva', {
+      const channel2 = this.chatService.chatClient.channel('messaging', 'darius', {
         // add as many custom fields as you'd like
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
-        name: 'altceva',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png',
+        name: 'darius',
       });
       await channel2.create();
     // this.chatService.chatClient.channel('messaging', 'altceva',{
@@ -63,9 +65,10 @@ export class ChatComponent implements OnInit {
     //   source_detail:{ user_id: 'userID1' },
     //   channel_detail:{ topic: "Plants and Animals", rating: "pg" }
     // })
-    this.channelService.init({
+    await this.channelService.init({
       type: 'messaging',
-      // id: { $eq: 'talking-about-angular' },
+      image: {$eq: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png'}
+      // id: { $eq: 'ana'},
     });
 
 

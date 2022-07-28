@@ -4,7 +4,7 @@
 
     <div class="div-title">
 
-      <h1 class="title">{{nameTest}}</h1>
+      <h1 class="title">{{current_test!.numeTest}}</h1>
 
     </div>
 
@@ -16,7 +16,7 @@
               <span class="question">{{i}}. {{q.intrebare}}</span>
             </div>
             <div  class="max-score-div">
-              <span class="final-score">{{q.notareMaxima}}</span>
+              <span class="final-score">{{q.notareIndividuala}}</span>
               <span class="max-score"> / {{q.notareMaxima}}</span>
             </div>
           </div>
@@ -33,7 +33,7 @@
     </form>
 
     <div>
-      <p class="final-grade">Rezultat obtinut: <span class="final-grade-grade">{{finalGarde}} / {{totalScore}}</span></p>
+      <p class="final-grade">Rezultat obtinut: <span class="final-grade-grade">{{notare_acumulata}} / {{notare_maxima}}</span></p>
     </div>
 
 

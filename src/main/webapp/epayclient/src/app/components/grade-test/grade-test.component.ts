@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
 import {TestService} from "@app/services/test.service";
 import {Router} from "@angular/router";
+import {Test} from "@app/entities/test";
 
 @Component({
   selector: 'app-grade-test',
@@ -33,9 +34,9 @@ export class GradeTestComponent implements OnInit {
                private testService: TestService, private router: Router) {
 
   }
-
-
+  current_test? : Test;
   ngOnInit() {
+    this.current_test = JSON.parse(localStorage.getItem('test')!);
     this.continutService.getClaseByAnuntUserId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
       this.test = data.body;
     })
@@ -57,7 +58,7 @@ export class GradeTestComponent implements OnInit {
   }
 
   saveGrade(q: any, grade: any): void {
-    q.raspuns = grade;
+    q.notareIndividuala = grade;
     this.continutService.updateContinut(q).subscribe(()=>{
 
     });

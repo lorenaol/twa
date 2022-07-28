@@ -58,23 +58,23 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="rachetii">
-        <loadData
-                file="classpath:db/changelog/data/users.csv"
-                separator=";"
-                tableName="users">
-            <column name="id" type="numeric"/>
-            <column name="name" type="string"/>
-            <column name="email" type="string"/>
-            <column name="pass" type="string"/>
-            <column name="token" type="string"/>
-            <column name="token_creation_date" type="string"/>
-            <column name="is_active" type="boolean"/>
-            <column name="start_date" type="datetime"/>
-            <column name="end_date" type="datetime"/>
-            <column name="latitude" type="numeric"/>
-            <column name="longitude" type="numeric"/>
-            <column name="address" type="string"/>
-        </loadData>
-    </changeSet>
+<!--    <changeSet id="3" author="rachetii">-->
+<!--        <loadData-->
+<!--                file="classpath:db/changelog/data/users.csv"-->
+<!--                separator=";"-->
+<!--                tableName="users">-->
+<!--            <column name="id" type="numeric"/>-->
+<!--            <column name="name" type="string"/>-->
+<!--            <column name="email" type="string"/>-->
+<!--            <column name="pass" type="string"/>-->
+<!--            <column name="token" type="string"/>-->
+<!--            <column name="token_creation_date" type="string"/>-->
+<!--            <column name="is_active" type="boolean"/>-->
+<!--            <column name="start_date" type="datetime"/>-->
+<!--            <column name="end_date" type="datetime"/>-->
+<!--            <column name="latitude" type="numeric"/>-->
+<!--            <column name="longitude" type="numeric"/>-->
+<!--            <column name="address" type="string"/>-->
+<!--        </loadData>-->
+<!--    </changeSet>-->
 </databaseChangeLog>

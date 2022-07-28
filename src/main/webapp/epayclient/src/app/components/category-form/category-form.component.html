@@ -78,8 +78,12 @@
 
     <div class="modal-footer" *ngIf="isLoggedIn()">
       <button class="add-rec btn btn-success" (click)="redirect1()">Vezi recenzii</button>
+      <div class="modal-footer" *ngIf="colaborat()">
       <button class="add-rec btn btn-success" (click)="redirect2()">Adauga recenzie</button>
+      </div>
+      <div class="modal-footer" *ngIf="solicitat()">
       <button class="add-rec btn btn-success" (click)="redirect3()">Solicita colaborarea</button>
+        </div>
     </div>
   </div>
 </form>

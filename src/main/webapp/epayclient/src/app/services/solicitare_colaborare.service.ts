@@ -28,7 +28,7 @@ export class Solicitare_colaborareService {
       .pipe(map((res: HttpResponse<Solicitare_colaborare>) => res));
   }
 
-  public getProducts(): Observable<HttpResponse<Solicitare_colaborare[]>> {
+  public getSolicitari(): Observable<HttpResponse<Solicitare_colaborare[]>> {
     return this.http.get<Solicitare_colaborare[]>(environment.apiUrl + 'solicitari_colaborare', { observe: 'response' })
       .pipe(map((res: HttpResponse<Solicitare_colaborare[]>) => res));
   }

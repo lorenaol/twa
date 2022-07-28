@@ -34,17 +34,17 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="rachetii">
-        <loadData
-                file="classpath:db/changelog/data/user_roles.csv"
-                separator=";"
-                tableName="user_roles">
-            <column name="id" type="numeric"/>
-            <column name="user_id" type="string"/>
-            <column name="role_id" type="string"/>
-            <column name="start_date" type="datetime"/>
-            <column name="end_date" type="datetime"/>
-        </loadData>
-    </changeSet>
+<!--    <changeSet id="3" author="rachetii">-->
+<!--        <loadData-->
+<!--                file="classpath:db/changelog/data/user_roles.csv"-->
+<!--                separator=";"-->
+<!--                tableName="user_roles">-->
+<!--            <column name="id" type="numeric"/>-->
+<!--            <column name="user_id" type="string"/>-->
+<!--            <column name="role_id" type="string"/>-->
+<!--            <column name="start_date" type="datetime"/>-->
+<!--            <column name="end_date" type="datetime"/>-->
+<!--        </loadData>-->
+<!--    </changeSet>-->
 
 </databaseChangeLog>

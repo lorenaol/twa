@@ -3,7 +3,7 @@
   display: inline-block;
 }
 .add-an {
-  margin-left: 73%;
+  margin-left: 60%;
 }
 .toolbar{
   /*font-family: "Comic Sans MS" ;*/
@@ -14,6 +14,11 @@
 .menu{
   display: none;
 }
+
+/*.selected-option {*/
+/*  color: white;*/
+/*}*/
+
 
 .dropdown:hover .menu{
   display: inline-block;

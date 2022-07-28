@@ -42,10 +42,12 @@ export class AppComponent {
   private password: string | undefined;
   useri = [1,2,3];
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+  selectedOption: User | undefined;
+
+  foods: User[] = [
+    // {value: 'steak-0', viewValue: 'Steak'},
+    // {value: 'pizza-1', viewValue: 'Pizza'},
+    // {value: 'tacos-2', viewValue: 'Tacos'},
   ];
 
   constructor(private router: Router,
@@ -71,10 +73,17 @@ export class AppComponent {
   }
 
   loadData(): void {
-    this.categoryService.getCategories().subscribe((data: any) => {
-      this.categories = data.body;
-      this.loadItems();
+    // this.categoryService.getCategories().subscribe((data: any) => {
+    //   this.categories = data.body;
+    //   this.loadItems();
+    // })
+    this.userService.getUsers().subscribe((data:any)=> {
+      this.foods = data.body
     })
+  }
+
+  redirect(user: User) : void {
+
   }
 
   f(category: Category): MenuItem[]{
@@ -189,6 +198,19 @@ export class AppComponent {
 
   myProfile() {
     this.router.navigate(["/profilul-meu"]);
+  }
+static chat_user: String;
+  goToUser() {
+    console.log(AppComponent.chat_user);
+    if(this.selectedOption?.email == "lorenaolescu@gmail.com") {
+      AppComponent.chat_user = JSON.parse(localStorage.getItem("user")!).userName;
+      localStorage.setItem('chat', JSON.stringify(AppComponent.chat_user));
+      this.router.navigate(["/chat2"])
+    } else {
+      // AppComponent.chat_user = this.selectedOption!.name!;
+      localStorage.setItem('chat', JSON.stringify( JSON.parse(localStorage.getItem("user")!).userName));
+      this.router.navigate(["/chat"])
+    }
   }
 }
 

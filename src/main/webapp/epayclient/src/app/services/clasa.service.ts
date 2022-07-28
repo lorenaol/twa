@@ -28,9 +28,9 @@ export class ClasaService {
       .pipe(map((res: EntityResponseType) => res));
   }
 
-  public getProducts(): Observable<HttpResponse<Solicitare_colaborare[]>> {
-    return this.http.get<Solicitare_colaborare[]>(environment.apiUrl + 'solicitari_colaborare', { observe: 'response' })
-      .pipe(map((res: HttpResponse<Solicitare_colaborare[]>) => res));
+  public getClase(): Observable<HttpResponse<Clasa[]>> {
+    return this.http.get<Clasa[]>(this.CLASA_URL, { observe: 'response' })
+      .pipe(map((res: HttpResponse<Clasa[]>) => res));
   }
 
   public getClaseByAnuntUserId(userName: string): Observable<EntityArrayResponseType> {

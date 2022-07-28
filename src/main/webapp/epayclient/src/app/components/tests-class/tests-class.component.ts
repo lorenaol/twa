@@ -27,9 +27,21 @@ export class TestsClassComponent implements OnInit {
     } else if(t.stare === "1") {
       this.router.navigate(["/noteaza-test"]);
     } else if(t.stare === "2" ) {
-      this.router.navigate(["/noteaza-test"]);
+      this.router.navigate(["/vezi-test-notat"]);
     }
 
+  }
+
+  colorTest(test: Test): any {
+    if(test.stare === "0") {
+      return 0;
+    }
+    if (test.stare === "1") {
+      return 1;
+    }
+    if (test.stare === "2") {
+      return 2;
+    }
   }
 
 }

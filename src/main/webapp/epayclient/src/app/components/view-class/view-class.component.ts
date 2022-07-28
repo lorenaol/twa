@@ -33,6 +33,12 @@ export class ViewClassComponent implements OnInit {
   tests(): void {
     this.router.navigate(["/teste-clasa"]);
   }
+  prof() :boolean {
+    if(this.clasa?.profesor?.email == JSON.parse(localStorage.getItem('user')!).userName) {
+      return true;
+    }
+    return  false;
+  }
 
   createTest(): void {
     const dialogRef = this.dialog.open(CreateTestDialogComponent, {

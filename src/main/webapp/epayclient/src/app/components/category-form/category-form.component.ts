@@ -17,6 +17,7 @@ import {UserService} from "@app/services/user.service";
 import {
   Solicitare_colaborareService,
 } from "@app/services/solicitare_colaborare.service";
+import {ClasaService} from "@app/services/clasa.service";
 
 @Component({
   selector: 'app-category-form',
@@ -49,7 +50,8 @@ export class CategoryFormComponent implements OnInit {
     private router: Router,
     private reviewService: ReviewService,
     private userService: UserService,
-    private solicitareColaborareService: Solicitare_colaborareService
+    private solicitareColaborareService: Solicitare_colaborareService,
+    private clasaService: ClasaService
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +103,54 @@ export class CategoryFormComponent implements OnInit {
   }
   close(): void {
     this.activeModal.close(false);
+  }
+  ok = true;
+   ceva = 0
+   ceva2= 0
+  help():void {
+    // this.ok = true;
+    if(this.ceva == 0) {
+      this.ceva++;
+      this.solicitareColaborareService.getSolicitari().subscribe((data: any) => {
+        for (let s of data.body) {
+          console.log(data.body)
+          console.log(this.inputCategory?.id == s.anunt.id)
+          if (s.user.email == JSON.parse(localStorage.getItem('user')!).userName && this.inputCategory?.id == s.anunt.id) {
+            this.ok = false;
+            console.log(this.ok)
+          }
+        }
+      });
+    }
+  }
+
+  solicitat() : boolean {
+    this.help();
+    console.log(this.ok);
+   return this.ok;
+  }
+  ok2 = false;
+  help2():void {
+    // this.ok = true;
+    if(this.ceva2 ==0 ) {
+      this.ceva2++;
+      this.clasaService.getClase().subscribe((data: any) => {
+        for (let s of data.body) {
+
+          if (s.profesor.email == JSON.parse(localStorage.getItem('user')!).userName &&
+            this.inputCategory?.user?.email == s.student.email ||
+            s.student.email == JSON.parse(localStorage.getItem('user')!).userName &&
+            this.inputCategory?.user?.email == s.profesor.email) {
+            this.ok2 = true;
+            // console.log(this.ok)
+          }
+        }
+      });
+    }
+  }
+  colaborat() : boolean {
+    this.help2()
+    return this.ok2;
   }
 
   // save(): void {

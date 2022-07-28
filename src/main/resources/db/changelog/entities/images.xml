@@ -23,22 +23,22 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="dani">
-        <loadData
-                file="classpath:db/changelog/data/images.csv"
-                separator=";"
-                tableName="images">
-            <column name="id" type="numeric"/>
-            <column name="image_code" type="string"/>
-            <column name="product_id" type="string"/>
-        </loadData>
-    </changeSet>
+<!--    <changeSet id="3" author="dani">-->
+<!--        <loadData-->
+<!--                file="classpath:db/changelog/data/images.csv"-->
+<!--                separator=";"-->
+<!--                tableName="images">-->
+<!--            <column name="id" type="numeric"/>-->
+<!--            <column name="image_code" type="string"/>-->
+<!--            <column name="product_id" type="string"/>-->
+<!--        </loadData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="4" author="dani">
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="images"
-                                 constraintName="fk_product_image_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="products"/>
-    </changeSet>
+<!--    <changeSet id="4" author="dani">-->
+<!--        <addForeignKeyConstraint baseColumnNames="product_id"-->
+<!--                                 baseTableName="images"-->
+<!--                                 constraintName="fk_product_image_id"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="products"/>-->
+<!--    </changeSet>-->
 </databaseChangeLog>

@@ -38,20 +38,20 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="rachetii">
-        <loadData
-                file="classpath:db/changelog/data/categories.csv"
-                separator=";"
-                tableName="categories">
-            <column name="id" type="numeric"/>
-            <column name="parent_id" type="string"/>
-            <column name="category_name" type="string"/>
-            <column name="category_code" type="string"/>
-            <column name="category_description" type="string"/>
-            <column name="created_date" type="date"/>
-            <column name="last_updated" type="date"/>
-        </loadData>
-    </changeSet>
+<!--    <changeSet id="3" author="rachetii">-->
+<!--        <loadData-->
+<!--                file="classpath:db/changelog/data/categories.csv"-->
+<!--                separator=";"-->
+<!--                tableName="categories">-->
+<!--            <column name="id" type="numeric"/>-->
+<!--            <column name="parent_id" type="string"/>-->
+<!--            <column name="category_name" type="string"/>-->
+<!--            <column name="category_code" type="string"/>-->
+<!--            <column name="category_description" type="string"/>-->
+<!--            <column name="created_date" type="date"/>-->
+<!--            <column name="last_updated" type="date"/>-->
+<!--        </loadData>-->
+<!--    </changeSet>-->
 
 
 </databaseChangeLog>

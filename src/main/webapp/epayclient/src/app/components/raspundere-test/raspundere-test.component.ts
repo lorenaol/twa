@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ContinutService} from "@app/services/continut.service";
 import {Router} from "@angular/router";
 import {TestService} from "@app/services/test.service";
+import {Test} from "@app/entities/test";
 
 @Component({
   selector: 'app-raspundere-test',
@@ -32,8 +33,9 @@ export class RaspundereTestComponent implements OnInit {
   constructor(private router: Router, private changeDetection: ChangeDetectorRef,
               private continutService: ContinutService, private testService: TestService) {
   }
-
+  current_test? :Test
   ngOnInit() {
+    this.current_test = JSON.parse(localStorage.getItem('test')!);
     this.continutService.getContinutByTestId(JSON.parse(localStorage.getItem('test')!).id).subscribe((data:any)=>{
       this.test = data.body;
     })

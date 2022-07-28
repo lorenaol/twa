@@ -21,15 +21,31 @@ export class Chat2Component implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
     const channel = this.chatService.chatClient.channel('messaging', 'ana', {
       // add as many custom fields as you'd like
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png',
-      name: 'ana',
+      name:'ana',
     });
     await channel.create();
-    this.channelService.init({
+
+    const channel2 = this.chatService.chatClient.channel('messaging', 'darius', {
+      // add as many custom fields as you'd like
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png',
+      name: 'darius',
+    });
+    await channel2.create();
+
+    let id = 'ana';
+    if(localStorage.getItem('user')!.includes('na')) {
+      id = 'ana';
+    } else {
+      id = 'darius';
+    }
+    await this.channelService.init({
       type: 'messaging',
-      // id: { $eq: 'talking-about-angular' },
+      // image: {$eq: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/800px-Facebook_Messenger_logo_2020.svg.png'}
+      id: { $eq: id},
     });
     // const client = StreamChat.getInstance("v3yqafmr9u5h");
     // const channel = client.channel('messaging', 'talking-about-angular', {
