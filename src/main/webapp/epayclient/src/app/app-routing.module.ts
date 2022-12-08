@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   { path: 'categories',
     children:[
-    {path:'',component: CategoryListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_CATEG]}},
+    {path:'',component: CategoryListComponent},
   { path: ':id', component: CategoryProductsComponent },
    ]
 },
@@ -60,11 +60,11 @@ const routes: Routes = [
       { path: ':id', component: ProductDetailComponent},
    ]
    },
-  { path: 'authorities', component: AuthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
-  { path: 'roles', component: RoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_AUTH]}},
-  { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_USERS]}},
-  { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
-  { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.EPAY_ADMIN]}},
+  { path: 'authorities', component: AuthorityListComponent},
+  { path: 'roles', component: RoleListComponent},
+  { path: 'users', component: UserListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.USERS]}},
+  { path: 'userroles', component: UserRoleListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.ADMIN]}},
+  { path: 'rolesauthorities', component: RoleauthorityListComponent, canActivate: [AuthGuard],data:{authorities:[Authorities.ADMIN]}},
   { path: 'login', component: LoginComponent},
   { path: 'shoppingcart', component: ShoppingCartComponent},
   { path: 'users/reset-password/:token', component: ResetPasswordComponent},
