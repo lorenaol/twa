@@ -7,7 +7,6 @@ import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import {ShoppingCartService} from "@app/services/shoppingCart.service";
 import {ProductService} from "@app/services/product.service";
-import {Anunt} from "@app/entities/anunt";
 import {ModalTypesEnum} from "@app/enums/modal-types.enum";
 import {ModalService} from "@app/services/modal.service";
 
@@ -26,18 +25,7 @@ export class CategoryProductsComponent implements OnInit {
   }
   faHeart = faHeart;
   faCart = faShoppingCart;
-  anunturi? : Anunt[];
-  anunturi_currente? : Anunt[];
-  facultati= ["Facultatea de Automatica si Calculatoare", "Facultatea de Inginerie Mecanică și Mecatronică",
-    "Facultatea de Electronică, Telecomunicații și Tehnologia Informației", "Facultatea de Transporturi"]
-  clase = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
-  materii=["Limba și literatura română","Matematică","Limbi moderne",
-    "Chimie","Fizică","Biologie","Istorie","Geografie","Discipline socio-umane","Programare","Html", "CSS",
-    "Javascript","C++","Java","Python","Software","Office","Photoshop", "Figma", "Religie",
-    "Educație fizică și sport", "Arte plastice", "Educație muzicală", "Altele"];
-  roluri=["Meditator", "Student"];
-  orase=["Bucuresti", "Cluj", "Timisoara", "Valcea", "Constanta", "Pitesti", "Ploiesti", "Sibiu", "Arad", "Iasi",
-  "Craiova", "Brasov"]
+  products : Product[] | undefined
 
   constructor(private route: ActivatedRoute,
               private categoryService: CategoryService,
@@ -54,25 +42,18 @@ export class CategoryProductsComponent implements OnInit {
       // this.setStock();
     })();
   }
-  filter(ceva:any) :void { (async () => {
-    this.anunturi_currente = this.anunturi?.filter(word=>word.materie === ceva);
-    await this.delay(1000);
-    this.setImage();
-    // this.setStock();
-  })();
-  }
+ 
   loadData(): void{
 
-      // this.categoryService.getCategoryById(1).subscribe((data: any) => {
-      //   this.category = data.body;
-      // });
-    this.productService.getProducts().subscribe((data)=>{this.anunturi = data.body!;
-      this.anunturi_currente = data.body!;
-      // this.setImage();
+      this.categoryService.getCategoryById(1).subscribe((data: any) => {
+        this.category = data.body;
+      });
+    this.productService.getProducts().subscribe((data)=>{this.products = data.body!;
+   
     });
   }
 
-  openCategoryModal(modalTypeEnum: ModalTypesEnum, inputCategory?: Anunt) {
+  openCategoryModal(modalTypeEnum: ModalTypesEnum, inputCategory?: Product) {
     this.modalService.openCategoryModal(modalTypeEnum, inputCategory).then((result) => {
       // if(result) {
       //   this.loadData();
@@ -101,10 +82,10 @@ export class CategoryProductsComponent implements OnInit {
     console.log(imageWrapper)
     let i;
     // if(this.category?.products)
-    for(i = 0; i < this.anunturi!.length;i++){
+    for(i = 0; i < this.products!.length;i++){
       let image = new Image(80,80);
-      image.src = "data:image/png;base64," + this.anunturi![i].image;
-      image.alt = this.anunturi![i].user!.name || "";
+      image.src = "data:image/png;base64," + this.products![i].image;
+      image.alt = this.products![i]!.name || "";
       if(imageWrapper) {
         imageWrapper[i].appendChild(image);
       }
@@ -146,26 +127,5 @@ export class CategoryProductsComponent implements OnInit {
         }
       }
   }
-  // filter2(ceva:any) :void { (async () => {
-  //   this.anunturi_currente = this.anunturi?.filter(word=>word.tip === ceva);
-  //   await this.delay(1000);
-  //   this.setImage();
-  //   // this.setStock();
-  // })();
-  // }
-  filter3(ceva:any) :void { (async () => {
-    this.anunturi_currente = this.anunturi?.filter(word=>word.oras === ceva);
-    await this.delay(1000);
-    this.setImage();
-    // this.setStock();
-  })();
-  }
-  filter4(ceva:any) :void { (async () => {
 
-    this.anunturi_currente = this.anunturi?.filter(word=>{word.facultate === ceva; console.log(word.facultate === ceva)});
-    await this.delay(1000);
-    this.setImage();
-    // this.setStock();
-  })();
-  }
 }

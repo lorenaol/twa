@@ -12,7 +12,6 @@ import {Category} from "@app/entities/category";
 import {CategoryService} from "@app/services/category.service";
 import {Image} from "@app/entities/image";
 import {ImageService} from "@app/services/image.service";
-import {Anunt} from "@app/entities/anunt";
 import {UserService} from "@app/services/user.service";
 import {User} from "@app/entities/user";
 import {environment} from "@environments/environment";
@@ -33,17 +32,9 @@ export class ProductFormComponent implements OnInit {
   inputProduct?: Product;
   image?: string;
   images?: Image[] = [];
-  categories=["Limba și literatura română","Matematică","Limbi moderne",
-    "Chimie","Fizică","Biologie","Istorie","Geografie","Discipline socio-umane","Programare","Html", "CSS",
-    "Javascript","C++","Java","Python","Software","Office","Photoshop", "Figma", "Religie",
-    "Educație fizică și sport", "Arte plastice", "Educație muzicală", "Altele"];
   uploadedFiles: any[] = [];
   createdDate?: Date;
-  tipuri = ["Meditator", "Student"];
-  facultati= ["Facultatea de Automatica si Calculatoare", "Facultatea de Inginerie Mecanică și Mecatronică",
-  "Facultatea de Electronică, Telecomunicații și Tehnologia Informației", "Facultatea de Transporturi"]
-  ani = ["I", "II", "III", "IV"]
-  clase = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+ 
 
   productForm = this.fb.group({
     id: [],
@@ -154,7 +145,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  private createFromForm(): Anunt {
+  private createFromForm(): Product {
     // id: [],
     //   detalii: [],
     //   tip: [],
@@ -163,33 +154,19 @@ export class ProductFormComponent implements OnInit {
     //   user: [],
     //   oras: [],
     // const expireDate = this.productForm.get('expireDate')!.value;
-    const anunt = new Anunt();
-    anunt.id = this.inputProduct?.id;
-    anunt.detalii = this.productForm.get("detalii")!.value;
-    // anunt.tip = this.productForm.get("tip")!.value;
-    anunt.materie = this.productForm.get("materie")!.value;
-    anunt.oras = this.productForm.get("oras")!.value;
-    anunt.image = this.image;
-    anunt.an =this.productForm.get("an")!.value;
-    anunt.facultate = this.productForm.get("facultate")!.value;
-    anunt.clasa = this.productForm.get("clasa")!.value;
-    anunt.telefon = this.productForm.get("telefon")!.value;
-  anunt.user =this.user;
-
-
-
-
-    // product.price = this.productForm.get('price')!.value;
-    // product.name = this.productForm.get('name')!.value;
-    // product.quantity = this.productForm.get('quantity')!.value;
+    const product = new Product()
+    
+    product.price = this.productForm.get('price')!.value;
+    product.name = this.productForm.get('name')!.value;
+    product.quantity = this.productForm.get('quantity')!.value;
     // product.expireDate = new Date(expireDate.year, expireDate.month - 1, expireDate.day);
-    // product.sku = this.productForm.get('sku')!.value;
-    // product.code = this.productForm.get('code')!.value;
-    // product.category = this.productForm.get('category')!.value;
-    // product.image = this.image;
-    // product.images = this.images;
-    // product.createdDate = this.createdDate;
-    return anunt;
+    product.sku = this.productForm.get('sku')!.value;
+    product.code = this.productForm.get('code')!.value;
+    product.category = this.productForm.get('category')!.value;
+    product.image = this.image;
+    product.images = this.images;
+    product.createdDate = this.createdDate;
+    return product;
   }
 
   private updateForm(product: Product): void {
@@ -210,7 +187,7 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  private subscribeToSaveResponse(result: Observable<HttpResponse<Anunt>>): void {
+  private subscribeToSaveResponse(result: Observable<HttpResponse<Product>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
       () => this.onSaveError()

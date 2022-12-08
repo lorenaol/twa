@@ -17,15 +17,13 @@ import {User} from "../entities/user";
 
 import {UserFormComponent} from "../components/user-form/user-form.component";
 import {UserDeleteComponent} from "../components/user-delete/user-delete.component";
-import {UsersRomaniaComponent} from "../components/users-romania/users-romania.component";
 import {Roleauthority} from "../entities/roleauthority";
 import {RoleauthorityDeleteComponent} from "../components/roleauthority-delete/roleauthority-delete.component";
 import {RoleauthorityFormComponent} from "../components/roleauthority-form/roleauthority-form.component";
 import {User_role} from "../entities/user_role";
 import {UserRoleDeleteComponent} from "../components/user-role-delete/user-role-delete.component";
 import {UserRoleFormComponent} from "../components/user-role-form/user-role-form.component";
-import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart.component";
-import {Anunt} from "@app/entities/anunt";
+
 
 
 @Injectable({
@@ -38,7 +36,7 @@ export class ModalService {
   constructor(private modalService: NgbModal) {
   }
 
-  openCategoryModal(modalType: ModalTypesEnum, inputCategory?: Anunt) {
+  openCategoryModal(modalType: ModalTypesEnum, inputCategory?: Category) {
     const modalRef: NgbModalRef = this.modalService.open(CategoryFormComponent);
 
     modalRef.componentInstance.modalType = modalType;
@@ -101,15 +99,6 @@ export class ModalService {
   openDeleteModalUser(inputUser: User) {
     const modalRef: NgbModalRef = this.modalService.open(UserDeleteComponent);
     modalRef.componentInstance.inputUser = inputUser;
-
-    return modalRef.result
-      .then(result => {
-        return result;
-      });
-  }
-
-  openUsersRomaniaModal(users?: User[]){
-    const modalRef: NgbModalRef = this.modalService.open(UsersRomaniaComponent, {size: "xl"});
 
     return modalRef.result
       .then(result => {

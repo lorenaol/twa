@@ -1,89 +1,29 @@
-<form name="categoryForm"  [formGroup]="categoryForm">
-  <div class="modal-header">
-    <div *ngIf="ModalTypesEnum.CREATE == modalType">
-      <h4 class="modal-title" id="modal-basic-title">Create Category</h4>
-    </div>
-    <div *ngIf="ModalTypesEnum.EDIT == modalType">
-      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>
-    </div>
-    <div *ngIf="ModalTypesEnum.VIEW == modalType">
-      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>
-    </div>
-
-    <button type="button" class="close" aria-label="Close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group row">
-      <label for="Nume" class="col-sm-4 col-form-label">Nume</label>
-      <div class="col-sm-8">
-     {{inputCategory?.user?.name}}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="Locatie" class="col-sm-4 col-form-label">Locatie</label>
-      <div class="col-sm-8">
-        {{inputCategory?.oras}}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="categoryDescription" class="col-sm-4 col-form-label">Materie</label>
-      <div class="col-sm-8">
-        {{inputCategory?.materie}}
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="storeId" class="col-sm-4 col-form-label">Descriere</label>
-      <div class="col-sm-8">
-       {{inputCategory?.detalii}}
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="Telefon" class="col-sm-4 col-form-label">Telefon</label>
-      <div class="col-sm-8">
-        {{inputCategory?.telefon}}
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="storeId" class="col-sm-4 col-form-label">Email</label>
-      <div class="col-sm-8">
-        {{inputCategory?.user?.email}}
-      </div>
-    </div>
-
-<!--    <div class="form-group row">-->
-<!--      <label for="storeId" class="col-sm-4 col-form-label">Recenzii</label>-->
-<!--      <div class="col-sm-8">-->
-<!--       <div *ngFor="let review of reviews">-->
-<!--         Recenzie lasata de {{review?.userName}} :-->
-<!--         <p>{{review?.text}}</p>-->
-<!--         <p>{{review?.text2}}</p>-->
-<!--       </div>-->
-<!--      </div>-->
+<!--<form name="categoryForm"  [formGroup]="categoryForm">-->
+<!--  <div class="modal-header">-->
+<!--    <div *ngIf="ModalTypesEnum.CREATE == modalType">-->
+<!--      <h4 class="modal-title" id="modal-basic-title">Create Category</h4>-->
+<!--    </div>-->
+<!--    <div *ngIf="ModalTypesEnum.EDIT == modalType">-->
+<!--      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>-->
+<!--    </div>-->
+<!--    <div *ngIf="ModalTypesEnum.VIEW == modalType">-->
+<!--      <h4 class="modal-title" id="modal-basic-title">Detalii</h4>-->
 <!--    </div>-->
 
+<!--    <button type="button" class="close" aria-label="Close" (click)="close()">-->
+<!--      <span aria-hidden="true">&times;</span>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="modal-body">-->
 <!--    <div class="form-group row">-->
-<!--      <label for="storeId" class="col-sm-4 col-form-label">Facultate</label>-->
-<!--      <div class="col-sm-8">-->
-<!--        {{inputCategory?.facultate}}-->
-<!--      </div>-->
+
+
+<!--  </div>-->
+<!--  <div *ngIf="ModalTypesEnum.VIEW == modalType">-->
+
+
+<!--    <div class="modal-footer" *ngIf="isLoggedIn()">-->
+<!--      <button class="add-rec btn btn-success" (click)="redirect1()">Vezi recenzii</button>-->
 <!--    </div>-->
-
-  </div>
-  <div *ngIf="ModalTypesEnum.VIEW == modalType">
-
-
-    <div class="modal-footer" *ngIf="isLoggedIn()">
-      <button class="add-rec btn btn-success" (click)="redirect1()">Vezi recenzii</button>
-      <div class="modal-footer" *ngIf="colaborat()">
-      <button class="add-rec btn btn-success" (click)="redirect2()">Adauga recenzie</button>
-      </div>
-      <div class="modal-footer" *ngIf="solicitat()">
-      <button class="add-rec btn btn-success" (click)="redirect3()">Solicita colaborarea</button>
-        </div>
-    </div>
-  </div>
-</form>
+<!--  </div>-->
+<!--</form>-->

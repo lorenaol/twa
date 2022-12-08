@@ -104,13 +104,5 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  openUsersRomaniaModal(users?: User[]) {
-    if (this.users !== null)
-      this.modalService.openUsersRomaniaModal(users).then((result) => {
-        if (result) {
-          this.loadData();
-        }
-      });
-  }
 
 }

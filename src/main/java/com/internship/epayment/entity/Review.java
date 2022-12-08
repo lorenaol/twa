@@ -18,15 +18,15 @@ public class Review {
     private String userName;
 
     @ManyToOne
-    @JoinColumn(name = "anunt_id", referencedColumnName = "id", nullable = false)
-    private Anunt anunt;
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
+    private Product product;
 
-    public Anunt getAnunt() {
-        return anunt;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setAnunt(Anunt anunt) {
-        this.anunt = anunt;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     private String text;

@@ -1,9 +1,9 @@
 import {User} from "@app/entities/user";
-import {Anunt} from "@app/entities/anunt";
+import {Product} from "@app/entities/product";
 
 export class Review {
   id?: number;
-  anunt?: Anunt;
+  product?: Product;
   userName?: string
   // productId?: number;
   text?: string;

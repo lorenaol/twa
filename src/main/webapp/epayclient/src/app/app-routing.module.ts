@@ -15,26 +15,9 @@ import {ShoppingCartComponent} from "@app/components/shopping-cart/shopping-cart
 import {ProductDetailComponent} from "@app/components/product-detail/product-detail.component";
 import {CategoryProductsComponent} from "@app/components/category-products/category-products.component";
 import {ResetPasswordComponent} from "@app/components/reset-password/reset-password.component";
-import {ReviewComponent} from "@app/components/review/review.component";
-import {AnuntComponent} from "@app/components/anunt/anunt.component";
-import {ChatComponent} from "@app/components/chat/chat.component";
 import {MyProfileComponent} from "@app/components/my-profile/my-profile.component";
 import {EditProfileComponent} from "@app/components/edit-profile/edit-profile.component";
-import {MyRequestsComponent} from "@app/components/my-requests/my-requests.component";
-import {MyAnnouncesComponent} from "@app/components/my-announces/my-announces.component";
-import {MyClassesComponent} from "@app/components/my-classes/my-classes.component";
-import {CreateClassDialogComponent} from "@app/components/create-class-dialog/create-class-dialog.component";
-import {ViewClassComponent} from "@app/components/view-class/view-class.component";
-import {MaterialsClassComponent} from "@app/components/materials-class/materials-class.component";
-import {TestsClassComponent} from "@app/components/tests-class/tests-class.component";
-import {ReviewListComponent} from "@app/components/review-list/review-list.component";
-import {CreateTestComponent} from "@app/components/create-test/create-test.component";
-import {RaspundereTestComponent} from "@app/components/raspundere-test/raspundere-test.component";
-import {ViewTestComponent} from "@app/components/view-test/view-test.component";
-import {CreateTestDialogComponent} from "@app/components/create-test-dialog/create-test-dialog.component";
-import {Chat2Component} from "@app/components/chat2/chat2.component";
-import {GradeTestComponent} from "@app/components/grade-test/grade-test.component";
-import {ViewGradedTestComponent} from "@app/components/view-graded-test/view-graded-test.component";
+
 
 
 const routes: Routes = [
@@ -50,9 +33,6 @@ const routes: Routes = [
   { path: ':id', component: CategoryProductsComponent },
    ]
 },
-  { path: 'review-list', component: ReviewListComponent},
-  {path: 'chat',
-  component: ChatComponent},
 
  { path: 'products',
    children:[
@@ -70,25 +50,10 @@ const routes: Routes = [
   { path: 'users/reset-password/:token', component: ResetPasswordComponent},
   { path: 'shoppingcart', component: ShoppingCartComponent},
   { path: 'users/reset-password/:token', component: ResetPasswordComponent},
-  { path: 'reviews', component: ReviewComponent},
   { path: 'anunturi', component: CategoryProductsComponent},
   { path: 'profilul-meu', component: MyProfileComponent},
   { path: 'profil-edit', component: EditProfileComponent},
-  { path: 'cererile-mele', component: MyRequestsComponent},
-  { path: 'anunturile-mele', component: MyAnnouncesComponent},
-  { path: 'clasele-mele', component: MyClassesComponent},
-  { path: 'adauga-clasa', component: CreateClassDialogComponent},
-  { path: 'vezi-clasa', component: ViewClassComponent},
-  { path: 'materiale-clasa', component: MaterialsClassComponent},
-  { path: 'teste-clasa', component: TestsClassComponent},
-  { path: 'vezi-test', component: ViewTestComponent},
 
-  // { path: 'teste-clasa', component: TestsClassComponent},
-  {path: 'creare-test', component: CreateTestComponent},
-  {path:'raspuns-test', component:RaspundereTestComponent},
-  { path:'chat2', component: Chat2Component},
-  { path:'noteaza-test', component:GradeTestComponent},
-  { path:'vezi-test-notat', component:ViewGradedTestComponent}
 ];
 
 @NgModule({

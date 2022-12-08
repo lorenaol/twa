@@ -35,7 +35,6 @@ import { BasicAuthInterceptor } from "@app/_helpers/basic-auth.interceptor";
 import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 import { HasAuthorityDirective } from './directives/has-authority.directive';
 import { AgmCoreModule } from '@agm/core';
-import { UsersRomaniaComponent } from './components/users-romania/users-romania.component';
 
 import { RoleauthorityListComponent } from './components/roleauthority-list/roleauthority-list.component';
 import { RoleauthorityFormComponent } from './components/roleauthority-form/roleauthority-form.component';
@@ -54,7 +53,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
-import { ReviewComponent } from './components/review/review.component';
+
 
 import { BreadcrumbModule } from "xng-breadcrumb";
 import { BreadcrumbService } from 'xng-breadcrumb';
@@ -65,37 +64,23 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SpinnerInterceptor} from "@app/_helpers/spinner.interceptor";
 import { StreamChatModule, StreamAutocompleteTextareaModule } from 'stream-chat-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { AnuntComponent } from './components/anunt/anunt.component';
-import { ChatComponent } from './components/chat/chat.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { ReviewListComponent } from './components/review-list/review-list.component';
-import { MyRequestsComponent } from './components/my-requests/my-requests.component';
-import { MyAnnouncesComponent } from './components/my-announces/my-announces.component';
-import { MyClassesComponent } from './components/my-classes/my-classes.component';
 import {MatButtonModule} from "@angular/material/button";
-import { CreateClassDialogComponent } from './components/create-class-dialog/create-class-dialog.component';
-import { ViewClassComponent } from './components/view-class/view-class.component';
-import { MaterialsClassComponent } from './components/materials-class/materials-class.component';
-import { TestsClassComponent } from './components/tests-class/tests-class.component';
-import { ViewTestComponent } from './components/view-test/view-test.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
-import { CreateTestDialogComponent } from './components/create-test-dialog/create-test-dialog.component';
-import { Chat2Component } from './components/chat2/chat2.component';
+
 
 import {MatCardModule} from '@angular/material/card';
-import { CreateTestComponent } from './components/create-test/create-test.component';
-import { RaspundereTestComponent } from './components/raspundere-test/raspundere-test.component';
+
 import {TableModule} from "primeng/table";
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
-import { GradeTestComponent } from './components/grade-test/grade-test.component';
-import { ViewGradedTestComponent } from './components/view-graded-test/view-graded-test.component';
+
 
 @NgModule({
   declarations: [
@@ -125,7 +110,6 @@ import { ViewGradedTestComponent } from './components/view-graded-test/view-grad
     UserRoleDeleteComponent,
     LoginComponent,
     HasAuthorityDirective,
-    UsersRomaniaComponent,
     ShoppingCartComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
@@ -134,33 +118,9 @@ import { ViewGradedTestComponent } from './components/view-graded-test/view-grad
     PasswordChangeComponent,
     BreadCrumbsComponent,
     SpinnerComponent,
-    ReviewComponent,
-    AnuntComponent,
-    ChatComponent,
     MyProfileComponent,
     EditProfileComponent,
-    MyRequestsComponent,
-    MyAnnouncesComponent,
-    MyClassesComponent,
-    CreateClassDialogComponent,
-    ViewClassComponent,
-    MaterialsClassComponent,
-    TestsClassComponent,
-    ViewTestComponent,
-    CreateTestDialogComponent,
-    Chat2Component,
-    CreateTestDialogComponent,
-    ViewTestComponent,
-    TestsClassComponent,
-    EditProfileComponent,
-    ReviewListComponent,
-    CreateTestComponent,
-    RaspundereTestComponent,
-    ViewTestComponent,
-    CreateTestDialogComponent,
-    Chat2Component,
-    GradeTestComponent,
-    ViewGradedTestComponent
+    EditProfileComponent
 
   ],
     imports: [

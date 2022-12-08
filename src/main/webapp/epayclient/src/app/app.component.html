@@ -9,20 +9,8 @@
   <span><a routerLink="/"><button class="btn btn-link" style="color: white; margin-left: 10px;">
     <fa-icon [icon] = "faGr" size="2x"></fa-icon>
   </button></a></span>
-  <span><a routerLink="/anunturi"><button class="btn btn-link" style="color: white; margin-left: 10px; font-size:20px;">
-    Anunturi
-<!--    <fa-icon [icon] = "faGr"></fa-icon>-->
-  </button></a></span>
-  <span>
-    <mat-form-field appearance="fill" class="mat-form-field-cauta">
-      <mat-label class="mate-label-cauta">Gaseste utilizator</mat-label>
-      <mat-select [(ngModel)]="selectedOption" (selectionChange)="goToUser()">
-        <mat-option  class="selected-option" *ngFor="let food of foods" [value]="food">
-          <span>{{food.name}}</span>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </span>
+
+
 <!--  <span><a routerLink="/products"><button class="btn btn-link" style="color: white">-->
 <!--    Adauga Anunt-->
 <!--    &lt;!&ndash;    <fa-icon [icon] = "faGr"></fa-icon>&ndash;&gt;-->

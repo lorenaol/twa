@@ -7,41 +7,23 @@
     <div class="meniu-total col-sm-2" >
       <div class="titlu-meniu"><span class="mattrue" (click)="setMatTrue()">Materii</span> / <span class="matfalse" (click)="setMatFalse()">Filtre</span></div>
      <div *ngIf = "getMat()">
-       <div *ngFor="let product of materii" class="meniu">
-       <p (click)="filter(product)">{{product}}</p>
+       <div *ngFor="let product of products" class="meniu">
+    
       </div>
      </div>
-      <div *ngIf = "!getMat()">
-<!--        Rol:-->
-<!--        <div *ngFor="let product of roluri" class="meniu">-->
-<!--          <li (click)="filter2(product)">{{product}}</li>-->
-<!--        </div>-->
-        Locatie:
-        <div *ngFor="let product of orase" class="meniu">
-          <li (click)="filter3(product)">{{product}}</li>
-        </div>
-        Facultate:
-        <div *ngFor="let product of facultati" class="meniu">
-          <li (click)="filter4(product)">{{product}}</li>
-        </div>
-      </div>
+    
 
     </div>
   <div class="anunturi col-sm-10 row">
-     <div *ngFor="let product of anunturi_currente" class="produs col-sm-3">
+     <div *ngFor="let product of products" class="produs col-sm-3">
         <div class="image" [routerLink]="['/products', product.id]"></div>
         <div class="nume">
-          <p><strong>{{product?.user?.name}}</strong></p>
+          <p><strong>{{product?.name}}</strong></p>
         </div>
-        <div class="materie">
-         Topic : {{(product?.materie)}}
-        </div>
-<!--        <div class="telefon">-->
-<!--          <p><strong>{{product?.telefon}}</strong></p>-->
-<!--        </div>-->
+      
        <div class="buttons">
          <button id="cart"  (click)="openCategoryModal(ModalTypesEnum.VIEW, product)">Vezi detalii</button>
-<!--         <button id="favorites"><fa-icon id="heart" [icon]="faHeart"></fa-icon>  Add to favorites</button>-->
+
        </div>
      </div>
   </div>

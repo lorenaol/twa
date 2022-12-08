@@ -15,8 +15,8 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
 
-            <column name="anunt_id" type="bigint">
-                <constraints foreignKeyName="anunt_fk" references="anunturi(id)"
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="product_fk" references="products(id)"
                              nullable="false" />
             </column>
 

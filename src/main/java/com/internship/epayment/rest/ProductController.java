@@ -1,8 +1,7 @@
 package com.internship.epayment.rest;
 
 
-import com.internship.epayment.data.ProductExcelExporter;
-import com.internship.epayment.data.ProductPDFExporter;
+
 import com.internship.epayment.entity.Product;
 import com.internship.epayment.entity.User;
 import com.internship.epayment.service.ProductsService;
@@ -85,37 +84,5 @@ public class ProductController {
         productService.deleteProduct(product);
     }
 
-    @GetMapping("/export/{type}")
-    public void export(HttpServletResponse response, @PathVariable String type, @RequestHeader(name = "FILTER-PARAMS") List<String> params,
-                       Pageable pageable) throws Exception {
-
-        if (!type.equals("excel") && !type.equals("pdf"))
-            throw new Exception("only pdf or excel type");
-
-        if (type.equals("excel")) {
-            response.setContentType("application/octet-stream");
-        } else {
-            response.setContentType("application/pdf");
-        }
-
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String extension = type.equals("excel") ? ".xlsx" : ".pdf";
-
-        String headerValue = "attachment; filename=products_" + currentDateTime + extension;
-        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, headerValue);
-
-        List<Product> productList = productService.filter(params, pageable).toList();
-
-        if (type.equals("excel")) {
-            ProductExcelExporter excelExporter = new ProductExcelExporter(productList);
-            excelExporter.export(response);
-        } else {
-            ProductPDFExporter exporter = new ProductPDFExporter(productList);
-            exporter.export(response);
-        }
-    }
 
 }
